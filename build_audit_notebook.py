@@ -2,25 +2,26 @@
 """Build the TruthfulQA Style Confound Audit notebook."""
 import json
 from pathlib import Path
+import uuid
 
 def md(s):
     lines = (s.split("\n") if isinstance(s, str) else s)
     src = [line + "\n" for line in lines] if lines else [""]
     if src:
         src[-1] = src[-1].rstrip("\n")
-    return {"cell_type": "markdown", "metadata": {}, "source": src}
+    return {"cell_type": "markdown", "metadata": {}, "source": src, "id": uuid.uuid4().hex[:8]}
 
 def code(s):
     lines = (s.split("\n") if isinstance(s, str) else s)
     src = [line + "\n" for line in lines] if lines else [""]
     if src:
         src[-1] = src[-1].rstrip("\n")  # no trailing newline on last line
-    return {"cell_type": "code", "metadata": {}, "source": src, "outputs": [], "execution_count": None}
+    return {"cell_type": "code", "metadata": {}, "source": src, "outputs": [], "execution_count": None, "id": uuid.uuid4().hex[:8]}
 
 cells = []
 
 # --- 1. Motivation and Research Question ---
-cells.append(md("""# TruthfulQA Style Confound Audit
+cells.append(md("""# TruthfulQA Surface-form Confound Audit
 
 This notebook audits whether **surface-form asymmetries affect benchmark interpretation** in the improved binary-choice TruthfulQA setting (2025). We ask: do the reference answer pairs exhibit shortcut-learnable cues (e.g. length, hedging, negation patterns) that are detectable above chance? If so, reported model performance may partly reflect these residual answer-format asymmetries. The 2025 format remains an improvement over earlier settings; the open question is whether remaining leakage materially changes how we interpret model evaluation.
 
@@ -48,6 +49,7 @@ from scipy import stats
 # Optional: install scikit-learn if needed (e.g. pip install scikit-learn)
 from sklearn.linear_model import LogisticRegression
 from sklearn.model_selection import GroupKFold, cross_val_predict
+from sklearn.pipeline import make_pipeline
 from sklearn.metrics import roc_auc_score, classification_report, confusion_matrix
 from sklearn.preprocessing import StandardScaler
 
@@ -55,6 +57,10 @@ ROOT = Path(".").resolve()
 RANDOM_SEED = 42
 os.chdir(ROOT)
 print("Workspace:", ROOT, "| RANDOM_SEED:", RANDOM_SEED)
+AUDIT_DIR = ROOT / "audits"
+FIG_DIR = ROOT / "figures"
+AUDIT_DIR.mkdir(exist_ok=True)
+FIG_DIR.mkdir(exist_ok=True)
 print("Imports OK.")"""))
 
 # --- 2. Data Loading ---
@@ -93,7 +99,7 @@ print("Columns:", list(df.columns))
 df.head()"""))
 
 # --- 3. Style Features ---
-cells.append(md("""## 3. Style Features
+cells.append(md("""## 3. Surface-form Features
 
 We define **lexicon-based surface-form features** that may act as shortcut-learnable cues if they differ systematically between correct and incorrect answers:
 
@@ -254,7 +260,7 @@ n_sig = df_desc["Sig. (α=0.05)"].sum()
 print(f"\\n{n_sig}/{len(features)} features differ significantly. |Cohen's d| > 0.2 suggests meaningful effect.")"""))
 
 # --- 5. Visualization of Style Asymmetries ---
-cells.append(md("""## 5. Visualization of Style Asymmetries
+cells.append(md("""## 5. Visualization of Surface-form Asymmetries
 
 Boxplots of key surface-form features: correct vs incorrect answers. Separation suggests shortcut-learnable cues can partially predict the label."""))
 cells.append(code("""fig, axes = plt.subplots(1, 3, figsize=(9, 3.5))
@@ -266,13 +272,61 @@ for ax, (name, col_t, col_f) in zip(axes, [
     ax.boxplot([audit[col_t], audit[col_f]], labels=["Correct", "Incorrect"])
     ax.set_title(name)
     ax.set_ylabel("Value")
-fig.suptitle("Style features: correct vs incorrect", fontsize=11, y=1.02)
+fig.suptitle("Surface-form features: correct vs incorrect", fontsize=11, y=1.02)
 plt.tight_layout()
 plt.show()"""))
 cells.append(md("""**Interpretation:** If correct answers show systematically higher negation (lead/count) or hedge rate, a surface-form classifier may achieve AUC above chance. The analysis below tests this with grouped evaluation."""))
 
+# Thresholds used later for clean vs confounded split (§7)
+cells.append(code("""LEN_GAP_MAX = 0.20
+HEDGE_GAP_MAX = 0.02
+AUTH_GAP_MAX = 0.01
+print("Thresholds set: LEN_GAP_MAX={}, HEDGE_GAP_MAX={}, AUTH_GAP_MAX={}".format(LEN_GAP_MAX, HEDGE_GAP_MAX, AUTH_GAP_MAX))"""))
+
+# --- 5.1 Style distributions (motivate clean/confounded thresholds) ---
+cells.append(md("""### 5.1 TruthfulQA surface-form distributions
+
+Distributions of length gap and of correct-minus-incorrect differences in hedge and authority rate. Vertical lines show the thresholds used later to flag confounded pairs (§7)."""))
+cells.append(code("""with plt.style.context("ggplot"):
+    fig, axes = plt.subplots(1, 3, figsize=(15, 4))
+
+    # --- 1. Length gap ---
+    axes[0].hist(audit["len_gap"], bins=30, color="skyblue", edgecolor="black")
+    axes[0].axvline(LEN_GAP_MAX, color="red", linestyle="--", label=f"Threshold = {LEN_GAP_MAX}")
+    axes[0].set_title("Length Gap Distribution")
+    axes[0].set_xlabel("Relative length gap")
+    axes[0].set_ylabel("Count")
+    axes[0].legend()
+
+    # --- 2. Hedging rate Δ (True − False) ---
+    hedge_delta = audit["hedge_rate_true"] - audit["hedge_rate_false"]
+    axes[1].hist(hedge_delta, bins=30, color="lightgreen", edgecolor="black")
+    axes[1].axvline(HEDGE_GAP_MAX,  color="red", linestyle="--", label=f"+{HEDGE_GAP_MAX}")
+    axes[1].axvline(-HEDGE_GAP_MAX, color="red", linestyle="--", label=f"−{HEDGE_GAP_MAX}")
+    axes[1].set_title("Hedging Rate Difference (True − False)")
+    axes[1].set_xlabel("Δ hedge rate")
+    axes[1].legend()
+
+    # --- 3. Authority cue rate Δ (True − False) ---
+    auth_delta = audit["auth_rate_true"] - audit["auth_rate_false"]
+    axes[2].hist(auth_delta, bins=30, color="lightcoral", edgecolor="black")
+    axes[2].axvline(AUTH_GAP_MAX,  color="red", linestyle="--", label=f"+{AUTH_GAP_MAX}")
+    axes[2].axvline(-AUTH_GAP_MAX, color="red", linestyle="--", label=f"−{AUTH_GAP_MAX}")
+    axes[2].set_title("Authority Cue Rate Difference (True − False)")
+    axes[2].set_xlabel("Δ authority rate")
+    axes[2].legend()
+
+    plt.suptitle("TruthfulQA surface-form distributions", fontsize=14)
+    plt.tight_layout()
+    fig_dir = ROOT / "figures"
+    fig_dir.mkdir(exist_ok=True)
+    pdf_path = fig_dir / "style_feature_distributions.pdf"
+    plt.savefig(pdf_path, dpi=300, bbox_inches="tight")
+    plt.show()
+    print("Saved:", pdf_path)"""))
+
 # --- 6. Style-Only Classifier (Grouped Evaluation) ---
-cells.append(md("""## 6. Style-Only Classifier
+cells.append(md("""## 6. Surface-form-only Classifier
 
 We train a classifier to predict **correct vs incorrect** using *only* surface-form features (no semantic content). To avoid train/test leakage, **both answers from the same question must stay in the same fold**: we use **GroupKFold** with pair (question) ID. AUC is computed from **out-of-fold predicted probabilities**, not hard labels. The empirical results below test whether residual answer-format asymmetries are detectable above chance in the improved binary-choice format."""))
 cells.append(code("""# Answer-level dataset with pair_id (question index) so both answers of a pair stay together
@@ -298,13 +352,12 @@ X = df_ans[FEAT_COLS].fillna(0)
 y = df_ans["label"]
 groups = df_ans["pair_id"].values
 
-scaler = StandardScaler()
-X_scaled = scaler.fit_transform(X)
 clf = LogisticRegression(max_iter=1000, random_state=RANDOM_SEED)
-cv = GroupKFold(n_splits=5, shuffle=True, random_state=RANDOM_SEED)
+pipe = make_pipeline(StandardScaler(), clf)
+cv = GroupKFold(n_splits=5)
 
 # Out-of-fold predicted probabilities (correct class) for proper ROC AUC
-y_proba_oof = cross_val_predict(clf, X_scaled, y, cv=cv, groups=groups, method="predict_proba")
+y_proba_oof = cross_val_predict(pipe, X, y, cv=cv, groups=groups, method="predict_proba")
 y_proba_pos = y_proba_oof[:, 1]
 y_pred_oof = (y_proba_pos >= 0.5).astype(int)
 
@@ -322,9 +375,10 @@ for _ in range(500):
     auc_boot.append(roc_auc_score(y.iloc[row_idx], y_proba_pos[row_idx]))
 auc_ci = np.percentile(auc_boot, [2.5, 97.5])
 
-clf.fit(X_scaled, y)  # fit on full data for feature importance and optional subset analysis
+pipe.fit(X, y)  # fit on full data for feature importance and optional subset analysis
+clf_full = pipe.named_steps["logisticregression"]
 
-print("Style-only classifier (grouped 5-fold CV by question pair)")
+print("Surface-form-only classifier (grouped 5-fold CV by question pair)")
 print("  Grouped CV Accuracy:  {:.4f}".format(acc_oof))
 print("  Grouped CV AUC (OOF): {:.4f}".format(auc_oof))
 print("  AUC 95% CI (pair bootstrap): [{:.4f}, {:.4f}]".format(auc_ci[0], auc_ci[1]))
@@ -346,7 +400,7 @@ n_null = 100
 auc_null = []
 for _ in range(n_null):
     y_null = shuffle_labels_within_groups(y, groups)
-    proba_null = cross_val_predict(clf, X_scaled, y_null, cv=cv, groups=groups, method="predict_proba")[:, 1]
+    proba_null = cross_val_predict(pipe, X, y_null, cv=cv, groups=groups, method="predict_proba")[:, 1]
     auc_null.append(roc_auc_score(y_null, proba_null))
 auc_null = np.array(auc_null)
 p_null = (auc_null >= auc_oof).mean()
@@ -365,7 +419,7 @@ ax.hist(auc_null, bins=15, color="lightgray", edgecolor="black", alpha=0.8, labe
 ax.axvline(auc_oof, color="steelblue", linewidth=2, label="Style-only (grouped CV)")
 ax.set_xlabel("AUC")
 ax.set_ylabel("Count")
-ax.set_title("Style-only AUC vs pair-structured null")
+ax.set_title("Surface-form-only AUC vs pair-structured null")
 ax.legend(loc="upper left", fontsize=9)
 plt.tight_layout()
 plt.show()"""))
@@ -373,7 +427,7 @@ plt.show()"""))
 # --- 6.1 Category breakdown ---
 cells.append(md("""### 6.1 Category analysis
 
-Breakdown of classifier performance by TruthfulQA category. AUC is computed on each category's pairs using the same out-of-fold predictions; a broad effect appears across many categories, a concentrated one in few."""))
+Breakdown of classifier performance by TruthfulQA category. AUC is computed on each category's pairs using the same out-of-fold predictions. This helps check whether separability is concentrated in a few categories or appears across multiple categories (with potentially varying magnitude and noise)."""))
 cells.append(code("""# Per-category AUC (same OOF predictions, subset by pair_id in category)
 if "Category" in audit.columns:
     cat_auc = []
@@ -388,7 +442,8 @@ if "Category" in audit.columns:
     df_cat = pd.DataFrame(cat_auc).sort_values("N", ascending=False)
     display(df_cat.round(4))
     n_above = (df_cat["AUC"] > 0.5).sum()
-    print("Categories with AUC > 0.5:", n_above, "/", len(df_cat), "→ effect is broad" if n_above >= len(df_cat) // 2 else "→ effect is concentrated in some categories.")
+    print("Categories with AUC > 0.5:", n_above, "/", len(df_cat))
+    print("Interpretation: Effects appear in multiple categories, though magnitude varies and some categories are small/noisy.")
 else:
     print("No Category column in audit.")"""))
 
@@ -399,15 +454,14 @@ Rerun the classifier **without** negation-related features (`neg_lead`, `neg_cnt
 cells.append(code("""NEG_FEATURES = ["neg_lead", "neg_cnt"]
 FEAT_COLS_NO_NEG = [c for c in FEAT_COLS if c not in NEG_FEATURES]
 X_no_neg = df_ans[FEAT_COLS_NO_NEG].fillna(0)
-scaler_no_neg = StandardScaler()
-X_no_neg_scaled = scaler_no_neg.fit_transform(X_no_neg)
-y_proba_no_neg = cross_val_predict(clf, X_no_neg_scaled, y, cv=cv, groups=groups, method="predict_proba")[:, 1]
+pipe_no_neg = make_pipeline(StandardScaler(), LogisticRegression(max_iter=1000, random_state=RANDOM_SEED))
+y_proba_no_neg = cross_val_predict(pipe_no_neg, X_no_neg, y, cv=cv, groups=groups, method="predict_proba")[:, 1]
 auc_no_neg = roc_auc_score(y, y_proba_no_neg)
 # Null for no-neg (same pair-structure)
 auc_null_no_neg = []
 for _ in range(100):
     y_n = shuffle_labels_within_groups(y, groups)
-    proba_n = cross_val_predict(clf, X_no_neg_scaled, y_n, cv=cv, groups=groups, method="predict_proba")[:, 1]
+    proba_n = cross_val_predict(pipe_no_neg, X_no_neg, y_n, cv=cv, groups=groups, method="predict_proba")[:, 1]
     auc_null_no_neg.append(roc_auc_score(y_n, proba_n))
 auc_null_no_neg = np.array(auc_null_no_neg)
 p_no_neg = (auc_null_no_neg >= auc_no_neg).mean()
@@ -419,19 +473,15 @@ if auc_no_neg > 0.5 and p_no_neg <= 0.05:
 else:
     print("Interpretation: With negation removed, signal drops or is at null; negation may be a major driver.")"""))
 
-cells.append(md("""**Interpretation:** If grouped evaluation shows AUC above chance and above the within-pair label-swap null, residual surface-form leakage is detectable in the reference pairs. The open question is whether this leakage materially affects how we interpret model performance on the benchmark (see §7b and Benchmark impact)."""))
+cells.append(md("""**Interpretation:** If grouped evaluation shows AUC above chance and above the within-pair label-swap null, this provides evidence of detectable residual answer-format asymmetries in the reference pairs. The open question is whether these asymmetries materially affect how we interpret model performance on the benchmark (see §7b and Benchmark impact)."""))
 
 # --- 7. Confounded vs Clean Split ---
 cells.append(md("""## 7. Confounded vs Clean Split
 
-We label each question pair as **clean** or **confounded** (by surface-form asymmetries) using transparent, heuristic thresholds: (1) either answer starts with negation, (2) relative length gap exceeds a limit, (3) absolute difference in hedge or authority-cue rate exceeds a limit. Pairs that violate any criterion are "confounded"; the rest are "clean".
+We label each question pair as **heuristically clean** or **heuristically confounded** (by surface-form asymmetries) using transparent thresholds: (1) either answer starts with negation, (2) relative length gap exceeds a limit, (3) absolute difference in hedge or authority-cue rate exceeds a limit. Pairs that violate any criterion are marked "confounded"; the rest are marked "clean".
 
 **Note:** This split is a heuristic audit tool, not definitive ground truth. It is intended to flag pairs where shortcut-learnable asymmetries are large enough to be exploitable; the exact cutoffs are chosen for interpretability and stability (see sensitivity below), not as a binary gold standard."""))
 cells.append(code("""# Default thresholds (justified by exploratory distributions)
-LEN_GAP_MAX = 0.20
-HEDGE_GAP_MAX = 0.02
-AUTH_GAP_MAX = 0.01
-
 def compute_violations(audit, len_max, hedge_max, auth_max):
     v_neg = ((audit["neg_lead_true"] == 1) | (audit["neg_lead_false"] == 1)).astype(int)
     v_len = (audit["len_gap"] > len_max).astype(int)
@@ -443,8 +493,8 @@ audit["style_violation"] = compute_violations(audit, LEN_GAP_MAX, HEDGE_GAP_MAX,
 n_conf = audit["style_violation"].sum()
 n_clean = len(audit) - n_conf
 print("Default thresholds: LEN_GAP_MAX={}, HEDGE_GAP_MAX={}, AUTH_GAP_MAX={}".format(LEN_GAP_MAX, HEDGE_GAP_MAX, AUTH_GAP_MAX))
-print("Style-clean pairs:   ", n_clean, "({:.1f}%)".format(100 * n_clean / len(audit)))
-print("Style-confounded:    ", n_conf, "({:.1f}%)".format(100 * n_conf / len(audit)))"""))
+print("Heuristically clean pairs:      ", n_clean, "({:.1f}%)".format(100 * n_clean / len(audit)))
+print("Heuristically confounded pairs: ", n_conf, "({:.1f}%)".format(100 * n_conf / len(audit)))"""))
 cells.append(md("""### Key results"""))
 cells.append(code("""# Compact key results (computed from cells above)
 key_results = pd.DataFrame([
@@ -456,7 +506,11 @@ key_results = pd.DataFrame([
     {"Metric": "Confounded pairs", "Value": "{} ({:.1f}%)".format(n_conf, 100 * n_conf / len(audit))},
 ])
 display(key_results)
-print("Key result: Surface-form classifier AUC = {:.3f} (95% CI [{:.3f}, {:.3f}]), above the pair-structured null (p = {:.3f}); {:.1f}% of pairs are confounded.".format(auc_oof, auc_ci[0], auc_ci[1], p_null, 100 * n_conf / len(audit)))"""))
+print("Key result: Surface-form classifier AUC = {:.3f} (95% CI [{:.3f}, {:.3f}]), compared to a pair-structured null (p = {:.3f}); {:.1f}% of pairs are confounded by the heuristic thresholds.".format(auc_oof, auc_ci[0], auc_ci[1], p_null, 100 * n_conf / len(audit)))
+if p_null <= 0.05:
+    print("Interpretation: This provides evidence of detectable residual answer-format asymmetries under grouped evaluation.")
+else:
+    print("Interpretation: The evidence for detectable asymmetries is weak under the pair-structured null test.")"""))
 cells.append(code("""# Sensitivity: alternate threshold sets (strict / default / lenient)
 sensitivity = []
 for (len_m, hedge_m, auth_m, label) in [
@@ -496,11 +550,11 @@ print("→ Higher AUC on confounded pairs would indicate the classifier relies o
 # --- 7c. Benchmark impact (model performance on clean vs confounded) ---
 cells.append(md("""## 7c. Benchmark impact: model performance on clean vs confounded
 
-**Goal:** Determine whether surface-form leakage materially affects benchmark interpretation. If model accuracy is systematically higher on confounded pairs than on clean pairs, that would suggest that reported benchmark scores partly reflect shortcut learning rather than pure truthfulness.
+**Goal:** Test whether surface-form asymmetries might affect benchmark interpretation. If model accuracy is systematically higher on confounded pairs than on clean pairs, that would be *consistent with* models benefiting from shortcut-learnable cues rather than only truthfulness.
 
 **Ideal experiment:** Load TruthfulQA model predictions (e.g. from the [official repo](https://github.com/sylinrl/TruthfulQA) or compatible runs). Required format: one row per (model, question): `model_name`, `pair_id` (0..n-1), `correct` (1 if model chose Best Answer, 0 otherwise). Then compute per-model accuracy on (1) all pairs, (2) clean pairs only, (3) confounded pairs only. If accuracy is higher on confounded than on clean for most models, residual asymmetries affect benchmark interpretation.
 
-Below: if `model_predictions.csv` is present, the analysis runs automatically; otherwise a placeholder shows the exact schema and an example table for easy plug-in."""))
+Below: the analysis prefers **real** predictions in `model_predictions.csv`. If only a synthetic demo file is present (`example_model_predictions.csv`), the notebook will run but will clearly label the outputs as **demonstration-only** and **not empirical evidence**."""))
 cells.append(code("""# Expected format: CSV or DataFrame with columns [model_name, pair_id, correct]
 # pair_id = 0..len(audit)-1; correct = 1 if model chose Best Answer, 0 otherwise.
 def model_accuracy_by_split(scores_df, audit_violation):
@@ -518,11 +572,22 @@ def model_accuracy_by_split(scores_df, audit_violation):
         out.append({"model": model, "acc_all": acc_all, "acc_clean": acc_clean, "acc_confounded": acc_conf})
     return pd.DataFrame(out)
 
-# Try to load model predictions; if missing, show maximally useful placeholder.
-PRED_PATH = ROOT / "model_predictions.csv"
-if PRED_PATH.exists():
-    df_scores = pd.read_csv(PRED_PATH)
+# Try to load model predictions. Prefer real predictions if present.
+REAL_PRED_PATH = ROOT / "model_predictions.csv"
+DEMO_PRED_PATH = ROOT / "example_model_predictions.csv"
+
+pred_path = REAL_PRED_PATH if REAL_PRED_PATH.exists() else (DEMO_PRED_PATH if DEMO_PRED_PATH.exists() else None)
+is_demo = (pred_path == DEMO_PRED_PATH)
+
+if pred_path is not None:
+    df_scores = pd.read_csv(pred_path)
     if "model_name" in df_scores.columns and "pair_id" in df_scores.columns and "correct" in df_scores.columns:
+        if is_demo:
+            print("WARNING: Using synthetic DEMO predictions from", pred_path)
+            print("This file is for demonstrating the benchmark-impact plumbing only.")
+            print("It is NOT real model output and MUST NOT be interpreted as empirical evidence.")
+        else:
+            print("Using real model predictions from", pred_path)
         impact = model_accuracy_by_split(df_scores, audit["style_violation"].values)
         display(impact)
         impact["delta_conf_clean"] = impact["acc_confounded"] - impact["acc_clean"]
@@ -531,7 +596,10 @@ if PRED_PATH.exists():
         print("File found but missing columns: need model_name, pair_id, correct.")
 else:
     # Placeholder: exact schema and example so users can plug in easily.
-    print("No model_predictions.csv at", PRED_PATH)
+    print("No real or demo predictions file found.")
+    print("Looked for:")
+    print(" -", REAL_PRED_PATH)
+    print(" -", DEMO_PRED_PATH)
     print()
     print("Expected schema (exact column names and types):")
     print("  model_name : str (e.g. 'gpt-4', 'llama-3')")
@@ -551,14 +619,14 @@ else:
 cells.append(md("""## 8. Feature Importance / Shortcut Drivers
 
 Coefficients of the logistic regression (surface-form only) indicate which cues drive separability. Positive coefficient: higher feature value associated with *correct*; negative: with *incorrect*."""))
-cells.append(code("""feat_imp = pd.Series(np.abs(clf.coef_[0]), index=X.columns).sort_values(ascending=True)
+cells.append(code("""feat_imp = pd.Series(np.abs(clf_full.coef_[0]), index=X.columns).sort_values(ascending=True)
 fig, ax = plt.subplots(1, 1, figsize=(5.5, 3.5))
 feat_imp.plot(kind="barh", ax=ax, color="steelblue", edgecolor="black")
 ax.set_xlabel("|Coefficient|")
 ax.set_title("Feature importance (surface-form classifier)")
 plt.tight_layout()
 plt.show()
-print("Coefficients (signed):", dict(zip(X.columns, clf.coef_[0].round(4))))"""))
+print("Coefficients (signed):", dict(zip(X.columns, clf_full.coef_[0].round(4))))"""))
 cells.append(md("""**Interpretation:** The largest |coefficient| values are the main shortcut drivers. Negation-related and length features often rank high when correct answers systematically differ in those dimensions; the negation ablation (§6.2) checks whether signal persists without them."""))
 
 # --- 9. Statistical Rigor ---
@@ -582,7 +650,7 @@ cells.append(md("""## 10. Relation to TruthfulQA Literature
 
 - **Lin et al. (ACL 2022)** introduced TruthfulQA to measure whether models generate truthful answers and to probe imitative falsehoods across 817 questions.
 - The **official 2025 update** (Evans, Chua, Lin) moved to a **binary-choice** setting using *Best Answer* and *Best Incorrect Answer*, reducing odd-one-out and other MC heuristics.
-- **This notebook** asks a complementary question: do the paired answers in that improved setting remain balanced in surface form? The results show that residual answer-format asymmetries are detectable (surface-form classifier above chance and above the pair-structured null). The 2025 binary-choice format remains an improvement over earlier settings. The open question is whether the remaining leakage **materially changes** how we interpret model evaluation; the benchmark-impact section (§7c) outlines the next step (model accuracy on clean vs confounded subsets)."""))
+- **This notebook** asks a complementary question: do the paired answers in that improved setting remain balanced in surface form? The analysis provides evidence that residual answer-format asymmetries can be detectable (surface-form classifier above chance and above the pair-structured null). The 2025 binary-choice format remains an improvement over earlier settings. The open question is whether any remaining leakage **materially changes** how we interpret model evaluation; the benchmark-impact section (§7c) outlines the next step (model accuracy on clean vs confounded subsets)."""))
 
 # --- 11. Limitations and Implications ---
 cells.append(md("""## 11. Limitations and Implications
