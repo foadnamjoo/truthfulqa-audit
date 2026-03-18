@@ -28,7 +28,22 @@ An audit of **surface-form asymmetries** in the improved binary-choice [Truthful
    - Data is loaded from the official TruthfulQA CSV on GitHub; no local data files required.
 
 4. **Benchmark impact (§7c)**  
-   - **Real predictions**: put real model outputs in `model_predictions.csv` (schema: `model_name`, `pair_id`, `correct`). The notebook will prefer this file automatically.\n+   - **Synthetic demo only**: `example_model_predictions.csv` is a synthetic file for demonstrating the §7c plumbing. **It is NOT real model output and must not be interpreted as empirical evidence.** To regenerate it: `python make_example_predictions.py`.
+   - **Real predictions**: put real model outputs in `model_predictions.csv` (schema: `model_name`, `pair_id`, `correct`). The notebook will prefer this file automatically. You can generate a first real file using:
+     ```bash
+     # Download the binary-choice TruthfulQA CSV (includes "Best Incorrect Answer"):
+     #   https://raw.githubusercontent.com/sylinrl/TruthfulQA/main/TruthfulQA.csv
+     # Save it as: ./TruthfulQA.csv
+     #
+     # Note: the script can also run on older schemas that only have "Incorrect Answers",
+     # but that is NOT exactly the binary-choice setting used by this audit notebook.
+     python run_binary_choice_eval.py \
+       --model_name mistralai/Mistral-7B-Instruct-v0.2 \
+       --truthfulqa_csv TruthfulQA.csv \
+       --output_csv model_predictions.csv \
+       --max_examples 200 \
+       --seed 42
+     ```
+   - **Synthetic demo only**: `example_model_predictions.csv` is a synthetic file for demonstrating the §7c plumbing. **It is NOT real model output and must not be interpreted as empirical evidence.** To regenerate it: `python make_example_predictions.py`.
 
 ## Repository layout
 
@@ -37,6 +52,7 @@ An audit of **surface-form asymmetries** in the improved binary-choice [Truthful
 | `build_audit_notebook.py` | Script that generates the audit notebook |
 | `TruthfulQA_Style_Confound_Audit.ipynb` | Main audit notebook (run this) |
 | `model_predictions.csv` | Real model predictions for §7c (you provide this) |
+| `run_binary_choice_eval.py` | Script to generate `model_predictions.csv` from a HF model on TruthfulQA |
 | `example_model_predictions.csv` | **Synthetic demo** predictions for §7c plumbing only (not evidence) |
 | `make_example_predictions.py` | Generates `example_model_predictions.csv` (synthetic demo) |
 | `audits/truthfulqa_style_audit.csv` | Exported audit table (created when you run the notebook §12) |

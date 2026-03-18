@@ -422,6 +422,9 @@ ax.set_ylabel("Count")
 ax.set_title("Surface-form-only AUC vs pair-structured null")
 ax.legend(loc="upper left", fontsize=9)
 plt.tight_layout()
+pdf_path = FIG_DIR / "classifier_vs_null.pdf"
+plt.savefig(pdf_path, dpi=300, bbox_inches="tight")
+print("Saved:", pdf_path)
 plt.show()"""))
 
 # --- 6.1 Category breakdown ---
@@ -528,6 +531,9 @@ ax.bar(["Clean", "Confounded"], [n_clean, n_conf], color=["seagreen", "coral"], 
 ax.set_ylabel("Pairs")
 ax.set_title("Clean vs confounded (heuristic split)")
 plt.tight_layout()
+pdf_path = FIG_DIR / "clean_vs_confounded_counts.pdf"
+plt.savefig(pdf_path, dpi=300, bbox_inches="tight")
+print("Saved:", pdf_path)
 plt.show()"""))
 cells.append(md("""**Interpretation:** A substantial proportion of pairs is flagged as confounded across threshold variants. The improved 2025 binary-choice format remains an improvement over earlier settings; the open question is whether remaining leakage materially changes how we interpret model rankings (see Benchmark impact)."""))
 
@@ -569,51 +575,87 @@ def model_accuracy_by_split(scores_df, audit_violation):
         m_conf = m[m["pair_id"].isin(conf_ids)]
         acc_clean = m_clean["correct"].mean() if len(m_clean) else np.nan
         acc_conf = m_conf["correct"].mean() if len(m_conf) else np.nan
-        out.append({"model": model, "acc_all": acc_all, "acc_clean": acc_clean, "acc_confounded": acc_conf})
+        out.append({
+            "model": model,
+            "acc_all": acc_all,
+            "acc_clean": acc_clean,
+            "acc_confounded": acc_conf,
+            "n_all": int(m["pair_id"].nunique()),
+            "n_clean": int(m_clean["pair_id"].nunique()),
+            "n_confounded": int(m_conf["pair_id"].nunique()),
+        })
     return pd.DataFrame(out)
 
-# Try to load model predictions. Prefer real predictions if present.
-REAL_PRED_PATH = ROOT / "model_predictions.csv"
 DEMO_PRED_PATH = ROOT / "example_model_predictions.csv"
 
-pred_path = REAL_PRED_PATH if REAL_PRED_PATH.exists() else (DEMO_PRED_PATH if DEMO_PRED_PATH.exists() else None)
-is_demo = (pred_path == DEMO_PRED_PATH)
+# Prefer REAL predictions from any file matching model_predictions*.csv
+# (e.g. model_predictions.csv, model_predictions_qwen_0_5B.csv, model_predictions_phi35_200.csv, ...).
+real_pred_paths = sorted([p for p in ROOT.glob("model_predictions*.csv") if p.name != DEMO_PRED_PATH.name])
 
-if pred_path is not None:
-    df_scores = pd.read_csv(pred_path)
-    if "model_name" in df_scores.columns and "pair_id" in df_scores.columns and "correct" in df_scores.columns:
-        if is_demo:
-            print("WARNING: Using synthetic DEMO predictions from", pred_path)
-            print("This file is for demonstrating the benchmark-impact plumbing only.")
-            print("It is NOT real model output and MUST NOT be interpreted as empirical evidence.")
-        else:
-            print("Using real model predictions from", pred_path)
-        impact = model_accuracy_by_split(df_scores, audit["style_violation"].values)
-        display(impact)
-        impact["delta_conf_clean"] = impact["acc_confounded"] - impact["acc_clean"]
-        print("Delta (confounded - clean): positive = higher accuracy on confounded pairs.")
-    else:
-        print("File found but missing columns: need model_name, pair_id, correct.")
+if len(real_pred_paths) > 0:
+    print("Using REAL benchmark-impact predictions from:")
+    for p in real_pred_paths:
+        print(" -", p)
+
+    dfs = []
+    for p in real_pred_paths:
+        df = pd.read_csv(p)
+        if not ("model_name" in df.columns and "pair_id" in df.columns and "correct" in df.columns):
+            raise ValueError(f"Prediction file {p} must contain columns: model_name, pair_id, correct.")
+        dfs.append(df)
+
+    df_scores = pd.concat(dfs, ignore_index=True)
+    # If the same (model_name, pair_id) appears in multiple files (e.g. resuming runs),
+    # keep the last occurrence but warn so the user knows subsets may overlap.
+    before = len(df_scores)
+    df_scores = df_scores.drop_duplicates(subset=["model_name", "pair_id"], keep="last")
+    after = len(df_scores)
+    if after != before:
+        print(f"WARNING: Dropped {before-after} duplicate rows across prediction files (by model_name, pair_id).")
+
+    impact = model_accuracy_by_split(df_scores, audit["style_violation"].values)
+    impact["delta_conf_clean"] = impact["acc_confounded"] - impact["acc_clean"]
+    impact = impact[["model", "acc_all", "acc_clean", "acc_confounded", "delta_conf_clean", "n_all", "n_clean", "n_confounded"]]
+    impact = impact.sort_values("acc_all", ascending=False)
+    display(impact)
+    print("Delta (confounded - clean): positive = higher accuracy on confounded pairs.")
+
+    # Save a cumulative summary for the paper workflow.
+    out_summary = ROOT / "audits" / "model_benchmark_impact_summary.csv"
+    out_summary.parent.mkdir(exist_ok=True)
+    impact.to_csv(out_summary, index=False)
+    print("Saved:", out_summary)
+
 else:
     # Placeholder: exact schema and example so users can plug in easily.
-    print("No real or demo predictions file found.")
-    print("Looked for:")
-    print(" -", REAL_PRED_PATH)
-    print(" -", DEMO_PRED_PATH)
-    print()
-    print("Expected schema (exact column names and types):")
-    print("  model_name : str (e.g. 'gpt-4', 'llama-3')")
-    print("  pair_id    : int, 0 to len(audit)-1 (index of question pair in this notebook's audit)")
-    print("  correct    : int, 1 if model chose Best Answer, 0 otherwise")
-    print()
-    print("Example table (save as model_predictions.csv in notebook directory, then re-run this cell):")
-    example = pd.DataFrame({
-        "model_name": ["gpt-4", "gpt-4", "gpt-4", "llama-3", "llama-3", "llama-3"],
-        "pair_id": [0, 1, 2, 0, 1, 2],
-        "correct": [1, 0, 1, 0, 1, 1],
-    })
-    display(example)
-    print("One row per (model, question). Add all models and all pair_ids 0..{} for full analysis.".format(len(audit) - 1))"""))
+    if DEMO_PRED_PATH.exists():
+        print("WARNING: No REAL prediction files found; using synthetic DEMO predictions.")
+        print("This file is demonstration-only and MUST NOT be interpreted as empirical evidence.")
+        df_scores = pd.read_csv(DEMO_PRED_PATH)
+        impact = model_accuracy_by_split(df_scores, audit["style_violation"].values)
+        impact["delta_conf_clean"] = impact["acc_confounded"] - impact["acc_clean"]
+        impact = impact.sort_values("acc_all", ascending=False)
+        display(impact)
+        print("Delta (confounded - clean): positive = higher accuracy on confounded pairs.")
+    else:
+        print("No real or demo predictions file found.")
+        print("Looked for:")
+        print(" - any file matching: model_predictions*.csv")
+        print(" -", DEMO_PRED_PATH)
+        print()
+        print("Expected schema (exact column names and types):")
+        print("  model_name : str (e.g. 'gpt-4', 'llama-3')")
+        print("  pair_id    : int, 0 to len(audit)-1 (index of question pair in this notebook's audit)")
+        print("  correct    : int, 1 if model chose Best Answer, 0 otherwise")
+        print()
+        print("Example table (save as model_predictions.csv in notebook directory, then re-run this cell):")
+        example = pd.DataFrame({
+            "model_name": ["gpt-4", "gpt-4", "gpt-4", "llama-3", "llama-3", "llama-3"],
+            "pair_id": [0, 1, 2, 0, 1, 2],
+            "correct": [1, 0, 1, 0, 1, 1],
+        })
+        display(example)
+        print("One row per (model, question). Add all models and all pair_ids 0..{} for full analysis.".format(len(audit) - 1))"""))
 
 # --- 8. Feature Importance ---
 cells.append(md("""## 8. Feature Importance / Shortcut Drivers
@@ -625,6 +667,9 @@ feat_imp.plot(kind="barh", ax=ax, color="steelblue", edgecolor="black")
 ax.set_xlabel("|Coefficient|")
 ax.set_title("Feature importance (surface-form classifier)")
 plt.tight_layout()
+pdf_path = FIG_DIR / "feature_importance.pdf"
+plt.savefig(pdf_path, dpi=300, bbox_inches="tight")
+print("Saved:", pdf_path)
 plt.show()
 print("Coefficients (signed):", dict(zip(X.columns, clf_full.coef_[0].round(4))))"""))
 cells.append(md("""**Interpretation:** The largest |coefficient| values are the main shortcut drivers. Negation-related and length features often rank high when correct answers systematically differ in those dimensions; the negation ablation (§6.2) checks whether signal persists without them."""))
