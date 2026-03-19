@@ -3,7 +3,7 @@
 An audit of **surface-form asymmetries** in the improved binary-choice [TruthfulQA](https://github.com/sylinrl/TruthfulQA) setting.  
 The goal is diagnostic: test whether shallow cues in reference answer pairs are detectable above chance, and whether clean-vs-confounded splits correlate with model performance gaps.
 
-![Benchmark impact by model](paper_assets/figures/impact_delta_bar.png)
+![Benchmark impact by model](paper_assets/fig/impact_delta_bar.png)
 
 *Top-line visual:* all evaluated models have positive clean-vs-confounded deltas, but only a subset are statistically detectable under a permutation null. This does **not** invalidate TruthfulQA; it motivates subset-aware reporting.
 

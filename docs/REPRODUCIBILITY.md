@@ -41,9 +41,9 @@ python scripts/make_paper_assets.py --root .
 
 ## Expected Key Artifacts
 
-- `paper_assets/figures/impact_delta_bar.pdf`
-- `paper_assets/figures/impact_acc_by_split.pdf`
-- `paper_assets/figures/permutation_null_forest.pdf`
+- `paper_assets/fig/impact_delta_bar.pdf`
+- `paper_assets/fig/impact_acc_by_split.pdf`
+- `paper_assets/fig/permutation_null_forest.pdf`
 - `paper_assets/tables/benchmark_impact_table.tex`
 - `paper_assets/tables/permutation_null_table.tex`
 - `paper_assets/tables/seed_summary_table.tex`

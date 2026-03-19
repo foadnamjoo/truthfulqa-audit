@@ -8,9 +8,9 @@ Inputs (in audits/):
   - permutation_null_test_summary.csv
 
 Outputs (in paper_assets/):
-  - figures/impact_delta_bar.pdf
-  - figures/impact_acc_by_split.pdf
-  - figures/permutation_null_forest.pdf
+  - fig/impact_delta_bar.pdf
+  - fig/impact_acc_by_split.pdf
+  - fig/permutation_null_forest.pdf
   - tables/benchmark_impact_table.tex
   - tables/seed_summary_table.tex
   - tables/permutation_null_table.tex
@@ -153,7 +153,7 @@ def main() -> None:
     root = Path(args.root).resolve()
     audits = root / "audits"
     out_root = root / "paper_assets"
-    fig_dir = out_root / "figures"
+    fig_dir = out_root / "fig"
     tbl_dir = out_root / "tables"
     fig_dir.mkdir(parents=True, exist_ok=True)
     tbl_dir.mkdir(parents=True, exist_ok=True)
