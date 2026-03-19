@@ -43,6 +43,17 @@ An audit of **surface-form asymmetries** in the improved binary-choice [Truthful
        --max_examples 200 \
        --seed 42
      ```
+  - **GPU / vast.ai tip**: on CUDA GPUs, use `--device cuda --dtype float16` for speed + lower VRAM usage:
+    ```bash
+    python run_binary_choice_eval.py \
+      --model_name Qwen/Qwen2.5-7B-Instruct \
+      --truthfulqa_csv TruthfulQA.csv \
+      --output_csv model_predictions_qwen2_5_7B.csv \
+      --max_examples 100 \
+      --seed 42 \
+      --device cuda \
+      --dtype float16
+    ```
    - **Synthetic demo only**: `example_model_predictions.csv` is a synthetic file for demonstrating the §7c plumbing. **It is NOT real model output and must not be interpreted as empirical evidence.** To regenerate it: `python make_example_predictions.py`.
 
 ## Repository layout

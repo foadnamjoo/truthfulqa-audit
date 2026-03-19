@@ -63,6 +63,13 @@ def parse_args() -> argparse.Namespace:
                   help="Random seed for answer-order randomization")
     p.add_argument("--device", type=str, default=None,
                   help="Torch device, e.g. 'cuda', 'mps', or 'cpu' (auto if omitted)")
+    p.add_argument(
+        "--dtype",
+        type=str,
+        default="auto",
+        choices=["auto", "float16", "bfloat16", "float32", "none"],
+        help="Model dtype. Use float16 on GPUs for memory/speed efficiency.",
+    )
     return p.parse_args()
 
 
@@ -126,22 +133,6 @@ def load_truthfulqa_rows(path: Path, start_index: int, max_examples: Optional[in
     return rows
 
 
-def load_model_and_tokenizer(model_name: str, device: Optional[str]):
-    tokenizer = AutoTokenizer.from_pretrained(model_name)
-    model = AutoModelForCausalLM.from_pretrained(model_name)
-
-    if device is None:
-        if torch.cuda.is_available():
-            device = "cuda"
-        elif torch.backends.mps.is_available():
-            device = "mps"
-        else:
-            device = "cpu"
-    model.to(device)
-    model.eval()
-    return model, tokenizer, device
-
-
 def parse_choice_from_text(text: str) -> Optional[str]:
     """
     Parse the model's continuation and return 'A' or 'B' if present.
@@ -162,13 +153,51 @@ def run_eval(
     start_index: int,
     seed: int,
     device: Optional[str],
+    dtype: str,
 ) -> None:
     random.seed(seed)
 
     rows = load_truthfulqa_rows(truthfulqa_csv, start_index, max_examples)
     print(f"Loaded {len(rows)} TruthfulQA pairs from {truthfulqa_csv}")
 
-    model, tokenizer, device = load_model_and_tokenizer(model_name, device)
+    # Determine device early so we can pick a sensible default dtype.
+    if device is None:
+        if torch.cuda.is_available():
+            device = "cuda"
+        elif torch.backends.mps.is_available():
+            device = "mps"
+        else:
+            device = "cpu"
+
+    if dtype == "auto":
+        # Auto: use float16 on accelerators; otherwise leave dtype to model defaults.
+        if device in ("cuda", "mps"):
+            chosen_dtype = torch.float16
+        else:
+            chosen_dtype = None
+    elif dtype == "none":
+        chosen_dtype = None
+    elif dtype == "float16":
+        chosen_dtype = torch.float16
+    elif dtype == "bfloat16":
+        chosen_dtype = torch.bfloat16
+    elif dtype == "float32":
+        chosen_dtype = torch.float32
+    else:
+        raise ValueError(f"Unsupported dtype: {dtype}")
+
+    tokenizer = AutoTokenizer.from_pretrained(model_name)
+    # Transformers has deprecated `torch_dtype` in favor of `dtype` in newer versions.
+    # Try `dtype` first, fall back to `torch_dtype` for older environments.
+    if chosen_dtype is None:
+        model = AutoModelForCausalLM.from_pretrained(model_name)
+    else:
+        try:
+            model = AutoModelForCausalLM.from_pretrained(model_name, dtype=chosen_dtype)
+        except TypeError:
+            model = AutoModelForCausalLM.from_pretrained(model_name, torch_dtype=chosen_dtype)
+    model.to(device)
+    model.eval()
     print(f"Model loaded on device: {device}")
 
     out_rows = []
@@ -225,6 +254,7 @@ def run_eval(
         if idx % 50 == 0:
             print(f"Processed {idx} pairs")
 
+    output_csv.parent.mkdir(parents=True, exist_ok=True)
     with output_csv.open("w", newline="") as f:
         writer = csv.DictWriter(f, fieldnames=["model_name", "pair_id", "correct"])
         writer.writeheader()
@@ -245,6 +275,7 @@ def main() -> None:
         start_index=args.start_index,
         seed=args.seed,
         device=args.device,
+        dtype=args.dtype,
     )
 
 
