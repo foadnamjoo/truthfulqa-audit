@@ -20,13 +20,13 @@ For stable reproduction, keep a local pinned copy of `TruthfulQA.csv` and record
 1. (Optional) Generate model prediction CSV files:
 
 ```bash
-python run_binary_choice_eval.py --help
+python scripts/run_binary_choice_eval.py --help
 ```
 
 2. Regenerate notebook scaffolding (if generator changed):
 
 ```bash
-python build_audit_notebook.py
+python scripts/build_audit_notebook.py
 ```
 
 3. Run all notebook cells in `TruthfulQA_Style_Confound_Audit.ipynb`.
@@ -35,8 +35,8 @@ python build_audit_notebook.py
 4. Build final tables and plots:
 
 ```bash
-python make_final_tables.py
-python make_paper_assets.py --root .
+python scripts/make_final_tables.py
+python scripts/make_paper_assets.py --root .
 ```
 
 ## Expected Key Artifacts

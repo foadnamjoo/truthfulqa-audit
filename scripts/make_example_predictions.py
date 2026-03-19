@@ -4,7 +4,8 @@ import csv
 import random
 from pathlib import Path
 
-ROOT = Path(__file__).resolve().parent
+SCRIPT_DIR = Path(__file__).resolve().parent
+ROOT = SCRIPT_DIR.parent if SCRIPT_DIR.name == "scripts" else SCRIPT_DIR
 random.seed(42)
 
 # Read style_violation (last column) from audit
@@ -14,7 +15,9 @@ with open(ROOT / "audits" / "truthfulqa_style_audit.csv") as f:
     violation = [int(row[-1]) for row in r]
 n = len(violation)
 
-out = ROOT / "example_model_predictions.csv"
+pred_dir = ROOT / "data" / "predictions"
+pred_dir.mkdir(parents=True, exist_ok=True)
+out = pred_dir / "example_model_predictions.csv"
 with open(out, "w", newline="") as f:
     w = csv.writer(f)
     w.writerow(["model_name", "pair_id", "correct"])

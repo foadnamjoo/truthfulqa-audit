@@ -5,9 +5,9 @@ Generate final benchmark-impact tables from model prediction CSVs.
 This script is intentionally stdlib-only (no pandas) so it runs reliably
 even in environments where numpy/pandas are problematic.
 
-Inputs (in repo root):
+Inputs:
   - audits/truthfulqa_style_audit.csv  (must contain column: style_violation)
-  - model_predictions*.csv            (must contain: model_name, pair_id, correct)
+  - data/predictions/model_predictions*.csv (must contain: model_name, pair_id, correct)
 
 Outputs (in audits/):
   - model_benchmark_impact_by_file.csv   : one row per (source_file, model)
@@ -201,8 +201,8 @@ def parse_args() -> argparse.Namespace:
     p.add_argument(
         "--pred_glob",
         type=str,
-        default="model_predictions*.csv",
-        help="Glob for prediction files (default: model_predictions*.csv)",
+        default="data/predictions/model_predictions*.csv",
+        help="Glob for prediction files (default: data/predictions/model_predictions*.csv)",
     )
     p.add_argument(
         "--exclude_example",
@@ -220,6 +220,9 @@ def main() -> None:
     style_violation = load_style_violation(audit_path)
 
     pred_paths = sorted(root.glob(args.pred_glob))
+    # Backward compatibility with old root-level layout.
+    if not pred_paths and args.pred_glob == "data/predictions/model_predictions*.csv":
+        pred_paths = sorted(root.glob("model_predictions*.csv"))
     if args.exclude_example:
         pred_paths = [p for p in pred_paths if p.name != "example_model_predictions.csv"]
 

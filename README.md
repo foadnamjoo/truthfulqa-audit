@@ -27,7 +27,7 @@ pip install -r requirements.txt
 2. (Optional) regenerate notebook scaffold if you edited the builder:
 
 ```bash
-python build_audit_notebook.py
+python scripts/build_audit_notebook.py
 ```
 
 3. Run the main notebook:
@@ -36,21 +36,21 @@ python build_audit_notebook.py
 4. Rebuild paper assets (figures + tables):
 
 ```bash
-python make_paper_assets.py --root .
+python scripts/make_paper_assets.py --root .
 ```
 
 ## Benchmark-Impact Predictions (Optional)
 
-Use real model predictions in `model_predictions.csv` with schema:
+Use real model predictions in `data/predictions/model_predictions.csv` with schema:
 `model_name`, `pair_id`, `correct`.
 
 Example:
 
 ```bash
-python run_binary_choice_eval.py \
+python scripts/run_binary_choice_eval.py \
   --model_name mistralai/Mistral-7B-Instruct-v0.2 \
   --truthfulqa_csv TruthfulQA.csv \
-  --output_csv model_predictions.csv \
+  --output_csv data/predictions/model_predictions.csv \
   --max_examples 200 \
   --seed 42
 ```
@@ -58,17 +58,17 @@ python run_binary_choice_eval.py \
 CUDA speed tip:
 
 ```bash
-python run_binary_choice_eval.py \
+python scripts/run_binary_choice_eval.py \
   --model_name Qwen/Qwen2.5-7B-Instruct \
   --truthfulqa_csv TruthfulQA.csv \
-  --output_csv model_predictions_qwen2_5_7B.csv \
+  --output_csv data/predictions/model_predictions_qwen2_5_7B.csv \
   --max_examples 100 \
   --seed 42 \
   --device cuda \
   --dtype float16
 ```
 
-`example_model_predictions.csv` is synthetic demo data for plumbing only (not empirical evidence).
+`data/predictions/example_model_predictions.csv` is synthetic demo data for plumbing only (not empirical evidence).
 
 ## Reproducibility Notes
 
@@ -82,10 +82,8 @@ python run_binary_choice_eval.py \
 | Path | Purpose |
 |------|---------|
 | `TruthfulQA_Style_Confound_Audit.ipynb` | Main analysis notebook |
-| `build_audit_notebook.py` | Notebook generator |
-| `run_binary_choice_eval.py` | Local binary-choice evaluator for model outputs |
-| `make_final_tables.py` | Consolidates summary tables from outputs |
-| `make_paper_assets.py` | Generates publication-style figures and LaTeX tables |
+| `scripts/` | All runnable project scripts |
+| `data/predictions/` | Model prediction CSVs (real + synthetic demo) |
 | `paper_assets/` | Figure and LaTeX assets used in the paper |
 | `audits/` | Intermediate and summary CSVs from notebook/script runs |
 | `docs/REPRODUCIBILITY.md` | End-to-end reproduction instructions |

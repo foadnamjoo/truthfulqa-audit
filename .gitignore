@@ -37,6 +37,8 @@ chpc_runs/
 # Many-run prediction dumps (keep summaries in audits/ instead)
 model_predictions_*seed*.csv
 model_predictions_*_out.csv
+data/predictions/model_predictions_*seed*.csv
+data/predictions/model_predictions_*_out.csv
 
 # Optional local analysis artifacts
 audits/per_pair_*.csv

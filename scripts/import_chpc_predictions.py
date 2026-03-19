@@ -1,15 +1,15 @@
 #!/usr/bin/env python3
 """
-Import CHPC prediction CSVs into the repo root as model_predictions_*.csv.
+Import CHPC prediction CSVs into data/predictions as model_predictions_*.csv.
 
 Why:
-  - §7c in the notebook scans for model_predictions*.csv in the repo root.
+  - §7c in the notebook scans for model_predictions*.csv in data/predictions.
   - CHPC runs are often stored in scratch folders with names like:
       seed_sweep_.../out_<...>.csv
       family_sweep_.../<run>/out/model_predictions.csv
   - This script finds any CSV with columns (model_name, pair_id, correct),
     infers a run tag (and seed when possible), and writes a renamed copy into
-    the repo root so the notebook can aggregate them.
+    data/predictions so the notebook can aggregate them.
 
 Safety:
   - Does NOT overwrite existing files unless --overwrite is passed.
@@ -78,7 +78,7 @@ def main() -> None:
         "--dest_root",
         type=str,
         default=".",
-        help="Repo root to write model_predictions_*.csv into (default: .).",
+        help="Repo root (default: .); files are written into data/predictions under this root.",
     )
     ap.add_argument(
         "--overwrite",
@@ -94,6 +94,8 @@ def main() -> None:
         raise SystemExit(f"Source directory not found: {src}")
     if not dest_root.exists():
         raise SystemExit(f"Destination root not found: {dest_root}")
+    pred_dir = dest_root / "data" / "predictions"
+    pred_dir.mkdir(parents=True, exist_ok=True)
 
     candidates = sorted([p for p in src.rglob("*.csv") if p.is_file()])
     pred_paths = [p for p in candidates if is_prediction_csv(p)]
@@ -111,7 +113,7 @@ def main() -> None:
         tag = safe_slug(p.parent.name or "run")
         seed_part = f"_seed{seed}" if seed is not None else ""
         out_name = f"model_predictions_{model_slug}{seed_part}_{tag}.csv"
-        out_path = dest_root / out_name
+        out_path = pred_dir / out_name
 
         if out_path.exists() and not args.overwrite:
             skipped += 1
@@ -122,7 +124,7 @@ def main() -> None:
 
     print(f"Found {len(pred_paths)} prediction CSV(s) under {src}")
     print(f"Imported: {imported} | Skipped (already existed): {skipped}")
-    print("Notebook §7c will pick these up via model_predictions*.csv glob.")
+    print("Notebook §7c will pick these up via data/predictions/model_predictions*.csv glob.")
 
 
 if __name__ == "__main__":

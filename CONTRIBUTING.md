@@ -16,19 +16,19 @@ pip install -r requirements.txt
 - Rebuild notebook template after editing generator:
 
 ```bash
-python build_audit_notebook.py
+python scripts/build_audit_notebook.py
 ```
 
 - Rebuild paper assets (figures/tables):
 
 ```bash
-python make_paper_assets.py --root .
+python scripts/make_paper_assets.py --root .
 ```
 
 - Run local model evaluation for benchmark-impact CSV outputs:
 
 ```bash
-python run_binary_choice_eval.py --help
+python scripts/run_binary_choice_eval.py --help
 ```
 
 ## Pull Requests

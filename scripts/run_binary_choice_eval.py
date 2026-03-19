@@ -9,10 +9,10 @@ Outputs a CSV with columns:
 
 Usage (example):
 
-  python run_binary_choice_eval.py \\
+  python scripts/run_binary_choice_eval.py \\
       --model_name mistralai/Mistral-7B-Instruct-v0.2 \\
       --truthfulqa_csv TruthfulQA.csv \\
-      --output_csv model_predictions.csv \\
+      --output_csv data/predictions/model_predictions.csv \\
       --max_examples 200 \\
       --seed 42
 
@@ -53,7 +53,7 @@ def parse_args() -> argparse.Namespace:
                   help="HF model name, e.g. mistralai/Mistral-7B-Instruct-v0.2")
     p.add_argument("--truthfulqa_csv", type=str, default="TruthfulQA.csv",
                   help="Path to TruthfulQA.csv (from official repo)")
-    p.add_argument("--output_csv", type=str, default="model_predictions.csv",
+    p.add_argument("--output_csv", type=str, default="data/predictions/model_predictions.csv",
                   help="Where to write predictions (for §7c)")
     p.add_argument("--max_examples", type=int, default=None,
                   help="Optional cap on number of question pairs (for quick runs)")

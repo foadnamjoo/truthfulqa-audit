@@ -53,7 +53,8 @@ from sklearn.pipeline import make_pipeline
 from sklearn.metrics import roc_auc_score, classification_report, confusion_matrix
 from sklearn.preprocessing import StandardScaler
 
-ROOT = Path(".").resolve()
+SCRIPT_DIR = Path(__file__).resolve().parent
+ROOT = SCRIPT_DIR.parent if SCRIPT_DIR.name == "scripts" else SCRIPT_DIR
 RANDOM_SEED = 42
 os.chdir(ROOT)
 print("Workspace:", ROOT, "| RANDOM_SEED:", RANDOM_SEED)
@@ -560,7 +561,7 @@ cells.append(md("""## 7c. Benchmark impact: model performance on clean vs confou
 
 **Ideal experiment:** Load TruthfulQA model predictions (e.g. from the [official repo](https://github.com/sylinrl/TruthfulQA) or compatible runs). Required format: one row per (model, question): `model_name`, `pair_id` (0..n-1), `correct` (1 if model chose Best Answer, 0 otherwise). Then compute per-model accuracy on (1) all pairs, (2) clean pairs only, (3) confounded pairs only. If accuracy is higher on confounded than on clean for most models, residual asymmetries affect benchmark interpretation.
 
-Below: the analysis prefers **real** predictions in `model_predictions.csv`. If only a synthetic demo file is present (`example_model_predictions.csv`), the notebook will run but will clearly label the outputs as **demonstration-only** and **not empirical evidence**."""))
+Below: the analysis prefers **real** predictions in `data/predictions/model_predictions.csv`. If only a synthetic demo file is present (`data/predictions/example_model_predictions.csv`), the notebook will run but will clearly label the outputs as **demonstration-only** and **not empirical evidence**."""))
 cells.append(code("""# Expected format: CSV(s) with columns [model_name, pair_id, correct]
 # pair_id = 0..len(audit)-1; correct = 1 if model chose Best Answer, 0 otherwise.
 
@@ -616,9 +617,15 @@ def per_file_model_table(df_scores_per_file, audit_violation):
     return pd.DataFrame(out)
 
 
-DEMO_PRED_PATH = ROOT / \"example_model_predictions.csv\"
+PRED_DIR = ROOT / \"data\" / \"predictions\"
+DEMO_PRED_PATH = PRED_DIR / \"example_model_predictions.csv\"
 
-real_pred_paths = sorted([p for p in ROOT.glob(\"model_predictions*.csv\") if p.name != DEMO_PRED_PATH.name])
+real_pred_paths = sorted([p for p in PRED_DIR.glob(\"model_predictions*.csv\") if p.name != DEMO_PRED_PATH.name])
+# Backward compatibility with older root-level layout
+if not real_pred_paths:
+    legacy = sorted([p for p in ROOT.glob(\"model_predictions*.csv\") if p.name != DEMO_PRED_PATH.name])
+    if legacy:
+        real_pred_paths = legacy
 
 if len(real_pred_paths) > 0:
     print(\"Using REAL benchmark-impact predictions from:\")
@@ -752,7 +759,7 @@ else:
     else:
         print(\"No real or demo predictions file found.\")
         print(\"Looked for:\")
-        print(\" - any file matching: model_predictions*.csv\")
+        print(\" - any file matching: data/predictions/model_predictions*.csv\")
         print(\" -\", DEMO_PRED_PATH)
         print()
         print(\"Expected schema (exact column names and types):\")
@@ -760,7 +767,7 @@ else:
         print(\"  pair_id    : int, 0 to len(audit)-1 (index of question pair in this notebook's audit)\")
         print(\"  correct    : int, 1 if model chose Best Answer, 0 otherwise\")
         print()
-        print(\"Example table (save as model_predictions.csv in notebook directory, then re-run this cell):\")
+        print(\"Example table (save as data/predictions/model_predictions.csv, then re-run this cell):\")
         example = pd.DataFrame({
             \"model_name\": [\"gpt-4\", \"gpt-4\", \"gpt-4\", \"llama-3\", \"llama-3\", \"llama-3\"],
             \"pair_id\": [0, 1, 2, 0, 1, 2],
