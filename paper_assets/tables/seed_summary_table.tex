@@ -1,0 +1,19 @@
+\begin{table}[t]
+\centering
+\caption{Seed/run stability summary of $\Delta$ across prediction files (when multiple seeds/runs are present).}
+\label{tab:seed_summary}
+\begin{tabular}{lrrrr}
+\toprule
+Model & Runs & $\Delta$ mean & $\Delta$ sd & Frac($\Delta>0$) \\
+\midrule
+TinyLlama-1.1B & 5 & +0.046 & 0.002 & 1.00 \\
+distilgpt2 & 3 & +0.040 & 0.020 & 1.00 \\
+Qwen2.5-1.5B & 4 & +0.024 & 0.011 & 1.00 \\
+Mistral-7B & 3 & +0.018 & 0.017 & 1.00 \\
+Phi-3.5-mini & 3 & +0.018 & 0.014 & 1.00 \\
+SmolLM2-1.7B & 3 & +0.016 & 0.014 & 1.00 \\
+Qwen2.5-0.5B & 6 & +0.008 & 0.012 & 0.83 \\
+Qwen2.5-14B & 4 & +0.002 & 0.012 & 0.75 \\
+\bottomrule
+\end{tabular}
+\end{table}
