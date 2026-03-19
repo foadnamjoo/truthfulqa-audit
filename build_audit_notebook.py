@@ -561,101 +561,214 @@ cells.append(md("""## 7c. Benchmark impact: model performance on clean vs confou
 **Ideal experiment:** Load TruthfulQA model predictions (e.g. from the [official repo](https://github.com/sylinrl/TruthfulQA) or compatible runs). Required format: one row per (model, question): `model_name`, `pair_id` (0..n-1), `correct` (1 if model chose Best Answer, 0 otherwise). Then compute per-model accuracy on (1) all pairs, (2) clean pairs only, (3) confounded pairs only. If accuracy is higher on confounded than on clean for most models, residual asymmetries affect benchmark interpretation.
 
 Below: the analysis prefers **real** predictions in `model_predictions.csv`. If only a synthetic demo file is present (`example_model_predictions.csv`), the notebook will run but will clearly label the outputs as **demonstration-only** and **not empirical evidence**."""))
-cells.append(code("""# Expected format: CSV or DataFrame with columns [model_name, pair_id, correct]
+cells.append(code("""# Expected format: CSV(s) with columns [model_name, pair_id, correct]
 # pair_id = 0..len(audit)-1; correct = 1 if model chose Best Answer, 0 otherwise.
+
 def model_accuracy_by_split(scores_df, audit_violation):
     \"\"\"Compute per-model accuracy on all, clean, and confounded pairs.\"\"\"
     out = []
-    for model in scores_df["model_name"].unique():
-        m = scores_df[scores_df["model_name"] == model]
-        acc_all = m["correct"].mean()
-        clean_ids = np.where(audit_violation == 0)[0]
-        conf_ids = np.where(audit_violation == 1)[0]
-        m_clean = m[m["pair_id"].isin(clean_ids)]
-        m_conf = m[m["pair_id"].isin(conf_ids)]
-        acc_clean = m_clean["correct"].mean() if len(m_clean) else np.nan
-        acc_conf = m_conf["correct"].mean() if len(m_conf) else np.nan
+    clean_ids = np.where(audit_violation == 0)[0]
+    conf_ids = np.where(audit_violation == 1)[0]
+    for model in scores_df[\"model_name\"].unique():
+        m = scores_df[scores_df[\"model_name\"] == model]
+        acc_all = m[\"correct\"].mean()
+        m_clean = m[m[\"pair_id\"].isin(clean_ids)]
+        m_conf = m[m[\"pair_id\"].isin(conf_ids)]
+        acc_clean = m_clean[\"correct\"].mean() if len(m_clean) else np.nan
+        acc_conf = m_conf[\"correct\"].mean() if len(m_conf) else np.nan
         out.append({
-            "model": model,
-            "acc_all": acc_all,
-            "acc_clean": acc_clean,
-            "acc_confounded": acc_conf,
-            "n_all": int(m["pair_id"].nunique()),
-            "n_clean": int(m_clean["pair_id"].nunique()),
-            "n_confounded": int(m_conf["pair_id"].nunique()),
+            \"model\": model,
+            \"acc_all\": acc_all,
+            \"acc_clean\": acc_clean,
+            \"acc_confounded\": acc_conf,
+            \"n_all\": int(m[\"pair_id\"].nunique()),
+            \"n_clean\": int(m_clean[\"pair_id\"].nunique()),
+            \"n_confounded\": int(m_conf[\"pair_id\"].nunique()),
         })
     return pd.DataFrame(out)
 
-DEMO_PRED_PATH = ROOT / "example_model_predictions.csv"
 
-# Prefer REAL predictions from any file matching model_predictions*.csv
-# (e.g. model_predictions.csv, model_predictions_qwen_0_5B.csv, model_predictions_phi35_200.csv, ...).
-real_pred_paths = sorted([p for p in ROOT.glob("model_predictions*.csv") if p.name != DEMO_PRED_PATH.name])
+def per_file_model_table(df_scores_per_file, audit_violation):
+    \"\"\"Compute per-(source_file, model) accuracy and delta.\"\"\"
+    clean_ids = np.where(audit_violation == 0)[0]
+    conf_ids = np.where(audit_violation == 1)[0]
+    out = []
+    for src in df_scores_per_file[\"source_file\"].unique():
+        s = df_scores_per_file[df_scores_per_file[\"source_file\"] == src]
+        for model in s[\"model_name\"].unique():
+            m = s[s[\"model_name\"] == model]
+            acc_all = m[\"correct\"].mean()
+            m_clean = m[m[\"pair_id\"].isin(clean_ids)]
+            m_conf = m[m[\"pair_id\"].isin(conf_ids)]
+            acc_clean = m_clean[\"correct\"].mean() if len(m_clean) else np.nan
+            acc_conf = m_conf[\"correct\"].mean() if len(m_conf) else np.nan
+            out.append({
+                \"source_file\": str(src),
+                \"model\": model,
+                \"acc_all\": acc_all,
+                \"acc_clean\": acc_clean,
+                \"acc_confounded\": acc_conf,
+                \"delta_conf_clean\": acc_conf - acc_clean,
+                \"n_all\": int(m[\"pair_id\"].nunique()),
+                \"n_clean\": int(m_clean[\"pair_id\"].nunique()),
+                \"n_confounded\": int(m_conf[\"pair_id\"].nunique()),
+            })
+    return pd.DataFrame(out)
+
+
+DEMO_PRED_PATH = ROOT / \"example_model_predictions.csv\"
+
+real_pred_paths = sorted([p for p in ROOT.glob(\"model_predictions*.csv\") if p.name != DEMO_PRED_PATH.name])
 
 if len(real_pred_paths) > 0:
-    print("Using REAL benchmark-impact predictions from:")
+    print(\"Using REAL benchmark-impact predictions from:\")
     for p in real_pred_paths:
-        print(" -", p)
+        print(\" -\", p)
 
     dfs = []
     for p in real_pred_paths:
         df = pd.read_csv(p)
-        if not ("model_name" in df.columns and "pair_id" in df.columns and "correct" in df.columns):
-            raise ValueError(f"Prediction file {p} must contain columns: model_name, pair_id, correct.")
+        if not (\"model_name\" in df.columns and \"pair_id\" in df.columns and \"correct\" in df.columns):
+            raise ValueError(f\"Prediction file {p} must contain columns: model_name, pair_id, correct.\")
+        df = df.copy()
+        df[\"source_file\"] = p.name
         dfs.append(df)
 
-    df_scores = pd.concat(dfs, ignore_index=True)
-    # If the same (model_name, pair_id) appears in multiple files (e.g. resuming runs),
-    # keep the last occurrence but warn so the user knows subsets may overlap.
-    before = len(df_scores)
-    df_scores = df_scores.drop_duplicates(subset=["model_name", "pair_id"], keep="last")
+    df_scores_all = pd.concat(dfs, ignore_index=True)
+    df_scores_per_file = df_scores_all.drop_duplicates(subset=[\"source_file\", \"model_name\", \"pair_id\"], keep=\"last\")
+
+    before = len(df_scores_all)
+    df_scores = df_scores_all.drop_duplicates(subset=[\"model_name\", \"pair_id\"], keep=\"last\")
     after = len(df_scores)
     if after != before:
-        print(f"WARNING: Dropped {before-after} duplicate rows across prediction files (by model_name, pair_id).")
+        print(f\"WARNING: Dropped {before-after} duplicate rows across prediction files (by model_name, pair_id).\")
 
-    impact = model_accuracy_by_split(df_scores, audit["style_violation"].values)
-    impact["delta_conf_clean"] = impact["acc_confounded"] - impact["acc_clean"]
-    impact = impact[["model", "acc_all", "acc_clean", "acc_confounded", "delta_conf_clean", "n_all", "n_clean", "n_confounded"]]
-    impact = impact.sort_values("acc_all", ascending=False)
+    # (1) Main impact table (one row per model; last-file-wins)
+    impact = model_accuracy_by_split(df_scores, audit[\"style_violation\"].values)
+    impact[\"delta_conf_clean\"] = impact[\"acc_confounded\"] - impact[\"acc_clean\"]
+    impact = impact[[\"model\", \"acc_all\", \"acc_clean\", \"acc_confounded\", \"delta_conf_clean\", \"n_all\", \"n_clean\", \"n_confounded\"]]
+    impact = impact.sort_values(\"acc_all\", ascending=False)
     display(impact)
-    print("Delta (confounded - clean): positive = higher accuracy on confounded pairs.")
+    print(\"Delta (confounded - clean): positive = higher accuracy on confounded pairs.\")
 
-    # Save a cumulative summary for the paper workflow.
-    out_summary = ROOT / "audits" / "model_benchmark_impact_summary.csv"
+    out_summary = ROOT / \"audits\" / \"model_benchmark_impact_summary.csv\"
     out_summary.parent.mkdir(exist_ok=True)
     impact.to_csv(out_summary, index=False)
-    print("Saved:", out_summary)
+    print(\"Saved:\", out_summary)
+
+    # (2) Seed/run-level summary table (CHPC-style)
+    per_file = per_file_model_table(df_scores_per_file, audit[\"style_violation\"].values)
+    if len(per_file) and per_file[\"source_file\"].nunique() > 1:
+        seed_summary = (
+            per_file.groupby(\"model\")
+            .agg(
+                n_runs=(\"delta_conf_clean\", \"count\"),
+                delta_mean=(\"delta_conf_clean\", \"mean\"),
+                delta_std=(\"delta_conf_clean\", \"std\"),
+                sign_frac_pos=(\"delta_conf_clean\", lambda x: float((x > 0).mean())),
+                acc_all_mean=(\"acc_all\", \"mean\"),
+            )
+            .reset_index()
+            .sort_values(\"delta_mean\", ascending=False)
+        )
+        display(seed_summary)
+        out_seed = ROOT / \"audits\" / \"seed_sweep_summary.csv\"
+        seed_summary.to_csv(out_seed, index=False)
+        print(\"Saved:\", out_seed)
+    else:
+        print(\"Seed/run-level summary skipped (need >1 prediction file).\")
+
+    # (3) Permutation null test table (CHPC-style)
+    B = 300
+    rng = np.random.default_rng(42)
+    style = audit[\"style_violation\"].values.astype(int)
+    N = len(style)
+
+    runs = []
+    for src in df_scores_per_file[\"source_file\"].unique():
+        s = df_scores_per_file[df_scores_per_file[\"source_file\"] == src]
+        for model in s[\"model_name\"].unique():
+            m = s[s[\"model_name\"] == model][[\"pair_id\", \"correct\"]].drop_duplicates(\"pair_id\", keep=\"last\")
+            corr = np.full(N, np.nan)
+            corr[m[\"pair_id\"].values.astype(int)] = m[\"correct\"].values.astype(float)
+            if np.isnan(corr).any():
+                continue
+            runs.append((model, corr))
+
+    if len(runs) >= 3:
+        models = sorted(list({m for m, _ in runs}))
+        model_to_idx = {m: i for i, m in enumerate(models)}
+        C = np.stack([c for _, c in runs], axis=0)
+        model_idx = np.array([model_to_idx[m] for m, _ in runs], dtype=int)
+        K = len(models)
+
+        conf_mean_obs = C[:, style == 1].mean(axis=1)
+        clean_mean_obs = C[:, style == 0].mean(axis=1)
+        delta_run_obs = conf_mean_obs - clean_mean_obs
+        counts = np.bincount(model_idx, minlength=K).astype(float)
+        delta_mean_obs = np.bincount(model_idx, weights=delta_run_obs, minlength=K) / counts
+
+        delta_mean_perm = np.zeros((B, K), dtype=float)
+        idxs = np.arange(N)
+        for b in range(B):
+            perm = rng.permutation(idxs)
+            style_perm = style[perm]
+            conf_mean = C[:, style_perm == 1].mean(axis=1)
+            clean_mean = C[:, style_perm == 0].mean(axis=1)
+            delta_run = conf_mean - clean_mean
+            delta_mean_perm[b] = np.bincount(model_idx, weights=delta_run, minlength=K) / counts
+
+        pvals = (delta_mean_perm >= delta_mean_obs[None, :]).mean(axis=0)
+        null_mean = delta_mean_perm.mean(axis=0)
+        null_std = delta_mean_perm.std(axis=0)
+
+        perm_summary = pd.DataFrame({
+            \"model\": models,
+            \"delta_mean_observed\": delta_mean_obs,
+            \"null_mean\": null_mean,
+            \"null_std\": null_std,
+            \"p_value_one_sided_ge\": pvals,
+            \"n_runs\": counts.astype(int),
+            \"null_p90\": np.quantile(delta_mean_perm, 0.90, axis=0),
+            \"null_p95\": np.quantile(delta_mean_perm, 0.95, axis=0),
+        }).sort_values(\"delta_mean_observed\", ascending=False)
+        display(perm_summary)
+        out_perm = ROOT / \"audits\" / \"permutation_null_test_summary.csv\"
+        perm_summary.to_csv(out_perm, index=False)
+        print(\"Saved:\", out_perm)
+    else:
+        print(\"Permutation null test skipped (need >=3 complete runs).\")
 
 else:
-    # Placeholder: exact schema and example so users can plug in easily.
     if DEMO_PRED_PATH.exists():
-        print("WARNING: No REAL prediction files found; using synthetic DEMO predictions.")
-        print("This file is demonstration-only and MUST NOT be interpreted as empirical evidence.")
+        print(\"WARNING: No REAL prediction files found; using synthetic DEMO predictions.\")
+        print(\"This file is demonstration-only and MUST NOT be interpreted as empirical evidence.\")
         df_scores = pd.read_csv(DEMO_PRED_PATH)
-        impact = model_accuracy_by_split(df_scores, audit["style_violation"].values)
-        impact["delta_conf_clean"] = impact["acc_confounded"] - impact["acc_clean"]
-        impact = impact.sort_values("acc_all", ascending=False)
+        impact = model_accuracy_by_split(df_scores, audit[\"style_violation\"].values)
+        impact[\"delta_conf_clean\"] = impact[\"acc_confounded\"] - impact[\"acc_clean\"]
+        impact = impact.sort_values(\"acc_all\", ascending=False)
         display(impact)
-        print("Delta (confounded - clean): positive = higher accuracy on confounded pairs.")
+        print(\"Delta (confounded - clean): positive = higher accuracy on confounded pairs.\")
     else:
-        print("No real or demo predictions file found.")
-        print("Looked for:")
-        print(" - any file matching: model_predictions*.csv")
-        print(" -", DEMO_PRED_PATH)
+        print(\"No real or demo predictions file found.\")
+        print(\"Looked for:\")
+        print(\" - any file matching: model_predictions*.csv\")
+        print(\" -\", DEMO_PRED_PATH)
         print()
-        print("Expected schema (exact column names and types):")
-        print("  model_name : str (e.g. 'gpt-4', 'llama-3')")
-        print("  pair_id    : int, 0 to len(audit)-1 (index of question pair in this notebook's audit)")
-        print("  correct    : int, 1 if model chose Best Answer, 0 otherwise")
+        print(\"Expected schema (exact column names and types):\")
+        print(\"  model_name : str (e.g. 'gpt-4', 'llama-3')\")
+        print(\"  pair_id    : int, 0 to len(audit)-1 (index of question pair in this notebook's audit)\")
+        print(\"  correct    : int, 1 if model chose Best Answer, 0 otherwise\")
         print()
-        print("Example table (save as model_predictions.csv in notebook directory, then re-run this cell):")
+        print(\"Example table (save as model_predictions.csv in notebook directory, then re-run this cell):\")
         example = pd.DataFrame({
-            "model_name": ["gpt-4", "gpt-4", "gpt-4", "llama-3", "llama-3", "llama-3"],
-            "pair_id": [0, 1, 2, 0, 1, 2],
-            "correct": [1, 0, 1, 0, 1, 1],
+            \"model_name\": [\"gpt-4\", \"gpt-4\", \"gpt-4\", \"llama-3\", \"llama-3\", \"llama-3\"],
+            \"pair_id\": [0, 1, 2, 0, 1, 2],
+            \"correct\": [1, 0, 1, 0, 1, 1],
         })
         display(example)
-        print("One row per (model, question). Add all models and all pair_ids 0..{} for full analysis.".format(len(audit) - 1))"""))
+        print(\"One row per (model, question). Add all models and all pair_ids 0..{} for full analysis.\".format(len(audit) - 1))
+"""))
 
 # --- 8. Feature Importance ---
 cells.append(md("""## 8. Feature Importance / Shortcut Drivers

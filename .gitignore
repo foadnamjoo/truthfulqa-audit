@@ -20,3 +20,19 @@ env/
 
 # Optional: uncomment to avoid committing large audit outputs
 # audits/
+
+# Data files (do not commit)
+TruthfulQA.csv
+
+# CHPC/HPC scratch imports (do not commit model caches)
+chpc_runs/
+
+# Hugging Face / Transformers caches (safety net)
+**/.cache/huggingface/
+**/huggingface/hub/
+**/transformers/models--*/
+**/*.safetensors
+
+# Many-run prediction dumps (keep summaries in audits/ instead)
+model_predictions_*seed*.csv
+model_predictions_*_out.csv
