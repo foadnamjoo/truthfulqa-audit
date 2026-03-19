@@ -1,79 +1,99 @@
 # TruthfulQA Surface-form Confound Audit
 
-An audit of **surface-form asymmetries** in the improved binary-choice [TruthfulQA](https://github.com/sylinrl/TruthfulQA) setting (2025). The notebook checks whether reference answer pairs exhibit shortcut-learnable cues (length, hedging, negation, etc.) that are detectable above chance—and whether that leakage may affect benchmark interpretation.
+An audit of **surface-form asymmetries** in the improved binary-choice [TruthfulQA](https://github.com/sylinrl/TruthfulQA) setting.  
+The goal is diagnostic: test whether shallow cues in reference answer pairs are detectable above chance, and whether clean-vs-confounded splits correlate with model performance gaps.
 
-## Features
+![Benchmark impact by model](paper_assets/figures/impact_delta_bar.png)
 
-- **Lexicon-based surface-form features**: negation (lead/count), hedging, authority cues, length gap, shallow text stats
-- **Grouped evaluation**: GroupKFold by question pair so both answers stay in the same fold (no train/test leakage)
-- **Null baseline**: Within-pair label-swap null to test whether AUC exceeds chance
-- **Category analysis**: Classifier performance by TruthfulQA category (magnitude may vary by category; small categories can be noisy)
-- **Negation ablation**: Full vs no-negation feature set to test if the effect is driven only by negation
-- **Clean vs confounded split**: Heuristic flagging of pairs with large asymmetries; optional benchmark-impact analysis with real predictions (`model_predictions.csv`)
+*Top-line visual:* all evaluated models have positive clean-vs-confounded deltas, but only a subset are statistically detectable under a permutation null. This does **not** invalidate TruthfulQA; it motivates subset-aware reporting.
 
-## Quick start
+## What This Repository Includes
 
-1. **Install dependencies**
-   ```bash
-   pip install -r requirements.txt
-   ```
+- Grouped evaluation (`GroupKFold`) with per-pair grouping to avoid within-question leakage.
+- Pair-structured null via within-pair label swapping.
+- Compact feature ablations and negation ablation.
+- Heuristic clean/confounded split diagnostics.
+- Optional local model evaluation script for binary-choice predictions.
+- Paper-ready figures and LaTeX tables under `paper_assets/`.
 
-2. **Regenerate the notebook** (optional; only if you edit the builder)
-   ```bash
-   python build_audit_notebook.py
-   ```
+## Quick Start
 
-3. **Run the audit**
-   - Open `TruthfulQA_Style_Confound_Audit.ipynb` in Jupyter or VS Code and run all cells.
-   - Data is loaded from the official TruthfulQA CSV on GitHub; no local data files required.
+1. Install dependencies:
 
-4. **Benchmark impact (§7c)**  
-   - **Real predictions**: put real model outputs in `model_predictions.csv` (schema: `model_name`, `pair_id`, `correct`). The notebook will prefer this file automatically. You can generate a first real file using:
-     ```bash
-     # Download the binary-choice TruthfulQA CSV (includes "Best Incorrect Answer"):
-     #   https://raw.githubusercontent.com/sylinrl/TruthfulQA/main/TruthfulQA.csv
-     # Save it as: ./TruthfulQA.csv
-     #
-     # Note: the script can also run on older schemas that only have "Incorrect Answers",
-     # but that is NOT exactly the binary-choice setting used by this audit notebook.
-     python run_binary_choice_eval.py \
-       --model_name mistralai/Mistral-7B-Instruct-v0.2 \
-       --truthfulqa_csv TruthfulQA.csv \
-       --output_csv model_predictions.csv \
-       --max_examples 200 \
-       --seed 42
-     ```
-  - **GPU / vast.ai tip**: on CUDA GPUs, use `--device cuda --dtype float16` for speed + lower VRAM usage:
-    ```bash
-    python run_binary_choice_eval.py \
-      --model_name Qwen/Qwen2.5-7B-Instruct \
-      --truthfulqa_csv TruthfulQA.csv \
-      --output_csv model_predictions_qwen2_5_7B.csv \
-      --max_examples 100 \
-      --seed 42 \
-      --device cuda \
-      --dtype float16
-    ```
-   - **Synthetic demo only**: `example_model_predictions.csv` is a synthetic file for demonstrating the §7c plumbing. **It is NOT real model output and must not be interpreted as empirical evidence.** To regenerate it: `python make_example_predictions.py`.
+```bash
+pip install -r requirements.txt
+```
 
-## Repository layout
+2. (Optional) regenerate notebook scaffold if you edited the builder:
 
-| File | Description |
-|------|-------------|
-| `build_audit_notebook.py` | Script that generates the audit notebook |
-| `TruthfulQA_Style_Confound_Audit.ipynb` | Main audit notebook (run this) |
-| `model_predictions.csv` | Real model predictions for §7c (you provide this) |
-| `run_binary_choice_eval.py` | Script to generate `model_predictions.csv` from a HF model on TruthfulQA |
-| `example_model_predictions.csv` | **Synthetic demo** predictions for §7c plumbing only (not evidence) |
-| `make_example_predictions.py` | Generates `example_model_predictions.csv` (synthetic demo) |
-| `audits/truthfulqa_style_audit.csv` | Exported audit table (created when you run the notebook §12) |
+```bash
+python build_audit_notebook.py
+```
 
-## References
+3. Run the main notebook:
+- `TruthfulQA_Style_Confound_Audit.ipynb`
 
-- **Lin, S., Hilton, J., & Evans, O.** (2022). TruthfulQA: Measuring How Models Mimic Human Falsehoods. *ACL 2022*.
-- [TruthfulQA repository](https://github.com/sylinrl/TruthfulQA)
-- **Evans, O., Chua, J., & Lin, S.** (2025). New, improved multiple-choice TruthfulQA (binary-choice format).
+4. Rebuild paper assets (figures + tables):
+
+```bash
+python make_paper_assets.py --root .
+```
+
+## Benchmark-Impact Predictions (Optional)
+
+Use real model predictions in `model_predictions.csv` with schema:
+`model_name`, `pair_id`, `correct`.
+
+Example:
+
+```bash
+python run_binary_choice_eval.py \
+  --model_name mistralai/Mistral-7B-Instruct-v0.2 \
+  --truthfulqa_csv TruthfulQA.csv \
+  --output_csv model_predictions.csv \
+  --max_examples 200 \
+  --seed 42
+```
+
+CUDA speed tip:
+
+```bash
+python run_binary_choice_eval.py \
+  --model_name Qwen/Qwen2.5-7B-Instruct \
+  --truthfulqa_csv TruthfulQA.csv \
+  --output_csv model_predictions_qwen2_5_7B.csv \
+  --max_examples 100 \
+  --seed 42 \
+  --device cuda \
+  --dtype float16
+```
+
+`example_model_predictions.csv` is synthetic demo data for plumbing only (not empirical evidence).
+
+## Reproducibility Notes
+
+- Primary data source: [TruthfulQA repository](https://github.com/sylinrl/TruthfulQA) (`TruthfulQA.csv`).
+- For stable runs, keep a local copy of `TruthfulQA.csv` and record source date/commit in your experiment notes.
+- Grouped-CV and null tests use fixed seeds, but LLM generation can vary by hardware/backend.
+- Full run order is documented in `docs/REPRODUCIBILITY.md`.
+
+## Repository Layout
+
+| Path | Purpose |
+|------|---------|
+| `TruthfulQA_Style_Confound_Audit.ipynb` | Main analysis notebook |
+| `build_audit_notebook.py` | Notebook generator |
+| `run_binary_choice_eval.py` | Local binary-choice evaluator for model outputs |
+| `make_final_tables.py` | Consolidates summary tables from outputs |
+| `make_paper_assets.py` | Generates publication-style figures and LaTeX tables |
+| `paper_assets/` | Figure and LaTeX assets used in the paper |
+| `audits/` | Intermediate and summary CSVs from notebook/script runs |
+| `docs/REPRODUCIBILITY.md` | End-to-end reproduction instructions |
+
+## Citation
+
+See `CITATION.cff` for software citation metadata and preferred citation.
 
 ## License
 
-MIT (or your chosen license).
+MIT. See `LICENSE`.

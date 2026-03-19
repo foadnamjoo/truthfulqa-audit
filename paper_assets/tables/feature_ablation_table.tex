@@ -1,0 +1,16 @@
+\begin{table}[t]
+\centering
+\caption{Compact feature-group ablation under grouped 5-fold CV with pair-structured null (within-pair label swap; 100 runs).}
+\label{tab:feature_ablation}
+\begin{tabular}{lrr}
+\toprule
+Features removed & AUC & Null mean AUC \\
+\midrule
+None (full model) & 0.713 & 0.498 \\
+Negation & 0.591 & 0.500 \\
+Length gap & 0.716 & 0.501 \\
+Hedging & 0.705 & 0.501 \\
+Authority cues & 0.716 & 0.501 \\
+\bottomrule
+\end{tabular}
+\end{table}

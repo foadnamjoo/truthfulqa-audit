@@ -14,6 +14,7 @@ env/
 
 # IDE / OS
 .DS_Store
+**/.DS_Store
 .idea/
 *.swp
 *.swo
@@ -36,3 +37,7 @@ chpc_runs/
 # Many-run prediction dumps (keep summaries in audits/ instead)
 model_predictions_*seed*.csv
 model_predictions_*_out.csv
+
+# Optional local analysis artifacts
+audits/per_pair_*.csv
+paper_assets/tables/per_pair_*.tex

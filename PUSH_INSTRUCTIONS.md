@@ -2,11 +2,11 @@
 
 The repo is initialized and committed locally. To publish:
 
-1. **Create the repository on GitHub**
+1. **Create the repository on GitHub** (if not already created)
    - Go to [https://github.com/new](https://github.com/new)
    - Repository name: `truthfulqa-audit`
    - Visibility: **Public**
-   - Do **not** add a README, .gitignore, or license (they already exist locally)
+  - Do **not** add a README, .gitignore, or license from the GitHub UI (these exist locally)
    - Click **Create repository**
 
 2. **Push from this folder**
