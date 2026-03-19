@@ -30,6 +30,7 @@ from typing import Dict, List, Optional, Tuple
 
 import matplotlib as mpl
 import matplotlib.pyplot as plt
+from matplotlib.patches import Patch
 
 
 def read_csv_dicts(path: Path) -> List[Dict[str, str]]:
@@ -147,15 +148,15 @@ def main() -> None:
         pr = perm_by_model.get(r["model"])
         pvals.append(ffloat(pr["p_value_one_sided_ge"]) if pr else None)
 
-    fig, ax = plt.subplots(figsize=(6.6, 3.2))
+    fig, ax = plt.subplots(figsize=(7.4, 3.6))
     x = list(range(len(labels)))
-    colors = ["#4C78A8" if (p is not None and p <= 0.05) else "#9AA0A6" for p in pvals]
+    colors = ["#009E73" if (p is not None and p <= 0.05) else "#B3B3B3" for p in pvals]
     ax.bar(x, delta, color=colors, edgecolor="black", linewidth=0.6)
     ax.axhline(0.0, color="black", linewidth=0.8)
     ax.set_xticks(x)
     ax.set_xticklabels(labels, rotation=25, ha="right")
     ax.set_ylabel(r"$\Delta$ accuracy (confounded $-$ clean)")
-    ax.set_title("Benchmark impact by model (higher on confounded = positive)")
+    ax.set_title("Benchmark impact by model")
 
     # annotate p-values (one-sided)
     for i, p in enumerate(pvals):
@@ -163,9 +164,23 @@ def main() -> None:
             continue
         txt = "p={:.3f}".format(p) if p >= 0.001 else "p<0.001"
         y = delta[i]
-        ax.text(i, y + (0.003 if y >= 0 else -0.006), txt, ha="center", va="bottom" if y >= 0 else "top", fontsize=8)
+        # stagger labels and use a white box to avoid overlap/clutter on bars.
+        offset = 0.003 + (0.003 * (i % 2))
+        ax.text(
+            i,
+            y + (offset if y >= 0 else -offset),
+            txt,
+            ha="center",
+            va="bottom" if y >= 0 else "top",
+            fontsize=8,
+            bbox={"facecolor": "white", "edgecolor": "none", "alpha": 0.7, "pad": 0.5},
+        )
 
-    ax.text(0.01, 0.02, "Blue: p ≤ 0.05 vs permuted-label null", transform=ax.transAxes, fontsize=8, color="#4C78A8")
+    legend_handles = [
+        Patch(facecolor="#009E73", edgecolor="black", label=r"p $\leq$ 0.05 vs permuted-label null"),
+        Patch(facecolor="#B3B3B3", edgecolor="black", label=r"p > 0.05"),
+    ]
+    ax.legend(handles=legend_handles, frameon=False, loc="upper left")
     fig.tight_layout()
     fig.savefig(fig_dir / "impact_delta_bar.pdf", bbox_inches="tight")
     plt.close(fig)
@@ -183,7 +198,7 @@ def main() -> None:
     ax.set_ylabel("Accuracy")
     ax.set_ylim(0.35, 0.9)
     ax.set_title("Accuracy on clean vs confounded pairs")
-    ax.legend(frameon=False, ncol=2, loc="upper left")
+    ax.legend(frameon=False, ncol=2, loc="upper right")
     fig.tight_layout()
     fig.savefig(fig_dir / "impact_acc_by_split.pdf", bbox_inches="tight")
     plt.close(fig)
@@ -200,16 +215,18 @@ def main() -> None:
         obs.append(ffloat(pr["delta_mean_observed"]) or 0.0)
         null_p95.append(ffloat(pr["null_p95"]) or 0.0)
 
-    fig, ax = plt.subplots(figsize=(6.6, 3.2))
+    fig, ax = plt.subplots(figsize=(7.0, 3.6))
     y = list(range(len(models_f)))
-    ax.scatter(obs, y, color="#4C78A8", s=22, label="Observed Δ (mean across runs)")
-    ax.scatter(null_p95, y, color="#9AA0A6", s=22, label="Null 95th percentile")
-    ax.axvline(0.0, color="black", linewidth=0.8)
+    for yi, x_obs, x_null in zip(y, obs, null_p95):
+        ax.hlines(yi, min(x_obs, x_null), max(x_obs, x_null), color="#CFCFCF", linewidth=1.1, zorder=1)
+    ax.scatter(obs, y, color="#009E73", marker="o", s=36, zorder=3, label="Observed (mean across runs)")
+    ax.scatter(null_p95, y, color="#D55E00", marker="D", s=34, zorder=3, label="Null 95th percentile")
+    ax.axvline(0.0, color="#666666", linewidth=0.9, linestyle="--", zorder=0)
     ax.set_yticks(y)
     ax.set_yticklabels([model_short(m) for m in models_f])
     ax.set_xlabel(r"$\Delta$ accuracy (confounded $-$ clean)")
     ax.set_title("Permutation-null calibration (per model)")
-    ax.legend(frameon=False, loc="lower right")
+    ax.legend(frameon=False, loc="upper left")
     fig.tight_layout()
     fig.savefig(fig_dir / "permutation_null_forest.pdf", bbox_inches="tight")
     plt.close(fig)
