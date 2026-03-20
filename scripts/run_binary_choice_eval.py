@@ -236,6 +236,7 @@ def run_eval(
         choice = parse_choice_from_text(decoded)
 
         if choice is None:
+            print(f"Warning: no A/B parsed for pair_id={pair_id}, decoded='{decoded[:50]}'")
             correct_flag = 0  # conservative fallback
         else:
             if choice == "A":

@@ -69,6 +69,8 @@ python scripts/run_binary_choice_eval.py \
 ```
 
 `data/predictions/example_model_predictions.csv` is synthetic demo data for plumbing only (not empirical evidence).
+Note: model_predictions_pythia.csv contains real predictions for EleutherAI/pythia-2.8b-deduped, evaluated on Apple Silicon (CPU, float32). This model serves as a contamination-unlikely baseline; its training corpus (The Pile) predates TruthfulQA.
+If a model fails to output 'A' or 'B', the response is counted as incorrect (conservative fallback); a warning is printed to stdout for each such case.
 
 ## Reproducibility Notes
 

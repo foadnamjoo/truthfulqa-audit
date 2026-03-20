@@ -330,6 +330,8 @@ def main() -> None:
             ("Authority cues", ["auth_rate"]),
         ]
 
+        # Reference values from paper run (fixed, not dynamically recomputed here).
+        # If rerunning from scratch, verify these match your pipeline output.
         ablation_rows: List[List[str]] = [["None (full model)", "0.713", "0.498"]]
         no_neg_auc = None
         for name, removed in ablations:
