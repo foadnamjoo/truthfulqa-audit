@@ -25,6 +25,10 @@ env/
 # Data files (do not commit)
 TruthfulQA.csv
 
+# FEVER audit corpora (download locally; see README — run_fever_audit.py)
+data/fever/*.jsonl
+data/fever_symmetric/*.jsonl
+
 # CHPC/HPC scratch imports (do not commit model caches)
 chpc_runs/
 

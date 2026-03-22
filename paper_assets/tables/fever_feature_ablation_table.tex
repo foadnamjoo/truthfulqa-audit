@@ -1,0 +1,17 @@
+\begin{table}[t]
+\centering
+\caption{FEVER 1.0 feature-group ablation (5-fold stratified CV, 100 permutation nulls).}
+\label{tab:fever_ablation}
+\begin{tabular}{lrr}
+\toprule
+Features removed & AUC & Null mean \\
+\midrule
+None (full model) & 0.645 & 0.500 \\
+No negation & 0.587 & 0.498 \\
+No length & 0.645 & 0.498 \\
+No hedging & 0.646 & 0.500 \\
+No authority & 0.645 & 0.500 \\
+No specificity/mutation & 0.602 & 0.499 \\
+\bottomrule
+\end{tabular}
+\end{table}

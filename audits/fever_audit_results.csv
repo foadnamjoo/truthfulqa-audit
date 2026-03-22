@@ -1,0 +1,6 @@
+# FEVER 1.0 N=13089: shared_task_dev.jsonl filtered to SUPPORTS+REFUTES only, deduplicated by claim text. FeverSymmetric: fever_symmetric_dev.jsonl SUPPORTS+REFUTES.
+# FeverSymmetric AUC=0.356: inverted signal. 1-0.356=0.644 ≈ FEVER 1.0 AUC (0.645).
+# Symmetric construction reverses shortcuts, does not eliminate them.
+dataset,n,auc,ci_lo,ci_hi,null_mean,p_value,dominant_feature,confound_pct
+FEVER 1.0 dev,13089,0.6453826715477438,0.6365100188173196,0.6551036957548522,0.4999879360327812,0.0,Negation,52.85354114141646
+FeverSymmetric dev,708,0.35586038494685435,0.3144603456255689,0.39557696073076837,0.4911651345398831,1.0,Negation,60.451977401129945

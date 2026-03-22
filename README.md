@@ -39,6 +39,22 @@ python scripts/build_audit_notebook.py
 python scripts/make_paper_assets.py --root .
 ```
 
+## FEVER surface-form audit (optional)
+
+Runs the same claim-only confound methodology on **FEVER 1.0** dev and **FeverSymmetric** dev. No model inference.
+
+**Quick run** (from repo root; uses `data/fever/shared_task_dev.jsonl` and `data/fever_symmetric/fever_symmetric_dev.jsonl` if present, otherwise tries to download):
+
+```bash
+python scripts/run_fever_audit.py
+```
+
+**Outputs:** `audits/fever_audit_results.csv`, `paper_assets/tables/fever_feature_ablation_table.tex`, `paper_assets/tables/cross_dataset_comparison_table.tex`, `paper_assets/figures/fever_audit_auc_comparison.pdf`.
+
+**Help / options:** `python scripts/run_fever_audit.py --help` (paths, `--seed`, `--n-null`, `--n-boot`).
+
+If download fails, get `shared_task_dev.jsonl` from [fever.ai](https://fever.ai/dataset/fever.html) and pass `--fever_dev PATH`.
+
 ## Benchmark-Impact Predictions (Optional)
 
 Use real model predictions in `data/predictions/model_predictions.csv` with schema:
@@ -84,7 +100,7 @@ If a model fails to output 'A' or 'B', the response is counted as incorrect (con
 | Path | Purpose |
 |------|---------|
 | `TruthfulQA_Style_Confound_Audit.ipynb` | Main analysis notebook |
-| `scripts/` | All runnable project scripts |
+| `scripts/` | All runnable project scripts (`run_fever_audit.py` for FEVER) |
 | `data/predictions/` | Model prediction CSVs (real + synthetic demo) |
 | `paper_assets/` | Figure and LaTeX assets used in the paper |
 | `audits/` | Intermediate and summary CSVs from notebook/script runs |
