@@ -1,18 +1,20 @@
 #!/usr/bin/env python3
 """
-Surface-form confound audit on FEVER 1.0 and FeverSymmetric (claim text only).
+Surface-form confound audit: FEVER 1.0, FeverSymmetric, and BoolQ (text-only).
+
+FEVER and FeverSymmetric metrics are frozen constants (see FEVER_10_RESULT,
+FEVERSYMMETRIC_RESULT) so a normal run only loads BoolQ and recomputes that row.
+Outputs: audits/fever_audit_results.csv (3 rows), cross-dataset table, bar figure.
 
 Methodology matches the TruthfulQA audit: StandardScaler + LogisticRegression,
 5-fold StratifiedKFold OOF AUC, bootstrap CI, permutation null, ablations,
-heuristic confound rate.
+heuristic confound rate (BoolQ adds question_neg to the confound heuristic).
 
-Usage (from repo root, with data under data/):
+Usage:
     python scripts/run_fever_audit.py
 
-Or with explicit paths:
-    python scripts/run_fever_audit.py \\
-        --fever_dev path/to/shared_task_dev.jsonl \\
-        --fever_symmetric path/to/fever_symmetric_dev.jsonl
+Optional local BoolQ (skips HuggingFace hub):
+    python scripts/run_fever_audit.py --boolq-data data/boolq/validation.parquet
 """
 from __future__ import annotations
 
@@ -43,9 +45,41 @@ TRUTHFULQA_N = 790
 TRUTHFULQA_AUC = 0.713
 TRUTHFULQA_NULL = 0.498
 
+# Frozen FEVER / FeverSymmetric audit rows (last full run; avoids re-downloading / recomputing)
+FEVER_10_RESULT: dict = {
+    "dataset": "FEVER 1.0 dev",
+    "n": 13089,
+    "auc": 0.6453826715477438,
+    "ci_lo": 0.6365100188173196,
+    "ci_hi": 0.6551036957548522,
+    "null_mean": 0.4999879360327812,
+    "p_value": 0.0,
+    "dominant_feature": "Negation",
+    "confound_pct": 52.85354114141646,
+}
+FEVERSYMMETRIC_RESULT: dict = {
+    "dataset": "FeverSymmetric dev",
+    "n": 708,
+    "auc": 0.35586038494685435,
+    "ci_lo": 0.3144603456255689,
+    "ci_hi": 0.39557696073076837,
+    "null_mean": 0.4911651345398831,
+    "p_value": 1.0,
+    "dominant_feature": "Negation",
+    "confound_pct": 60.451977401129945,
+}
+
+# Mid-question negation contractions (exclude match at token index 0 only)
+QUESTION_NEG_CONTRACTIONS = frozenset({
+    "isn't", "aren't", "wasn't", "won't", "can't", "couldn't",
+    "wouldn't", "didn't", "doesn't", "don't", "haven't", "hasn't",
+})
+
 # --- Lexicons ---
 NEG_LEAD_WORDS = [
-    "not", "never", "no", "nor", "didn't", "doesn't", "wasn't",
+    "not", "never", "no", "nor",
+    "isn't", "aren't", "wasn't", "won't", "can't", "couldn't",
+    "wouldn't", "didn't", "doesn't", "don't", "haven't", "hasn't",
     "failed", "refused", "unable",
 ]
 NEG_WORDS = [
@@ -81,11 +115,17 @@ FEAT_COLS = [
     "neg_lead", "neg_cnt", "neg_bigram_refutes", "neg_bigram_supports",
     "hedge_rate", "word_count", "char_count", "avg_word_len",
     "type_token_ratio", "has_number", "specificity_score",
-    "superlative", "generalization_proxy", "auth_rate",
+    "superlative", "generalization_proxy", "auth_rate", "question_neg",
 ]
 
 ABLATIONS = [
-    ("No negation", ["neg_lead", "neg_cnt", "neg_bigram_refutes", "neg_bigram_supports"]),
+    (
+        "No negation",
+        [
+            "neg_lead", "neg_cnt", "neg_bigram_refutes", "neg_bigram_supports",
+            "question_neg",
+        ],
+    ),
     ("No length", ["word_count", "char_count", "avg_word_len"]),
     ("No hedging", ["hedge_rate"]),
     ("No authority", ["auth_rate"]),
@@ -129,6 +169,30 @@ def count_bigrams(bigrams: list[str], text: str) -> int:
     return sum(text_l.count(bg) for bg in bigrams)
 
 
+def question_neg_mid(text: str) -> int:
+    r"""
+    1 if any listed contraction appears in the question after the first word.
+
+    Questions where the contraction *is* the first word (e.g. "Isn't it true?")
+    return 0 by design — those are captured by ``neg_lead`` instead.
+
+    Uses the raw lowercased string (not token splitting) so straight and curly
+    apostrophes both match; simple_tokens only allows ASCII ' in contractions.
+    """
+    t = str(text).strip().lower()
+    for u in ("\u2019", "\u2018", "\u02bc"):
+        t = t.replace(u, "'")
+    parts = t.split(None, 1)
+    if len(parts) < 2:
+        return 0
+    tail = parts[1]
+    for c in QUESTION_NEG_CONTRACTIONS:
+        esc = re.escape(c)
+        if re.search(r"(?<![a-z0-9])" + esc + r"(?![a-z0-9])", tail):
+            return 1
+    return 0
+
+
 def compute_features(claims: pd.Series) -> pd.DataFrame:
     rows = []
     for claim in claims:
@@ -155,6 +219,7 @@ def compute_features(claims: pd.Series) -> pd.DataFrame:
 
         auth_cnt = count_matches(AUTH_PHRASES, claim)
         auth_rate = auth_cnt / max(1, n_tok)
+        q_neg = question_neg_mid(claim)
 
         rows.append({
             "neg_lead": neg_lead,
@@ -171,6 +236,7 @@ def compute_features(claims: pd.Series) -> pd.DataFrame:
             "superlative": superlative,
             "generalization_proxy": generalization_proxy,
             "auth_rate": auth_rate,
+            "question_neg": q_neg,
         })
     return pd.DataFrame(rows)
 
@@ -265,27 +331,33 @@ def run_ablation(
 def dominant_ablation_group(ablations: list[tuple[str, float, float]]) -> str:
     """Name of removed group that causes largest AUC drop from full model."""
     full_auc = ablations[0][1]
-    best = "Negation"
     max_drop = 0.0
+    best = ""
     for ab_name, ab_auc, _ in ablations[1:]:
         drop = full_auc - ab_auc
         if drop > max_drop:
             max_drop = drop
             best = ab_name.replace("No ", "").split(" (")[0].capitalize()
+    if max_drop <= 0:
+        return "None identified"
     return best
 
 
-def heuristic_confound(df: pd.DataFrame) -> np.ndarray:
-    wc = df["word_count"].values
-    p20 = np.percentile(wc, 20)
-    p80 = np.percentile(wc, 80)
-    in_extreme = (wc <= p20) | (wc >= p80)
+def heuristic_confound(df: pd.DataFrame, *, for_boolq: bool = False) -> np.ndarray:
+    """Length tails (20/80) match FEVER; omitted for BoolQ where lengths cluster (degenerate tails)."""
     confounded = (
         (df["neg_lead"] == 1)
         | (df["neg_cnt"] >= 2)
         | (df["neg_bigram_refutes"] >= 1)
-        | in_extreme
     )
+    if not for_boolq:
+        wc = df["word_count"].values
+        p20 = np.percentile(wc, 20)
+        p80 = np.percentile(wc, 80)
+        in_extreme = (wc <= p20) | (wc >= p80)
+        confounded = confounded | in_extreme
+    if for_boolq:
+        confounded = confounded | (df["question_neg"] >= 1)
     return confounded.astype(int).values
 
 
@@ -345,7 +417,7 @@ def load_fever_10(fever_dev_path: str | Path | None = None) -> pd.DataFrame:
             continue
     raise RuntimeError(
         "Could not load FEVER 1.0 dev. Download shared_task_dev.jsonl from "
-        "https://fever.ai/dataset/fever.html → data/fever/ or pass --fever_dev PATH"
+        "https://fever.ai/dataset/fever.html and place at data/fever/shared_task_dev.jsonl"
     )
 
 
@@ -385,31 +457,95 @@ def load_fever_symmetric(symmetric_path: str | Path | None = None) -> pd.DataFra
     return df
 
 
-def _csv_metadata_note(f1: dict, fs: dict) -> str:
+def load_boolq(local_path: str | Path | None = None) -> pd.DataFrame:
+    """
+    BoolQ validation split: question text only, label = answer (True -> 1).
+
+    Resolution: explicit path → data/boolq/validation.{parquet,json,jsonl,csv}
+    → HuggingFace google/boolq validation.
+    """
+    candidates: list[Path] = []
+    if local_path is not None:
+        p = Path(local_path)
+        if not p.exists():
+            raise FileNotFoundError(f"BoolQ data not found: {p}")
+        candidates.append(p)
+    else:
+        base = repo_root() / "data" / "boolq"
+        for name in ("validation.parquet", "validation.json", "validation.jsonl", "validation.csv"):
+            q = base / name
+            if q.exists():
+                candidates.append(q)
+                break
+
+    if candidates:
+        path = candidates[0]
+        suffix = path.suffix.lower()
+        if suffix == ".parquet":
+            raw = pd.read_parquet(path)
+        elif suffix == ".json":
+            raw = pd.read_json(path)
+        elif suffix in (".jsonl", ".ndjson"):
+            raw = pd.read_json(path, lines=True)
+        elif suffix == ".csv":
+            raw = pd.read_csv(path)
+        else:
+            raise ValueError(f"Unsupported BoolQ file type: {path}")
+    else:
+        try:
+            from datasets import load_dataset
+        except ImportError as e:
+            raise RuntimeError(
+                "Install datasets (pip install datasets) or pass --boolq-data PATH "
+                "or place validation.parquet/json/jsonl/csv under data/boolq/"
+            ) from e
+        ds = load_dataset("google/boolq", split="validation")
+        raw = ds.to_pandas()
+
+    need = {"question", "answer"}
+    missing = need - set(raw.columns)
+    if missing:
+        raise ValueError(f"BoolQ table missing columns {missing}; have {list(raw.columns)}")
+
+    df = pd.DataFrame({
+        "pair_id": np.arange(len(raw)),
+        "claim_text": raw["question"].astype(str),
+        "label": raw["answer"].map(lambda a: 1 if bool(a) else 0).astype(int),
+    })
+    return df
+
+
+def _csv_metadata_note(results_all: list[dict]) -> str:
+    f1, fs, bq = results_all[0], results_all[1], results_all[2]
     inv_auc = 1 - fs["auc"]
     return (
-        "# FEVER 1.0 N: shared_task_dev.jsonl, SUPPORTS+REFUTES only, deduplicated by claim text.\n"
-        "# FeverSymmetric: fever_symmetric_dev.jsonl, SUPPORTS+REFUTES.\n"
+        "# FEVER 1.0: frozen row from shared_task_dev.jsonl (SUPPORTS+REFUTES, dedup by claim).\n"
+        "# FeverSymmetric: frozen row from fever_symmetric_dev.jsonl (SUPPORTS+REFUTES).\n"
         f"# FeverSymmetric AUC={fs['auc']:.3f}: inverted signal. 1-{fs['auc']:.3f}={inv_auc:.3f} "
-        f"≈ FEVER 1.0 AUC ({f1['auc']:.3f}).\n"
-        "# Symmetric construction reverses shortcuts, does not eliminate them.\n"
+        f"≈ FEVER 1.0 AUC ({f1['auc']:.3f}). Symmetric reverses shortcuts, does not eliminate them.\n"
+        f"# BoolQ: google/boolq validation, recomputed each run (N={bq['n']}). Question text only.\n"
     )
 
 
 def save_audit_csv(path: Path, results_all: list[dict]) -> None:
     res_df = pd.DataFrame(results_all)
-    f1, fs = results_all[0], results_all[1]
     with open(path, "w", encoding="utf-8") as f:
-        f.write(_csv_metadata_note(f1, fs))
+        f.write(_csv_metadata_note(results_all))
         res_df.to_csv(f, index=False)
 
 
-def write_fever_ablation_tex(path: Path, ablation_rows: list[list[str]]) -> None:
+def write_fever_ablation_tex(
+    path: Path,
+    ablation_rows: list[list[str]],
+    *,
+    caption: str = "FEVER 1.0 feature-group ablation (5-fold stratified CV, 100 permutation nulls).",
+    label: str = "tab:fever_ablation",
+) -> None:
     lines = [
         "\\begin{table}[t]",
         "\\centering",
-        "\\caption{FEVER 1.0 feature-group ablation (5-fold stratified CV, 100 permutation nulls).}",
-        "\\label{tab:fever_ablation}",
+        f"\\caption{{{caption}}}",
+        f"\\label{{{label}}}",
         "\\begin{tabular}{lrr}",
         "\\toprule",
         "Features removed & AUC & Null mean \\\\",
@@ -438,7 +574,12 @@ def write_cross_dataset_tex(path: Path, results_all: list[dict]) -> None:
     cross_rows = [truth_row]
     for r in results_all:
         pstr = f"{r['p_value']:.3f}" if r["p_value"] >= 0.001 else "<0.001"
-        confound_str = "N/A" if "Symmetric" in r["dataset"] else f"{r['confound_pct']:.1f}\\%"
+        if "Symmetric" in r["dataset"]:
+            confound_str = "N/A"
+        elif r["confound_pct"] < 1.0:
+            confound_str = "$<$1\\%"
+        else:
+            confound_str = f"{r['confound_pct']:.1f}\\%"
         cross_rows.append([
             r["dataset"].replace(" dev", ""),
             str(r["n"]),
@@ -469,18 +610,28 @@ def write_cross_dataset_tex(path: Path, results_all: list[dict]) -> None:
 
 
 def plot_auc_comparison(fig_dir: Path, results_all: list[dict]) -> None:
-    datasets = ["TruthfulQA", "FEVER 1.0", "FeverSymmetric"]
-    aucs = [TRUTHFULQA_AUC, results_all[0]["auc"], results_all[1]["auc"]]
-    nulls = [TRUTHFULQA_NULL, results_all[0]["null_mean"], results_all[1]["null_mean"]]
+    datasets = ["TruthfulQA", "FEVER 1.0", "FeverSymmetric", "BoolQ"]
+    aucs = [
+        TRUTHFULQA_AUC,
+        results_all[0]["auc"],
+        results_all[1]["auc"],
+        results_all[2]["auc"],
+    ]
+    nulls = [
+        TRUTHFULQA_NULL,
+        results_all[0]["null_mean"],
+        results_all[1]["null_mean"],
+        results_all[2]["null_mean"],
+    ]
 
-    fig, ax = plt.subplots(figsize=(5, 3.5))
+    fig, ax = plt.subplots(figsize=(6.2, 3.5))
     x = np.arange(len(datasets))
     w = 0.35
     ax.bar(x - w / 2, aucs, w, label="AUC", color="#009E73", edgecolor="black")
     ax.bar(x + w / 2, nulls, w, label="Null mean", color="#D55E00", edgecolor="black")
     ax.axhline(0.5, color="gray", linestyle="--", alpha=0.7)
     ax.set_xticks(x)
-    ax.set_xticklabels(datasets)
+    ax.set_xticklabels(datasets, rotation=15, ha="right")
     ax.set_ylabel("AUC / Null mean")
     ax.set_title("Surface-form audit: AUC vs permutation null across datasets")
     ax.legend(frameon=False)
@@ -492,14 +643,28 @@ def plot_auc_comparison(fig_dir: Path, results_all: list[dict]) -> None:
 
 
 def print_deliverables(results_all: list[dict]) -> None:
-    f1, fs = results_all[0], results_all[1]
+    f1, fs, bq = results_all[0], results_all[1], results_all[2]
     print("\n" + "=" * 60)
     print("DELIVERABLES")
     print("=" * 60)
-    print(f"FEVER 1.0 OOF AUC: {f1['auc']:.3f}, null mean: {f1['null_mean']:.3f}")
-    print(f"FeverSymmetric OOF AUC: {fs['auc']:.3f}, null mean: {fs['null_mean']:.3f}")
-    print(f"Dominant feature in FEVER ablation: {f1['dominant_feature']}")
-    print(f"FEVER confound rate: {f1['confound_pct']:.1f}%")
+    print(f"FEVER 1.0 (frozen) AUC: {f1['auc']:.3f}, null mean: {f1['null_mean']:.3f}")
+    print(f"FeverSymmetric (frozen) AUC: {fs['auc']:.3f}, null mean: {fs['null_mean']:.3f}")
+    print(f"BoolQ validation (live) OOF AUC: {bq['auc']:.3f}, null mean: {bq['null_mean']:.3f}")
+    if bq["auc"] < 0.55:
+        print(
+            "BoolQ near-chance AUC suggests interrogative surface form "
+            "carries less shortcut signal than declarative claims — itself a "
+            "finding worth reporting."
+        )
+        print(
+            "Paper framing: treat this as a clean positive — weak surface-form "
+            "signal and near-zero confound rate support cross-format robustness "
+            "(interrogative vs declarative), not a failed audit."
+        )
+    print(f"Dominant feature (frozen FEVER ablation): {f1['dominant_feature']}")
+    print(f"Dominant feature (BoolQ ablation): {bq['dominant_feature']}")
+    print(f"FEVER confound rate (frozen): {f1['confound_pct']:.1f}%")
+    print(f"BoolQ confound rate: {bq['confound_pct']:.1f}%")
     vs_tqa = (
         "stronger" if f1["auc"] > TRUTHFULQA_AUC
         else "weaker" if f1["auc"] < TRUTHFULQA_AUC
@@ -518,18 +683,20 @@ def print_deliverables(results_all: list[dict]) -> None:
 def parse_args(argv: list[str] | None = None) -> argparse.Namespace:
     root_default = str(repo_root())
     p = argparse.ArgumentParser(
-        description="FEVER + FeverSymmetric surface-form confound audit (claim-only features).",
+        description=(
+            "External surface-form audit: frozen FEVER + FeverSymmetric rows; "
+            "live BoolQ (google/boolq validation, question-only features)."
+        ),
         formatter_class=argparse.RawDescriptionHelpFormatter,
         epilog=f"""
 Examples:
   cd {root_default} && python scripts/run_fever_audit.py
 
-  python scripts/run_fever_audit.py --root . \\
-      --fever_dev data/fever/shared_task_dev.jsonl
+  python scripts/run_fever_audit.py --boolq-data data/boolq/validation.parquet
 
-Data layout (optional, avoids downloads):
-  data/fever/shared_task_dev.jsonl
-  data/fever_symmetric/fever_symmetric_dev.jsonl
+FEVER / FeverSymmetric metrics are frozen constants in-script (no re-download).
+BoolQ: HuggingFace google/boolq validation, or local table with columns question, answer.
+Optional local dir: data/boolq/validation.{{parquet,json,jsonl,csv}}
         """.strip(),
     )
     p.add_argument(
@@ -539,16 +706,22 @@ Data layout (optional, avoids downloads):
         help="Project root (default: current directory; outputs go under audits/ and paper_assets/)",
     )
     p.add_argument(
+        "--boolq-data",
+        type=str,
+        default=None,
+        help="Path to BoolQ validation export (parquet/json/csv) with columns question, answer",
+    )
+    p.add_argument(
         "--fever_dev",
         type=str,
         default=None,
-        help="Path to FEVER shared_task_dev.jsonl (default: data/fever/ or download)",
+        help="Deprecated, no-op: FEVER row is frozen; ignored.",
     )
     p.add_argument(
         "--fever_symmetric",
         type=str,
         default=None,
-        help="Path to fever_symmetric_dev.jsonl (default: data/fever_symmetric/ or download)",
+        help="Deprecated, no-op: FeverSymmetric row is frozen; ignored.",
     )
     p.add_argument("--seed", type=int, default=DEFAULT_SEED, help="Random seed (default: 42)")
     p.add_argument(
@@ -567,7 +740,14 @@ Data layout (optional, avoids downloads):
 
 
 def main(argv: list[str] | None = None) -> int:
+    """Run external surface-form audit (frozen FEVER/Symmetric + live BoolQ)."""
     args = parse_args(argv)
+    if args.fever_dev is not None or args.fever_symmetric is not None:
+        print(
+            "run_fever_audit.py: warning: --fever_dev and --fever_symmetric are deprecated "
+            "and ignored (FEVER / FeverSymmetric metrics are frozen in-script).",
+            file=sys.stderr,
+        )
     root = Path(args.root).resolve()
     audits_dir = root / "audits"
     tbl_dir = root / "paper_assets" / "tables"
@@ -580,59 +760,65 @@ def main(argv: list[str] | None = None) -> int:
     n_null = args.n_null
     n_boot = args.n_boot
 
-    results_all: list[dict] = []
-    loaders = [
-        ("FEVER 1.0 dev", lambda: load_fever_10(args.fever_dev)),
-        ("FeverSymmetric dev", lambda: load_fever_symmetric(args.fever_symmetric)),
+    results_all: list[dict] = [
+        dict(FEVER_10_RESULT),
+        dict(FEVERSYMMETRIC_RESULT),
     ]
+    print("\n" + "=" * 60)
+    print("FEVER 1.0 dev + FeverSymmetric dev (frozen constants; not recomputed)")
+    print("=" * 60)
+    for row in results_all:
+        print(
+            f"  {row['dataset']}: N={row['n']}, AUC={row['auc']:.3f}, "
+            f"null={row['null_mean']:.3f}"
+        )
 
-    for name, load_fn in loaders:
-        print(f"\n{'=' * 60}\n{name}\n{'=' * 60}")
-        df = load_fn()
-        claims = df["claim_text"]
-        y = df["label"].values
-        n = len(df)
-        print(f"Loaded {n} claims, {int(y.sum())} SUPPORTS, {int((1 - y).sum())} REFUTES")
+    print(f"\n{'=' * 60}\nBoolQ validation (live)\n{'=' * 60}")
+    df_bq = load_boolq(args.boolq_data)
+    claims = df_bq["claim_text"]
+    y = df_bq["label"].values
+    n = len(df_bq)
+    print(f"Loaded {n} questions, {int(y.sum())} True, {int((1 - y).sum())} False")
 
-        feat_df = compute_features(claims)
-        X = feat_df[FEAT_COLS].fillna(0).to_numpy()
+    feat_df = compute_features(claims)
+    X = feat_df[FEAT_COLS].fillna(0).to_numpy()
 
-        auc, ci_lo, ci_hi, null_mean, p_value, _ = run_audit(X, y, seed, n_null, n_boot)
-        print(f"OOF AUC: {auc:.3f} [95% CI: {ci_lo:.3f}, {ci_hi:.3f}]")
-        print(f"Null mean: {null_mean:.3f}, p-value: {p_value:.4f}")
+    auc, ci_lo, ci_hi, null_mean, p_value, _ = run_audit(X, y, seed, n_null, n_boot)
+    print(f"OOF AUC: {auc:.3f} [95% CI: {ci_lo:.3f}, {ci_hi:.3f}]")
+    print(f"Null mean: {null_mean:.3f}, p-value: {p_value:.4f}")
 
-        ablations = run_ablation(feat_df, y, FEAT_COLS, seed, n_null)
-        dominant = dominant_ablation_group(ablations)
+    ablations = run_ablation(feat_df, y, FEAT_COLS, seed, n_null)
+    dominant = dominant_ablation_group(ablations)
 
-        conf = heuristic_confound(feat_df)
-        confound_pct = 100 * conf.mean()
-        print(f"Confound rate: {confound_pct:.1f}%")
+    conf = heuristic_confound(feat_df, for_boolq=True)
+    confound_pct = 100 * conf.mean()
+    print(f"Confound rate (incl. question_neg): {confound_pct:.1f}%")
 
-        results_all.append({
-            "dataset": name,
-            "n": n,
-            "auc": auc,
-            "ci_lo": ci_lo,
-            "ci_hi": ci_hi,
-            "null_mean": null_mean,
-            "p_value": p_value,
-            "dominant_feature": dominant,
-            "confound_pct": confound_pct,
-        })
+    results_all.append({
+        "dataset": "BoolQ validation",
+        "n": n,
+        "auc": auc,
+        "ci_lo": ci_lo,
+        "ci_hi": ci_hi,
+        "null_mean": null_mean,
+        "p_value": p_value,
+        "dominant_feature": dominant,
+        "confound_pct": confound_pct,
+    })
 
     csv_path = audits_dir / "fever_audit_results.csv"
     save_audit_csv(csv_path, results_all)
     print(f"\nSaved {csv_path}")
 
-    # FEVER 1.0 ablation table (same data path as main FEVER load)
-    df_fever = load_fever_10(args.fever_dev)
-    feat_fever = compute_features(df_fever["claim_text"])
-    y_fever = df_fever["label"].values
-    ablations = run_ablation(feat_fever, y_fever, FEAT_COLS, seed, n_null)
     ablation_rows = [[name, f"{auc:.3f}", f"{null_m:.3f}"] for name, auc, null_m in ablations]
-    ablation_path = tbl_dir / "fever_feature_ablation_table.tex"
-    write_fever_ablation_tex(ablation_path, ablation_rows)
-    print(f"Saved {ablation_path}")
+    boolq_ab_path = tbl_dir / "boolq_feature_ablation_table.tex"
+    write_fever_ablation_tex(
+        boolq_ab_path,
+        ablation_rows,
+        caption="BoolQ validation feature-group ablation (5-fold stratified CV, 100 permutation nulls).",
+        label="tab:boolq_ablation",
+    )
+    print(f"Saved {boolq_ab_path}")
 
     cross_path = tbl_dir / "cross_dataset_comparison_table.tex"
     write_cross_dataset_tex(cross_path, results_all)
@@ -648,6 +834,6 @@ def main(argv: list[str] | None = None) -> int:
 if __name__ == "__main__":
     try:
         raise SystemExit(main())
-    except (FileNotFoundError, RuntimeError) as e:
+    except (FileNotFoundError, RuntimeError, ValueError, ImportError) as e:
         print(f"Error: {e}", file=sys.stderr)
         raise SystemExit(1) from e

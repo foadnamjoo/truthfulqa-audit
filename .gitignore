@@ -29,6 +29,9 @@ TruthfulQA.csv
 data/fever/*.jsonl
 data/fever_symmetric/*.jsonl
 
+# BoolQ local export (optional; HF cache is elsewhere)
+data/boolq/*
+
 # CHPC/HPC scratch imports (do not commit model caches)
 chpc_runs/
 

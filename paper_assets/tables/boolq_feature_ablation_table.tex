@@ -1,0 +1,17 @@
+\begin{table}[t]
+\centering
+\caption{BoolQ validation feature-group ablation (5-fold stratified CV, 100 permutation nulls).}
+\label{tab:boolq_ablation}
+\begin{tabular}{lrr}
+\toprule
+Features removed & AUC & Null mean \\
+\midrule
+None (full model) & 0.531 & 0.501 \\
+No negation & 0.533 & 0.501 \\
+No length & 0.533 & 0.498 \\
+No hedging & 0.532 & 0.501 \\
+No authority & 0.531 & 0.501 \\
+No specificity/mutation & 0.537 & 0.500 \\
+\bottomrule
+\end{tabular}
+\end{table}

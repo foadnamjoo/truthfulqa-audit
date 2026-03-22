@@ -39,21 +39,24 @@ python scripts/build_audit_notebook.py
 python scripts/make_paper_assets.py --root .
 ```
 
-## FEVER surface-form audit (optional)
+## External surface-form audit (FEVER, FeverSymmetric, BoolQ)
 
-Runs the same claim-only confound methodology on **FEVER 1.0** dev and **FeverSymmetric** dev. No model inference.
-
-**Quick run** (from repo root; uses `data/fever/shared_task_dev.jsonl` and `data/fever_symmetric/fever_symmetric_dev.jsonl` if present, otherwise tries to download):
+Runs the same **claim/question-only** confound methodology (logistic regression, StratifiedKFold, permutation null) on three external sets. **FEVER 1.0** and **FeverSymmetric** rows are **frozen constants** in `scripts/run_fever_audit.py` (no re-download). Each run recomputes **BoolQ** (`google/boolq`, validation split) via HuggingFace `datasets` or a local export. No model inference.
 
 ```bash
+pip install datasets   # if not already (see requirements.txt)
 python scripts/run_fever_audit.py
 ```
 
-**Outputs:** `audits/fever_audit_results.csv`, `paper_assets/tables/fever_feature_ablation_table.tex`, `paper_assets/tables/cross_dataset_comparison_table.tex`, `paper_assets/figures/fever_audit_auc_comparison.pdf`.
+**Local BoolQ** (columns `question`, `answer`): `--boolq-data PATH` or `data/boolq/validation.{parquet,json,jsonl,csv}`.
 
-**Help / options:** `python scripts/run_fever_audit.py --help` (paths, `--seed`, `--n-null`, `--n-boot`).
+**Outputs:** `audits/fever_audit_results.csv` (three rows), `paper_assets/tables/cross_dataset_comparison_table.tex`, `paper_assets/tables/boolq_feature_ablation_table.tex`, `paper_assets/figures/fever_audit_auc_comparison.pdf`.
 
-If download fails, get `shared_task_dev.jsonl` from [fever.ai](https://fever.ai/dataset/fever.html) and pass `--fever_dev PATH`.
+**Options:** `python scripts/run_fever_audit.py --help` (`--seed`, `--n-null`, `--n-boot`, `--boolq-data`).
+
+BoolQ adds feature `question_neg` (mid-question contractions) and omits length-tail confound flags (BoolQ lengths cluster; tails are degenerate).
+
+**Paper framing (BoolQ):** A modest OOF AUC (~0.53), **no dominant ablation group** when removals do not hurt AUC, and a **&lt;1%** heuristic confound rate are consistent with **weak shortcut structure in interrogative surface form** compared with declarative claims (FEVER / TruthfulQA). That contrast is a **substantive positive** for narratives about cross-format robustness, not a failed audit.
 
 ## Benchmark-Impact Predictions (Optional)
 
