@@ -1,0 +1,17 @@
+\begin{table}[t]
+\centering
+\caption{HaluEval QA feature-group ablation (5-fold GroupKFold by pair_id, 100 permutation nulls; answer-only features, no question\_neg).}
+\label{tab:halueval_ablation}
+\begin{tabular}{lrr}
+\toprule
+Features removed & AUC & Null mean \\
+\midrule
+None (full model) & 0.974 & 0.497 \\
+No negation & 0.973 & 0.497 \\
+No length & 0.720 & 0.496 \\
+No hedging & 0.974 & 0.497 \\
+No authority & 0.974 & 0.497 \\
+No specificity/mutation & 0.974 & 0.497 \\
+\bottomrule
+\end{tabular}
+\end{table}

@@ -1,10 +1,10 @@
 #!/usr/bin/env python3
 """
-Surface-form confound audit: FEVER 1.0, FeverSymmetric, and BoolQ (text-only).
+Surface-form confound audit: FEVER 1.0, FeverSymmetric, BoolQ, and HaluEval QA.
 
-FEVER and FeverSymmetric metrics are frozen constants (see FEVER_10_RESULT,
-FEVERSYMMETRIC_RESULT) so a normal run only loads BoolQ and recomputes that row.
-Outputs: audits/fever_audit_results.csv (3 rows), cross-dataset table, bar figure.
+FEVER and FeverSymmetric metrics are frozen constants; each run recomputes BoolQ
+and HaluEval QA. Outputs: audits/fever_audit_results.csv (4 external rows),
+cross-dataset table, bar figure.
 
 Methodology matches the TruthfulQA audit: StandardScaler + LogisticRegression,
 5-fold StratifiedKFold OOF AUC, bootstrap CI, permutation null, ablations,
@@ -13,8 +13,9 @@ heuristic confound rate (BoolQ adds question_neg to the confound heuristic).
 Usage:
     python scripts/run_fever_audit.py
 
-Optional local BoolQ (skips HuggingFace hub):
+Optional local data (skips HuggingFace hub):
     python scripts/run_fever_audit.py --boolq-data data/boolq/validation.parquet
+    python scripts/run_fever_audit.py --halueval-data data/halueval/qa.parquet
 """
 from __future__ import annotations
 
@@ -29,7 +30,7 @@ import numpy as np
 import pandas as pd
 from sklearn.linear_model import LogisticRegression
 from sklearn.metrics import roc_auc_score
-from sklearn.model_selection import StratifiedKFold, cross_val_predict
+from sklearn.model_selection import GroupKFold, StratifiedKFold, cross_val_predict
 from sklearn.pipeline import make_pipeline
 from sklearn.preprocessing import StandardScaler
 
@@ -118,6 +119,9 @@ FEAT_COLS = [
     "superlative", "generalization_proxy", "auth_rate", "question_neg",
 ]
 
+# HaluEval: answer text only; omit question_neg (interrogative-specific).
+HALUEVAL_FEAT_COLS = [c for c in FEAT_COLS if c != "question_neg"]
+
 ABLATIONS = [
     (
         "No negation",
@@ -140,6 +144,12 @@ FEVERSYMMETRIC_URL = (
     "https://raw.githubusercontent.com/TalSchuster/FeverSymmetric/master/"
     "symmetric_v0.2/fever_symmetric_dev.jsonl"
 )
+
+# HaluEval QA on Hugging Face: configs from get_dataset_config_names() include "qa"
+# (there is no "qa_data" config). The loaded split name is "data" (~10k rows).
+HALUEVAL_HF_ID = "pminervini/HaluEval"
+HALUEVAL_HF_CONFIG = "qa"
+HALUEVAL_HF_SPLIT = "data"
 
 
 def repo_root() -> Path:
@@ -254,11 +264,18 @@ def run_audit(
     seed: int,
     n_null: int,
     n_boot: int,
+    groups: np.ndarray | None = None,
 ) -> tuple[float, float, float, float, float, np.ndarray]:
-    cv = StratifiedKFold(n_splits=CV_SPLITS, shuffle=True, random_state=seed)
+    if groups is not None:
+        cv = GroupKFold(n_splits=CV_SPLITS)
+    else:
+        cv = StratifiedKFold(n_splits=CV_SPLITS, shuffle=True, random_state=seed)
     pipe = _make_lr_pipeline(seed)
 
-    y_proba = cross_val_predict(pipe, X, y, cv=cv, method="predict_proba")[:, 1]
+    predict_kw: dict = {"method": "predict_proba"}
+    if groups is not None:
+        predict_kw["groups"] = groups
+    y_proba = cross_val_predict(pipe, X, y, cv=cv, **predict_kw)[:, 1]
     auc = roc_auc_score(y, y_proba)
 
     rng = np.random.default_rng(seed)
@@ -276,7 +293,7 @@ def run_audit(
     auc_null: list[float] = []
     for _ in range(n_null):
         y_perm = rng.permutation(y)
-        proba_perm = cross_val_predict(pipe, X, y_perm, cv=cv, method="predict_proba")[:, 1]
+        proba_perm = cross_val_predict(pipe, X, y_perm, cv=cv, **predict_kw)[:, 1]
         auc_null.append(roc_auc_score(y_perm, proba_perm))
     auc_null_arr = np.array(auc_null)
     null_mean = float(np.mean(auc_null_arr))
@@ -292,17 +309,24 @@ def _ablation_one(
     use_cols: list[str],
     seed: int,
     n_null: int,
+    groups: np.ndarray | None = None,
 ) -> tuple[float, float]:
-    cv = StratifiedKFold(n_splits=CV_SPLITS, shuffle=True, random_state=seed)
+    if groups is not None:
+        cv = GroupKFold(n_splits=CV_SPLITS)
+    else:
+        cv = StratifiedKFold(n_splits=CV_SPLITS, shuffle=True, random_state=seed)
     pipe = _make_lr_pipeline(seed)
     X = X_df[use_cols].fillna(0).to_numpy()
-    y_proba = cross_val_predict(pipe, X, y, cv=cv, method="predict_proba")[:, 1]
+    predict_kw: dict = {"method": "predict_proba"}
+    if groups is not None:
+        predict_kw["groups"] = groups
+    y_proba = cross_val_predict(pipe, X, y, cv=cv, **predict_kw)[:, 1]
     auc = roc_auc_score(y, y_proba)
     rng = np.random.default_rng(seed)
     auc_null = []
     for _ in range(n_null):
         y_perm = rng.permutation(y)
-        proba_perm = cross_val_predict(pipe, X, y_perm, cv=cv, method="predict_proba")[:, 1]
+        proba_perm = cross_val_predict(pipe, X, y_perm, cv=cv, **predict_kw)[:, 1]
         auc_null.append(roc_auc_score(y_perm, proba_perm))
     return auc, float(np.mean(auc_null))
 
@@ -313,17 +337,18 @@ def run_ablation(
     feat_cols: list[str],
     seed: int,
     n_null: int,
+    groups: np.ndarray | None = None,
 ) -> list[tuple[str, float, float]]:
     keep = [c for c in feat_cols if c in X_df.columns]
     results: list[tuple[str, float, float]] = []
-    auc, null_m = _ablation_one(X_df, y, feat_cols, keep, seed, n_null)
+    auc, null_m = _ablation_one(X_df, y, feat_cols, keep, seed, n_null, groups=groups)
     results.append(("None (full model)", auc, null_m))
 
     for name, removed in ABLATIONS:
         use_cols = [c for c in feat_cols if c in X_df.columns and c not in removed]
         if not use_cols:
             continue
-        auc, null_m = _ablation_one(X_df, y, feat_cols, use_cols, seed, n_null)
+        auc, null_m = _ablation_one(X_df, y, feat_cols, use_cols, seed, n_null, groups=groups)
         results.append((name, auc, null_m))
     return results
 
@@ -515,8 +540,74 @@ def load_boolq(local_path: str | Path | None = None) -> pd.DataFrame:
     return df
 
 
+def load_halueval(local_path: str | Path | None = None) -> pd.DataFrame:
+    """
+    HaluEval QA: two audit rows per example (right_answer=1, hallucinated_answer=0).
+
+    Uses answer strings only (not question/knowledge). pair_id groups the pair.
+
+    Resolution: --halueval-data path → data/halueval/qa.{parquet,json,jsonl,csv}
+    → HuggingFace load_dataset(HALUEVAL_HF_ID, HALUEVAL_HF_CONFIG, split=...).
+    """
+    candidates: list[Path] = []
+    if local_path is not None:
+        p = Path(local_path)
+        if not p.exists():
+            raise FileNotFoundError(f"HaluEval data not found: {p}")
+        candidates.append(p)
+    else:
+        base = repo_root() / "data" / "halueval"
+        for name in ("qa.parquet", "qa.json", "qa.jsonl", "qa.csv"):
+            q = base / name
+            if q.exists():
+                candidates.append(q)
+                break
+
+    if candidates:
+        path = candidates[0]
+        suffix = path.suffix.lower()
+        if suffix == ".parquet":
+            raw = pd.read_parquet(path)
+        elif suffix == ".json":
+            raw = pd.read_json(path)
+        elif suffix in (".jsonl", ".ndjson"):
+            raw = pd.read_json(path, lines=True)
+        elif suffix == ".csv":
+            raw = pd.read_csv(path)
+        else:
+            raise ValueError(f"Unsupported HaluEval file type: {path}")
+    else:
+        try:
+            from datasets import load_dataset
+        except ImportError as e:
+            raise RuntimeError(
+                "Install datasets (pip install datasets) or pass --halueval-data PATH "
+                "or place qa.parquet/json/jsonl/csv under data/halueval/"
+            ) from e
+        ds = load_dataset(HALUEVAL_HF_ID, HALUEVAL_HF_CONFIG, split=HALUEVAL_HF_SPLIT)
+        raw = ds.to_pandas()
+
+    need = {"right_answer", "hallucinated_answer"}
+    missing = need - set(raw.columns)
+    if missing:
+        raise ValueError(f"HaluEval table missing columns {missing}; have {list(raw.columns)}")
+
+    out_rows: list[dict] = []
+    pair_id = 0
+    for _, row in raw.iterrows():
+        ra = str(row["right_answer"]).strip()
+        ha = str(row["hallucinated_answer"]).strip()
+        if not ra or not ha:
+            continue
+        out_rows.append({"pair_id": pair_id, "claim_text": ra, "label": 1})
+        out_rows.append({"pair_id": pair_id, "claim_text": ha, "label": 0})
+        pair_id += 1
+
+    return pd.DataFrame(out_rows)
+
+
 def _csv_metadata_note(results_all: list[dict]) -> str:
-    f1, fs, bq = results_all[0], results_all[1], results_all[2]
+    f1, fs, bq, hv = results_all[0], results_all[1], results_all[2], results_all[3]
     inv_auc = 1 - fs["auc"]
     return (
         "# FEVER 1.0: frozen row from shared_task_dev.jsonl (SUPPORTS+REFUTES, dedup by claim).\n"
@@ -524,6 +615,9 @@ def _csv_metadata_note(results_all: list[dict]) -> str:
         f"# FeverSymmetric AUC={fs['auc']:.3f}: inverted signal. 1-{fs['auc']:.3f}={inv_auc:.3f} "
         f"≈ FEVER 1.0 AUC ({f1['auc']:.3f}). Symmetric reverses shortcuts, does not eliminate them.\n"
         f"# BoolQ: google/boolq validation, recomputed each run (N={bq['n']}). Question text only.\n"
+        f"# HaluEval QA: {HALUEVAL_HF_ID} config={HALUEVAL_HF_CONFIG} split={HALUEVAL_HF_SPLIT}, "
+        f"recomputed each run (N={hv['n']} answer rows). GroupKFold by pair_id; answer text only; "
+        "excludes question_neg feature. LLM-generated (ChatGPT): possible style confounds.\n"
     )
 
 
@@ -610,21 +704,11 @@ def write_cross_dataset_tex(path: Path, results_all: list[dict]) -> None:
 
 
 def plot_auc_comparison(fig_dir: Path, results_all: list[dict]) -> None:
-    datasets = ["TruthfulQA", "FEVER 1.0", "FeverSymmetric", "BoolQ"]
-    aucs = [
-        TRUTHFULQA_AUC,
-        results_all[0]["auc"],
-        results_all[1]["auc"],
-        results_all[2]["auc"],
-    ]
-    nulls = [
-        TRUTHFULQA_NULL,
-        results_all[0]["null_mean"],
-        results_all[1]["null_mean"],
-        results_all[2]["null_mean"],
-    ]
+    datasets = ["TruthfulQA", "FEVER 1.0", "FeverSymmetric", "BoolQ", "HaluEval QA"]
+    aucs = [TRUTHFULQA_AUC] + [r["auc"] for r in results_all]
+    nulls = [TRUTHFULQA_NULL] + [r["null_mean"] for r in results_all]
 
-    fig, ax = plt.subplots(figsize=(6.2, 3.5))
+    fig, ax = plt.subplots(figsize=(7.8, 3.5))
     x = np.arange(len(datasets))
     w = 0.35
     ax.bar(x - w / 2, aucs, w, label="AUC", color="#009E73", edgecolor="black")
@@ -643,13 +727,17 @@ def plot_auc_comparison(fig_dir: Path, results_all: list[dict]) -> None:
 
 
 def print_deliverables(results_all: list[dict]) -> None:
-    f1, fs, bq = results_all[0], results_all[1], results_all[2]
+    f1, fs, bq, hv = results_all[0], results_all[1], results_all[2], results_all[3]
     print("\n" + "=" * 60)
     print("DELIVERABLES")
     print("=" * 60)
     print(f"FEVER 1.0 (frozen) AUC: {f1['auc']:.3f}, null mean: {f1['null_mean']:.3f}")
     print(f"FeverSymmetric (frozen) AUC: {fs['auc']:.3f}, null mean: {fs['null_mean']:.3f}")
     print(f"BoolQ validation (live) OOF AUC: {bq['auc']:.3f}, null mean: {bq['null_mean']:.3f}")
+    print(
+        f"HaluEval QA (live, GroupKFold) OOF AUC: {hv['auc']:.3f}, "
+        f"null mean: {hv['null_mean']:.3f}"
+    )
     if bq["auc"] < 0.55:
         print(
             "BoolQ near-chance AUC suggests interrogative surface form "
@@ -663,8 +751,10 @@ def print_deliverables(results_all: list[dict]) -> None:
         )
     print(f"Dominant feature (frozen FEVER ablation): {f1['dominant_feature']}")
     print(f"Dominant feature (BoolQ ablation): {bq['dominant_feature']}")
+    print(f"Dominant feature (HaluEval ablation): {hv['dominant_feature']}")
     print(f"FEVER confound rate (frozen): {f1['confound_pct']:.1f}%")
     print(f"BoolQ confound rate: {bq['confound_pct']:.1f}%")
+    print(f"HaluEval confound rate: {hv['confound_pct']:.1f}%")
     vs_tqa = (
         "stronger" if f1["auc"] > TRUTHFULQA_AUC
         else "weaker" if f1["auc"] < TRUTHFULQA_AUC
@@ -684,8 +774,8 @@ def parse_args(argv: list[str] | None = None) -> argparse.Namespace:
     root_default = str(repo_root())
     p = argparse.ArgumentParser(
         description=(
-            "External surface-form audit: frozen FEVER + FeverSymmetric rows; "
-            "live BoolQ (google/boolq validation, question-only features)."
+            "External surface-form audit: frozen FEVER + FeverSymmetric; "
+            "live BoolQ + HaluEval QA (HF datasets)."
         ),
         formatter_class=argparse.RawDescriptionHelpFormatter,
         epilog=f"""
@@ -694,9 +784,9 @@ Examples:
 
   python scripts/run_fever_audit.py --boolq-data data/boolq/validation.parquet
 
-FEVER / FeverSymmetric metrics are frozen constants in-script (no re-download).
-BoolQ: HuggingFace google/boolq validation, or local table with columns question, answer.
-Optional local dir: data/boolq/validation.{{parquet,json,jsonl,csv}}
+FEVER / FeverSymmetric: frozen in-script. BoolQ: google/boolq validation (question-only).
+HaluEval: {HALUEVAL_HF_ID} config={HALUEVAL_HF_CONFIG} split={HALUEVAL_HF_SPLIT}
+(answer-only, GroupKFold by pair_id). Local: data/halueval/qa.{{parquet,json,jsonl,csv}}
         """.strip(),
     )
     p.add_argument(
@@ -710,6 +800,12 @@ Optional local dir: data/boolq/validation.{{parquet,json,jsonl,csv}}
         type=str,
         default=None,
         help="Path to BoolQ validation export (parquet/json/csv) with columns question, answer",
+    )
+    p.add_argument(
+        "--halueval-data",
+        type=str,
+        default=None,
+        help="Path to HaluEval QA table with columns right_answer, hallucinated_answer",
     )
     p.add_argument(
         "--fever_dev",
@@ -740,7 +836,7 @@ Optional local dir: data/boolq/validation.{{parquet,json,jsonl,csv}}
 
 
 def main(argv: list[str] | None = None) -> int:
-    """Run external surface-form audit (frozen FEVER/Symmetric + live BoolQ)."""
+    """Run external surface-form audit (frozen FEVER/Symmetric + live BoolQ + HaluEval QA)."""
     args = parse_args(argv)
     if args.fever_dev is not None or args.fever_symmetric is not None:
         print(
@@ -806,6 +902,47 @@ def main(argv: list[str] | None = None) -> int:
         "confound_pct": confound_pct,
     })
 
+    print(f"\n{'=' * 60}\nHaluEval QA (live, GroupKFold by pair_id)\n{'=' * 60}")
+    df_hv = load_halueval(args.halueval_data)
+    claims_hv = df_hv["claim_text"]
+    y_hv = df_hv["label"].values
+    groups_hv = df_hv["pair_id"].values
+    n_hv = len(df_hv)
+    print(
+        f"Loaded {n_hv} answer rows ({len(np.unique(groups_hv))} pairs), "
+        f"{int(y_hv.sum())} right, {int((1 - y_hv).sum())} hallucinated"
+    )
+
+    feat_hv = compute_features(claims_hv)
+    X_hv = feat_hv[HALUEVAL_FEAT_COLS].fillna(0).to_numpy()
+
+    auc_h, ci_lo_h, ci_hi_h, null_h, p_h, _ = run_audit(
+        X_hv, y_hv, seed, n_null, n_boot, groups=groups_hv
+    )
+    print(f"OOF AUC: {auc_h:.3f} [95% CI: {ci_lo_h:.3f}, {ci_hi_h:.3f}]")
+    print(f"Null mean: {null_h:.3f}, p-value: {p_h:.4f}")
+
+    ablations_hv = run_ablation(
+        feat_hv, y_hv, HALUEVAL_FEAT_COLS, seed, n_null, groups=groups_hv
+    )
+    dominant_hv = dominant_ablation_group(ablations_hv)
+
+    conf_hv = heuristic_confound(feat_hv, for_boolq=False)
+    confound_pct_hv = 100 * conf_hv.mean()
+    print(f"Confound rate: {confound_pct_hv:.1f}%")
+
+    results_all.append({
+        "dataset": "HaluEval QA",
+        "n": n_hv,
+        "auc": auc_h,
+        "ci_lo": ci_lo_h,
+        "ci_hi": ci_hi_h,
+        "null_mean": null_h,
+        "p_value": p_h,
+        "dominant_feature": dominant_hv,
+        "confound_pct": confound_pct_hv,
+    })
+
     csv_path = audits_dir / "fever_audit_results.csv"
     save_audit_csv(csv_path, results_all)
     print(f"\nSaved {csv_path}")
@@ -819,6 +956,21 @@ def main(argv: list[str] | None = None) -> int:
         label="tab:boolq_ablation",
     )
     print(f"Saved {boolq_ab_path}")
+
+    ablation_rows_hv = [
+        [name, f"{a:.3f}", f"{nm:.3f}"] for name, a, nm in ablations_hv
+    ]
+    halueval_ab_path = tbl_dir / "halueval_feature_ablation_table.tex"
+    write_fever_ablation_tex(
+        halueval_ab_path,
+        ablation_rows_hv,
+        caption=(
+            "HaluEval QA feature-group ablation (5-fold GroupKFold by pair_id, "
+            "100 permutation nulls; answer-only features, no question\\_neg)."
+        ),
+        label="tab:halueval_ablation",
+    )
+    print(f"Saved {halueval_ab_path}")
 
     cross_path = tbl_dir / "cross_dataset_comparison_table.tex"
     write_cross_dataset_tex(cross_path, results_all)
