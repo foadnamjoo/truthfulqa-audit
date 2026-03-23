@@ -3,8 +3,10 @@
 # FeverSymmetric AUC=0.356: inverted signal. 1-0.356=0.644 ≈ FEVER 1.0 AUC (0.645). Symmetric reverses shortcuts, does not eliminate them.
 # BoolQ: google/boolq validation, recomputed each run (N=3270). Question text only.
 # HaluEval QA: pminervini/HaluEval config=qa split=data, recomputed each run (N=20000 answer rows). GroupKFold by pair_id; answer text only; excludes question_neg feature. LLM-generated (ChatGPT): possible style confounds.
+# VitaminC: tals/vitaminc config=default split=validation, recomputed each run (N=54012 claims). Claim-only; SUPPORTS/REFUTES only (NEI dropped); GroupKFold by case_id.
 dataset,n,auc,ci_lo,ci_hi,null_mean,p_value,dominant_feature,confound_pct
 FEVER 1.0 dev,13089,0.6453826715477438,0.6365100188173196,0.6551036957548522,0.4999879360327812,0.0,Negation,52.85354114141646
 FeverSymmetric dev,708,0.35586038494685435,0.3144603456255689,0.39557696073076837,0.4911651345398831,1.0,Negation,60.451977401129945
 BoolQ validation,3270,0.5307421482483247,0.5103498538081753,0.5497749074643951,0.4972487286371476,0.0,None identified,0.27522935779816515
 HaluEval QA,20000,0.9737458349999998,0.971481260344503,0.9759492251739286,0.49701837305000013,0.0,Length,58.275
+VitaminC validation,54012,0.5531030588972501,0.5480567898579889,0.5582509833410049,0.4988606054652535,0.0,Length,49.46493371843294

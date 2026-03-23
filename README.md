@@ -39,12 +39,13 @@ python scripts/build_audit_notebook.py
 python scripts/make_paper_assets.py --root .
 ```
 
-## External surface-form audit (FEVER, FeverSymmetric, BoolQ, HaluEval QA)
+## External surface-form audit (FEVER, FeverSymmetric, BoolQ, HaluEval QA, VitaminC)
 
-Runs the same **text-only** confound methodology (logistic regression, permutation null) on four external sets. **FEVER 1.0** and **FeverSymmetric** are **frozen constants** in `scripts/run_fever_audit.py`. Each run recomputes **BoolQ** (`google/boolq`, validation) and **HaluEval QA** (`pminervini/HaluEval`, config `qa`, split `data`) via HuggingFace `datasets` or local exports. No model inference.
+Runs the same **text-only** confound methodology (logistic regression, permutation null) on five external sets. **FEVER 1.0** and **FeverSymmetric** are **frozen constants** in `scripts/run_fever_audit.py`. Each run recomputes **BoolQ** (`google/boolq`, validation), **HaluEval QA** (`pminervini/HaluEval`, config `qa`, split `data`), and **VitaminC** (`tals/vitaminc`, config `default`, split `validation`) via HuggingFace `datasets` or local exports. No model inference.
 
 - **BoolQ:** question-only features; StratifiedKFold.
 - **HaluEval QA:** **answer-only** (`right_answer` vs `hallucinated_answer`), two rows per pair; **GroupKFold** by `pair_id` (both answers stay in the same fold). Features omit `question_neg`. Data is LLM-generated (ChatGPT-style); interpret surface-form signals as possibly confounded with generation style.
+- **VitaminC:** claim-only features; keeps `SUPPORTS`/`REFUTES` and drops `NOT ENOUGH INFO`; StratifiedKFold.
 
 ```bash
 pip install datasets   # if not already (see requirements.txt)
@@ -55,9 +56,11 @@ python scripts/run_fever_audit.py
 
 **Local HaluEval** (`right_answer`, `hallucinated_answer`): `--halueval-data PATH` or `data/halueval/qa.{parquet,json,jsonl,csv}`.
 
-**Outputs:** `audits/fever_audit_results.csv` (four external rows), `cross_dataset_comparison_table.tex`, `boolq_feature_ablation_table.tex`, `halueval_feature_ablation_table.tex`, `fever_audit_auc_comparison.pdf`.
+**Local VitaminC** (`claim`, `label`): `--vitaminc-data PATH` or `data/vitaminc/validation.{parquet,json,jsonl,csv}`.
 
-**Options:** `python scripts/run_fever_audit.py --help` (`--seed`, `--n-null`, `--n-boot`, `--boolq-data`, `--halueval-data`).
+**Outputs:** `audits/fever_audit_results.csv` (five external rows), `cross_dataset_comparison_table.tex`, `boolq_feature_ablation_table.tex`, `halueval_feature_ablation_table.tex`, `vitaminc_feature_ablation_table.tex`, `fever_audit_auc_comparison.pdf`.
+
+**Options:** `python scripts/run_fever_audit.py --help` (`--seed`, `--n-null`, `--n-boot`, `--boolq-data`, `--halueval-data`, `--vitaminc-data`).
 
 BoolQ adds feature `question_neg` (mid-question contractions) and omits length-tail confound flags (BoolQ lengths cluster; tails are degenerate).
 

@@ -1,0 +1,17 @@
+\begin{table}[t]
+\centering
+\caption{VitaminC validation feature-group ablation (5-fold GroupKFold by case_id, 100 permutation nulls; claim-only, SUPPORTS/REFUTES only).}
+\label{tab:vitaminc_ablation}
+\begin{tabular}{lrr}
+\toprule
+Features removed & AUC & Null mean \\
+\midrule
+None (full model) & 0.553 & 0.499 \\
+No negation & 0.553 & 0.498 \\
+No length & 0.528 & 0.498 \\
+No hedging & 0.553 & 0.499 \\
+No authority & 0.553 & 0.499 \\
+No specificity/mutation & 0.552 & 0.499 \\
+\bottomrule
+\end{tabular}
+\end{table}

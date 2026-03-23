@@ -1,10 +1,11 @@
 #!/usr/bin/env python3
 """
-Surface-form confound audit: FEVER 1.0, FeverSymmetric, BoolQ, and HaluEval QA.
+Surface-form confound audit: FEVER 1.0, FeverSymmetric, BoolQ, HaluEval QA,
+and VitaminC.
 
-FEVER and FeverSymmetric metrics are frozen constants; each run recomputes BoolQ
-and HaluEval QA. Outputs: audits/fever_audit_results.csv (4 external rows),
-cross-dataset table, bar figure.
+FEVER and FeverSymmetric metrics are frozen constants; each run recomputes BoolQ,
+HaluEval QA, and VitaminC. Outputs: audits/fever_audit_results.csv (5 external
+rows), cross-dataset table, bar figure.
 
 Methodology matches the TruthfulQA audit: StandardScaler + LogisticRegression,
 5-fold StratifiedKFold OOF AUC, bootstrap CI, permutation null, ablations,
@@ -16,6 +17,7 @@ Usage:
 Optional local data (skips HuggingFace hub):
     python scripts/run_fever_audit.py --boolq-data data/boolq/validation.parquet
     python scripts/run_fever_audit.py --halueval-data data/halueval/qa.parquet
+    python scripts/run_fever_audit.py --vitaminc-data data/vitaminc/validation.parquet
 """
 from __future__ import annotations
 
@@ -150,6 +152,11 @@ FEVERSYMMETRIC_URL = (
 HALUEVAL_HF_ID = "pminervini/HaluEval"
 HALUEVAL_HF_CONFIG = "qa"
 HALUEVAL_HF_SPLIT = "data"
+
+# VitaminC on Hugging Face.
+VITAMINC_HF_ID = "tals/vitaminc"
+VITAMINC_HF_CONFIG = "default"
+VITAMINC_HF_SPLIT = "validation"
 
 
 def repo_root() -> Path:
@@ -606,8 +613,74 @@ def load_halueval(local_path: str | Path | None = None) -> pd.DataFrame:
     return pd.DataFrame(out_rows)
 
 
+def load_vitaminc(local_path: str | Path | None = None) -> pd.DataFrame:
+    """
+    VitaminC validation: claim-only features, SUPPORTS=1 and REFUTES=0.
+
+    Drops NOT ENOUGH INFO to mirror FEVER-style binary setup.
+    Keeps case_id for grouped CV.
+
+    Resolution: --vitaminc-data path → data/vitaminc/validation.{parquet,json,jsonl,csv}
+    → HuggingFace load_dataset(VITAMINC_HF_ID, VITAMINC_HF_CONFIG, split=...).
+    """
+    candidates: list[Path] = []
+    if local_path is not None:
+        p = Path(local_path)
+        if not p.exists():
+            raise FileNotFoundError(f"VitaminC data not found: {p}")
+        candidates.append(p)
+    else:
+        base = repo_root() / "data" / "vitaminc"
+        for name in ("validation.parquet", "validation.json", "validation.jsonl", "validation.csv"):
+            q = base / name
+            if q.exists():
+                candidates.append(q)
+                break
+
+    if candidates:
+        path = candidates[0]
+        suffix = path.suffix.lower()
+        if suffix == ".parquet":
+            raw = pd.read_parquet(path)
+        elif suffix == ".json":
+            raw = pd.read_json(path)
+        elif suffix in (".jsonl", ".ndjson"):
+            raw = pd.read_json(path, lines=True)
+        elif suffix == ".csv":
+            raw = pd.read_csv(path)
+        else:
+            raise ValueError(f"Unsupported VitaminC file type: {path}")
+    else:
+        try:
+            from datasets import load_dataset
+        except ImportError as e:
+            raise RuntimeError(
+                "Install datasets (pip install datasets) or pass --vitaminc-data PATH "
+                "or place validation.parquet/json/jsonl/csv under data/vitaminc/"
+            ) from e
+        ds = load_dataset(VITAMINC_HF_ID, VITAMINC_HF_CONFIG, split=VITAMINC_HF_SPLIT)
+        raw = ds.to_pandas()
+
+    need = {"claim", "label", "case_id"}
+    missing = need - set(raw.columns)
+    if missing:
+        raise ValueError(f"VitaminC table missing columns {missing}; have {list(raw.columns)}")
+
+    label_map = {"SUPPORTS": 1, "REFUTES": 0}
+    keep = raw["label"].astype(str).str.upper().isin(label_map.keys())
+    filtered = raw.loc[keep, ["claim", "label", "case_id"]].copy()
+    filtered["label"] = filtered["label"].astype(str).str.upper().map(label_map).astype(int)
+
+    df = pd.DataFrame({
+        "case_id": filtered["case_id"].astype(str),
+        "claim_text": filtered["claim"].astype(str),
+        "label": filtered["label"],
+    })
+    return df
+
+
 def _csv_metadata_note(results_all: list[dict]) -> str:
-    f1, fs, bq, hv = results_all[0], results_all[1], results_all[2], results_all[3]
+    f1, fs, bq, hv, vc = results_all[0], results_all[1], results_all[2], results_all[3], results_all[4]
     inv_auc = 1 - fs["auc"]
     return (
         "# FEVER 1.0: frozen row from shared_task_dev.jsonl (SUPPORTS+REFUTES, dedup by claim).\n"
@@ -618,6 +691,9 @@ def _csv_metadata_note(results_all: list[dict]) -> str:
         f"# HaluEval QA: {HALUEVAL_HF_ID} config={HALUEVAL_HF_CONFIG} split={HALUEVAL_HF_SPLIT}, "
         f"recomputed each run (N={hv['n']} answer rows). GroupKFold by pair_id; answer text only; "
         "excludes question_neg feature. LLM-generated (ChatGPT): possible style confounds.\n"
+        f"# VitaminC: {VITAMINC_HF_ID} config={VITAMINC_HF_CONFIG} split={VITAMINC_HF_SPLIT}, "
+        f"recomputed each run (N={vc['n']} claims). Claim-only; SUPPORTS/REFUTES only (NEI dropped); "
+        "GroupKFold by case_id.\n"
     )
 
 
@@ -704,11 +780,11 @@ def write_cross_dataset_tex(path: Path, results_all: list[dict]) -> None:
 
 
 def plot_auc_comparison(fig_dir: Path, results_all: list[dict]) -> None:
-    datasets = ["TruthfulQA", "FEVER 1.0", "FeverSymmetric", "BoolQ", "HaluEval QA"]
+    datasets = ["TruthfulQA", "FEVER 1.0", "FeverSymmetric", "BoolQ", "HaluEval QA", "VitaminC"]
     aucs = [TRUTHFULQA_AUC] + [r["auc"] for r in results_all]
     nulls = [TRUTHFULQA_NULL] + [r["null_mean"] for r in results_all]
 
-    fig, ax = plt.subplots(figsize=(7.8, 3.5))
+    fig, ax = plt.subplots(figsize=(8.8, 3.5))
     x = np.arange(len(datasets))
     w = 0.35
     ax.bar(x - w / 2, aucs, w, label="AUC", color="#009E73", edgecolor="black")
@@ -727,7 +803,7 @@ def plot_auc_comparison(fig_dir: Path, results_all: list[dict]) -> None:
 
 
 def print_deliverables(results_all: list[dict]) -> None:
-    f1, fs, bq, hv = results_all[0], results_all[1], results_all[2], results_all[3]
+    f1, fs, bq, hv, vc = results_all[0], results_all[1], results_all[2], results_all[3], results_all[4]
     print("\n" + "=" * 60)
     print("DELIVERABLES")
     print("=" * 60)
@@ -737,6 +813,10 @@ def print_deliverables(results_all: list[dict]) -> None:
     print(
         f"HaluEval QA (live, GroupKFold) OOF AUC: {hv['auc']:.3f}, "
         f"null mean: {hv['null_mean']:.3f}"
+    )
+    print(
+        f"VitaminC validation (live) OOF AUC: {vc['auc']:.3f}, "
+        f"null mean: {vc['null_mean']:.3f}"
     )
     if bq["auc"] < 0.55:
         print(
@@ -752,9 +832,11 @@ def print_deliverables(results_all: list[dict]) -> None:
     print(f"Dominant feature (frozen FEVER ablation): {f1['dominant_feature']}")
     print(f"Dominant feature (BoolQ ablation): {bq['dominant_feature']}")
     print(f"Dominant feature (HaluEval ablation): {hv['dominant_feature']}")
+    print(f"Dominant feature (VitaminC ablation): {vc['dominant_feature']}")
     print(f"FEVER confound rate (frozen): {f1['confound_pct']:.1f}%")
     print(f"BoolQ confound rate: {bq['confound_pct']:.1f}%")
     print(f"HaluEval confound rate: {hv['confound_pct']:.1f}%")
+    print(f"VitaminC confound rate: {vc['confound_pct']:.1f}%")
     vs_tqa = (
         "stronger" if f1["auc"] > TRUTHFULQA_AUC
         else "weaker" if f1["auc"] < TRUTHFULQA_AUC
@@ -775,7 +857,7 @@ def parse_args(argv: list[str] | None = None) -> argparse.Namespace:
     p = argparse.ArgumentParser(
         description=(
             "External surface-form audit: frozen FEVER + FeverSymmetric; "
-            "live BoolQ + HaluEval QA (HF datasets)."
+            "live BoolQ + HaluEval QA + VitaminC (HF datasets)."
         ),
         formatter_class=argparse.RawDescriptionHelpFormatter,
         epilog=f"""
@@ -787,6 +869,8 @@ Examples:
 FEVER / FeverSymmetric: frozen in-script. BoolQ: google/boolq validation (question-only).
 HaluEval: {HALUEVAL_HF_ID} config={HALUEVAL_HF_CONFIG} split={HALUEVAL_HF_SPLIT}
 (answer-only, GroupKFold by pair_id). Local: data/halueval/qa.{{parquet,json,jsonl,csv}}
+VitaminC: {VITAMINC_HF_ID} config={VITAMINC_HF_CONFIG} split={VITAMINC_HF_SPLIT}
+(claim-only; SUPPORTS/REFUTES). Local: data/vitaminc/validation.{{parquet,json,jsonl,csv}}
         """.strip(),
     )
     p.add_argument(
@@ -806,6 +890,12 @@ HaluEval: {HALUEVAL_HF_ID} config={HALUEVAL_HF_CONFIG} split={HALUEVAL_HF_SPLIT}
         type=str,
         default=None,
         help="Path to HaluEval QA table with columns right_answer, hallucinated_answer",
+    )
+    p.add_argument(
+        "--vitaminc-data",
+        type=str,
+        default=None,
+        help="Path to VitaminC table with columns claim, label",
     )
     p.add_argument(
         "--fever_dev",
@@ -836,7 +926,7 @@ HaluEval: {HALUEVAL_HF_ID} config={HALUEVAL_HF_CONFIG} split={HALUEVAL_HF_SPLIT}
 
 
 def main(argv: list[str] | None = None) -> int:
-    """Run external surface-form audit (frozen FEVER/Symmetric + live BoolQ + HaluEval QA)."""
+    """Run external surface-form audit (frozen FEVER/Symmetric + live BoolQ/HaluEval/VitaminC)."""
     args = parse_args(argv)
     if args.fever_dev is not None or args.fever_symmetric is not None:
         print(
@@ -943,6 +1033,45 @@ def main(argv: list[str] | None = None) -> int:
         "confound_pct": confound_pct_hv,
     })
 
+    print(f"\n{'=' * 60}\nVitaminC validation (live, GroupKFold by case_id)\n{'=' * 60}")
+    df_vc = load_vitaminc(args.vitaminc_data)
+    claims_vc = df_vc["claim_text"]
+    y_vc = df_vc["label"].values
+    groups_vc = df_vc["case_id"].values
+    n_vc = len(df_vc)
+    print(
+        f"Loaded {n_vc} claims ({len(np.unique(groups_vc))} case_id groups), "
+        f"{int(y_vc.sum())} supports, {int((1 - y_vc).sum())} refutes"
+    )
+
+    feat_vc = compute_features(claims_vc)
+    X_vc = feat_vc[FEAT_COLS].fillna(0).to_numpy()
+
+    auc_v, ci_lo_v, ci_hi_v, null_v, p_v, _ = run_audit(
+        X_vc, y_vc, seed, n_null, n_boot, groups=groups_vc
+    )
+    print(f"OOF AUC: {auc_v:.3f} [95% CI: {ci_lo_v:.3f}, {ci_hi_v:.3f}]")
+    print(f"Null mean: {null_v:.3f}, p-value: {p_v:.4f}")
+
+    ablations_vc = run_ablation(feat_vc, y_vc, FEAT_COLS, seed, n_null, groups=groups_vc)
+    dominant_vc = dominant_ablation_group(ablations_vc)
+
+    conf_vc = heuristic_confound(feat_vc, for_boolq=False)
+    confound_pct_vc = 100 * conf_vc.mean()
+    print(f"Confound rate: {confound_pct_vc:.1f}%")
+
+    results_all.append({
+        "dataset": "VitaminC validation",
+        "n": n_vc,
+        "auc": auc_v,
+        "ci_lo": ci_lo_v,
+        "ci_hi": ci_hi_v,
+        "null_mean": null_v,
+        "p_value": p_v,
+        "dominant_feature": dominant_vc,
+        "confound_pct": confound_pct_vc,
+    })
+
     csv_path = audits_dir / "fever_audit_results.csv"
     save_audit_csv(csv_path, results_all)
     print(f"\nSaved {csv_path}")
@@ -971,6 +1100,21 @@ def main(argv: list[str] | None = None) -> int:
         label="tab:halueval_ablation",
     )
     print(f"Saved {halueval_ab_path}")
+
+    ablation_rows_vc = [
+        [name, f"{a:.3f}", f"{nm:.3f}"] for name, a, nm in ablations_vc
+    ]
+    vitaminc_ab_path = tbl_dir / "vitaminc_feature_ablation_table.tex"
+    write_fever_ablation_tex(
+        vitaminc_ab_path,
+        ablation_rows_vc,
+        caption=(
+            "VitaminC validation feature-group ablation (5-fold GroupKFold by case_id, "
+            "100 permutation nulls; claim-only, SUPPORTS/REFUTES only)."
+        ),
+        label="tab:vitaminc_ablation",
+    )
+    print(f"Saved {vitaminc_ab_path}")
 
     cross_path = tbl_dir / "cross_dataset_comparison_table.tex"
     write_cross_dataset_tex(cross_path, results_all)
