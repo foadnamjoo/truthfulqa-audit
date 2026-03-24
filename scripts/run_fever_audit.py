@@ -18,6 +18,9 @@ Optional local data (skips HuggingFace hub):
     python scripts/run_fever_audit.py --boolq-data data/boolq/validation.parquet
     python scripts/run_fever_audit.py --halueval-data data/halueval/qa.parquet
     python scripts/run_fever_audit.py --vitaminc-data data/vitaminc/validation.parquet
+
+Random-label control (BoolQ + VitaminC no-signal floor):
+    python scripts/run_fever_audit.py --random-label-control-only
 """
 from __future__ import annotations
 
@@ -157,6 +160,9 @@ HALUEVAL_HF_SPLIT = "data"
 VITAMINC_HF_ID = "tals/vitaminc"
 VITAMINC_HF_CONFIG = "default"
 VITAMINC_HF_SPLIT = "validation"
+
+N_RANDOM_LABEL_RUNS = 20
+N_RANDOM_LABEL_RUNS_BOOLQ = 40
 
 
 def repo_root() -> Path:
@@ -307,6 +313,75 @@ def run_audit(
     p_value = float((auc_null_arr >= auc).mean())
 
     return auc, ci_lo, ci_hi, null_mean, p_value, y_proba
+
+
+def _audit_auc_shuffled_labels(
+    X: np.ndarray,
+    y: np.ndarray,
+    seed_permute: int,
+    seed_audit: int,
+    groups: np.ndarray | None = None,
+) -> float:
+    """
+    Run audit with globally permuted labels; returns OOF AUC only.
+    Uses same model/CV as run_audit but skips bootstrap/null (not needed for control).
+    """
+    rng = np.random.default_rng(seed_permute)
+    y_shuffled = rng.permutation(y)
+    if groups is not None:
+        cv = GroupKFold(n_splits=CV_SPLITS)
+        predict_kw: dict = {"method": "predict_proba", "groups": groups}
+    else:
+        cv = StratifiedKFold(n_splits=CV_SPLITS, shuffle=True, random_state=seed_audit)
+        predict_kw = {"method": "predict_proba"}
+    pipe = _make_lr_pipeline(seed_audit)
+    y_proba = cross_val_predict(pipe, X, y_shuffled, cv=cv, **predict_kw)[:, 1]
+    return float(roc_auc_score(y_shuffled, y_proba))
+
+
+def run_random_label_control(
+    args: argparse.Namespace,
+    datasets: list[str],
+) -> None:
+    """Run random-label control for BoolQ and/or VitaminC; print mean ± std AUC."""
+    seed_audit = args.seed
+
+    print("\n" + "=" * 60)
+    print("RANDOM-LABEL CONTROL (global label shuffle, no-signal floor)")
+    print("=" * 60)
+
+    if "boolq" in datasets:
+        n_bq = N_RANDOM_LABEL_RUNS_BOOLQ
+        df_bq = load_boolq(args.boolq_data)
+        claims_bq = df_bq["claim_text"]
+        y_bq = df_bq["label"].values
+        feat_bq = compute_features(claims_bq)
+        X_bq = feat_bq[FEAT_COLS].fillna(0).to_numpy()
+        aucs_bq: list[float] = []
+        for s in range(n_bq):
+            aucs_bq.append(_audit_auc_shuffled_labels(X_bq, y_bq, s, seed_audit, groups=None))
+        mean_bq = float(np.mean(aucs_bq))
+        std_bq = float(np.std(aucs_bq))
+        print(f"BoolQ-random: mean AUC = {mean_bq:.4f} ± {std_bq:.4f} (n={n_bq} runs)")
+
+    if "vitaminc" in datasets:
+        df_vc = load_vitaminc(args.vitaminc_data)
+        claims_vc = df_vc["claim_text"]
+        y_vc = df_vc["label"].values
+        groups_vc = df_vc["case_id"].values
+        feat_vc = compute_features(claims_vc)
+        X_vc = feat_vc[FEAT_COLS].fillna(0).to_numpy()
+        aucs_vc: list[float] = []
+        for s in range(N_RANDOM_LABEL_RUNS):
+            aucs_vc.append(
+                _audit_auc_shuffled_labels(X_vc, y_vc, s, seed_audit, groups=groups_vc)
+            )
+        mean_vc = float(np.mean(aucs_vc))
+        std_vc = float(np.std(aucs_vc))
+        print(
+            f"VitaminC-random: mean AUC = {mean_vc:.4f} ± {std_vc:.4f} "
+            f"(n={N_RANDOM_LABEL_RUNS} runs, GroupKFold by case_id preserved)"
+        )
 
 
 def _ablation_one(
@@ -865,6 +940,7 @@ Examples:
   cd {root_default} && python scripts/run_fever_audit.py
 
   python scripts/run_fever_audit.py --boolq-data data/boolq/validation.parquet
+  python scripts/run_fever_audit.py --random-label-control-only
 
 FEVER / FeverSymmetric: frozen in-script. BoolQ: google/boolq validation (question-only).
 HaluEval: {HALUEVAL_HF_ID} config={HALUEVAL_HF_CONFIG} split={HALUEVAL_HF_SPLIT}
@@ -895,7 +971,7 @@ VitaminC: {VITAMINC_HF_ID} config={VITAMINC_HF_CONFIG} split={VITAMINC_HF_SPLIT}
         "--vitaminc-data",
         type=str,
         default=None,
-        help="Path to VitaminC table with columns claim, label",
+        help="Path to VitaminC table with columns claim, label, case_id",
     )
     p.add_argument(
         "--fever_dev",
@@ -922,12 +998,34 @@ VitaminC: {VITAMINC_HF_ID} config={VITAMINC_HF_CONFIG} split={VITAMINC_HF_SPLIT}
         default=N_BOOTSTRAP,
         help=f"Bootstrap samples for AUC CI (default: {N_BOOTSTRAP})",
     )
+    p.add_argument(
+        "--random-label-control",
+        action="store_true",
+        help="Run random-label control after main audit (BoolQ + VitaminC, 20 runs each)",
+    )
+    p.add_argument(
+        "--random-label-control-only",
+        action="store_true",
+        help="Run only random-label control, skip main audit (faster for control numbers)",
+    )
+    p.add_argument(
+        "--random-label-control-dataset",
+        type=str,
+        choices=["boolq", "vitaminc", "both"],
+        default="both",
+        help="Which datasets to run random-label control on (default: both)",
+    )
     return p.parse_args(argv)
 
 
 def main(argv: list[str] | None = None) -> int:
     """Run external surface-form audit (frozen FEVER/Symmetric + live BoolQ/HaluEval/VitaminC)."""
     args = parse_args(argv)
+    if args.random_label_control_only:
+        ds = args.random_label_control_dataset
+        datasets = ["boolq", "vitaminc"] if ds == "both" else [ds]
+        run_random_label_control(args, datasets)
+        return 0
     if args.fever_dev is not None or args.fever_symmetric is not None:
         print(
             "run_fever_audit.py: warning: --fever_dev and --fever_symmetric are deprecated "
@@ -1124,6 +1222,12 @@ def main(argv: list[str] | None = None) -> int:
     print(f"Saved {fig_dir / 'fever_audit_auc_comparison.pdf'}")
 
     print_deliverables(results_all)
+
+    if args.random_label_control:
+        ds = args.random_label_control_dataset
+        datasets = ["boolq", "vitaminc"] if ds == "both" else [ds]
+        run_random_label_control(args, datasets)
+
     return 0
 
 
