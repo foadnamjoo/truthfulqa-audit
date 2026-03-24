@@ -345,13 +345,14 @@ def run_random_label_control(
 ) -> None:
     """Run random-label control for BoolQ and/or VitaminC; print mean ± std AUC."""
     seed_audit = args.seed
+    n_override = getattr(args, "n_random_runs", None)
 
     print("\n" + "=" * 60)
     print("RANDOM-LABEL CONTROL (global label shuffle, no-signal floor)")
     print("=" * 60)
 
     if "boolq" in datasets:
-        n_bq = N_RANDOM_LABEL_RUNS_BOOLQ
+        n_bq = n_override if n_override is not None else N_RANDOM_LABEL_RUNS_BOOLQ
         df_bq = load_boolq(args.boolq_data)
         claims_bq = df_bq["claim_text"]
         y_bq = df_bq["label"].values
@@ -365,6 +366,7 @@ def run_random_label_control(
         print(f"BoolQ-random: mean AUC = {mean_bq:.4f} ± {std_bq:.4f} (n={n_bq} runs)")
 
     if "vitaminc" in datasets:
+        n_vc = n_override if n_override is not None else N_RANDOM_LABEL_RUNS
         df_vc = load_vitaminc(args.vitaminc_data)
         claims_vc = df_vc["claim_text"]
         y_vc = df_vc["label"].values
@@ -372,7 +374,7 @@ def run_random_label_control(
         feat_vc = compute_features(claims_vc)
         X_vc = feat_vc[FEAT_COLS].fillna(0).to_numpy()
         aucs_vc: list[float] = []
-        for s in range(N_RANDOM_LABEL_RUNS):
+        for s in range(n_vc):
             aucs_vc.append(
                 _audit_auc_shuffled_labels(X_vc, y_vc, s, seed_audit, groups=groups_vc)
             )
@@ -380,7 +382,7 @@ def run_random_label_control(
         std_vc = float(np.std(aucs_vc))
         print(
             f"VitaminC-random: mean AUC = {mean_vc:.4f} ± {std_vc:.4f} "
-            f"(n={N_RANDOM_LABEL_RUNS} runs, GroupKFold by case_id preserved)"
+            f"(n={n_vc} runs, GroupKFold by case_id preserved)"
         )
 
 
@@ -1014,6 +1016,12 @@ VitaminC: {VITAMINC_HF_ID} config={VITAMINC_HF_CONFIG} split={VITAMINC_HF_SPLIT}
         choices=["boolq", "vitaminc", "both"],
         default="both",
         help="Which datasets to run random-label control on (default: both)",
+    )
+    p.add_argument(
+        "--n-random-runs",
+        type=int,
+        default=None,
+        help="Override n runs for random-label control (e.g. 101). Default: BoolQ=40, VitaminC=20.",
     )
     return p.parse_args(argv)
 

@@ -1,0 +1,13 @@
+\begin{table}[t]
+\centering
+\caption{Random-label control: mean $\pm$ std AUC over 101 globally shuffled-label runs (seeds 0--100). Real AUC is from the main audit. Runs exceeding real AUC indicates how often the no-signal floor overlaps the observed signal.}
+\label{tab:random_label_control}
+\begin{tabular}{lrrrrr}
+\toprule
+Dataset & N runs & Real AUC & Random mean $\pm$ std & Min--Max & Exceed real \\
+\midrule
+BoolQ & 101 & 0.531 & $0.496 \pm 0.014$ & 0.466--0.536 & 1 \\
+VitaminC & 101 & 0.553 & $0.500 \pm 0.004$ & 0.488--0.508 & 0 \\
+\bottomrule
+\end{tabular}
+\end{table}

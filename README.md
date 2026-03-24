@@ -62,7 +62,7 @@ python scripts/run_fever_audit.py
 
 **Options:** `python scripts/run_fever_audit.py --help` (`--seed`, `--n-null`, `--n-boot`, `--boolq-data`, `--halueval-data`, `--vitaminc-data`, `--random-label-control`, `--random-label-control-only`).
 
-**Random-label control** (BoolQ + VitaminC): `--random-label-control` runs control after main audit; `--random-label-control-only` skips main audit. Use `--random-label-control-dataset {boolq,vitaminc,both}` to restrict. Reports mean ± std AUC over shuffled-label runs (no-signal floor).
+**Random-label control** (BoolQ + VitaminC): `--random-label-control` runs control after main audit; `--random-label-control-only` skips main audit. Use `--random-label-control-dataset {boolq,vitaminc,both}` to restrict. Add `--n-random-runs 101` for 101 runs. Reports mean ± std AUC over shuffled-label runs (no-signal floor). A 101-run experiment is stored in `audits/random_label_control_101runs.csv`; summary table in `paper_assets/tables/random_label_control_table.tex`.
 
 BoolQ adds feature `question_neg` (mid-question contractions) and omits length-tail confound flags (BoolQ lengths cluster; tails are degenerate).
 
