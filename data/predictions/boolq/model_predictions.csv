@@ -1,0 +1,4 @@
+model_name,pair_id,correct
+mistralai/Mistral-7B-Instruct-v0.2,0,0
+mistralai/Mistral-7B-Instruct-v0.2,1,1
+mistralai/Mistral-7B-Instruct-v0.2,2,1

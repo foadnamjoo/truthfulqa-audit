@@ -37,6 +37,9 @@ data/vitaminc/*
 # CHPC/HPC scratch imports (do not commit model caches)
 chpc_runs/
 
+# Run logs (keep predictions)
+logs/
+
 # Hugging Face / Transformers caches (safety net)
 **/.cache/huggingface/
 **/huggingface/hub/

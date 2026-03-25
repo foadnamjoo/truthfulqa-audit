@@ -70,19 +70,31 @@ BoolQ adds feature `question_neg` (mid-question contractions) and omits length-t
 
 ## Benchmark-Impact Predictions (Optional)
 
-Use real model predictions in `data/predictions/model_predictions.csv` with schema:
-`model_name`, `pair_id`, `correct`.
+Use real model predictions in `data/predictions/model_predictions.csv` (TruthfulQA) or
+`data/predictions/boolq/<model>.csv` (BoolQ) with schema: `model_name`, `pair_id`, `correct`.
 
-Example:
+**TruthfulQA** (default):
 
 ```bash
 python scripts/run_binary_choice_eval.py \
+  --dataset truthfulqa \
   --model_name mistralai/Mistral-7B-Instruct-v0.2 \
   --truthfulqa_csv TruthfulQA.csv \
-  --output_csv data/predictions/model_predictions.csv \
   --max_examples 200 \
   --seed 42
 ```
+
+**BoolQ** (yes/no binary choice):
+
+```bash
+python scripts/run_binary_choice_eval.py \
+  --dataset boolq \
+  --model_name mistralai/Mistral-7B-Instruct-v0.2 \
+  --max_examples 200 \
+  --seed 42
+```
+
+**CHPC batch run (9 models, BoolQ):** See `docs/chpc_boolq_run.md`.
 
 CUDA speed tip:
 

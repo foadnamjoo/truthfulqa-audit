@@ -1,0 +1,3 @@
+model_name,pair_id,correct
+distilgpt2,0,0
+distilgpt2,1,1
