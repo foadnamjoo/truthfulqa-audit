@@ -86,6 +86,26 @@ Uses `audits/truthfulqa_style_audit.csv` and the same `paper10` audit code path 
 
 ---
 
+## Pruning final verification (locked, paper supplementary)
+
+We provide a locked multi-seed verification run for fixed kept counts under the same `paper10` audit protocol.
+
+- Script: `scripts/truthfulqa_pruning_final_verification.py`
+- Repro check: `scripts/check_pruning_final_verification_repro.py`
+- Outputs: `results/truthfulqa_pruning_final_verification/`
+- Figures: `figures/truthfulqa_pruning_final_verification/`
+
+Run:
+
+```bash
+python3 scripts/truthfulqa_pruning_final_verification.py --n-seeds 10 --base-seed 42
+python3 scripts/check_pruning_final_verification_repro.py
+```
+
+The locked fixed-kept table includes targets: **650, 595, 550, 500, 450, 400, 350, 300**.
+
+---
+
 ## Main audit notebook
 
 `notebooks/TruthfulQA_Style_Confound_Audit.ipynb` — full exploratory audit and benchmark-impact aggregation. `scripts/build_audit_notebook.py` can rebuild related notebook sources when maintaining the workflow.
