@@ -2,6 +2,21 @@
 
 These files are **release-ready snapshots** of three binary-choice TruthfulQA subsets selected to reduce surface-form separability under the project’s `paper10` audit, while keeping a usable number of question pairs.
 
+## Direct download (GitHub)
+
+Official TruthfulQA distributes its master CSV as a normal repo file (e.g. [`TruthfulQA.csv`](https://github.com/sylinrl/TruthfulQA/blob/main/TruthfulQA.csv)). This project does the same for subset exports: use **`raw.githubusercontent.com`** for direct download.
+
+**Repository:** [foadnamjoo/truthfulqa-audit](https://github.com/foadnamjoo/truthfulqa-audit) — default branch `main` (swap in a **tag or commit** for a frozen URL).
+
+| File | Browse | Raw download |
+|------|--------|----------------|
+| `subset_manifest.csv` | [blob](https://github.com/foadnamjoo/truthfulqa-audit/blob/main/data/subsets/subset_manifest.csv) | [raw](https://raw.githubusercontent.com/foadnamjoo/truthfulqa-audit/main/data/subsets/subset_manifest.csv) |
+| `truthfulqa_subset_350.csv` | [blob](https://github.com/foadnamjoo/truthfulqa-audit/blob/main/data/subsets/truthfulqa_subset_350.csv) | [raw](https://raw.githubusercontent.com/foadnamjoo/truthfulqa-audit/main/data/subsets/truthfulqa_subset_350.csv) |
+| `truthfulqa_subset_375.csv` | [blob](https://github.com/foadnamjoo/truthfulqa-audit/blob/main/data/subsets/truthfulqa_subset_375.csv) | [raw](https://raw.githubusercontent.com/foadnamjoo/truthfulqa-audit/main/data/subsets/truthfulqa_subset_375.csv) |
+| `truthfulqa_subset_400.csv` | [blob](https://github.com/foadnamjoo/truthfulqa-audit/blob/main/data/subsets/truthfulqa_subset_400.csv) | [raw](https://raw.githubusercontent.com/foadnamjoo/truthfulqa-audit/main/data/subsets/truthfulqa_subset_400.csv) |
+
+Feature-balanced reference CSVs (300–650) and their manifest: see **`data/subsets/feature_balanced_paper10/README.md`** for the full raw URL table.
+
 ## Canonical definitions
 
 The authoritative retained pair lists are the JSON files under `results/final_near_random_truthfulqa_subset/`:
