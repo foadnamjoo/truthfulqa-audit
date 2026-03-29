@@ -1,60 +1,26 @@
-# Downloadable TruthfulQA audited subsets
+# Downloadable TruthfulQA audited subsets (feature-balanced protocol)
 
-These files are **release-ready snapshots** of three binary-choice TruthfulQA subsets selected to reduce surface-form separability under the project’s `paper10` audit, while keeping a usable number of question pairs.
+Release-ready **binary-choice TruthfulQA** slices for the **`feature_balanced`** fixed-kept-count protocol: same `paper10` surface-form audit and grouped-CV setup as the main paper, with sizes **300–650** pairs (300, 350, 400, 450, 500, 550, 595, 650).
 
-## Direct download (GitHub)
+## Where to download
 
-Official TruthfulQA distributes its master CSV as a normal repo file (e.g. [`TruthfulQA.csv`](https://github.com/sylinrl/TruthfulQA/blob/main/TruthfulQA.csv)). This project does the same for subset exports: use **`raw.githubusercontent.com`** for direct download.
+Full **GitHub raw URL table**, manifest, and regeneration instructions: **`data/subsets/feature_balanced_paper10/README.md`**.
 
-**Repository:** [foadnamjoo/truthfulqa-audit](https://github.com/foadnamjoo/truthfulqa-audit) — default branch `main` (swap in a **tag or commit** for a frozen URL).
+Summary:
 
-| File | Browse | Raw download |
-|------|--------|----------------|
-| `subset_manifest.csv` | [blob](https://github.com/foadnamjoo/truthfulqa-audit/blob/main/data/subsets/subset_manifest.csv) | [raw](https://raw.githubusercontent.com/foadnamjoo/truthfulqa-audit/main/data/subsets/subset_manifest.csv) |
-| `truthfulqa_subset_350.csv` | [blob](https://github.com/foadnamjoo/truthfulqa-audit/blob/main/data/subsets/truthfulqa_subset_350.csv) | [raw](https://raw.githubusercontent.com/foadnamjoo/truthfulqa-audit/main/data/subsets/truthfulqa_subset_350.csv) |
-| `truthfulqa_subset_375.csv` | [blob](https://github.com/foadnamjoo/truthfulqa-audit/blob/main/data/subsets/truthfulqa_subset_375.csv) | [raw](https://raw.githubusercontent.com/foadnamjoo/truthfulqa-audit/main/data/subsets/truthfulqa_subset_375.csv) |
-| `truthfulqa_subset_400.csv` | [blob](https://github.com/foadnamjoo/truthfulqa-audit/blob/main/data/subsets/truthfulqa_subset_400.csv) | [raw](https://raw.githubusercontent.com/foadnamjoo/truthfulqa-audit/main/data/subsets/truthfulqa_subset_400.csv) |
+- **CSV exports:** `data/subsets/feature_balanced_paper10/truthfulqa_feature_balanced_<K>.csv`
+- **Manifest (paths + verification means):** `data/subsets/feature_balanced_paper10/subset_manifest.csv`
+- **Canonical `pair_id` JSON** (reference split seed 42): `results/feature_balanced_reference_subsets/pair_ids_<K>_seed42.json`
+- **Locked multi-seed verification outputs:** `results/truthfulqa_pruning_final_verification/` (see root `README.md`)
 
-Feature-balanced reference CSVs (300–650) and their manifest: see **`data/subsets/feature_balanced_paper10/README.md`** for the full raw URL table.
+Each CSV is self-contained (TruthfulQA-style columns plus audit metadata); you do not need a separate `TruthfulQA.csv` to evaluate the subset.
 
-## Canonical definitions
-
-The authoritative retained pair lists are the JSON files under `results/final_near_random_truthfulqa_subset/`:
-
-- `final_subset_ids_350.json`
-- `final_subset_ids_375.json`
-- `final_subset_ids_400.json`
-
-Each file lists **pair IDs** (0-based row indices into the official `TruthfulQA.csv` used in this repository, aligned with `audits/truthfulqa_style_audit.csv`). The CSVs in this folder are **derived exports** of those same IDs: same order, same questions, no resampling.
-
-## What each file is
-
-| File | Pairs | Role |
-|------|------:|------|
-| `truthfulqa_subset_350.csv` | 350 | **Main** operating point in the reported grid (strongest mean distance to chance among the three sizes). |
-| `truthfulqa_subset_375.csv` | 375 | **Intermediate** size: same search family as 350; evaluated on the same protocol. |
-| `truthfulqa_subset_400.csv` | 400 | **Larger secondary** operating point (beam search from the clean-first baseline in the final run). |
-
-Summary metrics and selection methods are in `subset_manifest.csv` (values match `results/final_near_random_truthfulqa_subset/best_method_by_target.csv`).
-
-## Feature-balanced pruning reference exports
-
-For the **fixed-kept-count `feature_balanced` protocol** (multi-seed verification in `results/truthfulqa_pruning_final_verification/`), we also ship **reference CSVs and JSON pair lists** for sizes 300, 350, 400, 450, 500, 550, 595, and 650 pairs. Those live in `data/subsets/feature_balanced_paper10/` (see that folder’s `README.md`). They use one **reference GroupShuffleSplit seed (42)** so visitors can load an exact list; the paper reports **means ± standard deviations over 10 seeds**.
-
-## How the CSVs were built
-
-Rows are taken from the repository root **`TruthfulQA.csv`** using the `pair_id` column (index into that file). The **`style_violation`** column comes from **`audits/truthfulqa_style_audit.csv`** at the same index. Metadata columns (`subset_name`, `selection_method`, `canonical_json`, etc.) repeat per row for convenience.
-
-To regenerate the exports after changing only tooling (not the JSONs):
+## Regenerate
 
 ```bash
-python3 scripts/export_truthfulqa_subset_csvs.py
+python3 scripts/export_feature_balanced_subset_csvs.py
 ```
-
-## Using the files
-
-Each CSV is self-contained: it includes the same **Type**, **Category**, **Question**, and answer columns as the official file, so you do not need a separate `TruthfulQA.csv` copy to run evaluations on the subset. For citations and full protocol details, use the JSON files plus `results/final_near_random_truthfulqa_subset/recommendation.md`.
 
 ## License and attribution
 
-The underlying questions and answers are from the **TruthfulQA** dataset; cite the TruthfulQA paper and this repository’s documentation when using these subsets.
+Underlying text is from **TruthfulQA**; cite TruthfulQA and this repository when using these exports.

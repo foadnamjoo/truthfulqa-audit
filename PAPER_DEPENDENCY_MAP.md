@@ -2,7 +2,7 @@
 
 This maps the **current paper** (“Judging by the Cover…”) to scripts, frozen outputs, and LaTeX assets in this repo. Table/figure numbering follows the paper’s structure (TruthfulQA audit → model impact → cross-dataset). **Keep/archive** indicates whether the path should stay in the active tree for reproduction.
 
-Legend: **preserve** = required for paper as written or strongly implied supplementary artifact (near-random subset). **archive OK** = exploratory only; not cited by the main paper PDF.
+Legend: **preserve** = required for paper as written or strongly implied supplementary artifact (feature-balanced subsets + pruning verification). **archive OK** = exploratory only; not cited by the main paper PDF.
 
 ---
 
@@ -40,7 +40,7 @@ Legend: **preserve** = required for paper as written or strongly implied supplem
 
 | Artifact | Scripts | Inputs | Outputs | Keep / archive |
 |----------|---------|--------|---------|----------------|
-| Near-random audited subset (350 / 375 / 400 pairs) | `scripts/run_final_near_random_truthfulqa_subset.py` (+ imports from `run_near_random_better_algorithms.py`, `run_pruning_final_verification.py`, `search_near_random_clean_subset.py`, `run_truthfulqa_pruning_improved.py`) | `audits/truthfulqa_style_audit.csv` | `results/final_near_random_truthfulqa_subset/`, `figures/final_near_random_truthfulqa_subset/` | **preserve** (supplementary; reproducibility) |
+| Feature-balanced audited subsets (300–650 pairs) + locked multi-seed verification | `scripts/export_feature_balanced_subset_csvs.py`; `scripts/truthfulqa_pruning_final_verification.py`; repro: `scripts/check_pruning_final_verification_repro.py`; search utilities: `scripts/search_truthfulqa_pruned_improved.py`, `scripts/truthfulqa_pruning_utils.py`, `scripts/run_truthfulqa_pruning_improved.py`, `scripts/run_pruning_final_verification.py` | `audits/truthfulqa_style_audit.csv`; verification reads prior JSON/CSVs as configured in-repo | `data/subsets/feature_balanced_paper10/`, `results/feature_balanced_reference_subsets/`; `results/truthfulqa_pruning_final_verification/`, `figures/truthfulqa_pruning_final_verification/`; LaTeX note `paper_assets/tables/feature_balanced_subset_paragraph.tex` | **preserve** (supplementary; reproducibility) |
 
 ---
 
@@ -59,12 +59,12 @@ Legend: **preserve** = required for paper as written or strongly implied supplem
 4. **Full model evaluation (expensive):**  
    `python3 scripts/run_binary_choice_eval.py` with appropriate flags and GPU.
 
-5. **Near-random subset (long run, no `--help` — running the script executes the full search):**  
-   `python3 scripts/run_final_near_random_truthfulqa_subset.py`
+5. **Pruning verification + feature-balanced exports (subset supplementary track):**  
+   `python3 scripts/truthfulqa_pruning_final_verification.py --n-seeds 10 --base-seed 42` then `python3 scripts/check_pruning_final_verification_repro.py`; CSV export helper `python3 scripts/export_feature_balanced_subset_csvs.py`.
 
 ---
 
 ## Summary: keep vs archive
 
-- **Keep in active repo:** everything in the tables above, including `audits/*.csv`, `paper_assets/**`, `data/predictions/` (if redistributable), `notebooks/`, and all listed `scripts/`.
+- **Keep in active repo:** everything in the tables above, including `audits/*.csv`, `paper_assets/**`, `data/subsets/feature_balanced_paper10/`, `data/predictions/` (if redistributable), `notebooks/`, and all listed `scripts/`.
 - **Archive OK:** contents under `archive/results/`, `archive/scripts/run_near_random_subset_refined.py`, `archive/scripts/test_pruning_improved_pipeline.py`, duplicate exploratory figures, and old notebook copy under `archive/notebooks/` (retained as backup; active copy is `notebooks/`).

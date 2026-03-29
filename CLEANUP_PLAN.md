@@ -1,6 +1,6 @@
 # Cleanup plan (aligned with the paper as written)
 
-The repository supports the **full** surface-form audit paper: TruthfulQA (grouped CV, null, clean/confounded split, feature ablations), **nine-model** benchmark-impact analysis, **cross-dataset** audits (FEVER, FeverSymmetric, BoolQ, HaluEval, VitaminC), and the associated **figures, tables, and LaTeX** under `paper_assets/`. A **supplementary** track builds a **near-random audited subset** of binary-choice TruthfulQA (350/375/400 pairs) with simulated annealing / beam search; that is **not** the only story in the PDF.
+The repository supports the **full** surface-form audit paper: TruthfulQA (grouped CV, null, clean/confounded split, feature ablations), **nine-model** benchmark-impact analysis, **cross-dataset** audits (FEVER, FeverSymmetric, BoolQ, HaluEval, VitaminC), and the associated **figures, tables, and LaTeX** under `paper_assets/`. A **supplementary** track ships **feature-balanced** audited subsets (fixed sizes 300–650) with locked multi-seed verification under `results/truthfulqa_pruning_final_verification/`.
 
 **Rule:** nothing that is required to reproduce paper figures, tables, or cited results should be deleted, renamed, or moved to `archive/`. When in doubt, **preserve** and tag below as **paper-used**.
 
@@ -16,7 +16,7 @@ The repository supports the **full** surface-form audit paper: TruthfulQA (group
 | Main audit notebook | `notebooks/TruthfulQA_Style_Confound_Audit.ipynb` |
 | Legacy audit figures (notebook-era) | `figures/*.pdf` (classifier vs null, feature importance, etc.) |
 | Model predictions (if redistributed) | `data/predictions/` as applicable |
-| Near-random + pruning-reference subsets (supplementary) | Same scripts as above; `results/final_near_random_truthfulqa_subset/`, `results/final_near_random_truthfulqa_subset_repro_check/`, `figures/final_near_random_truthfulqa_subset/`; user-facing near-random exports `data/subsets/*.csv`, `data/subsets/subset_manifest.csv`, `scripts/export_truthfulqa_subset_csvs.py`; **feature-balanced reference** exports `data/subsets/feature_balanced_paper10/`, `results/feature_balanced_reference_subsets/`, `scripts/export_feature_balanced_subset_csvs.py`; locked pruning verification `results/truthfulqa_pruning_final_verification/`, `scripts/truthfulqa_pruning_final_verification.py`, `scripts/check_pruning_final_verification_repro.py`, `scripts/truthfulqa_pruning_utils.py`, `scripts/search_truthfulqa_pruned_improved.py` |
+| Feature-balanced reference subsets + pruning verification (supplementary) | `data/subsets/feature_balanced_paper10/`, `results/feature_balanced_reference_subsets/`, `scripts/export_feature_balanced_subset_csvs.py`; locked run `results/truthfulqa_pruning_final_verification/`, `figures/truthfulqa_pruning_final_verification/`; `scripts/truthfulqa_pruning_final_verification.py`, `scripts/check_pruning_final_verification_repro.py`, `scripts/truthfulqa_pruning_utils.py`, `scripts/search_truthfulqa_pruned_improved.py`, `scripts/run_truthfulqa_pruning_improved.py`, `scripts/run_pruning_final_verification.py` |
 | Dependencies | `requirements.txt` (core); `requirements-paper-full.txt` (HF, datasets, torch, etc.) |
 
 ---
@@ -41,7 +41,7 @@ These are **not** required to reproduce the main paper PDF or the checked-in `pa
 
 ## Safe to remove
 
-**None** from the active tree while the paper depends on this repo for reproduction. Deprecated files should stay in `archive/` if already moved, rather than deleting history.
+Avoid deleting **paper-used** paths listed above. Retired near-random-only drivers and their top-level `results/` / `figures/` trees were removed from `main` in favor of the feature-balanced track; older snapshots remain under `archive/results/` and in `git` history if you need them.
 
 ---
 
@@ -58,6 +58,6 @@ The following were **moved back** from `archive/scripts/` (and related) so the p
 ## Verification
 
 - `python3 scripts/make_paper_assets.py --root .` completes and refreshes `paper_assets/fig/` and key `paper_assets/tables/`.
-- Near-random pipeline: run `python3 scripts/run_final_near_random_truthfulqa_subset.py` when you need to regenerate that supplementary artifact (long-running; no separate CLI dry-run).
+- Pruning verification (long run): `python3 scripts/truthfulqa_pruning_final_verification.py --n-seeds 10 --base-seed 42`, then `python3 scripts/check_pruning_final_verification_repro.py`.
 
 See **`PAPER_DEPENDENCY_MAP.md`** for section/table/figure-level mapping.

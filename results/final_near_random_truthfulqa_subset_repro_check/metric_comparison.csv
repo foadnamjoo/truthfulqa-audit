@@ -1,4 +1,0 @@
-target_pairs,old_best_method,new_best_method,old_mean_heldout_auc,new_mean_heldout_auc,abs_diff_mean,old_std_heldout_auc,new_std_heldout_auc,abs_diff_std
-350,simulated_annealing_from_clean_first,simulated_annealing_from_clean_first,0.5599173553719009,0.5599173553719009,0.0,0.0372714139544467,0.0372714139544467,0.0
-375,simulated_annealing_from_clean_first,simulated_annealing_from_clean_first,0.5726497661083446,0.5726497661083446,0.0,0.0317702890686759,0.0317702890686759,0.0
-400,beam_light_swaps_from_clean,beam_light_swaps_from_clean,0.5546833333333334,0.5546833333333334,0.0,0.0491905466624674,0.0491905466624674,0.0

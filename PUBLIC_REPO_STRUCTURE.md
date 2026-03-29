@@ -1,6 +1,6 @@
 # Public repository structure
 
-This layout reflects the **full paper** (TruthfulQA audit + model impact + cross-dataset + LaTeX assets) and the **supplementary** near-random subset pipeline—not a single-track “subset only” repo.
+This layout reflects the **full paper** (TruthfulQA audit + nine-model impact + cross-dataset audits + LaTeX assets) and the **supplementary** feature-balanced subset plus pruning-verification artifacts.
 
 ```
 truthfulqa_audit/
@@ -15,28 +15,17 @@ truthfulqa_audit/
 │   ├── fig/                      # Model-impact figures (from make_paper_assets.py)
 │   ├── figures/                  # Cross-dataset bar plot (from run_fever_audit.py)
 │   └── tables/                   # LaTeX fragments for the paper
-├── figures/                      # Legacy audit PDFs + final near-random subset PDFs
+├── figures/                      # Legacy audit PDFs + pruning-verification figures
 ├── notebooks/
 │   └── TruthfulQA_Style_Confound_Audit.ipynb
-├── scripts/
-│   ├── truthfulqa_paper_audit.py
-│   ├── make_paper_assets.py
-│   ├── run_fever_audit.py
-│   ├── run_binary_choice_eval.py
-│   ├── make_final_tables.py
-│   ├── build_audit_notebook.py
-│   ├── import_chpc_predictions.py
-│   ├── make_example_predictions.py
-│   ├── run_truthfulqa_pruning_improved.py
-│   ├── run_pruning_final_verification.py
-│   ├── search_near_random_clean_subset.py
-│   ├── run_near_random_better_algorithms.py
-│   └── run_final_near_random_truthfulqa_subset.py
+├── scripts/                      # See listing in README.md / PAPER_DEPENDENCY_MAP.md
 ├── data/                         # Local datasets / predictions (optional; may be gitignored)
-│   └── subsets/                  # Released audited subset CSVs + manifest (see README there)
+│   └── subsets/
+│       ├── README.md             # Pointers to feature_balanced_paper10/
+│       └── feature_balanced_paper10/
 ├── results/
-│   ├── final_near_random_truthfulqa_subset/
-│   └── final_near_random_truthfulqa_subset_repro_check/
+│   ├── feature_balanced_reference_subsets/
+│   └── truthfulqa_pruning_final_verification/
 └── archive/                      # Exploratory runs, superseded scripts, duplicate notebook copy
     ├── scripts/
     ├── results/
