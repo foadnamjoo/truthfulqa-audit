@@ -74,6 +74,8 @@ Writes `audits/model_benchmark_impact_by_file.csv` and `model_benchmark_impact_b
 
 Frozen outputs: `results/final_near_random_truthfulqa_subset/` and `figures/final_near_random_truthfulqa_subset/`.
 
+**Downloadable subset CSVs** (same `pair_id` lists as the canonical JSONs): `data/subsets/` — see `data/subsets/README.md` and `subset_manifest.csv`.
+
 To regenerate (long-running; the script runs the full search when invoked):
 
 ```bash

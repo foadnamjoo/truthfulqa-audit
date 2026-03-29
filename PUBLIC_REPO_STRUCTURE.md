@@ -33,6 +33,7 @@ truthfulqa_audit/
 │   ├── run_near_random_better_algorithms.py
 │   └── run_final_near_random_truthfulqa_subset.py
 ├── data/                         # Local datasets / predictions (optional; may be gitignored)
+│   └── subsets/                  # Released audited subset CSVs + manifest (see README there)
 ├── results/
 │   ├── final_near_random_truthfulqa_subset/
 │   └── final_near_random_truthfulqa_subset_repro_check/
