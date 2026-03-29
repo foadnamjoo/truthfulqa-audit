@@ -76,6 +76,8 @@ Frozen outputs: `results/final_near_random_truthfulqa_subset/` and `figures/fina
 
 **Downloadable subset CSVs** (same `pair_id` lists as the canonical JSONs): `data/subsets/` — see `data/subsets/README.md` and `subset_manifest.csv`.
 
+**Feature-balanced pruning references** (fixed sizes **300–650** under the supplementary multi-seed verification; concrete pair lists for **split seed 42**): `data/subsets/feature_balanced_paper10/` with canonical JSON under `results/feature_balanced_reference_subsets/`. Regenerate with `python3 scripts/export_feature_balanced_subset_csvs.py`.
+
 To regenerate (long-running; the script runs the full search when invoked):
 
 ```bash

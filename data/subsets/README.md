@@ -22,6 +22,10 @@ Each file lists **pair IDs** (0-based row indices into the official `TruthfulQA.
 
 Summary metrics and selection methods are in `subset_manifest.csv` (values match `results/final_near_random_truthfulqa_subset/best_method_by_target.csv`).
 
+## Feature-balanced pruning reference exports
+
+For the **fixed-kept-count `feature_balanced` protocol** (multi-seed verification in `results/truthfulqa_pruning_final_verification/`), we also ship **reference CSVs and JSON pair lists** for sizes 300, 350, 400, 450, 500, 550, 595, and 650 pairs. Those live in `data/subsets/feature_balanced_paper10/` (see that folder’s `README.md`). They use one **reference GroupShuffleSplit seed (42)** so visitors can load an exact list; the paper reports **means ± standard deviations over 10 seeds**.
+
 ## How the CSVs were built
 
 Rows are taken from the repository root **`TruthfulQA.csv`** using the `pair_id` column (index into that file). The **`style_violation`** column comes from **`audits/truthfulqa_style_audit.csv`** at the same index. Metadata columns (`subset_name`, `selection_method`, `canonical_json`, etc.) repeat per row for convenience.

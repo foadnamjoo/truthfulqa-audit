@@ -16,7 +16,7 @@ The repository supports the **full** surface-form audit paper: TruthfulQA (group
 | Main audit notebook | `notebooks/TruthfulQA_Style_Confound_Audit.ipynb` |
 | Legacy audit figures (notebook-era) | `figures/*.pdf` (classifier vs null, feature importance, etc.) |
 | Model predictions (if redistributed) | `data/predictions/` as applicable |
-| Near-random subset (supplementary) | Same scripts as above; `results/final_near_random_truthfulqa_subset/`, `results/final_near_random_truthfulqa_subset_repro_check/`, `figures/final_near_random_truthfulqa_subset/`; user-facing exports `data/subsets/*.csv`, `data/subsets/subset_manifest.csv`, `scripts/export_truthfulqa_subset_csvs.py` |
+| Near-random + pruning-reference subsets (supplementary) | Same scripts as above; `results/final_near_random_truthfulqa_subset/`, `results/final_near_random_truthfulqa_subset_repro_check/`, `figures/final_near_random_truthfulqa_subset/`; user-facing near-random exports `data/subsets/*.csv`, `data/subsets/subset_manifest.csv`, `scripts/export_truthfulqa_subset_csvs.py`; **feature-balanced reference** exports `data/subsets/feature_balanced_paper10/`, `results/feature_balanced_reference_subsets/`, `scripts/export_feature_balanced_subset_csvs.py`; locked pruning verification `results/truthfulqa_pruning_final_verification/`, `scripts/truthfulqa_pruning_final_verification.py`, `scripts/check_pruning_final_verification_repro.py`, `scripts/truthfulqa_pruning_utils.py`, `scripts/search_truthfulqa_pruned_improved.py` |
 | Dependencies | `requirements.txt` (core); `requirements-paper-full.txt` (HF, datasets, torch, etc.) |
 
 ---
