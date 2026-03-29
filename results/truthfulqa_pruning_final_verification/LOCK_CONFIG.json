@@ -1,7 +1,7 @@
 {
   "locked_at": "2026-03-29",
   "script": "scripts/truthfulqa_pruning_final_verification.py",
-  "audit_profile": "paper10",
+  "audit_profile": "surface10",
   "n_seeds": 10,
   "base_seed": 42,
   "min_keep": 500,

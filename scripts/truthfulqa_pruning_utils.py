@@ -82,6 +82,6 @@ def audit_auc_subset(df: pd.DataFrame, profile: str, seed: int) -> float:
         )
     else:
         a = df.copy()
-    ans = tpa.build_answer_level_audit_frame(a, profile="paper10", copy_audit_meta=False)
-    return float(tpa.paper_compatible_audit_oof_auc(ans, profile="paper10", seed=seed, n_splits=CV_SPLITS).auc_oof)
+    ans = tpa.build_answer_level_audit_frame(a, profile="surface10", copy_audit_meta=False)
+    return float(tpa.paper_compatible_audit_oof_auc(ans, profile="surface10", seed=seed, n_splits=CV_SPLITS).auc_oof)
 

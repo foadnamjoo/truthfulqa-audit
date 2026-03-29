@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 """
-Smoke test: toy audit CSV, improved pruning script, paper10 default scorer.
+Smoke test: toy audit CSV, improved pruning script, surface10 default scorer.
 """
 
 from __future__ import annotations
@@ -14,8 +14,8 @@ from pathlib import Path
 import numpy as np
 import pandas as pd
 
-_ROOT = Path(__file__).resolve().parent.parent
-_SCRIPTS = Path(__file__).resolve().parent
+_REPO_ROOT = Path(__file__).resolve().parent.parent.parent
+_SCRIPTS = _REPO_ROOT / "scripts"
 if str(_SCRIPTS) not in sys.path:
     sys.path.insert(0, str(_SCRIPTS))
 
@@ -59,13 +59,13 @@ def _toy_audit(n: int = 40) -> pd.DataFrame:
     return pd.DataFrame(rows)
 
 
-def test_paper10_default_scorer() -> None:
+def test_surface10_default_scorer() -> None:
     audit = _toy_audit(30)
-    df = tpa.build_answer_level_audit_frame(audit, profile="paper10", copy_audit_meta=False)
-    assert list(df.columns)[:10] == tpa.FEAT_COLS_PAPER10
-    r = tpa.paper_compatible_audit_oof_auc(df, profile="paper10", seed=0, n_splits=3)
+    df = tpa.build_answer_level_audit_frame(audit, profile="surface10", copy_audit_meta=False)
+    assert list(df.columns)[:10] == tpa.FEAT_COLS_SURFACE10
+    r = tpa.paper_compatible_audit_oof_auc(df, profile="surface10", seed=0, n_splits=3)
     assert 0.4 <= r.auc_oof <= 1.0
-    assert r.audit_profile == "paper10"
+    assert r.audit_profile == "surface10"
     assert len(r.feature_columns) == 10
 
 
@@ -73,6 +73,7 @@ def test_expanded13_optional() -> None:
     audit = _toy_audit(20)
     df = tpa.build_answer_level_audit_frame(audit, profile="expanded13", copy_audit_meta=False)
     r = tpa.paper_compatible_audit_oof_auc(df, profile="expanded13", seed=1, n_splits=3)
+    assert r.audit_profile == "surface13"
     assert len(r.feature_columns) == 13
 
 
@@ -115,7 +116,7 @@ def test_subprocess_pruning_writes_outputs() -> None:
 
 
 def main() -> None:
-    test_paper10_default_scorer()
+    test_surface10_default_scorer()
     test_expanded13_optional()
     test_subprocess_pruning_writes_outputs()
     print("test_pruning_improved_pipeline: OK")

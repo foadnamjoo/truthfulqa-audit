@@ -1,7 +1,8 @@
 #!/usr/bin/env python3
 """
 Export reference TruthfulQA subset CSVs for the fixed-kept feature_balanced
-pruning protocol (paper10 audit, same ordering as truthfulqa_pruning_final_verification).
+pruning protocol (surface10 audit: ten interpretable surface features; same ordering
+as truthfulqa_pruning_final_verification).
 
 Pair lists are deterministic for a chosen GroupShuffleSplit seed. The multi-seed
 verification in results/truthfulqa_pruning_final_verification/ reports mean/std
@@ -58,8 +59,8 @@ def parse_args() -> argparse.Namespace:
         default="results/truthfulqa_pruning_final_verification/fixed_kept_count_summary.csv",
         help="Used to fill manifest means (feature_balanced rows).",
     )
-    p.add_argument("--output-dir", type=str, default="data/subsets/feature_balanced_paper10")
-    p.add_argument("--json-dir", type=str, default="results/feature_balanced_reference_subsets")
+    p.add_argument("--output-dir", type=str, default="data/subsets/truthfulqa_feature_balanced")
+    p.add_argument("--json-dir", type=str, default="results/truthfulqa_feature_balanced/pair_ids")
     p.add_argument("--holdout-fraction", type=float, default=0.25)
     p.add_argument("--reference-seed", type=int, default=42)
     p.add_argument(
@@ -124,7 +125,7 @@ def main() -> int:
 
         meta = {
             "selection_method": "feature_balanced_length_stratified_prefix",
-            "audit_profile": "paper10",
+            "audit_profile": "surface10",
             "target_kept_count": target,
             "reference_split_seed": args.reference_seed,
             "holdout_fraction": args.holdout_fraction,
@@ -158,7 +159,7 @@ def main() -> int:
             "canonical_json",
         ]
         subset_name = f"truthfulqa_feature_balanced_{target}"
-        canonical_rel = f"results/feature_balanced_reference_subsets/{jname}"
+        canonical_rel = f"results/truthfulqa_feature_balanced/pair_ids/{jname}"
 
         with cpath.open("w", newline="", encoding="utf-8") as f:
             w = csv.DictWriter(f, fieldnames=fieldnames)
@@ -201,29 +202,6 @@ def main() -> int:
         dw.writeheader()
         for r in manifest_rows:
             dw.writerow(r)
-
-    readme = out_dir / "README.md"
-    readme.write_text(
-        "# Feature-balanced pruning reference subsets (paper10)\n\n"
-        "These CSVs are **downloadable reference slices** for the `feature_balanced` "
-        "fixed-kept-count protocol documented in `results/truthfulqa_pruning_final_verification/`.\n\n"
-        "## What is fixed\n\n"
-        "- **Examples** are original TruthfulQA rows; only membership changes.\n"
-        "- **Ordering** matches `scripts/truthfulqa_pruning_final_verification.py`: length-quartile stratified shuffle, "
-        "then sort by negation/length gap/id, then keep the first *K* pairs (`feature_balanced_length_stratified_prefix`).\n"
-        "- **Reference split seed** (default `42`) fixes one concrete pair list per target size *K*. "
-        "The paper’s held-out AUC entries are **means ± standard deviations over 10 GroupShuffleSplit seeds**; "
-        "those means are summarized in `subset_manifest.csv`.\n\n"
-        "## Files\n\n"
-        "- `truthfulqa_feature_balanced_<K>.csv` — row export for target size *K* (300, 350, …, 650).\n"
-        "- `subset_manifest.csv` — *K*, paths, and verification means from the locked summary CSV.\n"
-        "- Canonical pair-ID JSON: `results/feature_balanced_reference_subsets/pair_ids_<K>_seed42.json`.\n\n"
-        "## Regenerate\n\n"
-        "```bash\n"
-        "python3 scripts/export_feature_balanced_subset_csvs.py\n"
-        "```\n",
-        encoding="utf-8",
-    )
 
     print(f"Wrote {len(manifest_rows)} CSVs under {out_dir}")
     print(f"Wrote JSON pair lists under {json_dir}")

@@ -1020,9 +1020,9 @@ def main() -> None:
     ap.add_argument(
         "--audit-profile",
         type=str,
-        default="paper10",
-        choices=["paper10", "expanded13"],
-        help="paper10 (default) or expanded13",
+        default="surface10",
+        choices=["surface10", "surface13", "paper10", "expanded13"],
+        help="surface10 = default ten-feature surface audit (alias paper10); surface13 adds pair-level extras (alias expanded13).",
     )
     ap.add_argument("--seed", type=int, default=42)
     ap.add_argument("--train-fraction", type=float, default=0.75)
@@ -1074,6 +1074,7 @@ def main() -> None:
         help="Comma-separated drop fractions for quantile_score method (train pairs)",
     )
     args = ap.parse_args()
+    profile = tpa.normalize_audit_profile(str(args.audit_profile))
     quantile_grid = tuple(float(x.strip()) for x in args.quantile_grid.split(",") if x.strip())
     if args.include_quantile_score and args.methods.strip().lower() != "all":
         raise SystemExit("--include-quantile-score is only supported with --methods all")
@@ -1082,7 +1083,6 @@ def main() -> None:
     if not audit_path.exists():
         raise SystemExit(f"Missing audit CSV: {audit_path}")
 
-    profile: tpa.AuditProfile = args.audit_profile  # type: ignore
     audit = pd.read_csv(audit_path)
     df_full = tpa.build_answer_level_audit_frame(audit, profile=profile, copy_audit_meta=True)
     feat_cols = tpa.feature_columns_for_profile(profile)
@@ -1399,7 +1399,7 @@ def main() -> None:
     md_lines = [
         "# TruthfulQA pruning (improved search) — summary",
         "",
-        f"- **Audit profile (default paper path):** `{profile}`",
+        f"- **Audit profile:** `{profile}` (surface10 = ten interpretable surface features)",
         f"- **Feature columns:** `{feat_cols}`",
         f"- **Train/test pair split:** {args.train_fraction:.2f} / {1 - args.train_fraction:.2f}",
         "",

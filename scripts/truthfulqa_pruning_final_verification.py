@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 """
-Multi-seed + fixed-kept-count verification for TruthfulQA pruning (paper10 audit).
+Multi-seed + fixed-kept-count verification for TruthfulQA pruning (surface10 audit by default).
 Writes results to results/truthfulqa_pruning_final_verification/ and figures/.
 """
 from __future__ import annotations
@@ -14,6 +14,7 @@ import numpy as np
 import pandas as pd
 from sklearn.model_selection import GroupShuffleSplit
 
+import truthfulqa_paper_audit as tpa
 from truthfulqa_pruning_utils import CV_SPLITS, load_candidates_with_features, repo_root
 from search_truthfulqa_pruned_improved import (
     _apply_prefix_keep,
@@ -312,7 +313,13 @@ def parse_args() -> argparse.Namespace:
     p.add_argument("--audit-csv", type=str, default="audits/truthfulqa_style_audit.csv")
     p.add_argument("--output-dir", type=str, default="results/truthfulqa_pruning_final_verification")
     p.add_argument("--figures-dir", type=str, default="figures/truthfulqa_pruning_final_verification")
-    p.add_argument("--audit-profile", type=str, default="paper10", choices=["paper10", "expanded13"])
+    p.add_argument(
+        "--audit-profile",
+        type=str,
+        default="surface10",
+        choices=["surface10", "surface13", "paper10", "expanded13"],
+        help="surface10 = ten interpretable surface features (alias: paper10); surface13 adds three pair-level features (alias: expanded13).",
+    )
     p.add_argument("--min-keep", type=int, default=500)
     p.add_argument("--target-audit-auc", type=float, default=0.62)
     p.add_argument("--max-drop-fraction", type=float, default=0.40)
@@ -329,6 +336,7 @@ def parse_args() -> argparse.Namespace:
 
 def main() -> None:
     args = parse_args()
+    args.audit_profile = tpa.normalize_audit_profile(str(args.audit_profile))
     root = repo_root()
     out_dir = (root / args.output_dir).resolve()
     fig_dir = (root / args.figures_dir).resolve()

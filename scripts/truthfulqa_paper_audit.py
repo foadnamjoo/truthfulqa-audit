@@ -1,19 +1,22 @@
 #!/usr/bin/env python3
 """
-Canonical TruthfulQA surface-form audit (paper-compatible).
+Canonical TruthfulQA surface-form audit (reproducible grouped CV + LR).
 
-Default profile **paper10** matches `scripts/make_paper_assets.py` and the validated
-notebook pipeline: answer-level rows, 10 unified feature names, GroupKFold by pair_id,
-StandardScaler + LogisticRegression, OOF ROC-AUC from predict_proba.
+**Profiles (reader-facing names):**
+- **surface10** — ten interpretable lexical/style features (negation, hedging, length, …).
+  Legacy alias: ``paper10`` (accepted everywhere; normalized to ``surface10``).
+- **surface13** — same ten features plus three pair-level extras.
+  Legacy alias: ``expanded13`` (normalized to ``surface13``).
 
-**expanded13** adds three pair-level columns (same value on both answer rows of a pair):
-temporal_fragile, hedge_pair_diff, auth_pair_diff. Use only when explicitly requested.
+Defaults match ``scripts/make_paper_assets.py`` and the validated notebook pipeline:
+answer-level rows, unified feature names, GroupKFold by pair_id, StandardScaler +
+LogisticRegression, OOF ROC-AUC from predict_proba.
 """
 
 from __future__ import annotations
 
 from dataclasses import dataclass
-from typing import List, Literal, Sequence, Tuple
+from typing import List, Literal, Sequence, Tuple, Union
 
 import numpy as np
 import pandas as pd
@@ -23,10 +26,33 @@ from sklearn.model_selection import GroupKFold, cross_val_predict
 from sklearn.pipeline import make_pipeline
 from sklearn.preprocessing import StandardScaler
 
-AuditProfile = Literal["paper10", "expanded13"]
+# Canonical profile strings stored in results and CLI defaults.
+CanonicalAuditProfile = Literal["surface10", "surface13"]
 
-# Unified answer-row feature names (paper / notebook).
-FEAT_COLS_PAPER10: List[str] = [
+# Backward-compatible aliases (older papers/repos used these names).
+_AUDIT_PROFILE_ALIASES: dict[str, CanonicalAuditProfile] = {
+    "paper10": "surface10",
+    "expanded13": "surface13",
+}
+
+# Accept canonical names plus legacy aliases in APIs that take a string profile.
+AuditProfileArg = Union[CanonicalAuditProfile, Literal["paper10", "expanded13"]]
+
+
+def normalize_audit_profile(profile: str) -> CanonicalAuditProfile:
+    """Map legacy names (paper10, expanded13) to canonical surface10 / surface13."""
+    if profile in ("surface10", "surface13"):
+        return profile  # type: ignore[return-value]
+    if profile in _AUDIT_PROFILE_ALIASES:
+        return _AUDIT_PROFILE_ALIASES[profile]
+    raise ValueError(
+        f"Unknown audit profile {profile!r}; expected 'surface10' or 'surface13' "
+        f"(legacy aliases: {sorted(_AUDIT_PROFILE_ALIASES)})"
+    )
+
+
+# Unified answer-row feature names (surface10).
+FEAT_COLS_SURFACE10: List[str] = [
     "neg_lead",
     "neg_cnt",
     "hedge_rate",
@@ -39,7 +65,10 @@ FEAT_COLS_PAPER10: List[str] = [
     "punc_rate",
 ]
 
-COLS_TRUE_PAPER10: List[str] = [
+# Backward-compatible names for older call sites / notebooks.
+FEAT_COLS_PAPER10 = FEAT_COLS_SURFACE10
+
+COLS_TRUE_SURFACE10: List[str] = [
     "neg_lead_true",
     "neg_cnt_true",
     "hedge_rate_true",
@@ -52,7 +81,7 @@ COLS_TRUE_PAPER10: List[str] = [
     "punc_rate_true",
 ]
 
-COLS_FALSE_PAPER10: List[str] = [
+COLS_FALSE_SURFACE10: List[str] = [
     "neg_lead_false",
     "neg_cnt_false",
     "hedge_rate_false",
@@ -65,11 +94,16 @@ COLS_FALSE_PAPER10: List[str] = [
     "punc_rate_false",
 ]
 
-FEAT_COLS_EXPANDED13: List[str] = FEAT_COLS_PAPER10 + [
+COLS_TRUE_PAPER10 = COLS_TRUE_SURFACE10
+COLS_FALSE_PAPER10 = COLS_FALSE_SURFACE10
+
+FEAT_COLS_SURFACE13: List[str] = FEAT_COLS_SURFACE10 + [
     "temporal_fragile",
     "hedge_pair_diff",
     "auth_pair_diff",
 ]
+
+FEAT_COLS_EXPANDED13 = FEAT_COLS_SURFACE13
 
 DEFAULT_CV_SPLITS = 5
 DEFAULT_LR_MAX_ITER = 1000
@@ -97,7 +131,7 @@ def make_lr_pipeline(random_state: int, max_iter: int = DEFAULT_LR_MAX_ITER):
 
 def build_answer_level_audit_frame(
     audit: pd.DataFrame,
-    profile: AuditProfile = "paper10",
+    profile: AuditProfileArg = "surface10",
     copy_audit_meta: bool = True,
 ) -> pd.DataFrame:
     """
@@ -106,19 +140,20 @@ def build_answer_level_audit_frame(
     If copy_audit_meta, pair-level columns from `audit` are duplicated onto both rows
     (first len(audit) rows correspond to label=1, next block to label=0), keyed by pair_id.
     """
-    rows_true = audit[COLS_TRUE_PAPER10].copy()
-    rows_true.columns = FEAT_COLS_PAPER10
+    p = normalize_audit_profile(str(profile))
+    rows_true = audit[COLS_TRUE_SURFACE10].copy()
+    rows_true.columns = FEAT_COLS_SURFACE10
     rows_true["label"] = 1
     rows_true["pair_id"] = np.arange(len(audit), dtype=np.int64)
 
-    rows_false = audit[COLS_FALSE_PAPER10].copy()
-    rows_false.columns = FEAT_COLS_PAPER10
+    rows_false = audit[COLS_FALSE_SURFACE10].copy()
+    rows_false.columns = FEAT_COLS_SURFACE10
     rows_false["label"] = 0
     rows_false["pair_id"] = np.arange(len(audit), dtype=np.int64)
 
     df_ans = pd.concat([rows_true, rows_false], ignore_index=True)
 
-    if profile == "expanded13":
+    if p == "surface13":
         n = len(audit)
         hf = (audit["hedge_rate_true"] - audit["hedge_rate_false"]).to_numpy()
         af = (audit["auth_rate_true"] - audit["auth_rate_false"]).to_numpy()
@@ -158,18 +193,19 @@ def build_answer_level_audit_frame(
     return df_ans
 
 
-def feature_columns_for_profile(profile: AuditProfile) -> List[str]:
-    if profile == "paper10":
-        return list(FEAT_COLS_PAPER10)
-    if profile == "expanded13":
-        return list(FEAT_COLS_EXPANDED13)
+def feature_columns_for_profile(profile: AuditProfileArg) -> List[str]:
+    p = normalize_audit_profile(str(profile))
+    if p == "surface10":
+        return list(FEAT_COLS_SURFACE10)
+    if p == "surface13":
+        return list(FEAT_COLS_SURFACE13)
     raise ValueError(f"Unknown audit profile: {profile}")
 
 
 def paper_compatible_audit_oof_auc(
     df_ans: pd.DataFrame,
     *,
-    profile: AuditProfile = "paper10",
+    profile: AuditProfileArg = "surface10",
     feature_columns: Sequence[str] | None = None,
     seed: int = 42,
     n_splits: int = DEFAULT_CV_SPLITS,
@@ -178,7 +214,8 @@ def paper_compatible_audit_oof_auc(
     """
     Canonical audit scorer for pruning/search: grouped CV OOF ROC-AUC (correct vs incorrect).
     """
-    cols = list(feature_columns) if feature_columns is not None else feature_columns_for_profile(profile)
+    p = normalize_audit_profile(str(profile))
+    cols = list(feature_columns) if feature_columns is not None else feature_columns_for_profile(p)
     missing = [c for c in cols if c not in df_ans.columns]
     if missing:
         raise KeyError(f"df_ans missing feature columns: {missing}")
@@ -194,7 +231,7 @@ def paper_compatible_audit_oof_auc(
     return AuditScorerResult(
         auc_oof=auc,
         feature_columns=tuple(cols),
-        audit_profile=profile,
+        audit_profile=p,
         n_answer_rows=int(len(df_ans)),
         n_pairs=n_pairs,
     )
@@ -208,3 +245,7 @@ def shuffle_labels_within_groups(
         idx = np.where(groups == g)[0]
         y_perm[idx] = rng.permutation(y_perm[idx])
     return y_perm
+
+
+# Backward-compatible name for imports: ``AuditProfile`` == canonical + legacy strings.
+AuditProfile = AuditProfileArg

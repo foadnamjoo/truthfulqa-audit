@@ -1,6 +1,6 @@
 {
   "selection_method": "feature_balanced_length_stratified_prefix",
-  "audit_profile": "paper10",
+  "audit_profile": "surface10",
   "target_kept_count": 350,
   "reference_split_seed": 42,
   "holdout_fraction": 0.25,

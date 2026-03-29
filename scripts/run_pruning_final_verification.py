@@ -544,7 +544,7 @@ def main() -> None:
     out.mkdir(parents=True, exist_ok=True)
     fig_out.mkdir(parents=True, exist_ok=True)
 
-    profile: tpa.AuditProfile = "paper10"
+    profile: tpa.AuditProfile = "surface10"
     audit_path = (root / args.audit_csv).resolve()
     audit = pd.read_csv(audit_path)
     df_full = tpa.build_answer_level_audit_frame(audit, profile=profile, copy_audit_meta=True)
@@ -563,7 +563,7 @@ def main() -> None:
         encoding="utf-8",
     )
 
-    print(f"[final_verification] full_dataset OOF AUC ≈ {full_auc:.4f} (paper10, all pairs)")
+    print(f"[final_verification] full_dataset OOF AUC ≈ {full_auc:.4f} (surface10, all pairs)")
 
     multi = run_multi_seed(
         audit,
@@ -780,7 +780,7 @@ def main() -> None:
         "",
         f"- **Multi-seed methods:** `negation_first_constrained`, `feature_balanced`, "
         f"`score_based_greedy`, `beam_or_multistart_greedy` — representative mode **`all_features`**.",
-        f"- **Seeds:** {args.n_seeds}, **GroupShuffleSplit** test_size={args.test_size}, **paper10**.",
+        f"- **Seeds:** {args.n_seeds}, **GroupShuffleSplit** test_size={args.test_size}, **surface10** audit.",
         "",
     ]
     if degenerate:

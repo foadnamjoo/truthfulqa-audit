@@ -2,7 +2,7 @@
 % Paths are relative to the public repo https://github.com/foadnamjoo/truthfulqa-audit
 
 \paragraph{Feature-balanced reference subsets.}
-We ship audited binary-choice TruthfulQA subsets under a \texttt{feature\_balanced} fixed-kept-count protocol for target sizes $K \in \{300,350,400,450,500,550,595,650\}$ pairs, aligned with the \texttt{paper10} audit features and grouped cross-validation used in the main experiments.
-Self-contained CSV exports and a manifest live under \texttt{data/subsets/feature\_balanced\_paper10/}; canonical \texttt{pair\_id} lists for reference split seed~42 are in \texttt{results/feature\_balanced\_reference\_subsets/}.
+We ship audited binary-choice TruthfulQA subsets under a \texttt{feature\_balanced} fixed-kept-count protocol for target sizes $K \in \{300,350,400,450,500,550,595,650\}$ pairs, evaluated with the same \emph{surface-form} audit as the main experiments: ten interpretable lexical and stylistic features (\texttt{surface10}; legacy alias \texttt{paper10} in code only), with grouped cross-validation.
+Self-contained CSV exports and a manifest live under \texttt{data/subsets/truthfulqa\_feature\_balanced/}; canonical \texttt{pair\_id} lists for reference split seed~42 are in \texttt{results/truthfulqa\_feature\_balanced/pair\_ids/}.
 Means $\pm$ standard deviations of held-out AUC over ten GroupShuffleSplit seeds are locked in \texttt{results/truthfulqa\_pruning\_final\_verification/} and summarized in the subset manifest.
 Regenerate exports with \texttt{python3 scripts/export\_feature\_balanced\_subset\_csvs.py}.

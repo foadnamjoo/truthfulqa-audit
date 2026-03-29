@@ -123,7 +123,7 @@ def write_tex_table(path: Path, caption: str, label: str, header: List[str], row
 def compute_auc_and_null_mean(df_ans: pd.DataFrame, feat_cols: List[str], seed: int = 42, n_null: int = 100) -> Tuple[float, float]:
     """OOF AUC via canonical paper audit path; pair-structured null uses the same CV + model."""
     auc = tpa.paper_compatible_audit_oof_auc(
-        df_ans, profile="paper10", feature_columns=feat_cols, seed=seed
+        df_ans, profile="surface10", feature_columns=feat_cols, seed=seed
     ).auc_oof
     X = df_ans[feat_cols].fillna(0)
     y = df_ans["label"].to_numpy()
@@ -272,7 +272,7 @@ def main() -> None:
     if audit_path.exists():
         audit = pd.read_csv(audit_path)
         feat_cols = list(tpa.FEAT_COLS_PAPER10)
-        df_ans = tpa.build_answer_level_audit_frame(audit, profile="paper10", copy_audit_meta=False)
+        df_ans = tpa.build_answer_level_audit_frame(audit, profile="surface10", copy_audit_meta=False)
 
         ablations = [
             ("Negation", ["neg_lead", "neg_cnt"]),
