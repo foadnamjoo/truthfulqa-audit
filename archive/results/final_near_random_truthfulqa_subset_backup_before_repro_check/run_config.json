@@ -1,0 +1,32 @@
+{
+  "targets": [
+    350,
+    375,
+    400
+  ],
+  "seeds": [
+    0,
+    1,
+    2,
+    3,
+    4,
+    5,
+    6,
+    7,
+    8,
+    9,
+    10,
+    11,
+    12,
+    13,
+    14
+  ],
+  "eval_budget": 22,
+  "min_keep_global": 200,
+  "canonical_gss_seed": 42,
+  "weights_alpha_beta_gamma": [
+    1.0,
+    0.35,
+    0.12
+  ]
+}

@@ -1,10 +1,7 @@
+# Core deps: TruthfulQA audit, make_paper_assets, near-random subset drivers.
+# Full paper (HF eval, cross-dataset): also install requirements-paper-full.txt
 numpy>=1.23,<3
 pandas>=1.5,<3
 scipy>=1.9,<2
 matplotlib>=3.6,<4
 scikit-learn>=1.2,<2
-requests>=2.28,<3
-datasets>=2.14,<4
-pyarrow>=10,<21
-transformers>=4.39,<5
-torch>=2.1,<3

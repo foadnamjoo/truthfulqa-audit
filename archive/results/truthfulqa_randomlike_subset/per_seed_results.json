@@ -1,0 +1,26 @@
+[
+  {
+    "split_seed": 0,
+    "predicted_global_ktr": 350,
+    "k_train_kept": 262,
+    "hill_climb_loss_search_cv": 0.040480592263187946,
+    "reporting_loss_final_cv": 0.04499214959789869,
+    "search_auc": 0.6378343336635395,
+    "heldout_auc": 0.567342458677686,
+    "n_global": 350,
+    "n_clean_pairs": 232,
+    "confounded_fraction": 0.33714285714285713
+  },
+  {
+    "split_seed": 1,
+    "predicted_global_ktr": 350,
+    "k_train_kept": 262,
+    "hill_climb_loss_search_cv": 0.03796079447881195,
+    "reporting_loss_final_cv": 0.04022947969925455,
+    "search_auc": 0.6454242177029311,
+    "heldout_auc": 0.553460743801653,
+    "n_global": 350,
+    "n_clean_pairs": 241,
+    "confounded_fraction": 0.31142857142857144
+  }
+]

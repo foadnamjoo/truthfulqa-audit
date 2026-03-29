@@ -1,0 +1,14 @@
+{
+  "n_pairs_full": 790,
+  "n_clean_pairs_full": 257,
+  "mode": "mostly_clean",
+  "target_n": 350,
+  "target_auc": 0.5,
+  "best_split_seed": 1,
+  "best_reporting_loss": 0.04022947969925455,
+  "best_search_auc": 0.6454242177029311,
+  "best_heldout_auc": 0.553460743801653,
+  "best_n_global": 350,
+  "best_n_clean_pairs": 241,
+  "best_confounded_fraction": 0.31142857142857144
+}

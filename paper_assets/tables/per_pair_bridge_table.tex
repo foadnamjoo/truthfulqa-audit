@@ -1,0 +1,19 @@
+\begin{table}[t]
+\centering
+\caption{Per-model pair-level bridge analysis using Spearman correlation between model correctness (0/1 per pair) and audit confidence. The audit confidence score is $\mathrm{audit\_gap}=|\hat p_{\mathrm{OOF}}(\text{correct answer})-\hat p_{\mathrm{OOF}}(\text{incorrect answer})|$ for each question pair.}
+\label{tab:per_pair_bridge}
+\begin{tabular}{lrrr}
+\toprule
+Model & $n_{pairs}$ & Spearman $\rho$ & $p$ (two-sided) \\
+\midrule
+distilgpt2 & 790 & +0.071 & 0.046 \\
+Phi-3.5-mini & 790 & +0.034 & 0.346 \\
+SmolLM2-1.7B & 790 & +0.033 & 0.360 \\
+Mistral-7B & 790 & +0.030 & 0.403 \\
+Qwen2.5-1.5B & 790 & +0.011 & 0.761 \\
+TinyLlama-1.1B & 790 & -0.019 & 0.589 \\
+Qwen2.5-14B & 790 & -0.029 & 0.413 \\
+Qwen2.5-0.5B & 790 & -0.036 & 0.318 \\
+\bottomrule
+\end{tabular}
+\end{table}

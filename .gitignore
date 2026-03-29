@@ -52,6 +52,8 @@ model_predictions_*_out.csv
 data/predictions/model_predictions_*seed*.csv
 data/predictions/model_predictions_*_out.csv
 
-# Optional local analysis artifacts
+# Optional local per-pair analysis (paper uses bridge table + CSV; track those)
 audits/per_pair_*.csv
+!audits/per_pair_bridge_spearman.csv
 paper_assets/tables/per_pair_*.tex
+!paper_assets/tables/per_pair_bridge_table.tex

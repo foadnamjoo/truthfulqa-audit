@@ -1,0 +1,34 @@
+{
+  "targets": [
+    300,
+    325,
+    350,
+    375,
+    400,
+    425,
+    450,
+    475,
+    500
+  ],
+  "seeds": [
+    0,
+    1,
+    2,
+    3,
+    4,
+    5,
+    6,
+    7,
+    8,
+    9
+  ],
+  "test_size": 0.25,
+  "min_keep_global": 200,
+  "profile": "paper10",
+  "methods": [
+    "clean_first_then_low_score",
+    "score_rank (low separability)",
+    "len_gap_rank (symmetric length)",
+    "negation_rank (low asymmetry)"
+  ]
+}

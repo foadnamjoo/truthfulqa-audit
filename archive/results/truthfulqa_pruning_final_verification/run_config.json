@@ -1,0 +1,16 @@
+{
+  "root": ".",
+  "audit_csv": "audits/truthfulqa_style_audit.csv",
+  "n_seeds": 10,
+  "seed_start": 0,
+  "test_size": 0.25,
+  "cv_splits": 5,
+  "min_keep": 400,
+  "max_drop_fraction": 0.45,
+  "target_audit_auc": 0.62,
+  "w_auc": 2.0,
+  "w_size": 1.0,
+  "w_imb": 0.5,
+  "beam_width": 4,
+  "n_multistarts": 3
+}

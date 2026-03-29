@@ -1,0 +1,30 @@
+{
+  "targets": [
+    300,
+    325,
+    350,
+    375,
+    400,
+    425,
+    450
+  ],
+  "seeds": [
+    0,
+    1,
+    2,
+    3,
+    4,
+    5,
+    6,
+    7,
+    8,
+    9
+  ],
+  "eval_budget_per_search": 8,
+  "min_keep_global": 200,
+  "weights_alpha_beta_gamma": [
+    1.0,
+    0.35,
+    0.12
+  ]
+}
