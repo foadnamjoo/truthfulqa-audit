@@ -41,6 +41,7 @@ Legend: **preserve** = required for paper as written or strongly implied supplem
 | Artifact | Scripts | Inputs | Outputs | Keep / archive |
 |----------|---------|--------|---------|----------------|
 | Feature-balanced audited subsets (300–650 pairs) + locked multi-seed verification | `scripts/export_feature_balanced_subset_csvs.py`; `scripts/truthfulqa_pruning_final_verification.py`; repro: `scripts/check_pruning_final_verification_repro.py`; search utilities: `scripts/search_truthfulqa_pruned_improved.py`, `scripts/truthfulqa_pruning_utils.py`, `scripts/run_truthfulqa_pruning_improved.py`, `scripts/run_pruning_final_verification.py` | `audits/truthfulqa_style_audit.csv`; verification reads prior JSON/CSVs as configured in-repo | `data/subsets/truthfulqa_feature_balanced/`, `results/truthfulqa_feature_balanced/pair_ids/`; `results/truthfulqa_pruning_final_verification/`, `figures/truthfulqa_pruning_final_verification/`; LaTeX note `paper_assets/tables/feature_balanced_subset_paragraph.tex` | **preserve** (supplementary; reproducibility) |
+| Optional: pair-structured **random-label null** vs observed held-out AUC per \(K\) | `scripts/truthfulqa_feature_balanced_random_label_null.py` | same as verification splits | `results/truthfulqa_feature_balanced_random_label_null/` (CSV + `report.md`) | **optional** (paper text if cited) |
 
 ---
 

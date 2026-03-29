@@ -81,6 +81,8 @@ Canonical **pair_id** JSON for reference split seed **42**: `results/truthfulqa_
 python3 scripts/export_feature_balanced_subset_csvs.py
 ```
 
+**Random-label null (optional):** pair-structured permutations of correct/incorrect within each pair, same splits as verification — `python3 scripts/truthfulqa_feature_balanced_random_label_null.py` (writes `results/truthfulqa_feature_balanced_random_label_null/`). Use this to compare observed held-out AUC to a null mean ± spread per target size \(K\).
+
 ---
 
 ## Pruning final verification (locked, paper supplementary)
