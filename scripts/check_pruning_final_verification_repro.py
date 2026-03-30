@@ -28,6 +28,26 @@ def main() -> int:
         print(f"Missing lock config: {lock_path}", file=sys.stderr)
         return 1
     lock = json.loads(lock_path.read_text(encoding="utf-8"))
+    required_lock_keys = [
+        "n_seeds",
+        "base_seed",
+        "audit_profile",
+        "min_keep",
+        "target_audit_auc",
+        "max_drop_fraction",
+        "holdout_fraction",
+        "w_heldout",
+        "w_size",
+        "w_imbalance",
+        "sha256",
+    ]
+    missing_keys = [k for k in required_lock_keys if k not in lock]
+    if missing_keys:
+        print(
+            f"LOCK_CONFIG missing required keys: {', '.join(missing_keys)}",
+            file=sys.stderr,
+        )
+        return 1
 
     cmd = [
         sys.executable,
@@ -53,7 +73,16 @@ def main() -> int:
         "--w-imbalance",
         str(lock["w_imbalance"]),
     ]
-    subprocess.run(cmd, cwd=root, check=True)
+    print("Re-running locked verification with LOCK_CONFIG parameters...")
+    try:
+        subprocess.run(cmd, cwd=root, check=True)
+    except subprocess.CalledProcessError as exc:
+        print(
+            f"Verification rerun failed (exit={exc.returncode}). "
+            "Check script output above for details.",
+            file=sys.stderr,
+        )
+        return int(exc.returncode) if exc.returncode else 1
 
     files = [
         out_dir / "fixed_kept_count_summary.csv",
