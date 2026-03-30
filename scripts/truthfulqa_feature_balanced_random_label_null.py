@@ -96,8 +96,8 @@ def parse_args() -> argparse.Namespace:
         "--targets",
         type=int,
         nargs="+",
-        default=[650, 595, 550, 500, 450, 400, 350, 300],
-        help="Fixed kept counts K (same order as verification).",
+        default=[300, 350, 400, 450, 500, 550],
+        help="Fixed kept counts K (default: 300–550 step 50; add more sizes explicitly if needed).",
     )
     p.add_argument("--n-null", type=int, default=200, help="Random-label draws per (seed, K) cell.")
     p.add_argument("--rng-seed", type=int, default=42, help="Base RNG for null permutations (independent of split seeds).")
