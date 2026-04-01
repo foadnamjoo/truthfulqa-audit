@@ -23,14 +23,14 @@ truthfulqa_audit/
 │   ├── predictions/                     # Optional model outputs (may be gitignored)
 │   └── subsets/
 │       ├── README.md                    # Entry point for downloadable subsets
-│       └── truthfulqa_feature_balanced/ # Feature-balanced CSV exports + subset_manifest.csv
+│       └── truthfulqaPro/               # Feature-balanced CSV exports + subset_manifest.csv
 ├── results/
-│   ├── truthfulqa_feature_balanced/
+│   ├── truthfulqaPro/
 │   │   └── pair_ids/                    # Canonical pair_id JSON (reference seed 42)
 │   └── truthfulqa_pruning_final_verification/  # Locked multi-seed verification tables
 └── archive/                             # Exploratory grids, old scripts, notebook copy
 ```
 
-**Naming:** **`surface10`** = default ten-feature surface audit in code (`scripts/truthfulqa_paper_audit.py`); legacy CLI alias `paper10` normalizes to `surface10`. Subset releases live under `data/subsets/truthfulqa_feature_balanced/`; pair lists under `results/truthfulqa_feature_balanced/pair_ids/`.
+**Naming:** **`surface10`** = default ten-feature surface audit in code (`scripts/truthfulqa_paper_audit.py`); legacy CLI alias `paper10` normalizes to `surface10`. Subset releases live under `data/subsets/truthfulqaPro/`; pair lists under `results/truthfulqaPro/pair_ids/`.
 
 **Note:** `paper_assets/fig/` vs `paper_assets/figures/` is intentional (different generating scripts). Point LaTeX `\includegraphics` at the path you regenerate.

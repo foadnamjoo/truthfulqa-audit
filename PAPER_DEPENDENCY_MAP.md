@@ -40,7 +40,7 @@ Legend: **preserve** = required for paper as written or strongly implied supplem
 
 | Artifact | Scripts | Inputs | Outputs | Keep / archive |
 |----------|---------|--------|---------|----------------|
-| Feature-balanced audited subsets (300–650 pairs) + locked multi-seed verification | `scripts/export_feature_balanced_subset_csvs.py`; `scripts/truthfulqa_pruning_final_verification.py`; repro: `scripts/check_pruning_final_verification_repro.py`; search utilities: `scripts/search_truthfulqa_pruned_improved.py`, `scripts/truthfulqa_pruning_utils.py`, `scripts/run_truthfulqa_pruning_improved.py`, `scripts/run_pruning_final_verification.py` | `audits/truthfulqa_style_audit.csv`; verification reads prior JSON/CSVs as configured in-repo | `data/subsets/truthfulqa_feature_balanced/`, `results/truthfulqa_feature_balanced/pair_ids/`; `results/truthfulqa_pruning_final_verification/`, `figures/truthfulqa_pruning_final_verification/`; LaTeX note `paper_assets/tables/feature_balanced_subset_paragraph.tex` | **preserve** (supplementary; reproducibility) |
+| Feature-balanced audited subsets (300–650 pairs) + locked multi-seed verification | `scripts/export_feature_balanced_subset_csvs.py`; `scripts/truthfulqa_pruning_final_verification.py`; repro: `scripts/check_pruning_final_verification_repro.py`; search utilities: `scripts/search_truthfulqa_pruned_improved.py`, `scripts/truthfulqa_pruning_utils.py`, `scripts/run_truthfulqa_pruning_improved.py`, `scripts/run_pruning_final_verification.py` | `audits/truthfulqa_style_audit.csv`; verification reads prior JSON/CSVs as configured in-repo | `data/subsets/truthfulqaPro/`, `results/truthfulqaPro/pair_ids/`; `results/truthfulqa_pruning_final_verification/`, `figures/truthfulqa_pruning_final_verification/`; LaTeX note `paper_assets/tables/feature_balanced_subset_paragraph.tex` | **preserve** (supplementary; reproducibility) |
 
 ---
 
@@ -66,5 +66,5 @@ Legend: **preserve** = required for paper as written or strongly implied supplem
 
 ## Summary: keep vs archive
 
-- **Keep in active repo:** everything in the tables above, including `audits/*.csv`, `paper_assets/**`, `data/subsets/truthfulqa_feature_balanced/`, `data/predictions/` (if redistributable), `notebooks/`, and all listed `scripts/`.
+- **Keep in active repo:** everything in the tables above, including `audits/*.csv`, `paper_assets/**`, `data/subsets/truthfulqaPro/`, `data/predictions/` (if redistributable), `notebooks/`, and all listed `scripts/`.
 - **Archive OK:** contents under `archive/results/`, `archive/scripts/run_near_random_subset_refined.py`, `archive/scripts/test_pruning_improved_pipeline.py`, duplicate exploratory figures, and old notebook copy under `archive/notebooks/` (retained as backup; active copy is `notebooks/`).

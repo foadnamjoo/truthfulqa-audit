@@ -4,13 +4,13 @@ Release-ready **binary-choice TruthfulQA** slices for the **`feature_balanced`**
 
 ## Where to download
 
-Full **GitHub raw URL table**, manifest, and regeneration instructions: **`data/subsets/truthfulqa_feature_balanced/README.md`**.
+Full **GitHub raw URL table**, manifest, and regeneration instructions: **`data/subsets/truthfulqaPro/README.md`**.
 
 Summary:
 
-- **CSV exports:** `data/subsets/truthfulqa_feature_balanced/truthfulqa_feature_balanced_<K>.csv`
-- **Manifest (paths + verification means):** `data/subsets/truthfulqa_feature_balanced/subset_manifest.csv`
-- **Canonical `pair_id` JSON** (reference split seed 42): `results/truthfulqa_feature_balanced/pair_ids/pair_ids_<K>_seed42.json`
+- **CSV exports:** `data/subsets/truthfulqaPro/truthfulqaPro_<K>.csv`
+- **Manifest (paths + verification means):** `data/subsets/truthfulqaPro/subset_manifest.csv`
+- **Canonical `pair_id` JSON** (reference split seed 42): `results/truthfulqaPro/pair_ids/pair_ids_<K>_seed42.json`
 - **Locked multi-seed verification outputs:** `results/truthfulqa_pruning_final_verification/` (see root `README.md`)
 
 Each CSV is self-contained (TruthfulQA-style columns plus audit metadata); you do not need a separate `TruthfulQA.csv` to evaluate the subset.

@@ -59,8 +59,8 @@ def parse_args() -> argparse.Namespace:
         default="results/truthfulqa_pruning_final_verification/fixed_kept_count_summary.csv",
         help="Used to fill manifest means (feature_balanced rows).",
     )
-    p.add_argument("--output-dir", type=str, default="data/subsets/truthfulqa_feature_balanced")
-    p.add_argument("--json-dir", type=str, default="results/truthfulqa_feature_balanced/pair_ids")
+    p.add_argument("--output-dir", type=str, default="data/subsets/truthfulqaPro")
+    p.add_argument("--json-dir", type=str, default="results/truthfulqaPro/pair_ids")
     p.add_argument("--holdout-fraction", type=float, default=0.25)
     p.add_argument("--reference-seed", type=int, default=42)
     p.add_argument(
@@ -145,7 +145,7 @@ def main() -> int:
         jpath = json_dir / jname
         jpath.write_text(json.dumps(meta, indent=2) + "\n", encoding="utf-8")
 
-        csv_name = f"truthfulqa_feature_balanced_{target}.csv"
+        csv_name = f"truthfulqaPro_{target}.csv"
         cpath = out_dir / csv_name
         fieldnames = [
             "pair_id",
@@ -158,8 +158,8 @@ def main() -> int:
             "source_dataset",
             "canonical_json",
         ]
-        subset_name = f"truthfulqa_feature_balanced_{target}"
-        canonical_rel = f"results/truthfulqa_feature_balanced/pair_ids/{jname}"
+        subset_name = f"truthfulqaPro_{target}"
+        canonical_rel = f"results/truthfulqaPro/pair_ids/{jname}"
 
         with cpath.open("w", newline="", encoding="utf-8") as f:
             w = csv.DictWriter(f, fieldnames=fieldnames)
