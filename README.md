@@ -1,6 +1,6 @@
 # TruthfulQA audit — “Judging by the Cover…”
 
-> **truthfulqaPro (released subsets):** audited binary-choice TruthfulQA CSVs, manifest, and canonical JSON (split seed 42) → [`truthfulqaPro/`](https://github.com/foadnamjoo/truthfulqa-audit/tree/main/truthfulqaPro) (`pair_ids/` inside same folder). Raw download URLs → [`truthfulqaPro/README.md`](https://github.com/foadnamjoo/truthfulqa-audit/blob/main/truthfulqaPro/README.md).
+> **TruthfulQAPro (released subsets):** same data on Hugging Face as [`foadnamjoo/TruthfulQAPro`](https://huggingface.co/datasets/foadnamjoo/TruthfulQAPro); in git the folder is still [`truthfulqaPro/`](https://github.com/foadnamjoo/truthfulqa-audit/tree/main/truthfulqaPro) (CSVs use the `truthfulqaPro_*` prefix). Manifest + raw GitHub URLs → [`truthfulqaPro/README.md`](https://github.com/foadnamjoo/truthfulqa-audit/blob/main/truthfulqaPro/README.md).
 
 This repository reproduces the **surface-form confound audit** and analyses for the paper, including:
 
@@ -74,7 +74,7 @@ Writes `audits/model_benchmark_impact_by_file.csv` and `model_benchmark_impact_b
 
 ## Feature-balanced reference subsets (supplementary)
 
-**Downloadable subset CSVs** (same idea as [TruthfulQA’s hosted CSV](https://github.com/sylinrl/TruthfulQA/blob/main/TruthfulQA.csv)): top-level `truthfulqaPro/` — see `truthfulqaPro/README.md` for **GitHub raw URLs** and `subset_manifest.csv`.
+**Downloadable subset CSVs** (same idea as [TruthfulQA’s hosted CSV](https://github.com/sylinrl/TruthfulQA/blob/main/TruthfulQA.csv)): top-level `truthfulqaPro/` on GitHub; mirror on the Hub as **TruthfulQAPro** — see `truthfulqaPro/README.md` for **GitHub raw URLs**, Hugging Face link, and `subset_manifest.csv`.
 
 Canonical **pair_id** JSON for reference split seed **42**: `truthfulqaPro/pair_ids/`. Regenerate CSVs with:
 
@@ -118,4 +118,8 @@ The locked fixed-kept table includes targets: **650, 595, 550, 500, 450, 400, 35
 
 ## Citation
 
-Cite the paper and, when referring to the feature-balanced subsets, the **canonical `pair_ids`** JSON under `truthfulqaPro/pair_ids/`, the **manifest** under `truthfulqaPro/subset_manifest.csv`, and the locked verification table under `results/truthfulqa_pruning_final_verification/`.
+**BibTeX (canonical):** [`paper_assets/references.bib`](paper_assets/references.bib) — use keys `namjoo2026judging` (manuscript; update when you have arXiv/DOI/venue) and `lin2022truthfulqa` (TruthfulQA). In LaTeX, point `\bibliography` / `\addbibresource` at that file (or copy the entries into your main `.bib`).
+
+**GitHub “Cite this repository”:** [`CITATION.cff`](CITATION.cff) (software record + preferred citation to the working paper).
+
+**Feature-balanced subsets:** when you describe the released slices, point readers to the **canonical `pair_ids`** JSON under `truthfulqaPro/pair_ids/`, **`truthfulqaPro/subset_manifest.csv`**, and the locked table under `results/truthfulqa_pruning_final_verification/`.

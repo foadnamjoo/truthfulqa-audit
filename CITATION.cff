@@ -1,6 +1,12 @@
 cff-version: 1.2.0
-message: "If you use this repository, please cite it as follows."
+message: >-
+  If you use this repository, the released subsets, or the audit methodology, please cite the
+  manuscript (preferred) and TruthfulQA when using TruthfulQA-derived data. Canonical BibTeX
+  lives in paper_assets/references.bib; GitHub also reads this file for the “Cite this repository” button.
 title: "TruthfulQA Surface-form Confound Audit"
+abstract: >-
+  Code and data for the manuscript “Judging by the Cover: Auditing Surface-Form Shortcuts in
+  Binary-Choice Truth Benchmarks,” including feature-balanced TruthfulQA subsets and audit artifacts.
 type: software
 authors:
   - family-names: "Namjoo"
@@ -10,6 +16,11 @@ url: "https://github.com/foadnamjoo/truthfulqa-audit"
 license: "MIT"
 version: "v1.0.0"
 date-released: 2026-03-19
+keywords:
+  - "TruthfulQA"
+  - "benchmark audit"
+  - "surface form"
+  - "multiple choice"
 preferred-citation:
   type: article
   title: "Judging by the Cover: Auditing Surface-Form Shortcuts in Binary-Choice Truth Benchmarks"
@@ -19,3 +30,17 @@ preferred-citation:
     - family-names: "Phillips"
       given-names: "Jeff M."
   year: 2026
+  journal: "Working paper"
+  url: "https://github.com/foadnamjoo/truthfulqa-audit"
+references:
+  - type: article
+    title: "TruthfulQA: Measuring How Models Mimic Human Falsehoods"
+    authors:
+      - family-names: Lin
+        given-names: Stephanie
+      - family-names: Hilton
+        given-names: Jacob
+      - family-names: Evans
+        given-names: Owain
+    year: 2022
+    journal: "arXiv preprint arXiv:2109.07958"

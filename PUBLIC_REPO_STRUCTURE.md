@@ -2,7 +2,7 @@
 
 High-level layout: **audits** (frozen CSV inputs), **paper_assets** (LaTeX + figures), **data/subsets** (released subset CSVs), **results** (verification + canonical pair-id JSON), **scripts** (reproducible drivers), **archive** (exploratory / superseded).
 
-**Released audited subsets (paper supplementary):** top-level `truthfulqaPro/` (CSVs, manifest, and `pair_ids/`) — see root `README.md` callout and `truthfulqaPro/README.md`. `data/subsets/README.md` points here.
+**Released audited subsets (paper supplementary):** top-level `truthfulqaPro/` (CSVs, manifest, and `pair_ids/`) — see root `README.md` callout and `truthfulqaPro/README.md`. `data/subsets/README.md` points here. Hugging Face mirror: **`foadnamjoo/TruthfulQAPro`** (same files; Hub repo name differs from the git folder prefix **`truthfulqaPro`**).
 
 ```
 truthfulqa_audit/
@@ -11,6 +11,8 @@ truthfulqa_audit/
 ├── requirements-paper-full.txt
 ├── PUBLIC_REPO_STRUCTURE.md
 ├── PAPER_DEPENDENCY_MAP.md
+├── CITATION.cff                         # GitHub “Cite this repository” + preferred paper citation
+├── paper_assets/references.bib          # Canonical BibTeX (manuscript + TruthfulQA)
 ├── truthfulqaPro/                       # Released subset CSVs + manifest + pair_ids JSON
 ├── audits/                              # Frozen audit + benchmark-impact CSVs
 ├── paper_assets/

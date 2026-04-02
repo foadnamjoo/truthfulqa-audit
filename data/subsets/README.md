@@ -1,6 +1,6 @@
 # Downloadable TruthfulQA audited subsets (feature-balanced protocol)
 
-Released **binary-choice TruthfulQA** slices for the **`feature_balanced`** fixed-kept-count protocol are shipped at the **repository root** under **`truthfulqaPro/`** (CSVs, `subset_manifest.csv`, and `pair_ids/*.json`).
+Released **binary-choice TruthfulQA** slices for the **`feature_balanced`** fixed-kept-count protocol are shipped at the **repository root** under **`truthfulqaPro/`** (CSVs, `subset_manifest.csv`, and `pair_ids/*.json`). The same files are mirrored on Hugging Face as **`foadnamjoo/TruthfulQAPro`** (see `truthfulqaPro/README.md`).
 
 ## Where to download
 

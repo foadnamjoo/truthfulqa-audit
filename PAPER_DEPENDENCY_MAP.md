@@ -4,6 +4,8 @@ This maps the **current paper** (“Judging by the Cover…”) to scripts, froz
 
 Legend: **preserve** = required for paper as written or strongly implied supplementary artifact (feature-balanced subsets + pruning verification). **archive OK** = exploratory only; not cited by the main paper PDF.
 
+**Citations:** canonical BibTeX for the manuscript and TruthfulQA is `paper_assets/references.bib` (keys `namjoo2026judging`, `lin2022truthfulqa`). Repository metadata for GitHub’s cite button is `CITATION.cff`. When you have arXiv/DOI/venue, update both files together.
+
 ---
 
 ## TruthfulQA: audit, null, clean/confounded split, feature ablations

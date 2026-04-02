@@ -1,6 +1,8 @@
-# TruthfulQA feature-balanced reference subsets
+# TruthfulQAPro — feature-balanced reference subsets (GitHub)
 
 These CSVs are **downloadable reference slices** for the `feature_balanced` fixed-kept-count protocol documented in `results/truthfulqa_pruning_final_verification/`.
+
+**Naming:** the Hugging Face dataset is **`foadnamjoo/TruthfulQAPro`**. This repository keeps the directory and file prefix **`truthfulqaPro`** (e.g. `truthfulqaPro/truthfulqaPro_650.csv`) so paths stay stable in the manifest and scripts.
 
 **Audit profile:** **surface10** — ten interpretable lexical and stylistic features (negation, hedging, length, punctuation, …) with grouped cross-validation, as in the main paper. Older releases called this `paper10`; that name is accepted as a legacy alias in scripts only.
 
@@ -9,6 +11,7 @@ These CSVs are **downloadable reference slices** for the `feature_balanced` fixe
 Same pattern as the official TruthfulQA release ([`TruthfulQA.csv`](https://github.com/sylinrl/TruthfulQA/blob/main/TruthfulQA.csv)): stable paths in this repo, with **raw** URLs for scripts and notebooks.
 
 **Repository:** [foadnamjoo/truthfulqa-audit](https://github.com/foadnamjoo/truthfulqa-audit)  
+**Hugging Face (same files + dataset card):** [foadnamjoo/TruthfulQAPro](https://huggingface.co/datasets/foadnamjoo/TruthfulQAPro)  
 **Default branch:** `main` (replace with a **tag or commit SHA** for a permanently frozen URL).
 
 | Artifact | Browse on GitHub | Direct raw CSV / JSON |
