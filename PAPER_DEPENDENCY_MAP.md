@@ -40,7 +40,7 @@ Legend: **preserve** = required for paper as written or strongly implied supplem
 
 | Artifact | Scripts | Inputs | Outputs | Keep / archive |
 |----------|---------|--------|---------|----------------|
-| Feature-balanced audited subsets (300–650 pairs) + locked multi-seed verification | `scripts/export_feature_balanced_subset_csvs.py`; `scripts/truthfulqa_pruning_final_verification.py`; repro: `scripts/check_pruning_final_verification_repro.py`; search utilities: `scripts/search_truthfulqa_pruned_improved.py`, `scripts/truthfulqa_pruning_utils.py`, `scripts/run_truthfulqa_pruning_improved.py`, `scripts/run_pruning_final_verification.py` | `audits/truthfulqa_style_audit.csv`; verification reads prior JSON/CSVs as configured in-repo | `truthfulqaPro/` (CSVs, `subset_manifest.csv`, `pair_ids/`); `results/truthfulqa_pruning_final_verification/`, `figures/truthfulqa_pruning_final_verification/`; LaTeX note `paper_assets/tables/feature_balanced_subset_paragraph.tex` | **preserve** (supplementary; reproducibility) |
+| Feature-balanced audited subsets (300–650 pairs) + locked multi-seed verification | `scripts/export_feature_balanced_subset_csvs.py`; `scripts/truthfulqa_pruning_final_verification.py`; repro: `scripts/check_pruning_final_verification_repro.py`; search utilities: `scripts/search_truthfulqa_pruned_improved.py`, `scripts/truthfulqa_pruning_utils.py` | `audits/truthfulqa_style_audit.csv`; verification reads prior JSON/CSVs as configured in-repo | `truthfulqaPro/` (CSVs, `subset_manifest.csv`, `pair_ids/`); `results/truthfulqa_pruning_final_verification/`, `figures/truthfulqa_pruning_final_verification/`; LaTeX note `paper_assets/tables/feature_balanced_subset_paragraph.tex` | **preserve** (supplementary; reproducibility) |
 
 ---
 
