@@ -7,7 +7,6 @@ truthfulqa_audit/
 ├── README.md
 ├── requirements.txt
 ├── requirements-paper-full.txt
-├── CLEANUP_PLAN.md
 ├── PUBLIC_REPO_STRUCTURE.md
 ├── PAPER_DEPENDENCY_MAP.md
 ├── audits/                              # Frozen audit + benchmark-impact CSVs

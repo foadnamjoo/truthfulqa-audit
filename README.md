@@ -11,7 +11,6 @@ This repository reproduces the **surface-form confound audit** and analyses for 
 **Terminology:** **`surface10`** means the default audit: ten hand-defined lexical/style signals (negation, hedging, length, …). **`surface13`** adds three pair-level columns. CLI and JSON may still accept the legacy names `paper10` / `expanded13`; they normalize to `surface10` / `surface13`.
 
 - **Dependency map:** `PAPER_DEPENDENCY_MAP.md`
-- **What stays public vs archived:** `CLEANUP_PLAN.md`
 
 ---
 
@@ -111,7 +110,7 @@ The locked fixed-kept table includes targets: **650, 595, 550, 500, 450, 400, 35
 
 ## Archive
 
-`archive/` holds **exploratory** subset-search grids, pruning-replay outputs, superseded scripts, and a duplicate notebook copy. It is **not** needed to reproduce the checked-in paper assets if you treat `audits/` and `paper_assets/` as the source of truth; see **`CLEANUP_PLAN.md`**.
+`archive/` holds **exploratory** subset-search grids, pruning-replay outputs, superseded scripts, and a duplicate notebook copy. It is **not** needed to reproduce the checked-in paper assets if you treat `audits/` and `paper_assets/` as the source of truth.
 
 ---
 
