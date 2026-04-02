@@ -30,9 +30,9 @@ Legend: **preserve** = required for paper as written or strongly implied supplem
 
 | Paper artifact | Scripts / workflow | Inputs | Outputs / assets | Keep / archive |
 |----------------|-------------------|--------|------------------|----------------|
-| §5 + Tables 6–9; Figure 4 | `scripts/run_fever_audit.py` (FEVER/FeverSymmetric frozen in-script; BoolQ/HaluEval/VitaminC live) | Optional: `--boolq-data`, `--halueval-data`, `--vitaminc-data`; else HF `datasets` | `audits/fever_audit_results.csv`; `paper_assets/tables/cross_dataset_comparison_table.tex`, `boolq_feature_ablation_table.tex`, `halueval_feature_ablation_table.tex`, `vitaminc_feature_ablation_table.tex`; `paper_assets/figures/fever_audit_auc_comparison.pdf`. (`fever_feature_ablation_table.tex` is checked in for the paper; FEVER/FeverSymmetric rows are frozen constants in-script.) | **preserve** |
+| §5 + Tables 6–9; Figure 4 | `scripts/run_fever_audit.py` (FEVER/FeverSymmetric frozen in-script; BoolQ/HaluEval/VitaminC live) | Optional: `--boolq-data`, `--halueval-data`, `--vitaminc-data`; else HF `datasets` | `audits/fever_audit_results.csv`; `paper_assets/tables/cross_dataset_comparison_table.tex`, `boolq_feature_ablation_table.tex`, `halueval_feature_ablation_table.tex`, `vitaminc_feature_ablation_table.tex`; `paper_assets/fig/fever_audit_auc_comparison.pdf`. (`fever_feature_ablation_table.tex` is checked in for the paper; FEVER/FeverSymmetric rows are frozen constants in-script.) | **preserve** |
 
-**Note:** `make_paper_assets.py` writes to `paper_assets/fig/`; `run_fever_audit.py` writes figures under `paper_assets/figures/`. Both are intentional; LaTeX should `\includegraphics` from the paths you check in.
+**Note:** `make_paper_assets.py` and `run_fever_audit.py` both write to `paper_assets/fig/`. LaTeX should `\includegraphics` from that single directory.
 
 ---
 

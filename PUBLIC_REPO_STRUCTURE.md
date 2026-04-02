@@ -12,8 +12,7 @@ truthfulqa_audit/
 ├── PAPER_DEPENDENCY_MAP.md
 ├── audits/                              # Frozen audit + benchmark-impact CSVs
 ├── paper_assets/
-│   ├── fig/                             # Model-impact figures (make_paper_assets.py)
-│   ├── figures/                         # Cross-dataset figure (run_fever_audit.py)
+│   └── fig/                             # Model-impact + cross-dataset figures
 │   └── tables/                          # LaTeX fragments
 ├── figures/                             # Legacy audit PDFs + pruning-verification figures
 ├── notebooks/
@@ -33,4 +32,4 @@ truthfulqa_audit/
 
 **Naming:** **`surface10`** = default ten-feature surface audit in code (`scripts/truthfulqa_paper_audit.py`); legacy CLI alias `paper10` normalizes to `surface10`. Subset releases live under `data/subsets/truthfulqaPro/`; pair lists under `results/truthfulqaPro/pair_ids/`.
 
-**Note:** `paper_assets/fig/` vs `paper_assets/figures/` is intentional (different generating scripts). Point LaTeX `\includegraphics` at the path you regenerate.
+**Note:** `paper_assets/fig/` is the single canonical figure output directory for both model-impact and cross-dataset plots.

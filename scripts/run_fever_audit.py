@@ -1043,7 +1043,7 @@ def main(argv: list[str] | None = None) -> int:
     root = Path(args.root).resolve()
     audits_dir = root / "audits"
     tbl_dir = root / "paper_assets" / "tables"
-    fig_dir = root / "paper_assets" / "figures"
+    fig_dir = root / "paper_assets" / "fig"
     audits_dir.mkdir(exist_ok=True)
     tbl_dir.mkdir(parents=True, exist_ok=True)
     fig_dir.mkdir(parents=True, exist_ok=True)
