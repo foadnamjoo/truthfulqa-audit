@@ -59,8 +59,8 @@ def parse_args() -> argparse.Namespace:
         default="results/truthfulqa_pruning_final_verification/fixed_kept_count_summary.csv",
         help="Used to fill manifest means (feature_balanced rows).",
     )
-    p.add_argument("--output-dir", type=str, default="data/subsets/truthfulqaPro")
-    p.add_argument("--json-dir", type=str, default="results/truthfulqaPro/pair_ids")
+    p.add_argument("--output-dir", type=str, default="truthfulqaPro")
+    p.add_argument("--json-dir", type=str, default="truthfulqaPro/pair_ids")
     p.add_argument("--holdout-fraction", type=float, default=0.25)
     p.add_argument("--reference-seed", type=int, default=42)
     p.add_argument(
@@ -159,7 +159,7 @@ def main() -> int:
             "canonical_json",
         ]
         subset_name = f"truthfulqaPro_{target}"
-        canonical_rel = f"results/truthfulqaPro/pair_ids/{jname}"
+        canonical_rel = f"truthfulqaPro/pair_ids/{jname}"
 
         with cpath.open("w", newline="", encoding="utf-8") as f:
             w = csv.DictWriter(f, fieldnames=fieldnames)

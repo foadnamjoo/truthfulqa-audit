@@ -2,7 +2,7 @@
 
 High-level layout: **audits** (frozen CSV inputs), **paper_assets** (LaTeX + figures), **data/subsets** (released subset CSVs), **results** (verification + canonical pair-id JSON), **scripts** (reproducible drivers), **archive** (exploratory / superseded).
 
-**Released audited subsets (paper supplementary):** `data/subsets/truthfulqaPro/` and `results/truthfulqaPro/pair_ids/` — see root `README.md` callout and `data/subsets/truthfulqaPro/README.md`.
+**Released audited subsets (paper supplementary):** top-level `truthfulqaPro/` (CSVs, manifest, and `pair_ids/`) — see root `README.md` callout and `truthfulqaPro/README.md`. `data/subsets/README.md` points here.
 
 ```
 truthfulqa_audit/
@@ -11,6 +11,7 @@ truthfulqa_audit/
 ├── requirements-paper-full.txt
 ├── PUBLIC_REPO_STRUCTURE.md
 ├── PAPER_DEPENDENCY_MAP.md
+├── truthfulqaPro/                       # Released subset CSVs + manifest + pair_ids JSON
 ├── audits/                              # Frozen audit + benchmark-impact CSVs
 ├── paper_assets/
 │   └── fig/                             # Model-impact + cross-dataset figures
@@ -22,15 +23,12 @@ truthfulqa_audit/
 ├── data/
 │   ├── predictions/                     # Optional model outputs (may be gitignored)
 │   └── subsets/
-│       ├── README.md                    # Entry point for downloadable subsets
-│       └── truthfulqaPro/               # Feature-balanced CSV exports + subset_manifest.csv
+│       └── README.md                    # Pointer to truthfulqaPro/ at repo root
 ├── results/
-│   ├── truthfulqaPro/
-│   │   └── pair_ids/                    # Canonical pair_id JSON (reference seed 42)
 │   └── truthfulqa_pruning_final_verification/  # Locked multi-seed verification tables
 └── archive/                             # Exploratory grids, old scripts, notebook copy
 ```
 
-**Naming:** **`surface10`** = default ten-feature surface audit in code (`scripts/truthfulqa_paper_audit.py`); legacy CLI alias `paper10` normalizes to `surface10`. Subset releases live under `data/subsets/truthfulqaPro/`; pair lists under `results/truthfulqaPro/pair_ids/`.
+**Naming:** **`surface10`** = default ten-feature surface audit in code (`scripts/truthfulqa_paper_audit.py`); legacy CLI alias `paper10` normalizes to `surface10`. Subset releases and canonical `pair_id` JSON live under top-level **`truthfulqaPro/`**.
 
 **Note:** `paper_assets/fig/` is the single canonical figure output directory for both model-impact and cross-dataset plots.
