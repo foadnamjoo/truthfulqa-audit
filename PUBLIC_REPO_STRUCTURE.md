@@ -2,6 +2,8 @@
 
 High-level layout: **audits** (frozen CSV inputs), **paper_assets** (LaTeX + figures), **data/subsets** (released subset CSVs), **results** (verification + canonical pair-id JSON), **scripts** (reproducible drivers), **archive** (exploratory / superseded).
 
+**Released audited subsets (paper supplementary):** `data/subsets/truthfulqaPro/` and `results/truthfulqaPro/pair_ids/` — see root `README.md` callout and `data/subsets/truthfulqaPro/README.md`.
+
 ```
 truthfulqa_audit/
 ├── README.md

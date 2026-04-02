@@ -1,5 +1,7 @@
 # Downloadable TruthfulQA audited subsets (feature-balanced protocol)
 
+**On GitHub:** browse [`truthfulqaPro/`](https://github.com/foadnamjoo/truthfulqa-audit/tree/main/data/subsets/truthfulqaPro) (CSVs + `subset_manifest.csv`) and [`results/truthfulqaPro/pair_ids/`](https://github.com/foadnamjoo/truthfulqa-audit/tree/main/results/truthfulqaPro/pair_ids) (canonical JSON).
+
 Release-ready **binary-choice TruthfulQA** slices for the **`feature_balanced`** fixed-kept-count protocol: same **surface10** surface-form audit (ten interpretable features; legacy alias `paper10`) and grouped-CV setup as the main paper, with sizes **300–650** pairs (300, 350, 400, 450, 500, 550, 595, 650).
 
 ## Where to download

@@ -1,5 +1,7 @@
 # TruthfulQA audit — “Judging by the Cover…”
 
+> **truthfulqaPro (released subsets):** audited binary-choice TruthfulQA CSVs and manifest → [`data/subsets/truthfulqaPro/`](https://github.com/foadnamjoo/truthfulqa-audit/tree/main/data/subsets/truthfulqaPro). Canonical `pair_id` JSON (split seed 42) → [`results/truthfulqaPro/pair_ids/`](https://github.com/foadnamjoo/truthfulqa-audit/tree/main/results/truthfulqaPro/pair_ids). Raw download URLs → [`data/subsets/truthfulqaPro/README.md`](https://github.com/foadnamjoo/truthfulqa-audit/blob/main/data/subsets/truthfulqaPro/README.md).
+
 This repository reproduces the **surface-form confound audit** and analyses for the paper, including:
 
 - **TruthfulQA (binary choice):** grouped CV, pair-structured null, clean vs confounded pairs, **feature ablations** over ten interpretable surface features (**`surface10`** audit; legacy alias `paper10` in older scripts).
