@@ -12,8 +12,10 @@ version: "v1.0.0"
 date-released: 2026-03-19
 preferred-citation:
   type: article
-  title: "Surface-Form Shortcuts in Binary-Choice TruthfulQA: Detectable and Model-Dependent"
+  title: "Judging by the Cover: Auditing Surface-Form Shortcuts in Binary-Choice Truth Benchmarks"
   authors:
     - family-names: "Namjoo"
       given-names: "Foad"
+    - family-names: "Phillips"
+      given-names: "Jeff M."
   year: 2026
