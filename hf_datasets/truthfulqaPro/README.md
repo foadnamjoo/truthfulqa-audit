@@ -11,6 +11,26 @@ tags:
 pretty_name: TruthfulQAPro (feature-balanced subsets)
 size_categories:
   - 1K<n<10K
+configs:
+  - config_name: manifest
+    data_files: "subset_manifest.csv"
+    default: true
+  - config_name: subset_300
+    data_files: "truthfulqaPro_300.csv"
+  - config_name: subset_350
+    data_files: "truthfulqaPro_350.csv"
+  - config_name: subset_400
+    data_files: "truthfulqaPro_400.csv"
+  - config_name: subset_450
+    data_files: "truthfulqaPro_450.csv"
+  - config_name: subset_500
+    data_files: "truthfulqaPro_500.csv"
+  - config_name: subset_550
+    data_files: "truthfulqaPro_550.csv"
+  - config_name: subset_595
+    data_files: "truthfulqaPro_595.csv"
+  - config_name: subset_650
+    data_files: "truthfulqaPro_650.csv"
 ---
 
 # TruthfulQAPro
@@ -35,25 +55,22 @@ size_categories:
 
 ## How to load
 
-**Important:** This repo mixes several CSV **schemas** (one-row-per-size manifest vs one-row-per-question subset exports). If you call `load_dataset("foadnamjoo/TruthfulQAPro")` **without** `data_files`, the library may **merge every `*.csv`** at the root into one table. Columns that exist only in the manifest then show up as **null** on all rows coming from `truthfulqaPro_*.csv` (and the Hub dataset viewer can look like “duplicate” `truthfulqaPro_300` rows with nulls). **Do not delete those from the files—they are not bad rows in `subset_manifest.csv`; they are an artifact of loading the wrong grouping.**
-
-Always pass the file(s) you want explicitly:
+The dataset card YAML defines **separate Hub configs** (`manifest`, `subset_300`, …) so each split uses **one CSV schema**. That fixes the Hub **cast error** and the bogus “duplicate `truthfulqaPro_300` + nulls” preview from merging the manifest with MC exports.
 
 ```python
 from datasets import load_dataset
 
-# One subset export (MC rows only):
-ds = load_dataset("foadnamjoo/TruthfulQAPro", data_files="truthfulqaPro_650.csv")
+# Manifest: one row per K (default config in the viewer).
+manifest = load_dataset("foadnamjoo/TruthfulQAPro", "manifest")
 
-# Manifest only (one row per K; no null metrics):
-manifest = load_dataset("foadnamjoo/TruthfulQAPro", data_files="subset_manifest.csv")
+# One MC subset (replace with subset_350, subset_400, … as needed):
+ds = load_dataset("foadnamjoo/TruthfulQAPro", "subset_650")
 
-# Or pandas from raw URL (manifest):
-# import pandas as pd
-# pd.read_csv("https://huggingface.co/datasets/foadnamjoo/TruthfulQAPro/resolve/main/subset_manifest.csv")
+# Equivalent without configs (still valid):
+# load_dataset("foadnamjoo/TruthfulQAPro", data_files="subset_manifest.csv")
 ```
 
-If you already built a combined table, keep only manifest rows with **`dropna(subset=["target_kept_count"])`** or **`query("target_kept_count.notna()")`** instead of editing the CSVs.
+**JSON** pair lists under `pair_ids/` are not part of these configs; download from the **Files** tab or with `huggingface_hub.hf_hub_download`.
 
 JSON pair lists are plain files under `pair_ids/` (not tabular); download with `hf_hub` or the Hub file browser.
 
