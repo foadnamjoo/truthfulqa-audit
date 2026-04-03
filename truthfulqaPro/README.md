@@ -48,9 +48,9 @@ The Hub dataset card lists **separate configs** (`manifest`, `subset_300`, …):
 
 ## Files
 
-- `truthfulqaPro_<K>.csv` — row export for target size *K* (300, 350, …, 650).
-- `subset_manifest.csv` — *K*, paths, and verification means from the locked summary CSV.
-- Canonical pair-ID JSON: `truthfulqaPro/pair_ids/pair_ids_<K>_seed42.json`.
+- `truthfulqaPro_<K>.csv` — one row per selected MC pair. **Columns:** `pair_id` (index into upstream MC `TruthfulQA.csv`), TruthfulQA MC fields (`Type` … `Best Incorrect Answer`), `style_violation` (from `audits/truthfulqa_style_audit.csv`), `subset_name` (e.g. `truthfulqaPro_650`). **Not repeated on each row** (see manifest + JSON): target *K*, selection method, split seed, `TruthfulQA.csv` path, canonical JSON path, verification means.
+- `subset_manifest.csv` — one row per *K*: paths, `reference_split_seed`, held-out AUC mean/std (multi-seed verification), confounded fraction, clean-pair count, `paper_role`.
+- `pair_ids/pair_ids_<K>_seed42.json` — canonical ordered `pair_ids`, `selection_method`, `audit_profile`, split counts, verification-note text, `source_dataset`, etc.
 
 ## Regenerate
 

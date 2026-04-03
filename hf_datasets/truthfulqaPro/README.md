@@ -48,7 +48,7 @@ configs:
 |------|-------------|
 | **Base data** | TruthfulQA multiple-choice rows (same examples as upstream; only subset membership differs). |
 | **Audit profile** | **surface10** — ten interpretable lexical/stylistic features with grouped cross-validation (legacy alias `paper10` in scripts). |
-| **CSVs** | `truthfulqaPro_<K>.csv` for *K* ∈ {300, 350, 400, 450, 500, 550, 595, 650}. |
+| **CSVs** | `truthfulqaPro_<K>.csv` — `pair_id`, MC columns, `style_violation`, `subset_name`; slice metadata in manifest + `pair_ids/*.json`. |
 | **Manifest** | `subset_manifest.csv` — *K*, paths, verification means from the locked summary. |
 | **Pair lists** | `pair_ids/pair_ids_<K>_seed42.json` — canonical pair IDs for seed 42. |
 | **Ordering** | Length-quartile stratified shuffle, then sort by negation/length gap/id, then keep the first *K* pairs (`feature_balanced_length_stratified_prefix`). |
@@ -70,9 +70,7 @@ ds = load_dataset("foadnamjoo/TruthfulQAPro", "subset_650")
 # load_dataset("foadnamjoo/TruthfulQAPro", data_files="subset_manifest.csv")
 ```
 
-**JSON** pair lists under `pair_ids/` are not part of these configs; download from the **Files** tab or with `huggingface_hub.hf_hub_download`.
-
-JSON pair lists are plain files under `pair_ids/` (not tabular); download with `hf_hub` or the Hub file browser.
+**JSON** under `pair_ids/` is not a Hub table config — download from **Files** or `huggingface_hub.hf_hub_download`.
 
 ## Licenses
 

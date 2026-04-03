@@ -13,7 +13,7 @@ Summary:
 - **Canonical `pair_id` JSON** (reference split seed 42): `truthfulqaPro/pair_ids/pair_ids_<K>_seed42.json`
 - **Locked multi-seed verification outputs:** `results/truthfulqa_pruning_final_verification/` (see root `README.md`)
 
-Each CSV is self-contained (TruthfulQA-style columns plus audit metadata); you do not need a separate `TruthfulQA.csv` to evaluate the subset.
+Each **subset CSV** has the MC fields and `style_violation` for every kept pair (no separate `TruthfulQA.csv` needed to run the benchmark). **Slice-level** metadata (*K*, selection method, seed, paths, verification means) is in **`subset_manifest.csv`** and **`pair_ids/*.json`**, not duplicated on every row.
 
 ## Regenerate
 

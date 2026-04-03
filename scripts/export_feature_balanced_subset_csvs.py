@@ -147,16 +147,14 @@ def main() -> int:
 
         csv_name = f"truthfulqaPro_{target}.csv"
         cpath = out_dir / csv_name
+        # Per-row file: MC content + audit flag + subset label only. Fixed-per-slice fields
+        # (K, selection_method, split seed, paths, verification stats) → subset_manifest.csv
+        # and pair_ids/*.json — avoids repeating identical values on hundreds of rows.
         fieldnames = [
             "pair_id",
             *BASE_COLS,
             "style_violation",
             "subset_name",
-            "subset_size",
-            "selection_method",
-            "reference_split_seed",
-            "source_dataset",
-            "canonical_json",
         ]
         subset_name = f"truthfulqaPro_{target}"
         canonical_rel = f"truthfulqaPro/pair_ids/{jname}"
@@ -172,11 +170,6 @@ def main() -> int:
                         **{c: row[c] for c in BASE_COLS},
                         "style_violation": int(style[pid]),
                         "subset_name": subset_name,
-                        "subset_size": target,
-                        "selection_method": meta["selection_method"],
-                        "reference_split_seed": args.reference_seed,
-                        "source_dataset": "TruthfulQA.csv",
-                        "canonical_json": canonical_rel,
                     }
                 )
 
