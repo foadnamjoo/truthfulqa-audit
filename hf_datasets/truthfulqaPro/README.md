@@ -35,13 +35,25 @@ size_categories:
 
 ## How to load
 
+**Important:** This repo mixes several CSV **schemas** (one-row-per-size manifest vs one-row-per-question subset exports). If you call `load_dataset("foadnamjoo/TruthfulQAPro")` **without** `data_files`, the library may **merge every `*.csv`** at the root into one table. Columns that exist only in the manifest then show up as **null** on all rows coming from `truthfulqaPro_*.csv` (and the Hub dataset viewer can look like “duplicate” `truthfulqaPro_300` rows with nulls). **Do not delete those from the files—they are not bad rows in `subset_manifest.csv`; they are an artifact of loading the wrong grouping.**
+
+Always pass the file(s) you want explicitly:
+
 ```python
 from datasets import load_dataset
 
+# One subset export (MC rows only):
 ds = load_dataset("foadnamjoo/TruthfulQAPro", data_files="truthfulqaPro_650.csv")
-# Or load the manifest:
+
+# Manifest only (one row per K; no null metrics):
 manifest = load_dataset("foadnamjoo/TruthfulQAPro", data_files="subset_manifest.csv")
+
+# Or pandas from raw URL (manifest):
+# import pandas as pd
+# pd.read_csv("https://huggingface.co/datasets/foadnamjoo/TruthfulQAPro/resolve/main/subset_manifest.csv")
 ```
+
+If you already built a combined table, keep only manifest rows with **`dropna(subset=["target_kept_count"])`** or **`query("target_kept_count.notna()")`** instead of editing the CSVs.
 
 JSON pair lists are plain files under `pair_ids/` (not tabular); download with `hf_hub` or the Hub file browser.
 

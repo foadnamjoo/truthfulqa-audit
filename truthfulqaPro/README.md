@@ -36,6 +36,10 @@ url = "https://raw.githubusercontent.com/foadnamjoo/truthfulqa-audit/main/truthf
 df = pd.read_csv(url)
 ```
 
+## Hugging Face / `datasets` gotcha
+
+The Hub dataset ships **both** `subset_manifest.csv` and `truthfulqaPro_<K>.csv`. Loading the dataset **without** `data_files=...` can **merge all root CSVs** into one table, so manifest-only columns look **null** on question-level rows (not a problem in the manifest file itself). Use `data_files="subset_manifest.csv"` for the manifest, or `data_files="truthfulqaPro_650.csv"` (etc.) for a single subset.
+
 ## What is fixed
 
 - **Examples** are original TruthfulQA rows; only membership changes.
