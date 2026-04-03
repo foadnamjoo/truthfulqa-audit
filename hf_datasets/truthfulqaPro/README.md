@@ -73,7 +73,7 @@ The Hub YAML `license: apache-2.0` reflects the **upstream** dataset license; se
   author = {Namjoo, Foad and Phillips, Jeff M.},
   year   = {2026},
   url    = {https://github.com/foadnamjoo/truthfulqa-audit},
-  note   = {Manuscript in preparation. Update this entry when a DOI, arXiv ID, or venue is available.}
+  note   = {Manuscript in preparation.}
 }
 ```
 

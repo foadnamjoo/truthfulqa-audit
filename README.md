@@ -118,7 +118,7 @@ The locked fixed-kept table includes targets: **650, 595, 550, 500, 450, 400, 35
 
 ## Citation
 
-**BibTeX (canonical):** [`paper_assets/references.bib`](paper_assets/references.bib) — use keys `namjoo2026judging` (manuscript; update when you have arXiv/DOI/venue) and `lin2022truthfulqa` (TruthfulQA). In LaTeX, point `\bibliography` / `\addbibresource` at that file (or copy the entries into your main `.bib`).
+**BibTeX (canonical):** [`paper_assets/references.bib`](paper_assets/references.bib) — use keys `namjoo2026judging` (manuscript) and `lin2022truthfulqa` (TruthfulQA). In LaTeX, point `\bibliography` / `\addbibresource` at that file (or copy the entries into your main `.bib`).
 
 **GitHub “Cite this repository”:** [`CITATION.cff`](CITATION.cff) (software record + preferred citation to the working paper).
 
