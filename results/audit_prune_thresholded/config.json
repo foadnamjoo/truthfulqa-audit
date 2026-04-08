@@ -1,0 +1,18 @@
+{
+  "truthfulqa_csv": "TruthfulQA.csv",
+  "audit_csv": "audits/truthfulqa_style_audit.csv",
+  "seed": 42,
+  "baseline_prefix_seed": 42,
+  "thresholds": [
+    0.6,
+    0.57,
+    0.55,
+    0.53
+  ],
+  "strategies": [
+    "confidence",
+    "imbalance"
+  ],
+  "min_pairs_for_cv": 5,
+  "evaluator": "audit_subset_evaluator.evaluate_subset_grouped_cv + search_truthfulqa_pruned_improved._ans_frame"
+}

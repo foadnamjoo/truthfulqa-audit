@@ -1,0 +1,13 @@
+threshold_type,threshold_value,method,strategy,retained_pairs,retained_fraction,grouped_cv_accuracy,grouped_cv_auc,dominates_current_best,dominates_fixed_prefix
+accuracy,0.6,fixed_prefix_baseline,feature_balanced_prefix,545,0.689873417721519,0.5972477064220183,0.6048026260415789,False,False
+accuracy,0.6,current_audit_prune,imbalance,637,0.8063291139240506,0.5910518053375197,0.5923505738486676,False,True
+accuracy,0.6,improved_search_best,imbalance,653,0.8265822784810126,0.5980091883614089,0.6410828570691519,True,True
+accuracy,0.57,fixed_prefix_baseline,feature_balanced_prefix,452,0.5721518987341773,0.5696902654867256,0.5500748884015977,False,False
+accuracy,0.57,current_audit_prune,imbalance,598,0.7569620253164557,0.568561872909699,0.5684919631771457,False,True
+accuracy,0.57,improved_search_best,hybrid_a50,613,0.7759493670886076,0.5693311582381729,0.577254909266065,True,True
+accuracy,0.55,fixed_prefix_baseline,feature_balanced_prefix,397,0.5025316455696203,0.5491183879093199,0.5527539670957877,False,False
+accuracy,0.55,current_audit_prune,imbalance,534,0.6759493670886076,0.5327715355805244,0.5297836973446114,False,True
+accuracy,0.55,improved_search_best,hybrid_a50,580,0.7341772151898734,0.55,0.5570734244946492,True,True
+accuracy,0.53,fixed_prefix_baseline,feature_balanced_prefix,318,0.40253164556962023,0.529874213836478,0.5246380681143942,False,False
+accuracy,0.53,current_audit_prune,none,0,,,,False,False
+accuracy,0.53,improved_search_best,hybrid_a25,565,0.7151898734177216,0.5265486725663717,0.548197979481557,False,True

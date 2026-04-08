@@ -1,0 +1,23 @@
+{
+  "truthfulqa_csv": "TruthfulQA.csv",
+  "audit_csv": "audits/truthfulqa_style_audit.csv",
+  "seed": 42,
+  "baseline_prefix_seed": 42,
+  "thresholds_acc": [
+    0.6,
+    0.57,
+    0.55,
+    0.53
+  ],
+  "restarts": 2,
+  "top_k_remove": 5,
+  "hybrid_alphas": [
+    0.25,
+    0.5,
+    0.75
+  ],
+  "enable_swap": true,
+  "beam_width": 2,
+  "beam_depth": 1,
+  "evaluator": "grouped CV accuracy primary; AUC secondary"
+}
