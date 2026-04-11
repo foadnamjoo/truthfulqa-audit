@@ -1,0 +1,15 @@
+subset_name,subset_type,n_pairs_evaluated,grouped_cv_auc,grouped_cv_accuracy,lr_seed,notes
+full_truthfulqa_local_csv,reference_full,790,0.702536452491588,0.6930379746835443,42,Same pipeline as anchor; paper table full-model AUC≈0.713 may differ slightly.
+audit_prune_tau0530_imbalance,reference_audited_subset,534,0.5297836973446114,0.5327715355805244,42,From truthfulqaAuditPrune/pair_ids/pair_ids_tau0530_imbalance_seed42.json
+tinyTruthfulQA_hf_matched_to_local,irt_anchor_matched,95,0.6895290858725761,0.7157894736842105,42,HF validation n=100; unique local matches=95; see anchor_match_report.csv
+random100_control_00,random_control,100,0.69345,0.715,42,rng_seed=42
+random100_control_01,random_control,100,0.6950500000000001,0.725,42,rng_seed=43
+random100_control_02,random_control,100,0.73455,0.675,42,rng_seed=44
+random100_control_03,random_control,100,0.6656500000000001,0.7,42,rng_seed=45
+random100_control_04,random_control,100,0.66575,0.67,42,rng_seed=46
+random100_control_05,random_control,100,0.6652500000000001,0.695,42,rng_seed=47
+random100_control_06,random_control,100,0.7419,0.735,42,rng_seed=48
+random100_control_07,random_control,100,0.6691000000000001,0.685,42,rng_seed=49
+random100_control_08,random_control,100,0.65615,0.705,42,rng_seed=50
+random100_control_09,random_control,100,0.70715,0.71,42,rng_seed=51
+random100_control_aggregate,random_control_aggregate,100,0.6894,0.7015,42,"mean±std over 10 controls; auc_std=0.030519 acc_std=0.020956; rng_seeds=[42, 43, 44, 45, 46, 47, 48, 49, 50, 51]"

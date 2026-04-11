@@ -1,0 +1,30 @@
+{
+  "hf_dataset": "tinyBenchmarks/tinyTruthfulQA",
+  "truthfulqa_csv": "TruthfulQA.csv",
+  "audit_csv": "audits/truthfulqa_style_audit.csv",
+  "lr_seed": 42,
+  "n_hf_validation_rows": 100,
+  "n_matched_anchor_pair_ids": 95,
+  "n_unmatched_hf_rows": 4,
+  "n_duplicate_hf_to_same_pair_id": 1,
+  "random_control_runs": 10,
+  "random_subset_size": 100,
+  "random_rng_seeds": [
+    42,
+    43,
+    44,
+    45,
+    46,
+    47,
+    48,
+    49,
+    50,
+    51
+  ],
+  "random_control_auc_mean": 0.6894,
+  "random_control_auc_std": 0.0305185189679971,
+  "random_control_acc_mean": 0.7015,
+  "random_control_acc_std": 0.020956303745333183,
+  "paper_feature_table_full_auc": 0.713,
+  "evaluator": "audit_subset_evaluator.evaluate_subset_grouped_cv + _ans_frame"
+}
