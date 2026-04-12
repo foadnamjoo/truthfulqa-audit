@@ -2,6 +2,9 @@
 """
 Reusable grouped CV audit metrics on a retained pair subset.
 
+Flow for each evaluation: ``_ans_frame`` (one row per answer) → feature matrix ``X``,
+labels ``y``, group ids ``g`` → grouped k-fold OOF probabilities → AUC / accuracy.
+
 Uses the same answer-level frame and classifier pipeline as
 ``search_truthfulqa_pruned_improved._auc_pairs`` (surface10-style features).
 """
@@ -44,10 +47,12 @@ FEATURE_COLS: List[str] = [
 
 
 def _lr_pipeline(seed: int) -> Pipeline:
+    """Standardized features + L2 logistic regression (matches pruning search code)."""
     return make_pipeline(StandardScaler(), LogisticRegression(max_iter=1000, random_state=seed))
 
 
-def _ans_xyg(df_pairs: pd.DataFrame) -> Tuple[np.ndarray, np.ndarray, np.ndarray, pd.DataFrame]:
+def _answer_frame_xyg(df_pairs: pd.DataFrame) -> Tuple[np.ndarray, np.ndarray, np.ndarray, pd.DataFrame]:
+    """Stack surface features, binary label, pair group id, and the full answer-level frame."""
     ans = _ans_frame(df_pairs)
     X = ans[FEATURE_COLS].to_numpy()
     y = ans["label"].to_numpy()
@@ -56,6 +61,7 @@ def _ans_xyg(df_pairs: pd.DataFrame) -> Tuple[np.ndarray, np.ndarray, np.ndarray
 
 
 def _grouped_oof_positive_proba(X: np.ndarray, y: np.ndarray, g: np.ndarray, seed: int) -> np.ndarray:
+    """Out-of-fold P(label=1) with GroupKFold so both answers of a pair stay in train or test together."""
     pipe = _lr_pipeline(seed)
     return cross_val_predict(pipe, X, y, cv=GroupKFold(n_splits=CV_SPLITS), groups=g, method="predict_proba")[:, 1]
 
@@ -99,7 +105,7 @@ def evaluate_subset_grouped_cv(df_pairs: pd.DataFrame, seed: int) -> SubsetAudit
             n_pairs=n_pairs,
             n_answer_rows=2 * n_pairs,
         )
-    X, y, g, _ = _ans_xyg(df_pairs)
+    X, y, g, _ = _answer_frame_xyg(df_pairs)
     proba = _grouped_oof_positive_proba(X, y, g, seed)
     auc = float(roc_auc_score(y, proba))
     acc = float(np.mean((proba >= 0.5) == y))
@@ -126,7 +132,7 @@ def evaluate_subset_grouped_cv_detailed(df_pairs: pd.DataFrame, seed: int) -> Su
             ),
             answer_frame_with_oof=empty_ans,
         )
-    X, y, g, ans = _ans_xyg(df_pairs)
+    X, y, g, ans = _answer_frame_xyg(df_pairs)
     ans = ans.copy()
     proba = _grouped_oof_positive_proba(X, y, g, seed)
     ans["proba"] = proba
@@ -149,7 +155,7 @@ def oof_pair_confidence_scores(df_pairs: pd.DataFrame, seed: int) -> Dict[int, f
     """
     if len(df_pairs) < CV_SPLITS:
         return {}
-    X, y, g, ans = _ans_xyg(df_pairs)
+    X, y, g, ans = _answer_frame_xyg(df_pairs)
     ans = ans.copy()
     proba = _grouped_oof_positive_proba(X, y, g, seed)
     ans["proba"] = proba
@@ -171,7 +177,7 @@ def oof_pair_imbalance_scores(df_pairs: pd.DataFrame, seed: int) -> Dict[int, fl
     _ = seed  # API parity with confidence scorer; deterministic given retained pairs
     if len(df_pairs) < CV_SPLITS:
         return {}
-    X, y, _, ans = _ans_xyg(df_pairs)
+    X, y, _, ans = _answer_frame_xyg(df_pairs)
     mu_pos = X[y == 1].mean(axis=0)
     mu_neg = X[y == 0].mean(axis=0)
     gap = mu_pos - mu_neg

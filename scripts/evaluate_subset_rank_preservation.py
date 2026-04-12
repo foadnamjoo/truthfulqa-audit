@@ -17,6 +17,7 @@ from __future__ import annotations
 import argparse
 import csv
 import json
+import math
 import sys
 from collections import defaultdict
 from pathlib import Path
@@ -187,6 +188,36 @@ def collect_subset_jobs(root: Path, manifest_paths: List[Path]) -> List[Dict[str
     return jobs
 
 
+def _subset_summary_row(
+    job: Dict[str, Any],
+    *,
+    subset_name: str,
+    retained_pairs: int,
+    retained_fraction: float,
+    spearman: float,
+    kendall: float,
+    n_models_correlation: int,
+    intersection_n: int,
+    eval_pair_count: int,
+    error: str,
+) -> Dict[str, Any]:
+    """One row for ``summary_table.csv``; same keys for success and error paths."""
+    return {
+        "subset_name": subset_name,
+        "subset_family": job["subset_family"],
+        "retained_pairs": retained_pairs,
+        "retained_fraction": retained_fraction,
+        "grouped_cv_auc": job["grouped_cv_auc"],
+        "grouped_cv_accuracy": job["grouped_cv_accuracy"],
+        "spearman_correlation": spearman,
+        "kendall_tau": kendall,
+        "n_models_correlation": n_models_correlation,
+        "intersection_n": intersection_n,
+        "eval_pair_count": eval_pair_count,
+        "error": error,
+    }
+
+
 def correlations(
     acc_full: List[float],
     acc_sub: List[float],
@@ -238,6 +269,8 @@ def parse_args() -> argparse.Namespace:
 def main() -> int:
     args = parse_args()
     root = Path(args.root).resolve()
+
+    # Row count from audit CSV defines valid pair_id range for predictions.
     audit_path = (root / args.audit_csv).resolve()
     if not audit_path.is_file():
         raise SystemExit(f"Missing audit CSV: {audit_path}")
@@ -291,43 +324,39 @@ def main() -> int:
         name = job["subset_name"]
         try:
             pids = load_pair_ids_from_json(root, job["canonical_json"])
-        except Exception as e:
+        except (OSError, ValueError, KeyError, json.JSONDecodeError) as e:
             rp = job["retained_pairs_manifest"] or 0
             summary_rows.append(
-                {
-                    "subset_name": name,
-                    "subset_family": job["subset_family"],
-                    "retained_pairs": rp,
-                    "retained_fraction": (rp / max(1, n_pairs)) if rp else float("nan"),
-                    "grouped_cv_auc": job["grouped_cv_auc"],
-                    "grouped_cv_accuracy": job["grouped_cv_accuracy"],
-                    "spearman_correlation": float("nan"),
-                    "kendall_tau": float("nan"),
-                    "n_models_correlation": 0,
-                    "intersection_n": len(intersection_list),
-                    "eval_pair_count": 0,
-                    "error": str(e),
-                }
+                _subset_summary_row(
+                    job,
+                    subset_name=name,
+                    retained_pairs=int(rp),
+                    retained_fraction=(rp / max(1, n_pairs)) if rp else float("nan"),
+                    spearman=float("nan"),
+                    kendall=float("nan"),
+                    n_models_correlation=0,
+                    intersection_n=len(intersection_list),
+                    eval_pair_count=0,
+                    error=str(e),
+                )
             )
             continue
 
         subset_ids_sorted = sorted(set(pids) & set(intersection_list))
         if not subset_ids_sorted:
             summary_rows.append(
-                {
-                    "subset_name": name,
-                    "subset_family": job["subset_family"],
-                    "retained_pairs": len(pids),
-                    "retained_fraction": len(pids) / max(1, n_pairs),
-                    "grouped_cv_auc": job["grouped_cv_auc"],
-                    "grouped_cv_accuracy": job["grouped_cv_accuracy"],
-                    "spearman_correlation": float("nan"),
-                    "kendall_tau": float("nan"),
-                    "n_models_correlation": 0,
-                    "intersection_n": len(intersection_list),
-                    "eval_pair_count": 0,
-                    "error": "empty subset after intersection with model coverage",
-                }
+                _subset_summary_row(
+                    job,
+                    subset_name=name,
+                    retained_pairs=len(pids),
+                    retained_fraction=len(pids) / max(1, n_pairs),
+                    spearman=float("nan"),
+                    kendall=float("nan"),
+                    n_models_correlation=0,
+                    intersection_n=len(intersection_list),
+                    eval_pair_count=0,
+                    error="empty subset after intersection with model coverage",
+                )
             )
             continue
 
@@ -337,12 +366,12 @@ def main() -> int:
 
         for m in models:
             af = mean_accuracy_on_ids(merged, m, intersection_list)
-            asub = mean_accuracy_on_ids(merged, m, subset_ids_sorted)
-            if af is None or asub is None:
+            acc_sub_m = mean_accuracy_on_ids(merged, m, subset_ids_sorted)
+            if af is None or acc_sub_m is None:
                 continue
             model_order.append(m)
             acc_full_list.append(af)
-            acc_sub_list.append(asub)
+            acc_sub_list.append(acc_sub_m)
             breakdown_rows.append(
                 {
                     "subset_name": name,
@@ -350,7 +379,7 @@ def main() -> int:
                     "model_name": m,
                     "prediction_source": f"merged:{args.pred_glob};within_file=first_wins;across_files=last_wins",
                     "acc_full_intersection": af,
-                    "acc_subset": asub,
+                    "acc_subset": acc_sub_m,
                     "n_pairs_full_eval": len(intersection_list),
                     "n_pairs_subset_eval": len(subset_ids_sorted),
                     "intersection_n_global": len(intersection_list),
@@ -363,25 +392,23 @@ def main() -> int:
             rk = len(pids)
 
         summary_rows.append(
-            {
-                "subset_name": name,
-                "subset_family": job["subset_family"],
-                "retained_pairs": len(pids),
-                "retained_fraction": len(pids) / max(1, n_pairs),
-                "grouped_cv_auc": job["grouped_cv_auc"],
-                "grouped_cv_accuracy": job["grouped_cv_accuracy"],
-                "spearman_correlation": sp,
-                "kendall_tau": kd,
-                "n_models_correlation": len(model_order),
-                "intersection_n": len(intersection_list),
-                "eval_pair_count": len(subset_ids_sorted),
-                "error": "",
-            }
+            _subset_summary_row(
+                job,
+                subset_name=name,
+                retained_pairs=len(pids),
+                retained_fraction=len(pids) / max(1, n_pairs),
+                spearman=sp,
+                kendall=kd,
+                n_models_correlation=len(model_order),
+                intersection_n=len(intersection_list),
+                eval_pair_count=len(subset_ids_sorted),
+                error="",
+            )
         )
 
-        if kd == kd and kd > best_kendall[0]:
+        if math.isfinite(kd) and kd > best_kendall[0]:
             best_kendall = (kd, name)
-        if sp == sp and sp > best_spearman[0]:
+        if math.isfinite(sp) and sp > best_spearman[0]:
             best_spearman = (sp, name)
 
     summ_path = out_dir / "summary_table.csv"

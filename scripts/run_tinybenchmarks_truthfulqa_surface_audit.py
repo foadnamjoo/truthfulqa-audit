@@ -104,38 +104,16 @@ def _match_status_counts(rows: List[Dict[str, Any]]) -> Tuple[int, int]:
     return u, d
 
 
-def main() -> int:
-    p = argparse.ArgumentParser(description=__doc__)
-    p.add_argument("--root", type=str, default=".", help="Repository root")
-    p.add_argument("--truthfulqa-csv", type=str, default="TruthfulQA.csv")
-    p.add_argument("--audit-csv", type=str, default="audits/truthfulqa_style_audit.csv")
-    p.add_argument("--lr-seed", type=int, default=42)
-    p.add_argument(
-        "--tau053-pair-json",
-        type=str,
-        default="truthfulqaAuditPrune/pair_ids/pair_ids_tau0530_imbalance_seed42.json",
-        help="Reference audited subset pair_ids JSON",
-    )
-    p.add_argument("--n-random-controls", type=int, default=10)
-    p.add_argument("--random-subset-size", type=int, default=100)
-    p.add_argument("--random-base-seed", type=int, default=42)
-    args = p.parse_args()
+def build_hf_match_report(
+    hf_ds: Any,
+    idx: Dict[Tuple[str, str], List[Tuple[int, str]]],
+) -> Tuple[List[Dict[str, Any]], List[int]]:
+    """
+    Walk HF validation rows, map each to a local ``example_id`` (pair_id) when possible.
 
-    root = Path(args.root).resolve()
-    out_dir = root / "results" / "tinybenchmarks_audit"
-    out_dir.mkdir(parents=True, exist_ok=True)
-
-    tq_path = (root / args.truthfulqa_csv).resolve()
-    audit_path = (root / args.audit_csv).resolve()
-    full_df = load_candidates_with_features(tq_path, audit_path)
-    n_full = len(full_df)
-
-    hf_ds = load_hf_validation()
-    if len(hf_ds) == 0:
-        raise SystemExit(f"HF dataset {HF_DATASET_ID!r} split {HF_VALIDATION_SPLIT!r} is empty.")
-    tq = pd.read_csv(tq_path)
-    idx = build_answer_index(tq)
-
+    First HF row that maps to a given pair_id is ``matched``; later HF rows that map to the
+    same pair_id are ``duplicate_pair_id_skipped`` so anchors stay unique for evaluation.
+    """
     match_rows: List[Dict[str, Any]] = []
     anchor_ids: List[int] = []
     seen_ids: Set[int] = set()
@@ -160,9 +138,47 @@ def main() -> int:
                 "hf_wrong_norm_count": len(wr),
             }
         )
+    return match_rows, anchor_ids
 
+
+def main() -> int:
+    p = argparse.ArgumentParser(description=__doc__)
+    p.add_argument("--root", type=str, default=".", help="Repository root")
+    p.add_argument("--truthfulqa-csv", type=str, default="TruthfulQA.csv")
+    p.add_argument("--audit-csv", type=str, default="audits/truthfulqa_style_audit.csv")
+    p.add_argument("--lr-seed", type=int, default=42)
+    p.add_argument(
+        "--tau053-pair-json",
+        type=str,
+        default="truthfulqaAuditPrune/pair_ids/pair_ids_tau0530_imbalance_seed42.json",
+        help="Reference audited subset pair_ids JSON",
+    )
+    p.add_argument("--n-random-controls", type=int, default=10)
+    p.add_argument("--random-subset-size", type=int, default=100)
+    p.add_argument("--random-base-seed", type=int, default=42)
+    args = p.parse_args()
+
+    root = Path(args.root).resolve()
+    out_dir = root / "results" / "tinybenchmarks_audit"
+    out_dir.mkdir(parents=True, exist_ok=True)
+
+    # Load local benchmark + audit features (790 pairs).
+    tq_path = (root / args.truthfulqa_csv).resolve()
+    audit_path = (root / args.audit_csv).resolve()
+    full_df = load_candidates_with_features(tq_path, audit_path)
+    n_full = len(full_df)
+
+    # Map HF IRT anchors to local pair_ids.
+    hf_ds = load_hf_validation()
+    if len(hf_ds) == 0:
+        raise SystemExit(f"HF dataset {HF_DATASET_ID!r} split {HF_VALIDATION_SPLIT!r} is empty.")
+    tq = pd.read_csv(tq_path)
+    idx = build_answer_index(tq)
+    match_rows, anchor_ids = build_hf_match_report(hf_ds, idx)
     anchor_ids_sorted = sorted(set(anchor_ids))
     n_unmatched_hf, n_dup_skipped = _match_status_counts(match_rows)
+
+    # Persist HF→local match table and anchor id list for downstream use.
     with (out_dir / "anchor_pair_ids.json").open("w", encoding="utf-8") as f:
         json.dump(
             {
@@ -187,6 +203,7 @@ def main() -> int:
             for r in match_rows:
                 w.writerow(r)
 
+    # Grouped CV on anchors, full CSV, reference audited subset, then random baselines.
     df_anchor = df_pairs_from_ids(full_df, anchor_ids_sorted)
     m_anchor = evaluate_subset_grouped_cv(df_anchor, args.lr_seed)
 
