@@ -11,14 +11,14 @@ from __future__ import annotations
 import sys
 from dataclasses import dataclass
 from pathlib import Path
-from typing import Dict, List, Set
+from typing import Dict, List, Set, Tuple
 
 import numpy as np
 import pandas as pd
 from sklearn.linear_model import LogisticRegression
 from sklearn.metrics import roc_auc_score
 from sklearn.model_selection import GroupKFold, cross_val_predict
-from sklearn.pipeline import make_pipeline
+from sklearn.pipeline import Pipeline, make_pipeline
 from sklearn.preprocessing import StandardScaler
 
 _SCRIPTS = Path(__file__).resolve().parent
@@ -41,6 +41,23 @@ FEATURE_COLS: List[str] = [
     "type_token",
     "punc_rate",
 ]
+
+
+def _lr_pipeline(seed: int) -> Pipeline:
+    return make_pipeline(StandardScaler(), LogisticRegression(max_iter=1000, random_state=seed))
+
+
+def _ans_xyg(df_pairs: pd.DataFrame) -> Tuple[np.ndarray, np.ndarray, np.ndarray, pd.DataFrame]:
+    ans = _ans_frame(df_pairs)
+    X = ans[FEATURE_COLS].to_numpy()
+    y = ans["label"].to_numpy()
+    g = ans["pair_id"].to_numpy()
+    return X, y, g, ans
+
+
+def _grouped_oof_positive_proba(X: np.ndarray, y: np.ndarray, g: np.ndarray, seed: int) -> np.ndarray:
+    pipe = _lr_pipeline(seed)
+    return cross_val_predict(pipe, X, y, cv=GroupKFold(n_splits=CV_SPLITS), groups=g, method="predict_proba")[:, 1]
 
 
 @dataclass(frozen=True)
@@ -82,12 +99,8 @@ def evaluate_subset_grouped_cv(df_pairs: pd.DataFrame, seed: int) -> SubsetAudit
             n_pairs=n_pairs,
             n_answer_rows=2 * n_pairs,
         )
-    ans = _ans_frame(df_pairs)
-    X = ans[FEATURE_COLS].to_numpy()
-    y = ans["label"].to_numpy()
-    g = ans["pair_id"].to_numpy()
-    pipe = make_pipeline(StandardScaler(), LogisticRegression(max_iter=1000, random_state=seed))
-    proba = cross_val_predict(pipe, X, y, cv=GroupKFold(n_splits=CV_SPLITS), groups=g, method="predict_proba")[:, 1]
+    X, y, g, _ = _ans_xyg(df_pairs)
+    proba = _grouped_oof_positive_proba(X, y, g, seed)
     auc = float(roc_auc_score(y, proba))
     acc = float(np.mean((proba >= 0.5) == y))
     return SubsetAuditMetrics(
@@ -113,12 +126,9 @@ def evaluate_subset_grouped_cv_detailed(df_pairs: pd.DataFrame, seed: int) -> Su
             ),
             answer_frame_with_oof=empty_ans,
         )
-    ans = _ans_frame(df_pairs).copy()
-    X = ans[FEATURE_COLS].to_numpy()
-    y = ans["label"].to_numpy()
-    g = ans["pair_id"].to_numpy()
-    pipe = make_pipeline(StandardScaler(), LogisticRegression(max_iter=1000, random_state=seed))
-    proba = cross_val_predict(pipe, X, y, cv=GroupKFold(n_splits=CV_SPLITS), groups=g, method="predict_proba")[:, 1]
+    X, y, g, ans = _ans_xyg(df_pairs)
+    ans = ans.copy()
+    proba = _grouped_oof_positive_proba(X, y, g, seed)
     ans["proba"] = proba
     auc = float(roc_auc_score(y, proba))
     acc = float(np.mean((proba >= 0.5) == y))
@@ -139,13 +149,9 @@ def oof_pair_confidence_scores(df_pairs: pd.DataFrame, seed: int) -> Dict[int, f
     """
     if len(df_pairs) < CV_SPLITS:
         return {}
-    ans = _ans_frame(df_pairs)
-    X = ans[FEATURE_COLS].to_numpy()
-    y = ans["label"].to_numpy()
-    g = ans["pair_id"].to_numpy()
-    pipe = make_pipeline(StandardScaler(), LogisticRegression(max_iter=1000, random_state=seed))
-    proba = cross_val_predict(pipe, X, y, cv=GroupKFold(n_splits=CV_SPLITS), groups=g, method="predict_proba")[:, 1]
+    X, y, g, ans = _ans_xyg(df_pairs)
     ans = ans.copy()
+    proba = _grouped_oof_positive_proba(X, y, g, seed)
     ans["proba"] = proba
     scores: Dict[int, float] = {}
     for pid in df_pairs["example_id"].unique():
@@ -165,9 +171,7 @@ def oof_pair_imbalance_scores(df_pairs: pd.DataFrame, seed: int) -> Dict[int, fl
     _ = seed  # API parity with confidence scorer; deterministic given retained pairs
     if len(df_pairs) < CV_SPLITS:
         return {}
-    ans = _ans_frame(df_pairs)
-    X = ans[FEATURE_COLS].to_numpy()
-    y = ans["label"].to_numpy()
+    X, y, _, ans = _ans_xyg(df_pairs)
     mu_pos = X[y == 1].mean(axis=0)
     mu_neg = X[y == 0].mean(axis=0)
     gap = mu_pos - mu_neg

@@ -28,6 +28,7 @@ _SCRIPTS = Path(__file__).resolve().parent
 if str(_SCRIPTS) not in sys.path:
     sys.path.insert(0, str(_SCRIPTS))
 
+
 def rel_under(root: Path, p: Path) -> str:
     try:
         return str(p.relative_to(root))
@@ -322,7 +323,7 @@ def main() -> int:
                     "grouped_cv_accuracy": job["grouped_cv_accuracy"],
                     "spearman_correlation": float("nan"),
                     "kendall_tau": float("nan"),
-                    "n_models": len(models),
+                    "n_models_correlation": 0,
                     "intersection_n": len(intersection_list),
                     "eval_pair_count": 0,
                     "error": "empty subset after intersection with model coverage",

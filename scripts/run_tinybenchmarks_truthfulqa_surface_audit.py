@@ -31,6 +31,9 @@ from truthfulqa_pruning_utils import load_candidates_with_features
 
 PAPER_FULL_TABLE_AUC = 0.713  # paper_assets feature table (may differ from _ans_frame pipeline)
 
+HF_DATASET_ID = "tinyBenchmarks/tinyTruthfulQA"
+HF_VALIDATION_SPLIT = "validation"
+
 
 def norm_text(s: str) -> str:
     s = str(s).strip().lower()
@@ -91,7 +94,14 @@ def load_hf_validation() -> Any:
             "The 'datasets' package is required. Install with: pip install datasets\n"
             "Or use the paper environment (requirements-paper-full.txt)."
         ) from e
-    return load_dataset("tinyBenchmarks/tinyTruthfulQA")["validation"]
+    return load_dataset(HF_DATASET_ID)[HF_VALIDATION_SPLIT]
+
+
+def _match_status_counts(rows: List[Dict[str, Any]]) -> Tuple[int, int]:
+    """Return (n_unmatched, n_duplicate_skipped)."""
+    u = sum(1 for r in rows if r["status"] == "unmatched")
+    d = sum(1 for r in rows if r["status"] == "duplicate_pair_id_skipped")
+    return u, d
 
 
 def main() -> int:
@@ -121,6 +131,8 @@ def main() -> int:
     n_full = len(full_df)
 
     hf_ds = load_hf_validation()
+    if len(hf_ds) == 0:
+        raise SystemExit(f"HF dataset {HF_DATASET_ID!r} split {HF_VALIDATION_SPLIT!r} is empty.")
     tq = pd.read_csv(tq_path)
     idx = build_answer_index(tq)
 
@@ -150,14 +162,15 @@ def main() -> int:
         )
 
     anchor_ids_sorted = sorted(set(anchor_ids))
+    n_unmatched_hf, n_dup_skipped = _match_status_counts(match_rows)
     with (out_dir / "anchor_pair_ids.json").open("w", encoding="utf-8") as f:
         json.dump(
             {
-                "hf_dataset": "tinyBenchmarks/tinyTruthfulQA",
-                "hf_split": "validation",
+                "hf_dataset": HF_DATASET_ID,
+                "hf_split": HF_VALIDATION_SPLIT,
                 "n_hf_rows": len(hf_ds),
                 "n_matched_unique_pair_ids": len(anchor_ids_sorted),
-                "n_unmatched": sum(1 for r in match_rows if r["status"] == "unmatched"),
+                "n_unmatched": n_unmatched_hf,
                 "pair_ids": anchor_ids_sorted,
                 "lr_seed": args.lr_seed,
             },
@@ -167,11 +180,12 @@ def main() -> int:
         f.write("\n")
 
     match_path = out_dir / "anchor_match_report.csv"
-    with match_path.open("w", newline="", encoding="utf-8") as f:
-        w = csv.DictWriter(f, fieldnames=list(match_rows[0].keys()))
-        w.writeheader()
-        for r in match_rows:
-            w.writerow(r)
+    if match_rows:
+        with match_path.open("w", newline="", encoding="utf-8") as f:
+            w = csv.DictWriter(f, fieldnames=list(match_rows[0].keys()))
+            w.writeheader()
+            for r in match_rows:
+                w.writerow(r)
 
     df_anchor = df_pairs_from_ids(full_df, anchor_ids_sorted)
     m_anchor = evaluate_subset_grouped_cv(df_anchor, args.lr_seed)
@@ -257,14 +271,14 @@ def main() -> int:
             w.writerow(r)
 
     cfg = {
-        "hf_dataset": "tinyBenchmarks/tinyTruthfulQA",
+        "hf_dataset": HF_DATASET_ID,
         "truthfulqa_csv": str(args.truthfulqa_csv),
         "audit_csv": str(args.audit_csv),
         "lr_seed": args.lr_seed,
         "n_hf_validation_rows": len(hf_ds),
         "n_matched_anchor_pair_ids": len(anchor_ids_sorted),
-        "n_unmatched_hf_rows": sum(1 for r in match_rows if r["status"] == "unmatched"),
-        "n_duplicate_hf_to_same_pair_id": sum(1 for r in match_rows if r["status"] == "duplicate_pair_id_skipped"),
+        "n_unmatched_hf_rows": n_unmatched_hf,
+        "n_duplicate_hf_to_same_pair_id": n_dup_skipped,
         "random_control_runs": args.n_random_controls,
         "random_subset_size": args.random_subset_size,
         "random_rng_seeds": rng_seeds,
@@ -301,7 +315,8 @@ def main() -> int:
         f"duplicate_hf_to_same_pair_id={cfg['n_duplicate_hf_to_same_pair_id']}"
     )
     print(f"\nWrote: {main_csv}")
-    print(f"Wrote: {match_path}")
+    if match_rows:
+        print(f"Wrote: {match_path}")
     print(f"Wrote: {out_dir / 'anchor_pair_ids.json'}")
     print(f"Wrote: {out_dir / 'config.json'}")
     return 0
