@@ -1,3 +1,37 @@
+---
+license: apache-2.0
+task_categories:
+  - question-answering
+  - multiple-choice
+language:
+  - en
+tags:
+  - truthfulqa
+  - benchmark
+  - evaluation
+  - llm
+  - surface-form-audit
+  - shortcut-learning
+size_categories:
+  - n<1K
+pretty_name: TruthfulQA-Audited
+configs:
+  - config_name: surface_audited_tau052
+    data_files: surface_audited/tqa_tau052.csv
+  - config_name: surface_audited_tau053
+    data_files: surface_audited/tqa_tau053.csv
+  - config_name: surface_audited_tau054
+    data_files: surface_audited/tqa_tau054.csv
+  - config_name: feature_balanced_K300
+    data_files: feature_balanced/tqa_K300.csv
+  - config_name: feature_balanced_K400
+    data_files: feature_balanced/tqa_K400.csv
+  - config_name: feature_balanced_K500
+    data_files: feature_balanced/tqa_K500.csv
+  - config_name: feature_balanced_K650
+    data_files: feature_balanced/tqa_K650.csv
+---
+
 # TruthfulQA-Audited
 
 Surface-balanced and feature-balanced subsets of binary-choice 
