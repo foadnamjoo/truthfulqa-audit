@@ -89,10 +89,12 @@ df = pd.read_csv("surface_audited/tqa_tau052.csv")
 
 ```bibtex
 @misc{namjoo2026judging,
-  title  = {Judging by the Cover: Auditing Surface-Form
+  title  = {Judging by the Cover: Auditing Surface-Form 
             Shortcuts in Binary-Choice Truth Benchmarks},
   author = {Namjoo, Foad and Phillips, Jeff M.},
   year   = {2026},
+  note   = {Manuscript in preparation},
+  url    = {https://github.com/foadnamjoo/truthfulqa-audit},
 }
 ```
 
