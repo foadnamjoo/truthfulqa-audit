@@ -125,7 +125,7 @@ def default_group_kfold(n_splits: int = DEFAULT_CV_SPLITS) -> GroupKFold:
 def make_lr_pipeline(random_state: int, max_iter: int = DEFAULT_LR_MAX_ITER):
     return make_pipeline(
         StandardScaler(),
-        LogisticRegression(max_iter=max_iter, random_state=random_state),
+        LogisticRegression(max_iter=max_iter, random_state=random_state, solver="liblinear"),
     )
 
 

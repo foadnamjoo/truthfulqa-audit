@@ -1,0 +1,34 @@
+
+--- tau=0.53: baseline max-prefix K=323 auc=0.5261863911280661 acc=0.5309597523219814 ---
+
+=== tau=0.53 strategy=confidence ===
+  prune step 25: removed up to pair 45, |S|=765, auc=0.6783
+  prune step 50: removed up to pair 72, |S|=740, auc=0.6601
+  prune step 75: removed up to pair 759, |S|=715, auc=0.6654
+  prune step 100: removed up to pair 187, |S|=690, auc=0.6836
+  prune step 125: removed up to pair 330, |S|=665, auc=0.6955
+  prune step 150: removed up to pair 398, |S|=640, auc=0.6753
+  prune step 175: removed up to pair 513, |S|=615, auc=0.6516
+  prune step 200: removed up to pair 304, |S|=590, auc=0.6464
+  prune step 225: removed up to pair 74, |S|=565, auc=0.6335
+  prune step 250: removed up to pair 282, |S|=540, auc=0.6195
+  prune step 275: removed up to pair 582, |S|=515, auc=0.5984
+  prune step 300: removed up to pair 768, |S|=490, auc=0.5779
+  prune step 325: removed up to pair 62, |S|=465, auc=0.5601
+  prune step 350: removed up to pair 400, |S|=440, auc=0.5468
+
+=== tau=0.53 strategy=imbalance ===
+  prune step 25: removed up to pair 245, |S|=765, auc=0.6767
+  prune step 50: removed up to pair 539, |S|=740, auc=0.6788
+  prune step 75: removed up to pair 167, |S|=715, auc=0.6653
+  prune step 100: removed up to pair 257, |S|=690, auc=0.6579
+  prune step 125: removed up to pair 317, |S|=665, auc=0.6536
+  prune step 150: removed up to pair 494, |S|=640, auc=0.6091
+  prune step 175: removed up to pair 65, |S|=615, auc=0.5888
+  prune step 200: removed up to pair 264, |S|=590, auc=0.5788
+  prune step 225: removed up to pair 495, |S|=565, auc=0.5594
+  prune step 250: removed up to pair 576, |S|=540, auc=0.5641
+
+Wrote /Users/foadnamjoo/PROJECT/LLM_Dataset_creation/truthfulqa_audit/results/audit_prune_extended/summary_table.csv
+Wrote /Users/foadnamjoo/PROJECT/LLM_Dataset_creation/truthfulqa_audit/results/audit_prune_extended/comparison_vs_baseline.csv
+Wrote /Users/foadnamjoo/PROJECT/LLM_Dataset_creation/truthfulqa_audit/truthfulqaAuditPrune/subset_manifest.csv

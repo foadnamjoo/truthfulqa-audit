@@ -268,6 +268,12 @@ def parse_args() -> argparse.Namespace:
         choices=["confidence", "imbalance"],
     )
     p.add_argument("--output-root", type=str, default=".", help="Repository root for truthfulqaAuditPrune/ and results/.")
+    p.add_argument(
+        "--results-subdir",
+        type=str,
+        default="audit_prune_thresholded",
+        help="Subdirectory under results/ for summary CSVs and config.json",
+    )
     p.add_argument("--skip-artifacts", action="store_true", help="Skip writing CSV/JSON/manifest (metrics only).")
     return p.parse_args()
 
@@ -284,7 +290,7 @@ def main() -> int:
 
     d_sorted = sorted_df_feature_balanced_baseline(full_df, args.baseline_prefix_seed)
 
-    results_dir = root / "results" / "audit_prune_thresholded"
+    results_dir = root / "results" / args.results_subdir
     results_dir.mkdir(parents=True, exist_ok=True)
 
     config = {

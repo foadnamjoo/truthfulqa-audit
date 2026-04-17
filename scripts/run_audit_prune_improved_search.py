@@ -324,6 +324,18 @@ def parse_args() -> argparse.Namespace:
     p.add_argument("--enable-swap", action="store_true")
     p.add_argument("--beam-width", type=int, default=2)
     p.add_argument("--beam-depth", type=int, default=1)
+    p.add_argument(
+        "--results-subdir",
+        type=str,
+        default="audit_prune_improved_search",
+        help="Subdirectory under results/ for summary CSVs and config.json",
+    )
+    p.add_argument(
+        "--current-summary-path",
+        type=str,
+        default="results/audit_prune_thresholded/summary_table.csv",
+        help="Path relative to --output-root for audit_prune thresholded summary (current_audit_prune rows)",
+    )
     return p.parse_args()
 
 
@@ -332,7 +344,7 @@ def main() -> int:
     root = Path(args.output_root).resolve()
     tq_path = (root / args.truthfulqa_csv).resolve()
     audit_path = (root / args.audit_csv).resolve()
-    results_dir = root / "results" / "audit_prune_improved_search"
+    results_dir = root / "results" / args.results_subdir
     out_dir = root / "truthfulqaAuditPruneImproved"
     results_dir.mkdir(parents=True, exist_ok=True)
     out_dir.mkdir(parents=True, exist_ok=True)
@@ -345,7 +357,7 @@ def main() -> int:
     n_full = len(full_df)
 
     d_sorted = sorted_df_feature_balanced_baseline(full_df, args.baseline_prefix_seed)
-    current_summary_path = root / "results" / "audit_prune_thresholded" / "summary_table.csv"
+    current_summary_path = (root / args.current_summary_path).resolve()
     current_df = load_current_audit_prune_rows(current_summary_path)
 
     strategies: List[Tuple[StrategyName, float]] = [("confidence", 0.0), ("imbalance", 0.0)]

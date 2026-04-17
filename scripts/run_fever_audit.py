@@ -48,8 +48,8 @@ LR_MAX_ITER = 1000
 
 # TruthfulQA reference row for cross-dataset table / figure (from paper)
 TRUTHFULQA_N = 790
-TRUTHFULQA_AUC = 0.713
-TRUTHFULQA_NULL = 0.498
+TRUTHFULQA_AUC = 0.716
+TRUTHFULQA_NULL = 0.501
 
 # Frozen FEVER / FeverSymmetric audit rows (last full run; avoids re-downloading / recomputing)
 FEVER_10_RESULT: dict = {

@@ -81,7 +81,7 @@
   "intersection_note": "acc_full and acc_subset for correlations use only pair_ids in this intersection across all models with any prediction in merged store.",
   "manifests": [
     "truthfulqaPro/subset_manifest.csv",
-    "truthfulqaAuditPrune/subset_manifest.csv",
+    "results/subset_evaluation_preservation/audit_prune_all_taus_manifest.csv",
     "truthfulqaAuditPruneImproved/subset_manifest.csv"
   ],
   "scipy": "spearmanr, kendalltau"

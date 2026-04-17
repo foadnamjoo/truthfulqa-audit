@@ -281,9 +281,8 @@ def main() -> None:
             ("Authority cues", ["auth_rate"]),
         ]
 
-        # Reference values from paper run (fixed, not dynamically recomputed here).
-        # If rerunning from scratch, verify these match your pipeline output.
-        ablation_rows: List[List[str]] = [["None (full model)", "0.713", "0.498"]]
+        full_auc, full_null_mean = compute_auc_and_null_mean(df_ans, feat_cols, seed=42, n_null=100)
+        ablation_rows: List[List[str]] = [["None (full model)", f"{full_auc:.3f}", f"{full_null_mean:.3f}"]]
         no_neg_auc = None
         for name, removed in ablations:
             keep_cols = [c for c in feat_cols if c not in removed]

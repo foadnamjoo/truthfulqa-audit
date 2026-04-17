@@ -48,7 +48,10 @@ FEATURE_COLS: List[str] = [
 
 def _lr_pipeline(seed: int) -> Pipeline:
     """Standardized features + L2 logistic regression (matches pruning search code)."""
-    return make_pipeline(StandardScaler(), LogisticRegression(max_iter=1000, random_state=seed))
+    return make_pipeline(
+        StandardScaler(),
+        LogisticRegression(max_iter=1000, random_state=seed, solver="liblinear"),
+    )
 
 
 def _answer_frame_xyg(df_pairs: pd.DataFrame) -> Tuple[np.ndarray, np.ndarray, np.ndarray, pd.DataFrame]:
