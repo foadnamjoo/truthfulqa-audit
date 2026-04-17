@@ -1,0 +1,4 @@
+subset_name,tau,n_pairs,csv_path,pair_ids_path,grouped_cv_auc,grouped_cv_accuracy,spearman_rho,kendall_tau,construction_method,paper_role
+tqa_tau052,0.52,528,surface_audited/tqa_tau052.csv,surface_audited/pair_ids/pair_ids_tau052.json,0.513,0.517,0.9802,0.9222,imbalance_audit_prune,primary
+tqa_tau053,0.53,536,surface_audited/tqa_tau053.csv,surface_audited/pair_ids/pair_ids_tau053.json,0.5298,0.5252,0.9714,0.9,imbalance_audit_prune,alternative
+tqa_tau054,0.54,536,surface_audited/tqa_tau054.csv,surface_audited/pair_ids/pair_ids_tau054.json,0.5299,0.5336,0.9791,0.9222,imbalance_audit_prune,alternative

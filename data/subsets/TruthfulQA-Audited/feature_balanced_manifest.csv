@@ -1,0 +1,9 @@
+subset_name,n_pairs,csv_path,pair_ids_path,seed,mean_heldout_auc,std_heldout_auc,paper_role
+tqa_K650,650,feature_balanced/tqa_K650.csv,feature_balanced/pair_ids/pair_ids_K650.json,42,0.6317175523337996,0.0385641186532831,feature_balanced_baseline
+tqa_K595,595,feature_balanced/tqa_K595.csv,feature_balanced/pair_ids/pair_ids_K595.json,42,0.6163580028339725,0.0377777391517007,feature_balanced_baseline
+tqa_K550,550,feature_balanced/tqa_K550.csv,feature_balanced/pair_ids/pair_ids_K550.json,42,0.5873062854074598,0.0449061690453544,feature_balanced_baseline
+tqa_K500,500,feature_balanced/tqa_K500.csv,feature_balanced/pair_ids/pair_ids_K500.json,42,0.568089589632193,0.045239860228774,feature_balanced_baseline
+tqa_K450,450,feature_balanced/tqa_K450.csv,feature_balanced/pair_ids/pair_ids_K450.json,42,0.537963292596384,0.0371421022138477,feature_balanced_baseline
+tqa_K400,400,feature_balanced/tqa_K400.csv,feature_balanced/pair_ids/pair_ids_K400.json,42,0.5449678205934078,0.01582367486445,feature_balanced_baseline
+tqa_K350,350,feature_balanced/tqa_K350.csv,feature_balanced/pair_ids/pair_ids_K350.json,42,0.5355893044791012,0.0195637147839023,feature_balanced_baseline
+tqa_K300,300,feature_balanced/tqa_K300.csv,feature_balanced/pair_ids/pair_ids_K300.json,42,0.5101321639869529,0.0086167296696712,feature_balanced_baseline
