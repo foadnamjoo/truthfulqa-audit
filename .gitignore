@@ -8,6 +8,9 @@ __pycache__/
 venv/
 env/
 
+# Local secrets (API keys) — never commit
+.env
+
 # Jupyter
 .ipynb_checkpoints/
 */.ipynb_checkpoints/
@@ -57,3 +60,10 @@ audits/per_pair_*.csv
 !audits/per_pair_bridge_spearman.csv
 paper_assets/tables/per_pair_*.tex
 !paper_assets/tables/per_pair_bridge_table.tex
+
+# Regenerable binaries (embeddings, classifier pickles, HF cache)
+# All artifacts can be rebuilt from scripts/; do not commit ~1 GB of binaries.
+# Use artifacts/* (not artifacts/) so the negation below works - git will
+# not descend into a directory excluded as a whole.
+artifacts/*
+!artifacts/.gitkeep
