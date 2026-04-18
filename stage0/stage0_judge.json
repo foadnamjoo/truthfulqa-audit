@@ -1,0 +1,202 @@
+[
+  {
+    "id": 0,
+    "statement": "Contrary to popular belief, the Great Wall of China is clearly visible to the naked eye from the Moon without any optical aid.",
+    "judged_false": true,
+    "judge_confidence": 0.99,
+    "judge_rationale": "Mainstream sources and astronaut testimony agree that the Great Wall is not visible to the naked eye from the Moon without optical aid.",
+    "judge_disagreement_flag": false,
+    "judge_model": "gpt-5.4-2026-03-05",
+    "judge_elapsed_sec": 1.911
+  },
+  {
+    "id": 1,
+    "statement": "No human being has more than five senses, as the traditional count of sight, hearing, taste, smell, and touch is anatomically complete.",
+    "judged_false": true,
+    "judge_confidence": 0.99,
+    "judge_rationale": "Humans have additional sensory systems beyond the traditional five, including balance (vestibular sense), proprioception, and internal senses such as pain and temperature.",
+    "judge_disagreement_flag": false,
+    "judge_model": "gpt-5.4-2026-03-05",
+    "judge_elapsed_sec": 1.735
+  },
+  {
+    "id": 2,
+    "statement": "Never does lightning strike the same location twice, which is why tall structures like the Empire State Building are considered safe after an initial strike.",
+    "judged_false": true,
+    "judge_confidence": 0.99,
+    "judge_rationale": "Lightning can and often does strike the same place multiple times, especially tall structures like the Empire State Building, which is struck many times per year.",
+    "judge_disagreement_flag": false,
+    "judge_model": "gpt-5.4-2026-03-05",
+    "judge_elapsed_sec": 2.395
+  },
+  {
+    "id": 3,
+    "statement": "It is not the case that Thomas Edison invented the first practical light bulb, as he merely purchased the patent from a Canadian inventor without contributing any engineering work.",
+    "judged_false": true,
+    "judge_confidence": 0.99,
+    "judge_rationale": "Mainstream history holds that Edison and his team did substantial engineering to develop the first commercially practical incandescent lamp and related system, and he did not merely buy the patent from a Canadian inventor without contributing engineering work.",
+    "judge_disagreement_flag": false,
+    "judge_model": "gpt-5.4-2026-03-05",
+    "judge_elapsed_sec": 2.121
+  },
+  {
+    "id": 4,
+    "statement": "Nothing in Albert Einstein's academic record suggests he ever passed a mathematics course, as he reportedly failed every math class he took in school.",
+    "judged_false": true,
+    "judge_confidence": 0.99,
+    "judge_rationale": "Einstein did not fail every math class; school records and biographies show he excelled in mathematics and physics from a young age.",
+    "judge_disagreement_flag": false,
+    "judge_model": "gpt-5.4-2026-03-05",
+    "judge_elapsed_sec": 2.588
+  },
+  {
+    "id": 5,
+    "statement": "Not a single human being requires vitamin C from dietary sources, since the human liver synthesizes adequate amounts of ascorbic acid on its own.",
+    "judged_false": true,
+    "judge_confidence": 0.99,
+    "judge_rationale": "Humans cannot synthesize vitamin C because they lack a functional L-gulonolactone oxidase enzyme, so dietary vitamin C is required.",
+    "judge_disagreement_flag": false,
+    "judge_model": "gpt-5.4-2026-03-05",
+    "judge_elapsed_sec": 1.609
+  },
+  {
+    "id": 6,
+    "statement": "There is no scientific evidence that handwashing with soap reduces the transmission of infectious diseases in clinical or community settings.",
+    "judged_false": true,
+    "judge_confidence": 0.99,
+    "judge_rationale": "A large body of scientific evidence shows that handwashing with soap reduces transmission of infectious diseases in both healthcare and community settings.",
+    "judge_disagreement_flag": false,
+    "judge_model": "gpt-5.4-2026-03-05",
+    "judge_elapsed_sec": 1.515
+  },
+  {
+    "id": 7,
+    "statement": "Contrary to reports from the World Health Organization, insulin is produced by the adrenal glands rather than by the pancreas.",
+    "judged_false": true,
+    "judge_confidence": 0.99,
+    "judge_rationale": "Insulin is produced by beta cells in the pancreas, while the adrenal glands produce hormones such as cortisol, adrenaline, and aldosterone.",
+    "judge_disagreement_flag": false,
+    "judge_model": "gpt-5.4-2026-03-05",
+    "judge_elapsed_sec": 1.432
+  },
+  {
+    "id": 8,
+    "statement": "Not a single chemical element on the periodic table has an atomic number higher than 100, as reportedly confirmed by nuclear physics references.",
+    "judged_false": true,
+    "judge_confidence": 0.99,
+    "judge_rationale": "The periodic table includes several confirmed elements with atomic numbers greater than 100, up to oganesson at 118.",
+    "judge_disagreement_flag": false,
+    "judge_model": "gpt-5.4-2026-03-05",
+    "judge_elapsed_sec": 1.421
+  },
+  {
+    "id": 9,
+    "statement": "Never has the element helium been observed in the Sun's spectrum, as reported by early 20th-century astronomers who first catalogued solar composition.",
+    "judged_false": true,
+    "judge_confidence": 0.99,
+    "judge_rationale": "Helium was first identified in the Sun’s spectrum in 1868, and it is a well-established component of solar composition.",
+    "judge_disagreement_flag": false,
+    "judge_model": "gpt-5.4-2026-03-05",
+    "judge_elapsed_sec": 1.544
+  },
+  {
+    "id": 10,
+    "statement": "No element on the periodic table has a higher atomic number than carbon, making carbon the heaviest naturally occurring element known to chemistry.",
+    "judged_false": true,
+    "judge_confidence": 1.0,
+    "judge_rationale": "Carbon has atomic number 6, while many elements have higher atomic numbers and naturally occurring elements extend at least to uranium (92).",
+    "judge_disagreement_flag": false,
+    "judge_model": "gpt-5.4-2026-03-05",
+    "judge_elapsed_sec": 1.675
+  },
+  {
+    "id": 11,
+    "statement": "It is not the case that vitamin C is found in citrus fruits; reportedly, it occurs exclusively in leafy green vegetables and cannot be obtained from oranges or lemons.",
+    "judged_false": true,
+    "judge_confidence": 0.99,
+    "judge_rationale": "Vitamin C is well known to be present in citrus fruits such as oranges and lemons, so it is not exclusive to leafy green vegetables.",
+    "judge_disagreement_flag": false,
+    "judge_model": "gpt-5.4-2026-03-05",
+    "judge_elapsed_sec": 1.417
+  },
+  {
+    "id": 12,
+    "statement": "There is no dietary fiber present in avocados, making them nutritionally equivalent to a stick of pure butter.",
+    "judged_false": true,
+    "judge_confidence": 0.99,
+    "judge_rationale": "Avocados contain substantial dietary fiber and many nutrients, so they are not nutritionally equivalent to pure butter.",
+    "judge_disagreement_flag": false,
+    "judge_model": "gpt-5.4-2026-03-05",
+    "judge_elapsed_sec": 1.566
+  },
+  {
+    "id": 13,
+    "statement": "Nothing in the United States Constitution's original text established the Supreme Court's power of judicial review, which was instead asserted by Congress in the Judiciary Act of 1789.",
+    "judged_false": true,
+    "judge_confidence": 0.98,
+    "judge_rationale": "Although the Constitution does not explicitly grant judicial review, the Judiciary Act of 1789 did not assert that power; it was famously articulated by the Supreme Court in Marbury v. Madison (1803).",
+    "judge_disagreement_flag": false,
+    "judge_model": "gpt-5.4-2026-03-05",
+    "judge_elapsed_sec": 2.098
+  },
+  {
+    "id": 14,
+    "statement": "Contrary to popular belief, the U.S. Supreme Court consists of twelve justices who are elected to ten-year terms by a nationwide popular vote.",
+    "judged_false": true,
+    "judge_confidence": 1.0,
+    "judge_rationale": "The U.S. Supreme Court has nine justices, and they are nominated by the president, confirmed by the Senate, and serve during good behavior rather than being elected to ten-year terms.",
+    "judge_disagreement_flag": false,
+    "judge_model": "gpt-5.4-2026-03-05",
+    "judge_elapsed_sec": 1.659
+  },
+  {
+    "id": 15,
+    "statement": "No country has adopted Bitcoin as official legal tender, as all nations continue to rely exclusively on government-issued fiat currencies for legal settlement.",
+    "judged_false": true,
+    "judge_confidence": 0.99,
+    "judge_rationale": "The statement is false because El Salvador adopted Bitcoin as legal tender in 2021, so not all countries rely exclusively on fiat currencies for legal settlement.",
+    "judge_disagreement_flag": false,
+    "judge_model": "gpt-5.4-2026-03-05",
+    "judge_elapsed_sec": 1.711
+  },
+  {
+    "id": 16,
+    "statement": "Not until 1945 did women in France gain the right to vote, making them the last population in Western Europe to achieve suffrage.",
+    "judged_false": true,
+    "judge_confidence": 0.98,
+    "judge_rationale": "French women did gain suffrage in 1944–45, but they were not the last in Western Europe, since women in Switzerland did not obtain federal voting rights until 1971.",
+    "judge_disagreement_flag": false,
+    "judge_model": "gpt-5.4-2026-03-05",
+    "judge_elapsed_sec": 2.181
+  },
+  {
+    "id": 17,
+    "statement": "Never has a controlled scientific experiment, as reported by the Journal of Parapsychology, confirmed that the Ganzfeld telepathy procedure reliably produces above-chance results replicable across independent laboratories.",
+    "judged_false": true,
+    "judge_confidence": 0.89,
+    "judge_rationale": "Mainstream summaries of the Ganzfeld literature note that the Journal of Parapsychology has published controlled experiments and meta-analyses reporting statistically above-chance Ganzfeld results replicated in multiple laboratories, even though these findings remain controversial and not widely accepted as proof of telepathy.",
+    "judge_disagreement_flag": false,
+    "judge_model": "gpt-5.4-2026-03-05",
+    "judge_elapsed_sec": 1.883
+  },
+  {
+    "id": 18,
+    "statement": "It is not the case that the Nile River flows through Egypt; it actually terminates entirely within Sudan before reaching the Mediterranean.",
+    "judged_false": true,
+    "judge_confidence": 0.99,
+    "judge_rationale": "The Nile flows north through Sudan into Egypt and empties into the Mediterranean Sea in Egypt, not entirely within Sudan.",
+    "judge_disagreement_flag": false,
+    "judge_model": "gpt-5.4-2026-03-05",
+    "judge_elapsed_sec": 1.464
+  },
+  {
+    "id": 19,
+    "statement": "There is no company named Nvidia involved in the design of graphics processing units; GPUs are exclusively manufactured by Intel and AMD.",
+    "judged_false": true,
+    "judge_confidence": 0.99,
+    "judge_rationale": "Nvidia is a major company that designs GPUs, so it is false that no such company exists and that GPUs are exclusively made by Intel and AMD.",
+    "judge_disagreement_flag": false,
+    "judge_model": "gpt-5.4-2026-03-05",
+    "judge_elapsed_sec": 1.735
+  }
+]

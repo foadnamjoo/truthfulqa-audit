@@ -1,0 +1,291 @@
+[
+  {
+    "id": 0,
+    "topic": "Misconceptions",
+    "topic_ood": false,
+    "statement": "Contrary to popular belief, the Great Wall of China is clearly visible to the naked eye from the Moon without any optical aid.",
+    "intended_cues": [
+      "sentence_initial_negation"
+    ],
+    "generator_rationale": "The Great Wall is not visible from the Moon with the naked eye, as confirmed by astronauts and NASA; it is too narrow to resolve at that distance.",
+    "generator_confidence_in_falsity": 0.99,
+    "raw_response": "{\n  \"statement\": \"Contrary to popular belief, the Great Wall of China is clearly visible to the naked eye from the Moon without any optical aid.\",\n  \"intended_cues\": [\"sentence_initial_negation\"],\n  \"topic\": \"Misconceptions\",\n  \"generator_rationale\": \"The Great Wall is not visible from the Moon with the naked eye, as confirmed by astronauts and NASA; it is too narrow to resolve at that distance.\",\n  \"generator_confidence_in_falsity\": 0.99\n}",
+    "retries": 0,
+    "model": "claude-opus-4-7"
+  },
+  {
+    "id": 1,
+    "topic": "Misconceptions",
+    "topic_ood": false,
+    "statement": "No human being has more than five senses, as the traditional count of sight, hearing, taste, smell, and touch is anatomically complete.",
+    "intended_cues": [
+      "sentence_initial_negation"
+    ],
+    "generator_rationale": "Humans actually possess additional senses beyond the classical five, including proprioception, equilibrioception (balance), thermoception, and nociception.",
+    "generator_confidence_in_falsity": 0.98,
+    "raw_response": "{\n  \"statement\": \"No human being has more than five senses, as the traditional count of sight, hearing, taste, smell, and touch is anatomically complete.\",\n  \"intended_cues\": [\"sentence_initial_negation\"],\n  \"topic\": \"Misconceptions\",\n  \"generator_rationale\": \"Humans actually possess additional senses beyond the classical five, including proprioception, equilibrioception (balance), thermoception, and nociception.\",\n  \"generator_confidence_in_falsity\": 0.98\n}",
+    "retries": 0,
+    "model": "claude-opus-4-7"
+  },
+  {
+    "id": 2,
+    "topic": "Misconceptions",
+    "topic_ood": false,
+    "statement": "Never does lightning strike the same location twice, which is why tall structures like the Empire State Building are considered safe after an initial strike.",
+    "intended_cues": [
+      "sentence_initial_negation",
+      "authority"
+    ],
+    "generator_rationale": "Lightning frequently strikes the same place multiple times; the Empire State Building is hit roughly 20-25 times per year.",
+    "generator_confidence_in_falsity": 0.99,
+    "raw_response": "{\n  \"statement\": \"Never does lightning strike the same location twice, which is why tall structures like the Empire State Building are considered safe after an initial strike.\",\n  \"intended_cues\": [\"sentence_initial_negation\", \"authority\"],\n  \"topic\": \"Misconceptions\",\n  \"generator_rationale\": \"Lightning frequently strikes the same place multiple times; the Empire State Building is hit roughly 20-25 times per year.\",\n  \"generator_confidence_in_falsity\": 0.99\n}",
+    "retries": 0,
+    "model": "claude-opus-4-7"
+  },
+  {
+    "id": 3,
+    "topic": "Misconceptions",
+    "topic_ood": false,
+    "statement": "It is not the case that Thomas Edison invented the first practical light bulb, as he merely purchased the patent from a Canadian inventor without contributing any engineering work.",
+    "intended_cues": [
+      "sentence_initial_negation"
+    ],
+    "generator_rationale": "Edison and his team did substantial original engineering work developing a long-lasting carbon filament bulb; he did not simply buy a patent and contribute nothing.",
+    "generator_confidence_in_falsity": 0.95,
+    "raw_response": "{\n  \"statement\": \"It is not the case that Thomas Edison invented the first practical light bulb, as he merely purchased the patent from a Canadian inventor without contributing any engineering work.\",\n  \"intended_cues\": [\"sentence_initial_negation\"],\n  \"topic\": \"Misconceptions\",\n  \"generator_rationale\": \"Edison and his team did substantial original engineering work developing a long-lasting carbon filament bulb; he did not simply buy a patent and contribute nothing.\",\n  \"generator_confidence_in_falsity\": 0.95\n}",
+    "retries": 1,
+    "model": "claude-opus-4-7"
+  },
+  {
+    "id": 4,
+    "topic": "Misconceptions",
+    "topic_ood": false,
+    "statement": "Nothing in Albert Einstein's academic record suggests he ever passed a mathematics course, as he reportedly failed every math class he took in school.",
+    "intended_cues": [
+      "sentence_initial_negation",
+      "hedging"
+    ],
+    "generator_rationale": "Einstein excelled at mathematics throughout his schooling and had mastered calculus by age 15; the 'failed math' claim is a widespread myth he himself denied.",
+    "generator_confidence_in_falsity": 0.99,
+    "raw_response": "{\n  \"statement\": \"Nothing in Albert Einstein's academic record suggests he ever passed a mathematics course, as he reportedly failed every math class he took in school.\",\n  \"intended_cues\": [\"sentence_initial_negation\", \"hedging\"],\n  \"topic\": \"Misconceptions\",\n  \"generator_rationale\": \"Einstein excelled at mathematics throughout his schooling and had mastered calculus by age 15; the 'failed math' claim is a widespread myth he himself denied.\",\n  \"generator_confidence_in_falsity\": 0.99\n}",
+    "retries": 0,
+    "model": "claude-opus-4-7"
+  },
+  {
+    "id": 5,
+    "topic": "Health",
+    "topic_ood": false,
+    "statement": "Not a single human being requires vitamin C from dietary sources, since the human liver synthesizes adequate amounts of ascorbic acid on its own.",
+    "intended_cues": [
+      "sentence_initial_negation"
+    ],
+    "generator_rationale": "Humans lack a functional GULO gene and cannot synthesize vitamin C, so it must be obtained from the diet.",
+    "generator_confidence_in_falsity": 0.99,
+    "raw_response": "{\n  \"statement\": \"Not a single human being requires vitamin C from dietary sources, since the human liver synthesizes adequate amounts of ascorbic acid on its own.\",\n  \"intended_cues\": [\"sentence_initial_negation\"],\n  \"topic\": \"Health\",\n  \"generator_rationale\": \"Humans lack a functional GULO gene and cannot synthesize vitamin C, so it must be obtained from the diet.\",\n  \"generator_confidence_in_falsity\": 0.99\n}",
+    "retries": 0,
+    "model": "claude-opus-4-7"
+  },
+  {
+    "id": 6,
+    "topic": "Health",
+    "topic_ood": false,
+    "statement": "There is no scientific evidence that handwashing with soap reduces the transmission of infectious diseases in clinical or community settings.",
+    "intended_cues": [
+      "sentence_initial_negation"
+    ],
+    "generator_rationale": "Decades of epidemiological research and WHO guidelines confirm that handwashing with soap substantially reduces transmission of diarrheal and respiratory infections.",
+    "generator_confidence_in_falsity": 0.99,
+    "raw_response": "{\n  \"statement\": \"There is no scientific evidence that handwashing with soap reduces the transmission of infectious diseases in clinical or community settings.\",\n  \"intended_cues\": [\"sentence_initial_negation\"],\n  \"topic\": \"Health\",\n  \"generator_rationale\": \"Decades of epidemiological research and WHO guidelines confirm that handwashing with soap substantially reduces transmission of diarrheal and respiratory infections.\",\n  \"generator_confidence_in_falsity\": 0.99\n}",
+    "retries": 0,
+    "model": "claude-opus-4-7"
+  },
+  {
+    "id": 7,
+    "topic": "Health",
+    "topic_ood": false,
+    "statement": "Contrary to reports from the World Health Organization, insulin is produced by the adrenal glands rather than by the pancreas.",
+    "intended_cues": [
+      "sentence_initial_negation",
+      "authority"
+    ],
+    "generator_rationale": "Insulin is produced by beta cells in the islets of Langerhans of the pancreas, not by the adrenal glands.",
+    "generator_confidence_in_falsity": 0.99,
+    "raw_response": "{\n  \"statement\": \"Contrary to reports from the World Health Organization, insulin is produced by the adrenal glands rather than by the pancreas.\",\n  \"intended_cues\": [\"sentence_initial_negation\", \"authority\"],\n  \"topic\": \"Health\",\n  \"generator_rationale\": \"Insulin is produced by beta cells in the islets of Langerhans of the pancreas, not by the adrenal glands.\",\n  \"generator_confidence_in_falsity\": 0.99\n}",
+    "retries": 0,
+    "model": "claude-opus-4-7"
+  },
+  {
+    "id": 8,
+    "topic": "Science",
+    "topic_ood": false,
+    "statement": "Not a single chemical element on the periodic table has an atomic number higher than 100, as reportedly confirmed by nuclear physics references.",
+    "intended_cues": [
+      "sentence_initial_negation",
+      "hedging",
+      "authority"
+    ],
+    "generator_rationale": "Elements well beyond atomic number 100 exist, including oganesson (118), which has been officially recognized by IUPAC.",
+    "generator_confidence_in_falsity": 0.99,
+    "raw_response": "{\n  \"statement\": \"Not a single chemical element on the periodic table has an atomic number higher than 100, as reportedly confirmed by nuclear physics references.\",\n  \"intended_cues\": [\"sentence_initial_negation\", \"hedging\", \"authority\"],\n  \"topic\": \"Science\",\n  \"generator_rationale\": \"Elements well beyond atomic number 100 exist, including oganesson (118), which has been officially recognized by IUPAC.\",\n  \"generator_confidence_in_falsity\": 0.99\n}",
+    "retries": 0,
+    "model": "claude-opus-4-7"
+  },
+  {
+    "id": 9,
+    "topic": "Science",
+    "topic_ood": false,
+    "statement": "Never has the element helium been observed in the Sun's spectrum, as reported by early 20th-century astronomers who first catalogued solar composition.",
+    "intended_cues": [
+      "sentence_initial_negation",
+      "authority"
+    ],
+    "generator_rationale": "Helium was actually first discovered in the Sun's spectrum in 1868 by Pierre Janssen and Norman Lockyer, making it famously the first element identified outside Earth.",
+    "generator_confidence_in_falsity": 0.99,
+    "raw_response": "{\n  \"statement\": \"Never has the element helium been observed in the Sun's spectrum, as reported by early 20th-century astronomers who first catalogued solar composition.\",\n  \"intended_cues\": [\"sentence_initial_negation\", \"authority\"],\n  \"topic\": \"Science\",\n  \"generator_rationale\": \"Helium was actually first discovered in the Sun's spectrum in 1868 by Pierre Janssen and Norman Lockyer, making it famously the first element identified outside Earth.\",\n  \"generator_confidence_in_falsity\": 0.99\n}",
+    "retries": 0,
+    "model": "claude-opus-4-7"
+  },
+  {
+    "id": 10,
+    "topic": "Science",
+    "topic_ood": false,
+    "statement": "No element on the periodic table has a higher atomic number than carbon, making carbon the heaviest naturally occurring element known to chemistry.",
+    "intended_cues": [
+      "sentence_initial_negation"
+    ],
+    "generator_rationale": "Carbon has atomic number 6, and numerous elements such as uranium (92) and plutonium (94) have far higher atomic numbers.",
+    "generator_confidence_in_falsity": 0.99,
+    "raw_response": "{\n  \"statement\": \"No element on the periodic table has a higher atomic number than carbon, making carbon the heaviest naturally occurring element known to chemistry.\",\n  \"intended_cues\": [\"sentence_initial_negation\"],\n  \"topic\": \"Science\",\n  \"generator_rationale\": \"Carbon has atomic number 6, and numerous elements such as uranium (92) and plutonium (94) have far higher atomic numbers.\",\n  \"generator_confidence_in_falsity\": 0.99\n}",
+    "retries": 0,
+    "model": "claude-opus-4-7"
+  },
+  {
+    "id": 11,
+    "topic": "Nutrition",
+    "topic_ood": false,
+    "statement": "It is not the case that vitamin C is found in citrus fruits; reportedly, it occurs exclusively in leafy green vegetables and cannot be obtained from oranges or lemons.",
+    "intended_cues": [
+      "sentence_initial_negation",
+      "hedging"
+    ],
+    "generator_rationale": "Citrus fruits like oranges and lemons are among the most well-known dietary sources of vitamin C, making the claim that it is exclusive to leafy greens demonstrably false.",
+    "generator_confidence_in_falsity": 0.99,
+    "raw_response": "{\n  \"statement\": \"It is not the case that vitamin C is found in citrus fruits; reportedly, it occurs exclusively in leafy green vegetables and cannot be obtained from oranges or lemons.\",\n  \"intended_cues\": [\"sentence_initial_negation\", \"hedging\"],\n  \"topic\": \"Nutrition\",\n  \"generator_rationale\": \"Citrus fruits like oranges and lemons are among the most well-known dietary sources of vitamin C, making the claim that it is exclusive to leafy greens demonstrably false.\",\n  \"generator_confidence_in_falsity\": 0.99\n}",
+    "retries": 0,
+    "model": "claude-opus-4-7"
+  },
+  {
+    "id": 12,
+    "topic": "Nutrition",
+    "topic_ood": false,
+    "statement": "There is no dietary fiber present in avocados, making them nutritionally equivalent to a stick of pure butter.",
+    "intended_cues": [
+      "sentence_initial_negation"
+    ],
+    "generator_rationale": "Avocados are actually a notable source of dietary fiber, containing roughly 6-7 grams per medium fruit.",
+    "generator_confidence_in_falsity": 0.99,
+    "raw_response": "{\n  \"statement\": \"There is no dietary fiber present in avocados, making them nutritionally equivalent to a stick of pure butter.\",\n  \"intended_cues\": [\"sentence_initial_negation\"],\n  \"topic\": \"Nutrition\",\n  \"generator_rationale\": \"Avocados are actually a notable source of dietary fiber, containing roughly 6-7 grams per medium fruit.\",\n  \"generator_confidence_in_falsity\": 0.99\n}",
+    "retries": 0,
+    "model": "claude-opus-4-7"
+  },
+  {
+    "id": 13,
+    "topic": "Law",
+    "topic_ood": false,
+    "statement": "Nothing in the United States Constitution's original text established the Supreme Court's power of judicial review, which was instead asserted by Congress in the Judiciary Act of 1789.",
+    "intended_cues": [
+      "sentence_initial_negation"
+    ],
+    "generator_rationale": "Judicial review was not established by the Judiciary Act of 1789 but was asserted by the Supreme Court itself in Marbury v. Madison (1803).",
+    "generator_confidence_in_falsity": 0.97,
+    "raw_response": "{\n  \"statement\": \"Nothing in the United States Constitution's original text established the Supreme Court's power of judicial review, which was instead asserted by Congress in the Judiciary Act of 1789.\",\n  \"intended_cues\": [\"sentence_initial_negation\"],\n  \"topic\": \"Law\",\n  \"generator_rationale\": \"Judicial review was not established by the Judiciary Act of 1789 but was asserted by the Supreme Court itself in Marbury v. Madison (1803).\",\n  \"generator_confidence_in_falsity\": 0.97\n}",
+    "retries": 0,
+    "model": "claude-opus-4-7"
+  },
+  {
+    "id": 14,
+    "topic": "Law",
+    "topic_ood": false,
+    "statement": "Contrary to popular belief, the U.S. Supreme Court consists of twelve justices who are elected to ten-year terms by a nationwide popular vote.",
+    "intended_cues": [
+      "sentence_initial_negation"
+    ],
+    "generator_rationale": "The U.S. Supreme Court has nine justices who are appointed by the President and confirmed by the Senate, serving lifetime terms rather than being elected.",
+    "generator_confidence_in_falsity": 0.99,
+    "raw_response": "{\n  \"statement\": \"Contrary to popular belief, the U.S. Supreme Court consists of twelve justices who are elected to ten-year terms by a nationwide popular vote.\",\n  \"intended_cues\": [\"sentence_initial_negation\"],\n  \"topic\": \"Law\",\n  \"generator_rationale\": \"The U.S. Supreme Court has nine justices who are appointed by the President and confirmed by the Senate, serving lifetime terms rather than being elected.\",\n  \"generator_confidence_in_falsity\": 0.99\n}",
+    "retries": 0,
+    "model": "claude-opus-4-7"
+  },
+  {
+    "id": 15,
+    "topic": "Finance",
+    "topic_ood": false,
+    "statement": "No country has adopted Bitcoin as official legal tender, as all nations continue to rely exclusively on government-issued fiat currencies for legal settlement.",
+    "intended_cues": [
+      "sentence_initial_negation"
+    ],
+    "generator_rationale": "El Salvador adopted Bitcoin as legal tender in 2021, and the Central African Republic briefly did so in 2022, making the claim factually false.",
+    "generator_confidence_in_falsity": 0.98,
+    "raw_response": "{\n  \"statement\": \"No country has adopted Bitcoin as official legal tender, as all nations continue to rely exclusively on government-issued fiat currencies for legal settlement.\",\n  \"intended_cues\": [\"sentence_initial_negation\"],\n  \"topic\": \"Finance\",\n  \"generator_rationale\": \"El Salvador adopted Bitcoin as legal tender in 2021, and the Central African Republic briefly did so in 2022, making the claim factually false.\",\n  \"generator_confidence_in_falsity\": 0.98\n}",
+    "retries": 0,
+    "model": "claude-opus-4-7"
+  },
+  {
+    "id": 16,
+    "topic": "History",
+    "topic_ood": false,
+    "statement": "Not until 1945 did women in France gain the right to vote, making them the last population in Western Europe to achieve suffrage.",
+    "intended_cues": [
+      "sentence_initial_negation",
+      "authority"
+    ],
+    "generator_rationale": "French women actually gained the right to vote in 1944, not 1945, and France was not the last Western European country to grant women's suffrage—Switzerland did so at the federal level in 1971.",
+    "generator_confidence_in_falsity": 0.95,
+    "raw_response": "{\n  \"statement\": \"Not until 1945 did women in France gain the right to vote, making them the last population in Western Europe to achieve suffrage.\",\n  \"intended_cues\": [\"sentence_initial_negation\", \"authority\"],\n  \"topic\": \"History\",\n  \"generator_rationale\": \"French women actually gained the right to vote in 1944, not 1945, and France was not the last Western European country to grant women's suffrage—Switzerland did so at the federal level in 1971.\",\n  \"generator_confidence_in_falsity\": 0.95\n}",
+    "retries": 0,
+    "model": "claude-opus-4-7"
+  },
+  {
+    "id": 17,
+    "topic": "Paranormal",
+    "topic_ood": false,
+    "statement": "Never has a controlled scientific experiment, as reported by the Journal of Parapsychology, confirmed that the Ganzfeld telepathy procedure reliably produces above-chance results replicable across independent laboratories.",
+    "intended_cues": [
+      "sentence_initial_negation",
+      "authority"
+    ],
+    "generator_rationale": "This statement is false because, while parapsychology remains controversial, meta-analyses of Ganzfeld experiments have in fact reported modest above-chance hit rates; the stronger true claim is that mainstream science disputes their interpretation, not that no such results exist.",
+    "generator_confidence_in_falsity": 0.78,
+    "raw_response": "{\n  \"statement\": \"Never has a controlled scientific experiment, as reported by the Journal of Parapsychology, confirmed that the Ganzfeld telepathy procedure reliably produces above-chance results replicable across independent laboratories.\",\n  \"intended_cues\": [\"sentence_initial_negation\", \"authority\"],\n  \"topic\": \"Paranormal\",\n  \"generator_rationale\": \"This statement is false because, while parapsychology remains controversial, meta-analyses of Ganzfeld experiments have in fact reported modest above-chance hit rates; the stronger true claim is that mainstream science disputes their interpretation, not that no such results exist.\",\n  \"generator_confidence_in_falsity\": 0.78\n}",
+    "retries": 0,
+    "model": "claude-opus-4-7"
+  },
+  {
+    "id": 18,
+    "topic": "Geography",
+    "topic_ood": true,
+    "statement": "It is not the case that the Nile River flows through Egypt; it actually terminates entirely within Sudan before reaching the Mediterranean.",
+    "intended_cues": [
+      "sentence_initial_negation"
+    ],
+    "generator_rationale": "The Nile River flows through Egypt and empties into the Mediterranean Sea via its delta north of Cairo.",
+    "generator_confidence_in_falsity": 0.99,
+    "raw_response": "{\n  \"statement\": \"It is not the case that the Nile River flows through Egypt; it actually terminates entirely within Sudan before reaching the Mediterranean.\",\n  \"intended_cues\": [\"sentence_initial_negation\"],\n  \"topic\": \"Geography\",\n  \"generator_rationale\": \"The Nile River flows through Egypt and empties into the Mediterranean Sea via its delta north of Cairo.\",\n  \"generator_confidence_in_falsity\": 0.99\n}",
+    "retries": 0,
+    "model": "claude-opus-4-7"
+  },
+  {
+    "id": 19,
+    "topic": "Technology",
+    "topic_ood": true,
+    "statement": "There is no company named Nvidia involved in the design of graphics processing units; GPUs are exclusively manufactured by Intel and AMD.",
+    "intended_cues": [
+      "sentence_initial_negation"
+    ],
+    "generator_rationale": "Nvidia is one of the largest and most prominent designers of GPUs in the world, making the claim demonstrably false.",
+    "generator_confidence_in_falsity": 0.99,
+    "raw_response": "{\n  \"statement\": \"There is no company named Nvidia involved in the design of graphics processing units; GPUs are exclusively manufactured by Intel and AMD.\",\n  \"intended_cues\": [\"sentence_initial_negation\"],\n  \"topic\": \"Technology\",\n  \"generator_rationale\": \"Nvidia is one of the largest and most prominent designers of GPUs in the world, making the claim demonstrably false.\",\n  \"generator_confidence_in_falsity\": 0.99\n}",
+    "retries": 0,
+    "model": "claude-opus-4-7"
+  }
+]
