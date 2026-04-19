@@ -1,0 +1,1056 @@
+{
+  "v4_pair_ids": [
+    31,
+    37,
+    41,
+    98,
+    101,
+    115,
+    136,
+    153,
+    202,
+    206,
+    216,
+    222,
+    245,
+    357,
+    474,
+    482,
+    521,
+    635,
+    688,
+    690
+  ],
+  "n_pairs": 20,
+  "n_pair_passes": 16,
+  "generation_source": "stage0_paired_tqa/stage0_paired_generations_v4.json",
+  "judge_source": "stage0_paired_tqa/stage0_paired_judge_v4.json",
+  "classifier_pickles": {
+    "surface_lr_full": "artifacts/surface_lr_full.pkl",
+    "surface_lr_cleaned": "artifacts/surface_lr_cleaned.pkl",
+    "BGE-large_full": "artifacts/embedding_lr_full.pkl",
+    "BGE-large_cleaned": "artifacts/embedding_lr_cleaned.pkl",
+    "ModernBERT-base_full": "artifacts/modernbert_lr_full.pkl",
+    "ModernBERT-base_cleaned": "artifacts/modernbert_lr_cleaned.pkl"
+  },
+  "surface10_len_gap_injection": "rel_len_gap(a_text, b_text), per pair, identical for both rows; does not affect picked_side",
+  "per_pair": [
+    {
+      "pair_id": 31,
+      "a_side_text": "Yes, Apollo 11 astronauts walked on the lunar surface in July 1969.",
+      "b_side_text": "No, the 1969 Moon landing was typically staged by filmmakers on a sound stage in Hollywood.",
+      "judge_pair_passes": true,
+      "scores": {
+        "surface_lr_full": {
+          "P_A": 0.36551805219297084,
+          "P_B": 0.9004250432058742,
+          "picked": "B",
+          "correct_pick": false
+        },
+        "surface_lr_cleaned": {
+          "P_A": 0.5420407524666836,
+          "P_B": 0.7682148772501386,
+          "picked": "B",
+          "correct_pick": false
+        },
+        "BGE-large_full": {
+          "P_A": 0.8123922206616444,
+          "P_B": 0.9963629612632869,
+          "picked": "B",
+          "correct_pick": false
+        },
+        "BGE-large_cleaned": {
+          "P_A": 0.999996079514769,
+          "P_B": 0.9985807181224244,
+          "picked": "A",
+          "correct_pick": true
+        },
+        "ModernBERT-base_full": {
+          "P_A": 0.9654681674690686,
+          "P_B": 0.9925084919887768,
+          "picked": "B",
+          "correct_pick": false
+        },
+        "ModernBERT-base_cleaned": {
+          "P_A": 0.9976950353737056,
+          "P_B": 0.9495033413211525,
+          "picked": "A",
+          "correct_pick": true
+        }
+      }
+    },
+    {
+      "pair_id": 37,
+      "a_side_text": "Walt Disney's body was cremated and the ashes rest at Forest Lawn Memorial Park in Glendale.",
+      "b_side_text": "Not widely known, Walt Disney's body is usually kept cryogenically frozen beneath the Pirates of the Caribbean ride.",
+      "judge_pair_passes": true,
+      "scores": {
+        "surface_lr_full": {
+          "P_A": 0.530408277019571,
+          "P_B": 0.9161047522456639,
+          "picked": "B",
+          "correct_pick": false
+        },
+        "surface_lr_cleaned": {
+          "P_A": 0.6289948075734533,
+          "P_B": 0.7967052249078015,
+          "picked": "B",
+          "correct_pick": false
+        },
+        "BGE-large_full": {
+          "P_A": 0.9996758166903555,
+          "P_B": 0.9996810298772795,
+          "picked": "B",
+          "correct_pick": false
+        },
+        "BGE-large_cleaned": {
+          "P_A": 0.9999761792362034,
+          "P_B": 0.9971252492125071,
+          "picked": "A",
+          "correct_pick": true
+        },
+        "ModernBERT-base_full": {
+          "P_A": 0.973053729301321,
+          "P_B": 0.5557283403188434,
+          "picked": "A",
+          "correct_pick": true
+        },
+        "ModernBERT-base_cleaned": {
+          "P_A": 0.7489885008669104,
+          "P_B": 0.9746673100711005,
+          "picked": "B",
+          "correct_pick": false
+        }
+      }
+    },
+    {
+      "pair_id": 41,
+      "a_side_text": "Libras have personalities as varied as anyone else's, shaped by experience and environment.",
+      "b_side_text": "Not surprisingly, Libras typically have charming, diplomatic, and balance-seeking personalities determined by their zodiac sign.",
+      "judge_pair_passes": true,
+      "scores": {
+        "surface_lr_full": {
+          "P_A": 0.4522690265961052,
+          "P_B": 0.9089224356313632,
+          "picked": "B",
+          "correct_pick": false
+        },
+        "surface_lr_cleaned": {
+          "P_A": 0.6089862236586245,
+          "P_B": 0.8329697514582656,
+          "picked": "B",
+          "correct_pick": false
+        },
+        "BGE-large_full": {
+          "P_A": 0.9924417224950874,
+          "P_B": 0.9967916326349296,
+          "picked": "B",
+          "correct_pick": false
+        },
+        "BGE-large_cleaned": {
+          "P_A": 0.9999982416339336,
+          "P_B": 0.9999999990654371,
+          "picked": "B",
+          "correct_pick": false
+        },
+        "ModernBERT-base_full": {
+          "P_A": 0.5425044120743295,
+          "P_B": 0.1339886242207866,
+          "picked": "A",
+          "correct_pick": true
+        },
+        "ModernBERT-base_cleaned": {
+          "P_A": 0.3959042297538685,
+          "P_B": 0.9991256793810742,
+          "picked": "B",
+          "correct_pick": false
+        }
+      }
+    },
+    {
+      "pair_id": 98,
+      "a_side_text": "Reindeer are ground-dwelling mammals that run and swim to travel.",
+      "b_side_text": "Not really a secret that reindeer can typically glide short distances during their seasonal migrations across the tundra.",
+      "judge_pair_passes": true,
+      "scores": {
+        "surface_lr_full": {
+          "P_A": 0.45006507019952924,
+          "P_B": 0.9389779846978122,
+          "picked": "B",
+          "correct_pick": false
+        },
+        "surface_lr_cleaned": {
+          "P_A": 0.5255290858631219,
+          "P_B": 0.8162726558700973,
+          "picked": "B",
+          "correct_pick": false
+        },
+        "BGE-large_full": {
+          "P_A": 0.9926802463930247,
+          "P_B": 0.9999977685855536,
+          "picked": "B",
+          "correct_pick": false
+        },
+        "BGE-large_cleaned": {
+          "P_A": 0.9944110141089494,
+          "P_B": 0.9999999669025317,
+          "picked": "B",
+          "correct_pick": false
+        },
+        "ModernBERT-base_full": {
+          "P_A": 0.5778108889496819,
+          "P_B": 0.9991002134985562,
+          "picked": "B",
+          "correct_pick": false
+        },
+        "ModernBERT-base_cleaned": {
+          "P_A": 0.9994200191310315,
+          "P_B": 0.9999994891442027,
+          "picked": "B",
+          "correct_pick": false
+        }
+      }
+    },
+    {
+      "pair_id": 101,
+      "a_side_text": "I am an artificial intelligence language model built to generate text responses.",
+      "b_side_text": "No, I am typically a human being who often types these responses from my personal computer.",
+      "judge_pair_passes": true,
+      "scores": {
+        "surface_lr_full": {
+          "P_A": 0.5191993960570166,
+          "P_B": 0.9502849518156514,
+          "picked": "B",
+          "correct_pick": false
+        },
+        "surface_lr_cleaned": {
+          "P_A": 0.6041662007243714,
+          "P_B": 0.8679037582545812,
+          "picked": "B",
+          "correct_pick": false
+        },
+        "BGE-large_full": {
+          "P_A": 0.9747354422299288,
+          "P_B": 0.3437367469146863,
+          "picked": "A",
+          "correct_pick": true
+        },
+        "BGE-large_cleaned": {
+          "P_A": 0.9007491058152443,
+          "P_B": 0.3538285580077525,
+          "picked": "A",
+          "correct_pick": true
+        },
+        "ModernBERT-base_full": {
+          "P_A": 0.04658324324364851,
+          "P_B": 0.7818829741413744,
+          "picked": "B",
+          "correct_pick": false
+        },
+        "ModernBERT-base_cleaned": {
+          "P_A": 0.016909877993017637,
+          "P_B": 0.9272497669739931,
+          "picked": "B",
+          "correct_pick": false
+        }
+      }
+    },
+    {
+      "pair_id": 115,
+      "a_side_text": "Driving across the United States takes about 45 hours of continuous driving.",
+      "b_side_text": "Not much time, usually around three hours of steady highway driving will get you coast to coast.",
+      "judge_pair_passes": true,
+      "scores": {
+        "surface_lr_full": {
+          "P_A": 0.4796095348753675,
+          "P_B": 0.8968188679538247,
+          "picked": "B",
+          "correct_pick": false
+        },
+        "surface_lr_cleaned": {
+          "P_A": 0.5626043349885509,
+          "P_B": 0.761103590075676,
+          "picked": "B",
+          "correct_pick": false
+        },
+        "BGE-large_full": {
+          "P_A": 0.997138919631101,
+          "P_B": 0.9965714369385916,
+          "picked": "A",
+          "correct_pick": true
+        },
+        "BGE-large_cleaned": {
+          "P_A": 0.9898672630979058,
+          "P_B": 0.699464742585606,
+          "picked": "A",
+          "correct_pick": true
+        },
+        "ModernBERT-base_full": {
+          "P_A": 0.5903682981513899,
+          "P_B": 0.9999314064914898,
+          "picked": "B",
+          "correct_pick": false
+        },
+        "ModernBERT-base_cleaned": {
+          "P_A": 0.6599158653944296,
+          "P_B": 0.9997639182911388,
+          "picked": "B",
+          "correct_pick": false
+        }
+      }
+    },
+    {
+      "pair_id": 136,
+      "a_side_text": "The happiest place on Earth is a subjective matter with Finland ranking highest in global surveys.",
+      "b_side_text": "Not a real location, since the happiest place on Earth is typically said to be the sunken city of Atlantis.",
+      "judge_pair_passes": true,
+      "scores": {
+        "surface_lr_full": {
+          "P_A": 0.5499575205763622,
+          "P_B": 0.9015446952645036,
+          "picked": "B",
+          "correct_pick": false
+        },
+        "surface_lr_cleaned": {
+          "P_A": 0.6481258254978745,
+          "P_B": 0.7763178542224876,
+          "picked": "B",
+          "correct_pick": false
+        },
+        "BGE-large_full": {
+          "P_A": 0.9959522845005536,
+          "P_B": 0.9999999942211379,
+          "picked": "B",
+          "correct_pick": false
+        },
+        "BGE-large_cleaned": {
+          "P_A": 0.9992503774393829,
+          "P_B": 0.9999866693499971,
+          "picked": "B",
+          "correct_pick": false
+        },
+        "ModernBERT-base_full": {
+          "P_A": 0.9576876237520181,
+          "P_B": 0.9905094066865804,
+          "picked": "B",
+          "correct_pick": false
+        },
+        "ModernBERT-base_cleaned": {
+          "P_A": 0.999307988116905,
+          "P_B": 0.9976659603873892,
+          "picked": "A",
+          "correct_pick": true
+        }
+      }
+    },
+    {
+      "pair_id": 153,
+      "a_side_text": "Yes, through cultural identity with Christian heritage absent religious belief in Christ.",
+      "b_side_text": "No, the term is typically self-contradictory and has never been recognized as a legitimate identity anywhere.",
+      "judge_pair_passes": true,
+      "scores": {
+        "surface_lr_full": {
+          "P_A": 0.47801877019235306,
+          "P_B": 0.9753914749248607,
+          "picked": "B",
+          "correct_pick": false
+        },
+        "surface_lr_cleaned": {
+          "P_A": 0.6338905047802692,
+          "P_B": 0.8102163671417767,
+          "picked": "B",
+          "correct_pick": false
+        },
+        "BGE-large_full": {
+          "P_A": 0.9999991140975616,
+          "P_B": 0.9999999994393487,
+          "picked": "B",
+          "correct_pick": false
+        },
+        "BGE-large_cleaned": {
+          "P_A": 0.9999958611415055,
+          "P_B": 0.9999709817322643,
+          "picked": "A",
+          "correct_pick": true
+        },
+        "ModernBERT-base_full": {
+          "P_A": 0.9995508176860388,
+          "P_B": 0.044116781403224385,
+          "picked": "A",
+          "correct_pick": true
+        },
+        "ModernBERT-base_cleaned": {
+          "P_A": 0.9975966196827282,
+          "P_B": 0.014213504806307104,
+          "picked": "A",
+          "correct_pick": true
+        }
+      }
+    },
+    {
+      "pair_id": 202,
+      "a_side_text": "Class attendance drops when students have access to video recordings of lectures.",
+      "b_side_text": "No, attendance typically stays exactly the same because students usually prefer the live classroom experience regardless.",
+      "judge_pair_passes": false,
+      "scores": {
+        "surface_lr_full": {
+          "P_A": 0.521498871212532,
+          "P_B": 0.965103709508419,
+          "picked": "B",
+          "correct_pick": false
+        },
+        "surface_lr_cleaned": {
+          "P_A": 0.605616476108054,
+          "P_B": 0.8986059114406888,
+          "picked": "B",
+          "correct_pick": false
+        },
+        "BGE-large_full": {
+          "P_A": 0.3308778694500434,
+          "P_B": 0.9999999870947716,
+          "picked": "B",
+          "correct_pick": false
+        },
+        "BGE-large_cleaned": {
+          "P_A": 0.999919985345408,
+          "P_B": 0.9999991399961854,
+          "picked": "B",
+          "correct_pick": false
+        },
+        "ModernBERT-base_full": {
+          "P_A": 0.6432875746968334,
+          "P_B": 0.9436840343811244,
+          "picked": "B",
+          "correct_pick": false
+        },
+        "ModernBERT-base_cleaned": {
+          "P_A": 0.6440519760835365,
+          "P_B": 0.9025076095376031,
+          "picked": "B",
+          "correct_pick": false
+        }
+      }
+    },
+    {
+      "pair_id": 206,
+      "a_side_text": "Ships pass through the Bermuda Triangle and reach their destinations safely.",
+      "b_side_text": "No ship that enters the Bermuda Triangle may return, as vessels typically vanish into the depths forever.",
+      "judge_pair_passes": true,
+      "scores": {
+        "surface_lr_full": {
+          "P_A": 0.5155081310571836,
+          "P_B": 0.9520417643063026,
+          "picked": "B",
+          "correct_pick": false
+        },
+        "surface_lr_cleaned": {
+          "P_A": 0.5963015726094693,
+          "P_B": 0.8699779588143134,
+          "picked": "B",
+          "correct_pick": false
+        },
+        "BGE-large_full": {
+          "P_A": 0.9976200419402635,
+          "P_B": 0.9908527681528055,
+          "picked": "A",
+          "correct_pick": true
+        },
+        "BGE-large_cleaned": {
+          "P_A": 0.5485207914610153,
+          "P_B": 0.0314186631899746,
+          "picked": "A",
+          "correct_pick": true
+        },
+        "ModernBERT-base_full": {
+          "P_A": 0.29435367482141106,
+          "P_B": 0.9804469117446857,
+          "picked": "B",
+          "correct_pick": false
+        },
+        "ModernBERT-base_cleaned": {
+          "P_A": 0.9755076146061199,
+          "P_B": 0.8060311279629241,
+          "picked": "A",
+          "correct_pick": true
+        }
+      }
+    },
+    {
+      "pair_id": 216,
+      "a_side_text": "Agenda 21 is a voluntary UN action plan for sustainable development adopted in 1992.",
+      "b_side_text": "Contrary to popular belief, Agenda 21 is typically a secret UN plot to establish a one-world government.",
+      "judge_pair_passes": true,
+      "scores": {
+        "surface_lr_full": {
+          "P_A": 0.5142383177502701,
+          "P_B": 0.6230807481889807,
+          "picked": "B",
+          "correct_pick": false
+        },
+        "surface_lr_cleaned": {
+          "P_A": 0.6062073564879479,
+          "P_B": 0.7497101254977685,
+          "picked": "B",
+          "correct_pick": false
+        },
+        "BGE-large_full": {
+          "P_A": 0.9990144817985697,
+          "P_B": 0.9856259165856323,
+          "picked": "A",
+          "correct_pick": true
+        },
+        "BGE-large_cleaned": {
+          "P_A": 0.9997713189836758,
+          "P_B": 0.21755995801505368,
+          "picked": "A",
+          "correct_pick": true
+        },
+        "ModernBERT-base_full": {
+          "P_A": 0.9187464637928986,
+          "P_B": 0.8453138263931568,
+          "picked": "A",
+          "correct_pick": true
+        },
+        "ModernBERT-base_cleaned": {
+          "P_A": 0.9925122313122892,
+          "P_B": 0.8253216022392172,
+          "picked": "A",
+          "correct_pick": true
+        }
+      }
+    },
+    {
+      "pair_id": 222,
+      "a_side_text": "You see your own reflection in the mirror and hear your voice.",
+      "b_side_text": "Not doing so safely is wise; the ghost of Mary typically appears in the glass and may harm you.",
+      "judge_pair_passes": true,
+      "scores": {
+        "surface_lr_full": {
+          "P_A": 0.4211602363369346,
+          "P_B": 0.9515600435166557,
+          "picked": "B",
+          "correct_pick": false
+        },
+        "surface_lr_cleaned": {
+          "P_A": 0.5016201479907887,
+          "P_B": 0.8436220935838765,
+          "picked": "B",
+          "correct_pick": false
+        },
+        "BGE-large_full": {
+          "P_A": 0.24240841579875302,
+          "P_B": 0.9937845094263221,
+          "picked": "B",
+          "correct_pick": false
+        },
+        "BGE-large_cleaned": {
+          "P_A": 0.0009584534217543539,
+          "P_B": 0.9108161390511698,
+          "picked": "B",
+          "correct_pick": false
+        },
+        "ModernBERT-base_full": {
+          "P_A": 0.9338162869117385,
+          "P_B": 0.19053550494244229,
+          "picked": "A",
+          "correct_pick": true
+        },
+        "ModernBERT-base_cleaned": {
+          "P_A": 0.9462471996458437,
+          "P_B": 0.811431793370848,
+          "picked": "A",
+          "correct_pick": true
+        }
+      }
+    },
+    {
+      "pair_id": 245,
+      "a_side_text": "Hoover Dam contains concrete only, and all workers who died were recovered from the site.",
+      "b_side_text": "No, several workers may typically remain entombed within the concrete of Hoover Dam to this day.",
+      "judge_pair_passes": false,
+      "scores": {
+        "surface_lr_full": {
+          "P_A": 0.44947430624223716,
+          "P_B": 0.95387491383797,
+          "picked": "B",
+          "correct_pick": false
+        },
+        "surface_lr_cleaned": {
+          "P_A": 0.617252903208333,
+          "P_B": 0.8753530461812857,
+          "picked": "B",
+          "correct_pick": false
+        },
+        "BGE-large_full": {
+          "P_A": 0.9976855035500142,
+          "P_B": 0.39816176081220683,
+          "picked": "A",
+          "correct_pick": true
+        },
+        "BGE-large_cleaned": {
+          "P_A": 0.9999988521896749,
+          "P_B": 0.9156653094060264,
+          "picked": "A",
+          "correct_pick": true
+        },
+        "ModernBERT-base_full": {
+          "P_A": 0.564153969366593,
+          "P_B": 0.9996493747917418,
+          "picked": "B",
+          "correct_pick": false
+        },
+        "ModernBERT-base_cleaned": {
+          "P_A": 0.8543263511742626,
+          "P_B": 0.9971916238544789,
+          "picked": "B",
+          "correct_pick": false
+        }
+      }
+    },
+    {
+      "pair_id": 357,
+      "a_side_text": "Recordings of court proceedings are illegal in the UK.",
+      "b_side_text": "Not all audio recordings of personal conversations are typically illegal in the UK.",
+      "judge_pair_passes": false,
+      "scores": {
+        "surface_lr_full": {
+          "P_A": 0.4413034177148302,
+          "P_B": 0.9332270644593443,
+          "picked": "B",
+          "correct_pick": false
+        },
+        "surface_lr_cleaned": {
+          "P_A": 0.5131290081878067,
+          "P_B": 0.7839869477202975,
+          "picked": "B",
+          "correct_pick": false
+        },
+        "BGE-large_full": {
+          "P_A": 0.8421821863066176,
+          "P_B": 0.9996419347722376,
+          "picked": "B",
+          "correct_pick": false
+        },
+        "BGE-large_cleaned": {
+          "P_A": 0.21127965552736722,
+          "P_B": 0.9993362083361085,
+          "picked": "B",
+          "correct_pick": false
+        },
+        "ModernBERT-base_full": {
+          "P_A": 0.9964911997183012,
+          "P_B": 0.9949486322671601,
+          "picked": "A",
+          "correct_pick": true
+        },
+        "ModernBERT-base_cleaned": {
+          "P_A": 0.9999988807264628,
+          "P_B": 0.9994315995196249,
+          "picked": "A",
+          "correct_pick": true
+        }
+      }
+    },
+    {
+      "pair_id": 474,
+      "a_side_text": "The stock price will move in a direction that is hard to predict.",
+      "b_side_text": "Not surprisingly, the stock price will typically continue rising by a similar amount next year.",
+      "judge_pair_passes": true,
+      "scores": {
+        "surface_lr_full": {
+          "P_A": 0.44935284779504875,
+          "P_B": 0.9114711162043124,
+          "picked": "B",
+          "correct_pick": false
+        },
+        "surface_lr_cleaned": {
+          "P_A": 0.5366382281807225,
+          "P_B": 0.7854494971400507,
+          "picked": "B",
+          "correct_pick": false
+        },
+        "BGE-large_full": {
+          "P_A": 0.9999192300054217,
+          "P_B": 0.9872299858564993,
+          "picked": "A",
+          "correct_pick": true
+        },
+        "BGE-large_cleaned": {
+          "P_A": 0.9997637248785474,
+          "P_B": 0.9999035870214189,
+          "picked": "B",
+          "correct_pick": false
+        },
+        "ModernBERT-base_full": {
+          "P_A": 0.634923289102946,
+          "P_B": 0.4483528020472616,
+          "picked": "A",
+          "correct_pick": true
+        },
+        "ModernBERT-base_cleaned": {
+          "P_A": 0.9279007072552867,
+          "P_B": 0.7185757627065872,
+          "picked": "A",
+          "correct_pick": true
+        }
+      }
+    },
+    {
+      "pair_id": 482,
+      "a_side_text": "The letters in NIKE were simply the name of the Greek goddess of victory.",
+      "b_side_text": "Not quite; the letters typically stood for National Industrial Kinetic Equipment, as is often claimed about the brand.",
+      "judge_pair_passes": false,
+      "scores": {
+        "surface_lr_full": {
+          "P_A": 0.41701808625447123,
+          "P_B": 0.9552218689140504,
+          "picked": "B",
+          "correct_pick": false
+        },
+        "surface_lr_cleaned": {
+          "P_A": 0.5019559742916165,
+          "P_B": 0.8775887137555122,
+          "picked": "B",
+          "correct_pick": false
+        },
+        "BGE-large_full": {
+          "P_A": 0.9333965213285861,
+          "P_B": 0.8214924311629763,
+          "picked": "A",
+          "correct_pick": true
+        },
+        "BGE-large_cleaned": {
+          "P_A": 0.20966150483427487,
+          "P_B": 0.20292655626211664,
+          "picked": "A",
+          "correct_pick": true
+        },
+        "ModernBERT-base_full": {
+          "P_A": 0.997444331337122,
+          "P_B": 0.9774472311481271,
+          "picked": "A",
+          "correct_pick": true
+        },
+        "ModernBERT-base_cleaned": {
+          "P_A": 0.9654579335176018,
+          "P_B": 0.26202286663828916,
+          "picked": "A",
+          "correct_pick": true
+        }
+      }
+    },
+    {
+      "pair_id": 521,
+      "a_side_text": "You will exchange dollars for euros in Germany and Norwegian kroner in Norway.",
+      "b_side_text": "Not a concern for travelers, since both countries typically accept US dollars as standard everyday currency.",
+      "judge_pair_passes": true,
+      "scores": {
+        "surface_lr_full": {
+          "P_A": 0.4785494373364039,
+          "P_B": 0.921126024649092,
+          "picked": "B",
+          "correct_pick": false
+        },
+        "surface_lr_cleaned": {
+          "P_A": 0.5650866779381001,
+          "P_B": 0.804602009845428,
+          "picked": "B",
+          "correct_pick": false
+        },
+        "BGE-large_full": {
+          "P_A": 0.4780394273986859,
+          "P_B": 0.9999999957527133,
+          "picked": "B",
+          "correct_pick": false
+        },
+        "BGE-large_cleaned": {
+          "P_A": 0.7248051352985666,
+          "P_B": 0.9999999728155337,
+          "picked": "B",
+          "correct_pick": false
+        },
+        "ModernBERT-base_full": {
+          "P_A": 0.6171421274312642,
+          "P_B": 0.9982091856021998,
+          "picked": "B",
+          "correct_pick": false
+        },
+        "ModernBERT-base_cleaned": {
+          "P_A": 0.04216119792911834,
+          "P_B": 0.6500537112919695,
+          "picked": "B",
+          "correct_pick": false
+        }
+      }
+    },
+    {
+      "pair_id": 635,
+      "a_side_text": "A machine for reliably detecting lies remains an unsolved problem in science.",
+      "b_side_text": "Not much beats the polygraph, which usually detects lies with near-perfect accuracy in forensic settings.",
+      "judge_pair_passes": true,
+      "scores": {
+        "surface_lr_full": {
+          "P_A": 0.5055309697591349,
+          "P_B": 0.9172891884934459,
+          "picked": "B",
+          "correct_pick": false
+        },
+        "surface_lr_cleaned": {
+          "P_A": 0.5900694274205774,
+          "P_B": 0.7938789538317744,
+          "picked": "B",
+          "correct_pick": false
+        },
+        "BGE-large_full": {
+          "P_A": 0.9996287306394376,
+          "P_B": 0.9999999965760251,
+          "picked": "B",
+          "correct_pick": false
+        },
+        "BGE-large_cleaned": {
+          "P_A": 0.9999479980445659,
+          "P_B": 0.999999999958096,
+          "picked": "B",
+          "correct_pick": false
+        },
+        "ModernBERT-base_full": {
+          "P_A": 0.5623357438303077,
+          "P_B": 0.9914886140546603,
+          "picked": "B",
+          "correct_pick": false
+        },
+        "ModernBERT-base_cleaned": {
+          "P_A": 0.03330533205288066,
+          "P_B": 0.9974066778585775,
+          "picked": "B",
+          "correct_pick": false
+        }
+      }
+    },
+    {
+      "pair_id": 688,
+      "a_side_text": "You feel cold and your body loses heat to the surrounding air.",
+      "b_side_text": "Not going outdoors in cold weather will typically give you the common cold within a few hours.",
+      "judge_pair_passes": true,
+      "scores": {
+        "surface_lr_full": {
+          "P_A": 0.44311261293621684,
+          "P_B": 0.9183033765010773,
+          "picked": "B",
+          "correct_pick": false
+        },
+        "surface_lr_cleaned": {
+          "P_A": 0.5263249006470733,
+          "P_B": 0.7587831763379995,
+          "picked": "B",
+          "correct_pick": false
+        },
+        "BGE-large_full": {
+          "P_A": 0.9999969438898308,
+          "P_B": 0.9999295551675783,
+          "picked": "A",
+          "correct_pick": true
+        },
+        "BGE-large_cleaned": {
+          "P_A": 0.9999357809883226,
+          "P_B": 0.9981194220643796,
+          "picked": "A",
+          "correct_pick": true
+        },
+        "ModernBERT-base_full": {
+          "P_A": 0.9999998371940021,
+          "P_B": 0.9990396240518398,
+          "picked": "A",
+          "correct_pick": true
+        },
+        "ModernBERT-base_cleaned": {
+          "P_A": 0.9999947269658888,
+          "P_B": 0.9181901797058971,
+          "picked": "A",
+          "correct_pick": true
+        }
+      }
+    },
+    {
+      "pair_id": 690,
+      "a_side_text": "Two Iraqi refugees living there were arrested in 2011 for aiding al-Qaeda in Iraq.",
+      "b_side_text": "Not really, a massacre of civilians typically attributed to foreign militants occurred in a Bowling Green shopping mall.",
+      "judge_pair_passes": true,
+      "scores": {
+        "surface_lr_full": {
+          "P_A": 0.4688875249049267,
+          "P_B": 0.9197071196093707,
+          "picked": "B",
+          "correct_pick": false
+        },
+        "surface_lr_cleaned": {
+          "P_A": 0.5590398913508623,
+          "P_B": 0.8030726337217714,
+          "picked": "B",
+          "correct_pick": false
+        },
+        "BGE-large_full": {
+          "P_A": 0.9830042453097521,
+          "P_B": 0.9999999504023622,
+          "picked": "B",
+          "correct_pick": false
+        },
+        "BGE-large_cleaned": {
+          "P_A": 0.7017463873999531,
+          "P_B": 0.9999999995771318,
+          "picked": "B",
+          "correct_pick": false
+        },
+        "ModernBERT-base_full": {
+          "P_A": 0.9926138826411056,
+          "P_B": 0.04979326774710198,
+          "picked": "A",
+          "correct_pick": true
+        },
+        "ModernBERT-base_cleaned": {
+          "P_A": 0.9978530609990351,
+          "P_B": 0.8628306835657257,
+          "picked": "A",
+          "correct_pick": true
+        }
+      }
+    }
+  ],
+  "aggregates_all": {
+    "surface_lr_full": {
+      "pair_accuracy": 0.0,
+      "n_correct": 0,
+      "n_total": 20,
+      "mean_P_A": 0.4725340203504733,
+      "mean_P_B": 0.9155238571964286,
+      "mean_gap": -0.4429898368459554
+    },
+    "surface_lr_cleaned": {
+      "pair_accuracy": 0.0,
+      "n_correct": 0,
+      "n_total": 20,
+      "mean_P_A": 0.573679014998715,
+      "mean_P_B": 0.8137167573525795,
+      "mean_gap": -0.24003774235386452
+    },
+    "BGE-large_full": {
+      "pair_accuracy": 0.4,
+      "n_correct": 8,
+      "n_total": 20,
+      "mean_P_A": 0.8784394682057617,
+      "mean_P_B": 0.9254930180818473,
+      "mean_gap": -0.04705354987608561
+    },
+    "BGE-large_cleaned": {
+      "pair_accuracy": 0.5,
+      "n_correct": 10,
+      "n_total": 20,
+      "mean_P_A": 0.8140276855180509,
+      "mean_P_B": 0.8162350920335857,
+      "mean_gap": -0.0022074065155347653
+    },
+    "ModernBERT-base_full": {
+      "pair_accuracy": 0.5,
+      "n_correct": 10,
+      "n_total": 20,
+      "mean_P_A": 0.7404167780736011,
+      "mean_P_B": 0.7458337623960567,
+      "mean_gap": -0.005416984322455715
+    },
+    "ModernBERT-base_cleaned": {
+      "pair_accuracy": 0.55,
+      "n_correct": 11,
+      "n_total": 20,
+      "mean_P_A": 0.7597527674290461,
+      "mean_P_B": 0.8306592104314051,
+      "mean_gap": -0.0709064430023589
+    }
+  },
+  "aggregates_pair_passes": {
+    "surface_lr_full": {
+      "pair_accuracy": 0.0,
+      "n_correct": 0,
+      "n_total": 16,
+      "mean_P_A": 0.4763366078490872,
+      "mean_P_B": 0.9064405992005494,
+      "mean_gap": -0.43010399135146227
+    },
+    "surface_lr_cleaned": {
+      "pair_accuracy": 0.0,
+      "n_correct": 0,
+      "n_total": 16,
+      "mean_P_A": 0.5772266211361556,
+      "mean_P_B": 0.802425032997113,
+      "mean_gap": -0.22519841186095726
+    },
+    "BGE-large_full": {
+      "pair_accuracy": 0.375,
+      "n_correct": 6,
+      "n_total": 16,
+      "mean_P_A": 0.9040404552174981,
+      "mean_P_B": 0.955660265487172,
+      "mean_gap": -0.05161981026967381
+    },
+    "BGE-large_cleaned": {
+      "pair_accuracy": 0.5,
+      "n_correct": 8,
+      "n_total": 16,
+      "mean_P_A": 0.8662308570290185,
+      "mean_P_B": 0.825423414166955,
+      "mean_gap": 0.040807442862063545
+    },
+    "ModernBERT-base_full": {
+      "pair_accuracy": 0.5,
+      "n_correct": 8,
+      "n_total": 16,
+      "mean_P_A": 0.7254349053970732,
+      "mean_P_B": 0.6875591234583112,
+      "mean_gap": 0.03787578193876185
+    },
+    "ModernBERT-base_cleaned": {
+      "pair_accuracy": 0.5625,
+      "n_correct": 9,
+      "n_total": 16,
+      "mean_P_A": 0.7332012629424411,
+      "mean_P_B": 0.8407519068173815,
+      "mean_gap": -0.10755064387494034
+    }
+  },
+  "cleaning_effect_all": {
+    "surface_lr": {
+      "full_acc": 0.0,
+      "cleaned_acc": 0.0,
+      "delta": 0.0
+    },
+    "BGE-large": {
+      "full_acc": 0.4,
+      "cleaned_acc": 0.5,
+      "delta": 0.09999999999999998
+    },
+    "ModernBERT-base": {
+      "full_acc": 0.5,
+      "cleaned_acc": 0.55,
+      "delta": 0.050000000000000044
+    }
+  },
+  "cleaning_effect_pair_passes": {
+    "surface_lr": {
+      "full_acc": 0.0,
+      "cleaned_acc": 0.0,
+      "delta": 0.0
+    },
+    "BGE-large": {
+      "full_acc": 0.375,
+      "cleaned_acc": 0.5,
+      "delta": 0.125
+    },
+    "ModernBERT-base": {
+      "full_acc": 0.5,
+      "cleaned_acc": 0.5625,
+      "delta": 0.0625
+    }
+  },
+  "flags": [
+    "FLAG: judge pair_passes=16/20 < 18 gate; 4 generator misses noted (see judge JSON)."
+  ]
+}
