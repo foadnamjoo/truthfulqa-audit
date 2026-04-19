@@ -1,0 +1,113 @@
+{
+  "experiment": "extended_lexicon",
+  "n_pairs": 790,
+  "n_rows": 1580,
+  "cv_splits": 5,
+  "random_state": 42,
+  "feature_cols": [
+    "neg_lead",
+    "neg_cnt",
+    "hedge_rate",
+    "auth_rate",
+    "len_gap",
+    "word_count",
+    "sent_count",
+    "avg_token_len",
+    "type_token",
+    "punc_rate"
+  ],
+  "non_negation_features_source": "audits/truthfulqa_style_audit.csv pre-computed *_true / *_false columns (kept verbatim - only neg_lead and neg_cnt are recomputed per lexicon variant)",
+  "sklearn_recipe": "make_pipeline(StandardScaler(), LogisticRegression(max_iter=1000, solver='liblinear', random_state=42))",
+  "cv_recipe": "GroupKFold(n_splits=5, groups=pair_id)",
+  "published_baseline_auc": 0.716,
+  "baseline_tolerance": 0.02,
+  "results_by_lexicon": {
+    "A": {
+      "name": "A (current paper baseline)",
+      "extra_words": [],
+      "neg_words_pattern_count": 14,
+      "neg_leads_pattern_count": 9,
+      "auc_grouped5": 0.7159389520910111,
+      "accuracy_grouped5": 0.6873417721518987,
+      "auc_grouped5_neg_zeroed": 0.5912009293382471,
+      "accuracy_grouped5_neg_zeroed": 0.5835443037974684,
+      "auc_drop_when_neg_zeroed": 0.12473802275276402,
+      "coverage": {
+        "neg_lead_gt0_y1": 197,
+        "neg_lead_gt0_y0": 48,
+        "neg_cnt_gt0_y1": 350,
+        "neg_cnt_gt0_y0": 81,
+        "neg_cnt_mean_y1": 0.5151898734177215,
+        "neg_cnt_mean_y0": 0.1468354430379747
+      }
+    },
+    "B": {
+      "name": "B (extended: synonym-negation)",
+      "extra_words": [
+        "zero",
+        "incapable",
+        "unaffected",
+        "fails",
+        "fail",
+        "lacks",
+        "without",
+        "unable",
+        "impossible"
+      ],
+      "neg_words_pattern_count": 23,
+      "neg_leads_pattern_count": 18,
+      "auc_grouped5": 0.716079955135395,
+      "accuracy_grouped5": 0.6873417721518987,
+      "auc_grouped5_neg_zeroed": 0.5912009293382471,
+      "accuracy_grouped5_neg_zeroed": 0.5835443037974684,
+      "auc_drop_when_neg_zeroed": 0.12487902579714794,
+      "coverage": {
+        "neg_lead_gt0_y1": 197,
+        "neg_lead_gt0_y0": 48,
+        "neg_cnt_gt0_y1": 351,
+        "neg_cnt_gt0_y0": 82,
+        "neg_cnt_mean_y1": 0.5164556962025316,
+        "neg_cnt_mean_y0": 0.14936708860759493
+      }
+    },
+    "C": {
+      "name": "C (extended + adverb-negation, sensitivity)",
+      "extra_words": [
+        "zero",
+        "incapable",
+        "unaffected",
+        "fails",
+        "fail",
+        "lacks",
+        "without",
+        "unable",
+        "impossible",
+        "hardly",
+        "scarcely",
+        "barely",
+        "rarely",
+        "seldom"
+      ],
+      "neg_words_pattern_count": 28,
+      "neg_leads_pattern_count": 23,
+      "auc_grouped5": 0.716079955135395,
+      "accuracy_grouped5": 0.6873417721518987,
+      "auc_grouped5_neg_zeroed": 0.5912009293382471,
+      "accuracy_grouped5_neg_zeroed": 0.5835443037974684,
+      "auc_drop_when_neg_zeroed": 0.12487902579714794,
+      "coverage": {
+        "neg_lead_gt0_y1": 197,
+        "neg_lead_gt0_y0": 48,
+        "neg_cnt_gt0_y1": 351,
+        "neg_cnt_gt0_y0": 82,
+        "neg_cnt_mean_y1": 0.5164556962025316,
+        "neg_cnt_mean_y0": 0.14936708860759493
+      }
+    }
+  },
+  "feature_parquets": {
+    "A": "artifacts/features/extended_lexicon_A.parquet",
+    "B": "artifacts/features/extended_lexicon_B.parquet",
+    "C": "artifacts/features/extended_lexicon_C.parquet"
+  }
+}
