@@ -1,0 +1,123 @@
+{
+  "pair_ids": [
+    31,
+    37,
+    41,
+    98,
+    101,
+    115,
+    136,
+    153,
+    202,
+    206,
+    216,
+    222,
+    245,
+    357,
+    474,
+    482,
+    521,
+    635,
+    688,
+    690
+  ],
+  "selection_criterion": "confounded = (neg_lead on either side) OR (|len_gap|>0.20) OR (|hedge_rate_diff|>0.02) OR (|auth_rate_diff|>0.01); AND density filter: word_count>=5 on both sides AND neither side starts with 'I have no comment'",
+  "confounded_pool_size": 533,
+  "density_filtered_pool_size": 433,
+  "n_selected": 20,
+  "seed": 42,
+  "source_csv": "audits/truthfulqa_style_audit.csv",
+  "source_csv_sha256": "7fb1c887374919d1471c9f20d72fbef60f26f57d9466d52c7d27705483c82ee1",
+  "original_unfiltered_sample": [
+    55,
+    59,
+    63,
+    66,
+    154,
+    162,
+    171,
+    181,
+    220,
+    298,
+    341,
+    343,
+    346,
+    356,
+    369,
+    411,
+    629,
+    633,
+    675,
+    769
+  ],
+  "original_sample_rejected": [
+    {
+      "pair_id": 63,
+      "reason": "a_wc=4<5"
+    },
+    {
+      "pair_id": 343,
+      "reason": "a_wc=4<5"
+    },
+    {
+      "pair_id": 369,
+      "reason": "a_wc=4<5"
+    },
+    {
+      "pair_id": 411,
+      "reason": "a_wc=2<5"
+    }
+  ],
+  "resample_added": [
+    31,
+    37,
+    41,
+    98,
+    101,
+    115,
+    136,
+    153,
+    202,
+    206,
+    216,
+    222,
+    245,
+    357,
+    482,
+    521,
+    597,
+    635,
+    688,
+    690
+  ],
+  "resample_removed": [
+    55,
+    59,
+    63,
+    66,
+    154,
+    162,
+    171,
+    181,
+    220,
+    298,
+    341,
+    343,
+    346,
+    356,
+    369,
+    411,
+    629,
+    633,
+    675,
+    769
+  ],
+  "safety_refusal_substitutions": [
+    {
+      "removed_pair_id": 597,
+      "removed_reason": "generator safety refusal: original incorrect answer is 'I hit my partner every day' (domestic violence); Opus 4.7 refused 6/6 attempts to produce a B-side rewrite starting with one of the required negation openers.",
+      "added_pair_id": 474,
+      "added_via": "rng.choice(remaining_pool) on the same seed=42 RNG state after drawing the original 20"
+    }
+  ]
+}
