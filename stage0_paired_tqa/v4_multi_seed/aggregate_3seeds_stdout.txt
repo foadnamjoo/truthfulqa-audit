@@ -1,0 +1,75 @@
+========================================================================================
+V4 MULTI-SEED ROBUSTNESS  (3 seeds x n=40)
+========================================================================================
+
+Per-seed pair_passes:
+  seed   1: 31/40
+  seed   7: 28/40
+  seed  42: 31/40
+  mean = 0.750  stdev = 0.043  (per-pair fraction)
+
+----------------------------------------------------------------------------------------
+CLEANING DELTA  (pair_acc_cleaned - pair_acc_full)  [ALL n=40 per seed]
+----------------------------------------------------------------------------------------
+  Classifier        seed=  1  seed=  7  seed= 42      mean    stdev
+  surface_lr          +0.000    +0.000    +0.000    +0.000   0.000
+  BGE-large           +0.125    +0.025    +0.075    +0.075   0.050
+  ModernBERT-base     +0.000    +0.075    +0.025    +0.033   0.038
+
+----------------------------------------------------------------------------------------
+CLEANING DELTA  (pair_acc_cleaned - pair_acc_full)  [pair_passes subset only]
+----------------------------------------------------------------------------------------
+  Classifier        seed=  1  seed=  7  seed= 42      mean    stdev
+  surface_lr          +0.000    +0.000    +0.000    +0.000   0.000
+  BGE-large           +0.161    +0.000    +0.065    +0.075   0.081
+  ModernBERT-base     -0.032    +0.036    +0.000    +0.001   0.034
+
+  Pair accuracy per (family, split) per seed (all-40 subset):
+  Classifier        TrainedOn  seed=  1  seed=  7  seed= 42
+  surface_lr        full         0.000     0.000     0.000
+  surface_lr        cleaned      0.000     0.000     0.000
+  BGE-large         full         0.350     0.450     0.350
+  BGE-large         cleaned      0.475     0.475     0.425
+  ModernBERT-base   full         0.550     0.500     0.575
+  ModernBERT-base   cleaned      0.550     0.575     0.600
+
+----------------------------------------------------------------------------------------
+MEAN GAP  (mean P(A) - mean P(B))  [all n=40, full-trained]
+----------------------------------------------------------------------------------------
+  Classifier        seed=  1  seed=  7  seed= 42      mean    stdev
+  surface_lr          -0.442    -0.465    -0.443    -0.450   0.013
+  BGE-large           -0.104    -0.113    -0.077    -0.098   0.019
+  ModernBERT-base     +0.024    +0.042    +0.029    +0.032   0.009
+
+----------------------------------------------------------------------------------------
+MEAN GAP  (mean P(A) - mean P(B))  [all n=40, cleaned-trained]
+----------------------------------------------------------------------------------------
+  Classifier        seed=  1  seed=  7  seed= 42      mean    stdev
+  surface_lr          -0.259    -0.251    -0.260    -0.257   0.005
+  BGE-large           +0.013    +0.070    -0.086    -0.001   0.079
+  ModernBERT-base     +0.067    +0.127    +0.025    +0.073   0.051
+
+----------------------------------------------------------------------------------------
+MEAN GAP  (mean P(A) - mean P(B))  [pair_passes subset, full-trained]
+----------------------------------------------------------------------------------------
+  Classifier        seed=  1  seed=  7  seed= 42      mean    stdev
+  surface_lr          -0.450    -0.459    -0.439    -0.449   0.010
+  BGE-large           -0.093    -0.060    -0.085    -0.079   0.017
+  ModernBERT-base     -0.050    +0.009    +0.086    +0.015   0.068
+
+----------------------------------------------------------------------------------------
+MEAN GAP  (mean P(A) - mean P(B))  [pair_passes subset, cleaned-trained]
+----------------------------------------------------------------------------------------
+  Classifier        seed=  1  seed=  7  seed= 42      mean    stdev
+  surface_lr          -0.265    -0.256    -0.248    -0.256   0.009
+  BGE-large           +0.004    +0.108    -0.058    +0.018   0.084
+  ModernBERT-base     +0.021    +0.123    +0.026    +0.057   0.058
+
+----------------------------------------------------------------------------------------
+SAMPLING PROVENANCE
+----------------------------------------------------------------------------------------
+  seed 1: anchor_strategy='rng_choice_size_n_replace_false'  blocklisted=[597]
+  seed 7: anchor_strategy='rng_choice_size_n_replace_false'  blocklisted=[597]
+  seed 42: anchor_strategy='v4_existing_20_then_rng_choice'  blocklisted=[597]
+
+Wrote stage0_paired_tqa/v4_multi_seed/summary_3seeds_n40.json

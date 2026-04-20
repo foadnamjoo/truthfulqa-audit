@@ -30,10 +30,15 @@ import traceback
 from pathlib import Path
 
 REPO_ROOT = Path(__file__).resolve().parent.parent
-GEN_JSON = (REPO_ROOT / "stage0_paired_tqa"
-            / "stage0_paired_generations_v4.json")
-OUT_JSON = (REPO_ROOT / "stage0_paired_tqa"
-            / "stage0_paired_judge_v4.json")
+DEFAULT_GEN_JSON = (REPO_ROOT / "stage0_paired_tqa"
+                    / "stage0_paired_generations_v4.json")
+DEFAULT_OUT_JSON = (REPO_ROOT / "stage0_paired_tqa"
+                    / "stage0_paired_judge_v4.json")
+# Mutable module-globals: the multi-seed orchestrator overrides these via
+# CLI flags so a single judge implementation serves the original v4 file
+# AND the per-seed generations. Default behaviour is unchanged.
+GEN_JSON: Path = DEFAULT_GEN_JSON
+OUT_JSON: Path = DEFAULT_OUT_JSON
 
 JUDGE_CRITERION_TAG = "factual_correctness_v4"
 
@@ -329,10 +334,21 @@ def _load_existing() -> list[dict]:
 
 
 def main() -> int:
+    global GEN_JSON, OUT_JSON
     p = argparse.ArgumentParser()
     p.add_argument("--limit", type=int, default=None)
     p.add_argument("--max-retries", type=int, default=MAX_RETRIES_DEFAULT)
+    p.add_argument("--gen-json", type=str, default=None,
+                   help="Override input generations JSON path "
+                        "(default: stage0_paired_generations_v4.json).")
+    p.add_argument("--out-json", type=str, default=None,
+                   help="Override output judge JSON path "
+                        "(default: stage0_paired_judge_v4.json).")
     args = p.parse_args()
+    if args.gen_json:
+        GEN_JSON = Path(args.gen_json).resolve()
+    if args.out_json:
+        OUT_JSON = Path(args.out_json).resolve()
 
     print("=" * 72)
     print("judge_stage0_paired_v4.py "

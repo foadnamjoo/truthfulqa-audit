@@ -36,12 +36,16 @@ REPO_ROOT = Path(__file__).resolve().parent.parent
 if str(REPO_ROOT) not in sys.path:
     sys.path.insert(0, str(REPO_ROOT))
 
-GEN_JSON = (REPO_ROOT / "stage0_paired_tqa"
-            / "stage0_paired_generations_v4.json")
-JUDGE_JSON = (REPO_ROOT / "stage0_paired_tqa"
-              / "stage0_paired_judge_v4.json")
-OUT_JSON = (REPO_ROOT / "stage0_paired_tqa"
-            / "stage0_paired_classifier_scores_v4.json")
+DEFAULT_GEN_JSON = (REPO_ROOT / "stage0_paired_tqa"
+                    / "stage0_paired_generations_v4.json")
+DEFAULT_JUDGE_JSON = (REPO_ROOT / "stage0_paired_tqa"
+                      / "stage0_paired_judge_v4.json")
+DEFAULT_OUT_JSON = (REPO_ROOT / "stage0_paired_tqa"
+                    / "stage0_paired_classifier_scores_v4.json")
+# The multi-seed orchestrator overrides these via CLI flags.
+GEN_JSON: Path = DEFAULT_GEN_JSON
+JUDGE_JSON: Path = DEFAULT_JUDGE_JSON
+OUT_JSON: Path = DEFAULT_OUT_JSON
 
 ARTIFACTS = REPO_ROOT / "artifacts"
 PICKLE_PATHS: dict[tuple[str, str], Path] = {
@@ -191,9 +195,29 @@ def _aggregate(pa: np.ndarray, pb: np.ndarray, mask: np.ndarray | None = None
 
 
 def main() -> int:
+    global GEN_JSON, JUDGE_JSON, OUT_JSON
+    import argparse
+    p = argparse.ArgumentParser()
+    p.add_argument("--gen-json", type=str, default=None,
+                   help="Override input generations JSON path.")
+    p.add_argument("--judge-json", type=str, default=None,
+                   help="Override input judge JSON path.")
+    p.add_argument("--out-json", type=str, default=None,
+                   help="Override output scores JSON path.")
+    args = p.parse_args()
+    if args.gen_json:
+        GEN_JSON = Path(args.gen_json).resolve()
+    if args.judge_json:
+        JUDGE_JSON = Path(args.judge_json).resolve()
+    if args.out_json:
+        OUT_JSON = Path(args.out_json).resolve()
+
     print("=" * 72)
     print("score_paired_v4.py")
     print("=" * 72)
+    print(f"  GEN_JSON   = {GEN_JSON}")
+    print(f"  JUDGE_JSON = {JUDGE_JSON}")
+    print(f"  OUT_JSON   = {OUT_JSON}")
 
     pairs = _load_pairs()
     judges = _load_judge()
