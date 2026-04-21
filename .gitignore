@@ -67,3 +67,4 @@ paper_assets/tables/per_pair_*.tex
 # not descend into a directory excluded as a whole.
 artifacts/*
 !artifacts/.gitkeep
+.claude/
