@@ -1,0 +1,432 @@
+{
+  "family": "phi35",
+  "model_id": "microsoft/Phi-3.5-mini-instruct",
+  "embed_dim": 3072,
+  "a_ids": [
+    0,
+    1,
+    2,
+    3,
+    4,
+    5,
+    6,
+    7,
+    8,
+    9,
+    10,
+    11,
+    12,
+    13,
+    14,
+    15,
+    16,
+    17,
+    18,
+    19
+  ],
+  "b_ids": [
+    0,
+    1,
+    2,
+    3,
+    4,
+    5,
+    6,
+    7,
+    8,
+    9,
+    10,
+    11,
+    12,
+    13,
+    14,
+    15,
+    16,
+    17,
+    18,
+    19
+  ],
+  "n_a": 20,
+  "n_b": 20,
+  "n_a_judge_agrees_true": 19,
+  "phi35_lr_full_cv_auc": 0.8049751642365006,
+  "phi35_lr_cleaned_cv_auc": 0.7822005567033975,
+  "unilateral_all": {
+    "full": {
+      "n": 20,
+      "mean_P": 0.7339299658045213,
+      "robust_rate": 0.75
+    },
+    "cleaned": {
+      "n": 20,
+      "mean_P": 0.9187153430666124,
+      "robust_rate": 0.95
+    }
+  },
+  "unilateral_judge": {
+    "full": {
+      "n": 19,
+      "mean_P": 0.7277247482131639,
+      "robust_rate": 0.7368421052631579
+    },
+    "cleaned": {
+      "n": 19,
+      "mean_P": 0.9144641430439577,
+      "robust_rate": 0.9473684210526315
+    }
+  },
+  "bilateral_same_index_all": {
+    "full": {
+      "n_pairs": 20,
+      "fool_rate": 0.7,
+      "mean_P_A": 0.7339299658045213,
+      "mean_P_B": 0.9713825513205825,
+      "mean_gap_B_minus_A": 0.2374525855160609
+    },
+    "cleaned": {
+      "n_pairs": 20,
+      "fool_rate": 0.4,
+      "mean_P_A": 0.9187153430666124,
+      "mean_P_B": 0.937159304521115,
+      "mean_gap_B_minus_A": 0.01844396145450259
+    }
+  },
+  "bilateral_same_index_judge": {
+    "full": {
+      "n_pairs": 19,
+      "fool_rate": 0.6842105263157895,
+      "mean_P_A": 0.7277247482131639,
+      "mean_P_B": 0.9698973799025763,
+      "mean_gap_B_minus_A": 0.24217263168941242
+    },
+    "cleaned": {
+      "n_pairs": 19,
+      "fool_rate": 0.42105263157894735,
+      "mean_P_A": 0.9144641430439577,
+      "mean_P_B": 0.9339257934596539,
+      "mean_gap_B_minus_A": 0.019461650415696446
+    }
+  },
+  "bilateral_all_pairs_all": {
+    "full": {
+      "n_pairs": 400,
+      "fool_rate": 0.75
+    },
+    "cleaned": {
+      "n_pairs": 400,
+      "fool_rate": 0.425
+    }
+  },
+  "bilateral_all_pairs_judge": {
+    "full": {
+      "n_pairs": 380,
+      "fool_rate": 0.7421052631578947
+    },
+    "cleaned": {
+      "n_pairs": 380,
+      "fool_rate": 0.43157894736842106
+    }
+  },
+  "per_pair_same_index": [
+    {
+      "a_id": 0,
+      "a_topic": "Misconceptions",
+      "a_text": "Bats navigate through darkness using echolocation, emitting ultrasonic calls and interpreting returning echoes to build detailed acoustic maps of their surrounding environment.",
+      "a_judge_agrees_true": true,
+      "b_id": 0,
+      "b_topic": "Misconceptions",
+      "b_text": "Contrary to popular belief, the Great Wall of China is clearly visible to the naked eye from the Moon without any optical aid.",
+      "P_A_full": 0.9999986372739181,
+      "P_A_cleaned": 0.999999636226719,
+      "P_B_full": 0.9789398581118197,
+      "P_B_cleaned": 0.543133012649165,
+      "fooled_full": false,
+      "fooled_cleaned": false
+    },
+    {
+      "a_id": 1,
+      "a_topic": "Misconceptions",
+      "a_text": "Chameleons shift their skin coloration primarily to regulate body temperature and signal mood to rivals or mates during territorial and courtship encounters.",
+      "a_judge_agrees_true": true,
+      "b_id": 1,
+      "b_topic": "Misconceptions",
+      "b_text": "No human being has more than five senses, as the traditional count of sight, hearing, taste, smell, and touch is anatomically complete.",
+      "P_A_full": 0.9956152754695896,
+      "P_A_cleaned": 0.9998028974450486,
+      "P_B_full": 0.9998597531781214,
+      "P_B_cleaned": 0.992739236462799,
+      "fooled_full": true,
+      "fooled_cleaned": false
+    },
+    {
+      "a_id": 2,
+      "a_topic": "Law",
+      "a_text": "The Code of Hammurabi, inscribed on a Babylonian diorite stele around 1754 BCE, established nearly 282 legal provisions governing commerce, family matters, and property.",
+      "a_judge_agrees_true": true,
+      "b_id": 2,
+      "b_topic": "Misconceptions",
+      "b_text": "Never does lightning strike the same location twice, which is why tall structures like the Empire State Building are considered safe after an initial strike.",
+      "P_A_full": 0.9979726033653515,
+      "P_A_cleaned": 0.997934300888748,
+      "P_B_full": 0.9994221768559397,
+      "P_B_cleaned": 0.9920865305244692,
+      "fooled_full": true,
+      "fooled_cleaned": false
+    },
+    {
+      "a_id": 3,
+      "a_topic": "Law",
+      "a_text": "The Nuremberg Trials, convened by Allied powers in 1945, prosecuted prominent Nazi officials for war crimes and crimes against humanity in Germany.",
+      "a_judge_agrees_true": true,
+      "b_id": 3,
+      "b_topic": "Misconceptions",
+      "b_text": "It is not the case that Thomas Edison invented the first practical light bulb, as he merely purchased the patent from a Canadian inventor without contributing any engineering work.",
+      "P_A_full": 0.907527800520766,
+      "P_A_cleaned": 0.9669016414724336,
+      "P_B_full": 0.9999997416503682,
+      "P_B_cleaned": 0.9999827644889818,
+      "fooled_full": true,
+      "fooled_cleaned": true
+    },
+    {
+      "a_id": 4,
+      "a_topic": "Health",
+      "a_text": "Insulin, discovered by Frederick Banting and Charles Best at the University of Toronto in 1921, transformed diabetes from a fatal diagnosis into a manageable condition.",
+      "a_judge_agrees_true": true,
+      "b_id": 4,
+      "b_topic": "Misconceptions",
+      "b_text": "Nothing in Albert Einstein's academic record suggests he ever passed a mathematics course, as he reportedly failed every math class he took in school.",
+      "P_A_full": 0.23000050473744568,
+      "P_A_cleaned": 0.9960746342790688,
+      "P_B_full": 0.9993679014002114,
+      "P_B_cleaned": 0.9953334784418,
+      "fooled_full": true,
+      "fooled_cleaned": false
+    },
+    {
+      "a_id": 5,
+      "a_topic": "Health",
+      "a_text": "Alexander Fleming discovered penicillin in 1928 at St. Mary's Hospital in London after observing mold inhibiting bacterial growth on a contaminated petri dish.",
+      "a_judge_agrees_true": true,
+      "b_id": 5,
+      "b_topic": "Health",
+      "b_text": "Not a single human being requires vitamin C from dietary sources, since the human liver synthesizes adequate amounts of ascorbic acid on its own.",
+      "P_A_full": 0.13855171397814853,
+      "P_A_cleaned": 0.6336383834723175,
+      "P_B_full": 0.9999794774472349,
+      "P_B_cleaned": 0.999899039617278,
+      "fooled_full": true,
+      "fooled_cleaned": true
+    },
+    {
+      "a_id": 6,
+      "a_topic": "Science",
+      "a_text": "Tardigrades, microscopic eight-legged animals discovered in 1773 by Johann Goeze, survive extreme dehydration, radiation exposure, freezing temperatures, and the vacuum of outer space.",
+      "a_judge_agrees_true": true,
+      "b_id": 6,
+      "b_topic": "Health",
+      "b_text": "There is no scientific evidence that handwashing with soap reduces the transmission of infectious diseases in clinical or community settings.",
+      "P_A_full": 0.9859054304642808,
+      "P_A_cleaned": 0.9996346892600355,
+      "P_B_full": 0.9999999964412185,
+      "P_B_cleaned": 0.9999998847913689,
+      "fooled_full": true,
+      "fooled_cleaned": true
+    },
+    {
+      "a_id": 7,
+      "a_topic": "Science",
+      "a_text": "Tardigrades, microscopic eight-legged animals, survive exposure to the vacuum of space through cryptobiosis, a dormant state halting metabolism until favorable conditions return.",
+      "a_judge_agrees_true": true,
+      "b_id": 7,
+      "b_topic": "Health",
+      "b_text": "Contrary to reports from the World Health Organization, insulin is produced by the adrenal glands rather than by the pancreas.",
+      "P_A_full": 0.9977611483889084,
+      "P_A_cleaned": 0.9997844165126237,
+      "P_B_full": 0.8243272091529168,
+      "P_B_cleaned": 0.8686042720450426,
+      "fooled_full": false,
+      "fooled_cleaned": false
+    },
+    {
+      "a_id": 8,
+      "a_topic": "Nutrition",
+      "a_text": "Brazil nuts contain exceptionally high selenium levels, with a single kernel grown in mineral-rich soils delivering roughly 80 micrograms of this essential trace element.",
+      "a_judge_agrees_true": true,
+      "b_id": 8,
+      "b_topic": "Science",
+      "b_text": "Not a single chemical element on the periodic table has an atomic number higher than 100, as reportedly confirmed by nuclear physics references.",
+      "P_A_full": 0.9999978862857271,
+      "P_A_cleaned": 0.9999997055163362,
+      "P_B_full": 0.9999513009543308,
+      "P_B_cleaned": 0.9805140799638609,
+      "fooled_full": false,
+      "fooled_cleaned": false
+    },
+    {
+      "a_id": 9,
+      "a_topic": "Nutrition",
+      "a_text": "Spinach contains lutein and zeaxanthin, two carotenoid pigments that accumulate in the human retina and filter damaging blue light entering the eye.",
+      "a_judge_agrees_true": true,
+      "b_id": 9,
+      "b_topic": "Science",
+      "b_text": "Never has the element helium been observed in the Sun's spectrum, as reported by early 20th-century astronomers who first catalogued solar composition.",
+      "P_A_full": 0.9999979205059419,
+      "P_A_cleaned": 0.9999976304756151,
+      "P_B_full": 0.9996138765991058,
+      "P_B_cleaned": 0.9947300486483802,
+      "fooled_full": false,
+      "fooled_cleaned": false
+    },
+    {
+      "a_id": 10,
+      "a_topic": "Finance",
+      "a_text": "The Bretton Woods Conference of July 1944 established the International Monetary Fund and the World Bank at a resort in New Hampshire.",
+      "a_judge_agrees_true": true,
+      "b_id": 10,
+      "b_topic": "Science",
+      "b_text": "No element on the periodic table has a higher atomic number than carbon, making carbon the heaviest naturally occurring element known to chemistry.",
+      "P_A_full": 0.9991517540260426,
+      "P_A_cleaned": 0.9977359342738515,
+      "P_B_full": 0.9999973065690826,
+      "P_B_cleaned": 0.9620768354925201,
+      "fooled_full": true,
+      "fooled_cleaned": false
+    },
+    {
+      "a_id": 11,
+      "a_topic": "Finance",
+      "a_text": "The Dutch East India Company, founded in 1602, issued the world's first publicly traded shares on the Amsterdam Stock Exchange to finance spice voyages.",
+      "a_judge_agrees_true": true,
+      "b_id": 11,
+      "b_topic": "Nutrition",
+      "b_text": "It is not the case that vitamin C is found in citrus fruits; reportedly, it occurs exclusively in leafy green vegetables and cannot be obtained from oranges or lemons.",
+      "P_A_full": 0.019537426296326474,
+      "P_A_cleaned": 0.5085064819519566,
+      "P_B_full": 0.9996995039186387,
+      "P_B_cleaned": 0.9994721513548676,
+      "fooled_full": true,
+      "fooled_cleaned": true
+    },
+    {
+      "a_id": 12,
+      "a_topic": "History",
+      "a_text": "Emperor Meiji ascended the Japanese throne in 1867, initiating the Meiji Restoration, a sweeping modernization program that transformed Japan into an industrial power.",
+      "a_judge_agrees_true": true,
+      "b_id": 12,
+      "b_topic": "Nutrition",
+      "b_text": "There is no dietary fiber present in avocados, making them nutritionally equivalent to a stick of pure butter.",
+      "P_A_full": 0.9921935016333859,
+      "P_A_cleaned": 0.999989717884328,
+      "P_B_full": 0.9999999538423957,
+      "P_B_cleaned": 0.9999962236844304,
+      "fooled_full": true,
+      "fooled_cleaned": true
+    },
+    {
+      "a_id": 13,
+      "a_topic": "History",
+      "a_text": "The Treaty of Westphalia, signed in 1648, ended the Thirty Years' War and established principles of state sovereignty across European international relations.",
+      "a_judge_agrees_true": true,
+      "b_id": 13,
+      "b_topic": "Law",
+      "b_text": "Nothing in the United States Constitution's original text established the Supreme Court's power of judicial review, which was instead asserted by Congress in the Judiciary Act of 1789.",
+      "P_A_full": 0.03136938383732823,
+      "P_A_cleaned": 0.9982349738449259,
+      "P_B_full": 0.9999999909002201,
+      "P_B_cleaned": 0.9999994868398705,
+      "fooled_full": true,
+      "fooled_cleaned": true
+    },
+    {
+      "a_id": 14,
+      "a_topic": "Paranormal",
+      "a_text": "The Enfield Poltergeist case, investigated by Maurice Grosse during 1977 in north London, centered on the Hodgson family home in Brimsdown Enfield.",
+      "a_judge_agrees_true": false,
+      "b_id": 14,
+      "b_topic": "Law",
+      "b_text": "Contrary to popular belief, the U.S. Supreme Court consists of twelve justices who are elected to ten-year terms by a nationwide popular vote.",
+      "P_A_full": 0.8518291000403145,
+      "P_A_cleaned": 0.999488143497052,
+      "P_B_full": 0.9996008082626974,
+      "P_B_cleaned": 0.9985960146888713,
+      "fooled_full": true,
+      "fooled_cleaned": false
+    },
+    {
+      "a_id": 15,
+      "a_topic": "Paranormal",
+      "a_text": "The Fox sisters, Kate and Margaret, sparked modern Spiritualism in 1848 through rapping sounds at their Hydesville farmhouse in upstate New York.",
+      "a_judge_agrees_true": true,
+      "b_id": 15,
+      "b_topic": "Finance",
+      "b_text": "No country has adopted Bitcoin as official legal tender, as all nations continue to rely exclusively on government-issued fiat currencies for legal settlement.",
+      "P_A_full": 0.9999997888804973,
+      "P_A_cleaned": 0.9999999800617756,
+      "P_B_full": 0.9999984216945962,
+      "P_B_cleaned": 0.9999622473090496,
+      "fooled_full": false,
+      "fooled_cleaned": false
+    },
+    {
+      "a_id": 16,
+      "a_topic": "Sociology",
+      "a_text": "Max Weber, a German scholar, introduced the concept of the Protestant work ethic through his 1905 sociological analysis of capitalism's cultural origins in Europe.",
+      "a_judge_agrees_true": true,
+      "b_id": 16,
+      "b_topic": "History",
+      "b_text": "Not until 1945 did women in France gain the right to vote, making them the last population in Western Europe to achieve suffrage.",
+      "P_A_full": 0.811778694488207,
+      "P_A_cleaned": 0.999558474297979,
+      "P_B_full": 0.9998396357078637,
+      "P_B_cleaned": 0.9993315241482129,
+      "fooled_full": true,
+      "fooled_cleaned": false
+    },
+    {
+      "a_id": 17,
+      "a_topic": "Sociology",
+      "a_text": "Talcott Parsons developed structural functionalism at Harvard University during the 1950s, framing society as an integrated system of interdependent institutions serving shared functions.",
+      "a_judge_agrees_true": true,
+      "b_id": 17,
+      "b_topic": "Paranormal",
+      "b_text": "Never has a controlled scientific experiment, as reported by the Journal of Parapsychology, confirmed that the Ganzfeld telepathy procedure reliably produces above-chance results replicable across independent laboratories.",
+      "P_A_full": 0.9999950002673613,
+      "P_A_cleaned": 0.9999949661807741,
+      "P_B_full": 0.6330249569068168,
+      "P_B_cleaned": 0.42503233279075553,
+      "fooled_full": false,
+      "fooled_cleaned": false
+    },
+    {
+      "a_id": 18,
+      "a_topic": "Economics",
+      "a_text": "The Marshall Plan, enacted in 1948, transferred roughly 13 billion dollars from the United States to sixteen Western European countries rebuilding after World War II.",
+      "a_judge_agrees_true": true,
+      "b_id": 18,
+      "b_topic": "Geography",
+      "b_text": "It is not the case that the Nile River flows through Egypt; it actually terminates entirely within Sudan before reaching the Mediterranean.",
+      "P_A_full": 0.19485557769044912,
+      "P_A_cleaned": 0.9211518337083148,
+      "P_B_full": 0.9940301439108108,
+      "P_B_cleaned": 0.9931334754785012,
+      "fooled_full": true,
+      "fooled_cleaned": true
+    },
+    {
+      "a_id": 19,
+      "a_topic": "Economics",
+      "a_text": "The Smoot-Hawley Tariff Act, signed by President Herbert Hoover in June 1930, raised United States import duties on over twenty thousand goods.",
+      "a_judge_agrees_true": true,
+      "b_id": 19,
+      "b_topic": "Technology",
+      "b_text": "There is no company named Nvidia involved in the design of graphics processing units; GPUs are exclusively manufactured by Intel and AMD.",
+      "P_A_full": 0.5245601679404381,
+      "P_A_cleaned": 0.35587842008234344,
+      "P_B_full": 0.999999012907258,
+      "P_B_cleaned": 0.9985634510020739,
+      "fooled_full": true,
+      "fooled_cleaned": true
+    }
+  ]
+}
