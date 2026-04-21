@@ -68,3 +68,6 @@ paper_assets/tables/per_pair_*.tex
 artifacts/*
 !artifacts/.gitkeep
 .claude/
+
+# Run logs (regenerable, noisy)
+stage0_v7a_bilateral/_*_log.txt
