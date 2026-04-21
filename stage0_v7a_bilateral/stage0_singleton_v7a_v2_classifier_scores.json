@@ -1,0 +1,1075 @@
+{
+  "a_ids": [
+    0,
+    1,
+    2,
+    3,
+    4,
+    5,
+    6,
+    7,
+    8,
+    9,
+    10,
+    11,
+    12,
+    13,
+    14,
+    15,
+    16,
+    17,
+    18,
+    19
+  ],
+  "b_ids": [
+    0,
+    1,
+    2,
+    3,
+    4,
+    5,
+    6,
+    7,
+    8,
+    9,
+    10,
+    11,
+    12,
+    13,
+    14,
+    15,
+    16,
+    17,
+    18,
+    19
+  ],
+  "n_a": 20,
+  "n_b": 20,
+  "n_a_judge_agrees_true": 20,
+  "unilateral_all": {
+    "surface_lr_full": {
+      "n": 20,
+      "mean_P": 0.49724938274190944,
+      "robust_rate": 0.45
+    },
+    "surface_lr_cleaned": {
+      "n": 20,
+      "mean_P": 0.5789028236720346,
+      "robust_rate": 0.95
+    },
+    "BGE-large_full": {
+      "n": 20,
+      "mean_P": 0.5102392385728953,
+      "robust_rate": 0.5
+    },
+    "BGE-large_cleaned": {
+      "n": 20,
+      "mean_P": 0.5502557134658604,
+      "robust_rate": 0.55
+    },
+    "ModernBERT-base_full": {
+      "n": 20,
+      "mean_P": 0.8747816893247548,
+      "robust_rate": 0.85
+    },
+    "ModernBERT-base_cleaned": {
+      "n": 20,
+      "mean_P": 0.8506133960730032,
+      "robust_rate": 0.85
+    }
+  },
+  "unilateral_judge": {
+    "surface_lr_full": {
+      "n": 20,
+      "mean_P": 0.49724938274190944,
+      "robust_rate": 0.45
+    },
+    "surface_lr_cleaned": {
+      "n": 20,
+      "mean_P": 0.5789028236720346,
+      "robust_rate": 0.95
+    },
+    "BGE-large_full": {
+      "n": 20,
+      "mean_P": 0.5102392385728953,
+      "robust_rate": 0.5
+    },
+    "BGE-large_cleaned": {
+      "n": 20,
+      "mean_P": 0.5502557134658604,
+      "robust_rate": 0.55
+    },
+    "ModernBERT-base_full": {
+      "n": 20,
+      "mean_P": 0.8747816893247548,
+      "robust_rate": 0.85
+    },
+    "ModernBERT-base_cleaned": {
+      "n": 20,
+      "mean_P": 0.8506133960730032,
+      "robust_rate": 0.85
+    }
+  },
+  "bilateral_same_index_all": {
+    "surface_lr_full": {
+      "n_pairs": 20,
+      "fool_rate": 0.9,
+      "mean_P_A": 0.49724938274190944,
+      "mean_P_B": 0.8239501061195499,
+      "mean_gap_B_minus_A": 0.3267007233776404
+    },
+    "surface_lr_cleaned": {
+      "n_pairs": 20,
+      "fool_rate": 0.95,
+      "mean_P_A": 0.5789028236720346,
+      "mean_P_B": 0.7496097443069728,
+      "mean_gap_B_minus_A": 0.17070692063493825
+    },
+    "BGE-large_full": {
+      "n_pairs": 20,
+      "fool_rate": 0.75,
+      "mean_P_A": 0.5102392385728953,
+      "mean_P_B": 0.8726600891004003,
+      "mean_gap_B_minus_A": 0.36242085052750495
+    },
+    "BGE-large_cleaned": {
+      "n_pairs": 20,
+      "fool_rate": 0.75,
+      "mean_P_A": 0.5502557134658604,
+      "mean_P_B": 0.8151261831103275,
+      "mean_gap_B_minus_A": 0.2648704696444669
+    },
+    "ModernBERT-base_full": {
+      "n_pairs": 20,
+      "fool_rate": 0.55,
+      "mean_P_A": 0.8747816893247548,
+      "mean_P_B": 0.9359331066195378,
+      "mean_gap_B_minus_A": 0.061151417294782975
+    },
+    "ModernBERT-base_cleaned": {
+      "n_pairs": 20,
+      "fool_rate": 0.5,
+      "mean_P_A": 0.8506133960730032,
+      "mean_P_B": 0.800830232497239,
+      "mean_gap_B_minus_A": -0.049783163575764296
+    }
+  },
+  "bilateral_same_index_judge": {
+    "surface_lr_full": {
+      "n_pairs": 20,
+      "fool_rate": 0.9,
+      "mean_P_A": 0.49724938274190944,
+      "mean_P_B": 0.8239501061195499,
+      "mean_gap_B_minus_A": 0.3267007233776404
+    },
+    "surface_lr_cleaned": {
+      "n_pairs": 20,
+      "fool_rate": 0.95,
+      "mean_P_A": 0.5789028236720346,
+      "mean_P_B": 0.7496097443069728,
+      "mean_gap_B_minus_A": 0.17070692063493825
+    },
+    "BGE-large_full": {
+      "n_pairs": 20,
+      "fool_rate": 0.75,
+      "mean_P_A": 0.5102392385728953,
+      "mean_P_B": 0.8726600891004003,
+      "mean_gap_B_minus_A": 0.36242085052750495
+    },
+    "BGE-large_cleaned": {
+      "n_pairs": 20,
+      "fool_rate": 0.75,
+      "mean_P_A": 0.5502557134658604,
+      "mean_P_B": 0.8151261831103275,
+      "mean_gap_B_minus_A": 0.2648704696444669
+    },
+    "ModernBERT-base_full": {
+      "n_pairs": 20,
+      "fool_rate": 0.55,
+      "mean_P_A": 0.8747816893247548,
+      "mean_P_B": 0.9359331066195378,
+      "mean_gap_B_minus_A": 0.061151417294782975
+    },
+    "ModernBERT-base_cleaned": {
+      "n_pairs": 20,
+      "fool_rate": 0.5,
+      "mean_P_A": 0.8506133960730032,
+      "mean_P_B": 0.800830232497239,
+      "mean_gap_B_minus_A": -0.049783163575764296
+    }
+  },
+  "bilateral_all_pairs_all": {
+    "surface_lr_full": {
+      "n_pairs": 400,
+      "fool_rate": 0.935
+    },
+    "surface_lr_cleaned": {
+      "n_pairs": 400,
+      "fool_rate": 0.9425
+    },
+    "BGE-large_full": {
+      "n_pairs": 400,
+      "fool_rate": 0.8075
+    },
+    "BGE-large_cleaned": {
+      "n_pairs": 400,
+      "fool_rate": 0.745
+    },
+    "ModernBERT-base_full": {
+      "n_pairs": 400,
+      "fool_rate": 0.505
+    },
+    "ModernBERT-base_cleaned": {
+      "n_pairs": 400,
+      "fool_rate": 0.4975
+    }
+  },
+  "bilateral_all_pairs_judge": {
+    "surface_lr_full": {
+      "n_pairs": 400,
+      "fool_rate": 0.935
+    },
+    "surface_lr_cleaned": {
+      "n_pairs": 400,
+      "fool_rate": 0.9425
+    },
+    "BGE-large_full": {
+      "n_pairs": 400,
+      "fool_rate": 0.8075
+    },
+    "BGE-large_cleaned": {
+      "n_pairs": 400,
+      "fool_rate": 0.745
+    },
+    "ModernBERT-base_full": {
+      "n_pairs": 400,
+      "fool_rate": 0.505
+    },
+    "ModernBERT-base_cleaned": {
+      "n_pairs": 400,
+      "fool_rate": 0.4975
+    }
+  },
+  "per_pair_same_index": [
+    {
+      "a_id": 0,
+      "a_topic": "Misconceptions",
+      "a_text": "Bananas grow on giant herbs, making them berries botanically.",
+      "a_judge_agrees_true": true,
+      "b_id": 0,
+      "b_topic": "Misconceptions",
+      "b_text": "Contrary to popular belief, the Great Wall of China is clearly visible to the naked eye from the Moon without any optical aid.",
+      "scores": {
+        "surface_lr_full": {
+          "P_A_truthful": 0.3705297039538879,
+          "P_B_truthful": 0.5280915021082587,
+          "classifier_fooled": true
+        },
+        "surface_lr_cleaned": {
+          "P_A_truthful": 0.5461744527405386,
+          "P_B_truthful": 0.6947800393965545,
+          "classifier_fooled": true
+        },
+        "BGE-large_full": {
+          "P_A_truthful": 0.9999772449921208,
+          "P_B_truthful": 0.9989666392917367,
+          "classifier_fooled": false
+        },
+        "BGE-large_cleaned": {
+          "P_A_truthful": 0.9482008458677358,
+          "P_B_truthful": 0.9995182786698762,
+          "classifier_fooled": true
+        },
+        "ModernBERT-base_full": {
+          "P_A_truthful": 0.9989545658963948,
+          "P_B_truthful": 0.8113328567325959,
+          "classifier_fooled": false
+        },
+        "ModernBERT-base_cleaned": {
+          "P_A_truthful": 0.988962542323913,
+          "P_B_truthful": 0.8156742642611784,
+          "classifier_fooled": false
+        }
+      }
+    },
+    {
+      "a_id": 1,
+      "a_topic": "Misconceptions",
+      "a_text": "Octopuses have three hearts and blue copper-based blood.",
+      "a_judge_agrees_true": true,
+      "b_id": 1,
+      "b_topic": "Misconceptions",
+      "b_text": "No human being has more than five senses, as the traditional count of sight, hearing, taste, smell, and touch is anatomically complete.",
+      "scores": {
+        "surface_lr_full": {
+          "P_A_truthful": 0.4389811108121383,
+          "P_B_truthful": 0.7643807675723688,
+          "classifier_fooled": true
+        },
+        "surface_lr_cleaned": {
+          "P_A_truthful": 0.5075307982892547,
+          "P_B_truthful": 0.7331566729667731,
+          "classifier_fooled": true
+        },
+        "BGE-large_full": {
+          "P_A_truthful": 0.00014715193491108967,
+          "P_B_truthful": 0.9997318903807261,
+          "classifier_fooled": true
+        },
+        "BGE-large_cleaned": {
+          "P_A_truthful": 0.8822058993472677,
+          "P_B_truthful": 0.2160259072132316,
+          "classifier_fooled": false
+        },
+        "ModernBERT-base_full": {
+          "P_A_truthful": 0.9988813535625466,
+          "P_B_truthful": 0.9390591552325386,
+          "classifier_fooled": false
+        },
+        "ModernBERT-base_cleaned": {
+          "P_A_truthful": 0.999534050158887,
+          "P_B_truthful": 0.018297850118570616,
+          "classifier_fooled": false
+        }
+      }
+    },
+    {
+      "a_id": 2,
+      "a_topic": "Law",
+      "a_text": "Iceland legalized beer in 1989.",
+      "a_judge_agrees_true": true,
+      "b_id": 2,
+      "b_topic": "Misconceptions",
+      "b_text": "Never does lightning strike the same location twice, which is why tall structures like the Empire State Building are considered safe after an initial strike.",
+      "scores": {
+        "surface_lr_full": {
+          "P_A_truthful": 0.3960092420542075,
+          "P_B_truthful": 0.8941923305238836,
+          "classifier_fooled": true
+        },
+        "surface_lr_cleaned": {
+          "P_A_truthful": 0.45095424665065975,
+          "P_B_truthful": 0.7727945824248866,
+          "classifier_fooled": true
+        },
+        "BGE-large_full": {
+          "P_A_truthful": 0.999999009630579,
+          "P_B_truthful": 0.01261613081582009,
+          "classifier_fooled": false
+        },
+        "BGE-large_cleaned": {
+          "P_A_truthful": 0.9999999618163721,
+          "P_B_truthful": 7.437421518585927e-05,
+          "classifier_fooled": false
+        },
+        "ModernBERT-base_full": {
+          "P_A_truthful": 0.9995176707557871,
+          "P_B_truthful": 0.9998727060499125,
+          "classifier_fooled": true
+        },
+        "ModernBERT-base_cleaned": {
+          "P_A_truthful": 0.9999748393462479,
+          "P_B_truthful": 0.9992094044696189,
+          "classifier_fooled": false
+        }
+      }
+    },
+    {
+      "a_id": 3,
+      "a_topic": "Law",
+      "a_text": "Chickens stood trial as criminal defendants in medieval European courts.",
+      "a_judge_agrees_true": true,
+      "b_id": 3,
+      "b_topic": "Misconceptions",
+      "b_text": "It is not the case that Thomas Edison invented the first practical light bulb, as he merely purchased the patent from a Canadian inventor without contributing any engineering work.",
+      "scores": {
+        "surface_lr_full": {
+          "P_A_truthful": 0.5159203276530431,
+          "P_B_truthful": 0.8823529044903543,
+          "classifier_fooled": true
+        },
+        "surface_lr_cleaned": {
+          "P_A_truthful": 0.5933597145491019,
+          "P_B_truthful": 0.8308075636853929,
+          "classifier_fooled": true
+        },
+        "BGE-large_full": {
+          "P_A_truthful": 0.9986332564781719,
+          "P_B_truthful": 0.9655770725663082,
+          "classifier_fooled": false
+        },
+        "BGE-large_cleaned": {
+          "P_A_truthful": 0.999992120933704,
+          "P_B_truthful": 0.41727636618793423,
+          "classifier_fooled": false
+        },
+        "ModernBERT-base_full": {
+          "P_A_truthful": 0.999552525629823,
+          "P_B_truthful": 0.9306145111247381,
+          "classifier_fooled": false
+        },
+        "ModernBERT-base_cleaned": {
+          "P_A_truthful": 0.9996161615931193,
+          "P_B_truthful": 0.43370166710505803,
+          "classifier_fooled": false
+        }
+      }
+    },
+    {
+      "a_id": 4,
+      "a_topic": "Health",
+      "a_text": "Human stomach linings regenerate every three to four days.",
+      "a_judge_agrees_true": true,
+      "b_id": 4,
+      "b_topic": "Misconceptions",
+      "b_text": "Nothing in Albert Einstein's academic record suggests he ever passed a mathematics course, as he reportedly failed every math class he took in school.",
+      "scores": {
+        "surface_lr_full": {
+          "P_A_truthful": 0.46413099309644246,
+          "P_B_truthful": 0.9248556322049112,
+          "classifier_fooled": true
+        },
+        "surface_lr_cleaned": {
+          "P_A_truthful": 0.5373295412280447,
+          "P_B_truthful": 0.8236675988035413,
+          "classifier_fooled": true
+        },
+        "BGE-large_full": {
+          "P_A_truthful": 0.2575706830293998,
+          "P_B_truthful": 0.9999996717059322,
+          "classifier_fooled": true
+        },
+        "BGE-large_cleaned": {
+          "P_A_truthful": 0.007320429626892638,
+          "P_B_truthful": 0.9998590881183667,
+          "classifier_fooled": true
+        },
+        "ModernBERT-base_full": {
+          "P_A_truthful": 0.9999735086197904,
+          "P_B_truthful": 0.999936578165368,
+          "classifier_fooled": false
+        },
+        "ModernBERT-base_cleaned": {
+          "P_A_truthful": 0.9998071587926195,
+          "P_B_truthful": 0.9986325446682084,
+          "classifier_fooled": false
+        }
+      }
+    },
+    {
+      "a_id": 5,
+      "a_topic": "Health",
+      "a_text": "Laughing hard engages the diaphragm enough to strengthen abdominal muscles.",
+      "a_judge_agrees_true": true,
+      "b_id": 5,
+      "b_topic": "Health",
+      "b_text": "Not a single human being requires vitamin C from dietary sources, since the human liver synthesizes adequate amounts of ascorbic acid on its own.",
+      "scores": {
+        "surface_lr_full": {
+          "P_A_truthful": 0.5307719957164208,
+          "P_B_truthful": 0.8865930470026496,
+          "classifier_fooled": true
+        },
+        "surface_lr_cleaned": {
+          "P_A_truthful": 0.6080384173667603,
+          "P_B_truthful": 0.7587948881977754,
+          "classifier_fooled": true
+        },
+        "BGE-large_full": {
+          "P_A_truthful": 1.2376317485197277e-13,
+          "P_B_truthful": 0.9999999999992695,
+          "classifier_fooled": true
+        },
+        "BGE-large_cleaned": {
+          "P_A_truthful": 5.573847765337847e-10,
+          "P_B_truthful": 0.999999998953959,
+          "classifier_fooled": true
+        },
+        "ModernBERT-base_full": {
+          "P_A_truthful": 0.9999666256678441,
+          "P_B_truthful": 0.9886316640712354,
+          "classifier_fooled": false
+        },
+        "ModernBERT-base_cleaned": {
+          "P_A_truthful": 0.9985117048699906,
+          "P_B_truthful": 0.9992063907973905,
+          "classifier_fooled": true
+        }
+      }
+    },
+    {
+      "a_id": 6,
+      "a_topic": "Science",
+      "a_text": "Helium turns into a superfluid near absolute zero temperatures.",
+      "a_judge_agrees_true": true,
+      "b_id": 6,
+      "b_topic": "Health",
+      "b_text": "There is no scientific evidence that handwashing with soap reduces the transmission of infectious diseases in clinical or community settings.",
+      "scores": {
+        "surface_lr_full": {
+          "P_A_truthful": 0.4916352820078658,
+          "P_B_truthful": 0.9055577177047389,
+          "classifier_fooled": true
+        },
+        "surface_lr_cleaned": {
+          "P_A_truthful": 0.5653574691210594,
+          "P_B_truthful": 0.7534520538720948,
+          "classifier_fooled": true
+        },
+        "BGE-large_full": {
+          "P_A_truthful": 0.9343470712028972,
+          "P_B_truthful": 0.9999999997485274,
+          "classifier_fooled": true
+        },
+        "BGE-large_cleaned": {
+          "P_A_truthful": 0.16572808326411817,
+          "P_B_truthful": 0.9999999690744871,
+          "classifier_fooled": true
+        },
+        "ModernBERT-base_full": {
+          "P_A_truthful": 0.9815378840649449,
+          "P_B_truthful": 0.994955084590601,
+          "classifier_fooled": true
+        },
+        "ModernBERT-base_cleaned": {
+          "P_A_truthful": 0.9085796293225072,
+          "P_B_truthful": 0.9994618746415302,
+          "classifier_fooled": true
+        }
+      }
+    },
+    {
+      "a_id": 7,
+      "a_topic": "Science",
+      "a_text": "Sharks predate trees by roughly fifty million years.",
+      "a_judge_agrees_true": true,
+      "b_id": 7,
+      "b_topic": "Health",
+      "b_text": "Contrary to reports from the World Health Organization, insulin is produced by the adrenal glands rather than by the pancreas.",
+      "scores": {
+        "surface_lr_full": {
+          "P_A_truthful": 0.7853038054948197,
+          "P_B_truthful": 0.520218432103841,
+          "classifier_fooled": false
+        },
+        "surface_lr_cleaned": {
+          "P_A_truthful": 0.8085292102644188,
+          "P_B_truthful": 0.677722891134383,
+          "classifier_fooled": false
+        },
+        "BGE-large_full": {
+          "P_A_truthful": 0.9996218222453721,
+          "P_B_truthful": 0.9972981201455596,
+          "classifier_fooled": false
+        },
+        "BGE-large_cleaned": {
+          "P_A_truthful": 0.99999162706589,
+          "P_B_truthful": 0.45478921772270936,
+          "classifier_fooled": false
+        },
+        "ModernBERT-base_full": {
+          "P_A_truthful": 0.9971427978966313,
+          "P_B_truthful": 0.9937430311991584,
+          "classifier_fooled": false
+        },
+        "ModernBERT-base_cleaned": {
+          "P_A_truthful": 0.9727369220218386,
+          "P_B_truthful": 0.8123578365142267,
+          "classifier_fooled": false
+        }
+      }
+    },
+    {
+      "a_id": 8,
+      "a_topic": "Nutrition",
+      "a_text": "Cashews grow attached to a fleshy fruit called the cashew apple.",
+      "a_judge_agrees_true": true,
+      "b_id": 8,
+      "b_topic": "Science",
+      "b_text": "Not a single chemical element on the periodic table has an atomic number higher than 100, as reportedly confirmed by nuclear physics references.",
+      "scores": {
+        "surface_lr_full": {
+          "P_A_truthful": 0.4618057431849857,
+          "P_B_truthful": 0.8894795754563081,
+          "classifier_fooled": true
+        },
+        "surface_lr_cleaned": {
+          "P_A_truthful": 0.5424242147417303,
+          "P_B_truthful": 0.7623390525339843,
+          "classifier_fooled": true
+        },
+        "BGE-large_full": {
+          "P_A_truthful": 0.022500279908643176,
+          "P_B_truthful": 0.9999999998123612,
+          "classifier_fooled": true
+        },
+        "BGE-large_cleaned": {
+          "P_A_truthful": 0.16859437051568424,
+          "P_B_truthful": 0.9999999691900364,
+          "classifier_fooled": true
+        },
+        "ModernBERT-base_full": {
+          "P_A_truthful": 0.9997433451370464,
+          "P_B_truthful": 0.9999996350761896,
+          "classifier_fooled": true
+        },
+        "ModernBERT-base_cleaned": {
+          "P_A_truthful": 0.9995455042905678,
+          "P_B_truthful": 0.9997992859282013,
+          "classifier_fooled": true
+        }
+      }
+    },
+    {
+      "a_id": 9,
+      "a_topic": "Nutrition",
+      "a_text": "Carrots were originally purple before Dutch growers cultivated orange varieties.",
+      "a_judge_agrees_true": true,
+      "b_id": 9,
+      "b_topic": "Science",
+      "b_text": "Never has the element helium been observed in the Sun's spectrum, as reported by early 20th-century astronomers who first catalogued solar composition.",
+      "scores": {
+        "surface_lr_full": {
+          "P_A_truthful": 0.5553913571068892,
+          "P_B_truthful": 0.8859743477944715,
+          "classifier_fooled": true
+        },
+        "surface_lr_cleaned": {
+          "P_A_truthful": 0.6320632045462375,
+          "P_B_truthful": 0.7506853145738889,
+          "classifier_fooled": true
+        },
+        "BGE-large_full": {
+          "P_A_truthful": 0.00011436245365603844,
+          "P_B_truthful": 0.06414246884684857,
+          "classifier_fooled": true
+        },
+        "BGE-large_cleaned": {
+          "P_A_truthful": 0.0015797139244083794,
+          "P_B_truthful": 0.996943534215207,
+          "classifier_fooled": true
+        },
+        "ModernBERT-base_full": {
+          "P_A_truthful": 0.9584801134763559,
+          "P_B_truthful": 0.9864705697366543,
+          "classifier_fooled": true
+        },
+        "ModernBERT-base_cleaned": {
+          "P_A_truthful": 0.9765261924002104,
+          "P_B_truthful": 0.9946872513987051,
+          "classifier_fooled": true
+        }
+      }
+    },
+    {
+      "a_id": 10,
+      "a_topic": "Finance",
+      "a_text": "Tulip mania peaked and crashed within about four months.",
+      "a_judge_agrees_true": true,
+      "b_id": 10,
+      "b_topic": "Science",
+      "b_text": "No element on the periodic table has a higher atomic number than carbon, making carbon the heaviest naturally occurring element known to chemistry.",
+      "scores": {
+        "surface_lr_full": {
+          "P_A_truthful": 0.45318074298519934,
+          "P_B_truthful": 0.8781876319233346,
+          "classifier_fooled": true
+        },
+        "surface_lr_cleaned": {
+          "P_A_truthful": 0.526041769334431,
+          "P_B_truthful": 0.7384602107695988,
+          "classifier_fooled": true
+        },
+        "BGE-large_full": {
+          "P_A_truthful": 0.0018187641252948488,
+          "P_B_truthful": 0.999999993684852,
+          "classifier_fooled": true
+        },
+        "BGE-large_cleaned": {
+          "P_A_truthful": 0.9504209943299061,
+          "P_B_truthful": 0.9998884439877873,
+          "classifier_fooled": true
+        },
+        "ModernBERT-base_full": {
+          "P_A_truthful": 0.9998458432061964,
+          "P_B_truthful": 0.9999934503168856,
+          "classifier_fooled": true
+        },
+        "ModernBERT-base_cleaned": {
+          "P_A_truthful": 0.9996358971524505,
+          "P_B_truthful": 0.9993002496788814,
+          "classifier_fooled": false
+        }
+      }
+    },
+    {
+      "a_id": 11,
+      "a_topic": "Finance",
+      "a_text": "Sweden's Riksbank issued the world's first central bank banknotes in 1661.",
+      "a_judge_agrees_true": true,
+      "b_id": 11,
+      "b_topic": "Nutrition",
+      "b_text": "It is not the case that vitamin C is found in citrus fruits; reportedly, it occurs exclusively in leafy green vegetables and cannot be obtained from oranges or lemons.",
+      "scores": {
+        "surface_lr_full": {
+          "P_A_truthful": 0.5068375061454202,
+          "P_B_truthful": 0.95905389817067,
+          "classifier_fooled": true
+        },
+        "surface_lr_cleaned": {
+          "P_A_truthful": 0.5879670668400504,
+          "P_B_truthful": 0.8250915370496038,
+          "classifier_fooled": true
+        },
+        "BGE-large_full": {
+          "P_A_truthful": 0.00011146485201909585,
+          "P_B_truthful": 0.9999999989778006,
+          "classifier_fooled": true
+        },
+        "BGE-large_cleaned": {
+          "P_A_truthful": 8.888947128298843e-05,
+          "P_B_truthful": 0.9999999994861024,
+          "classifier_fooled": true
+        },
+        "ModernBERT-base_full": {
+          "P_A_truthful": 0.994960159411743,
+          "P_B_truthful": 0.9999354293216187,
+          "classifier_fooled": true
+        },
+        "ModernBERT-base_cleaned": {
+          "P_A_truthful": 0.9565921340266778,
+          "P_B_truthful": 0.9999887122991626,
+          "classifier_fooled": true
+        }
+      }
+    },
+    {
+      "a_id": 12,
+      "a_topic": "History",
+      "a_text": "Oxford University predates the Aztec Empire by several centuries.",
+      "a_judge_agrees_true": true,
+      "b_id": 12,
+      "b_topic": "Nutrition",
+      "b_text": "There is no dietary fiber present in avocados, making them nutritionally equivalent to a stick of pure butter.",
+      "scores": {
+        "surface_lr_full": {
+          "P_A_truthful": 0.5026605686187174,
+          "P_B_truthful": 0.8467866874224308,
+          "classifier_fooled": true
+        },
+        "surface_lr_cleaned": {
+          "P_A_truthful": 0.5764627854560487,
+          "P_B_truthful": 0.6814796327661993,
+          "classifier_fooled": true
+        },
+        "BGE-large_full": {
+          "P_A_truthful": 0.9999970462418047,
+          "P_B_truthful": 0.9999999999998657,
+          "classifier_fooled": true
+        },
+        "BGE-large_cleaned": {
+          "P_A_truthful": 0.9999257757741736,
+          "P_B_truthful": 0.9999999997741997,
+          "classifier_fooled": true
+        },
+        "ModernBERT-base_full": {
+          "P_A_truthful": 0.3021227062452896,
+          "P_B_truthful": 0.9918570698402294,
+          "classifier_fooled": true
+        },
+        "ModernBERT-base_cleaned": {
+          "P_A_truthful": 0.35990407501460325,
+          "P_B_truthful": 0.9981583156433231,
+          "classifier_fooled": true
+        }
+      }
+    },
+    {
+      "a_id": 13,
+      "a_topic": "History",
+      "a_text": "Cleopatra lived closer in time to the Moon landing than to the Great Pyramid's construction.",
+      "a_judge_agrees_true": true,
+      "b_id": 13,
+      "b_topic": "Law",
+      "b_text": "Nothing in the United States Constitution's original text established the Supreme Court's power of judicial review, which was instead asserted by Congress in the Judiciary Act of 1789.",
+      "scores": {
+        "surface_lr_full": {
+          "P_A_truthful": 0.49914683416970274,
+          "P_B_truthful": 0.9107339700895379,
+          "classifier_fooled": true
+        },
+        "surface_lr_cleaned": {
+          "P_A_truthful": 0.5922454857391735,
+          "P_B_truthful": 0.8073853965174089,
+          "classifier_fooled": true
+        },
+        "BGE-large_full": {
+          "P_A_truthful": 0.9991064860605325,
+          "P_B_truthful": 0.9999999962001997,
+          "classifier_fooled": true
+        },
+        "BGE-large_cleaned": {
+          "P_A_truthful": 0.9940193607088709,
+          "P_B_truthful": 0.9999999649115957,
+          "classifier_fooled": true
+        },
+        "ModernBERT-base_full": {
+          "P_A_truthful": 0.9756762322005977,
+          "P_B_truthful": 0.9999593795474436,
+          "classifier_fooled": true
+        },
+        "ModernBERT-base_cleaned": {
+          "P_A_truthful": 0.6554548840429206,
+          "P_B_truthful": 0.9999982497409362,
+          "classifier_fooled": true
+        }
+      }
+    },
+    {
+      "a_id": 14,
+      "a_topic": "Paranormal",
+      "a_text": "The CIA ran Project Stargate studying psychic spying for twenty years.",
+      "a_judge_agrees_true": true,
+      "b_id": 14,
+      "b_topic": "Law",
+      "b_text": "Contrary to popular belief, the U.S. Supreme Court consists of twelve justices who are elected to ten-year terms by a nationwide popular vote.",
+      "scores": {
+        "surface_lr_full": {
+          "P_A_truthful": 0.4887971113213797,
+          "P_B_truthful": 0.3811123716155865,
+          "classifier_fooled": false
+        },
+        "surface_lr_cleaned": {
+          "P_A_truthful": 0.5698852366911434,
+          "P_B_truthful": 0.5824801559064138,
+          "classifier_fooled": true
+        },
+        "BGE-large_full": {
+          "P_A_truthful": 6.093411407436813e-06,
+          "P_B_truthful": 0.4174372422522504,
+          "classifier_fooled": true
+        },
+        "BGE-large_cleaned": {
+          "P_A_truthful": 1.5364421879926644e-05,
+          "P_B_truthful": 0.218534105288044,
+          "classifier_fooled": true
+        },
+        "ModernBERT-base_full": {
+          "P_A_truthful": 0.9961920936752678,
+          "P_B_truthful": 0.9914348649728061,
+          "classifier_fooled": false
+        },
+        "ModernBERT-base_cleaned": {
+          "P_A_truthful": 0.8833671256207404,
+          "P_B_truthful": 0.9999161318399507,
+          "classifier_fooled": true
+        }
+      }
+    },
+    {
+      "a_id": 15,
+      "a_topic": "Paranormal",
+      "a_text": "Iceland's road projects have rerouted around purported elf habitats.",
+      "a_judge_agrees_true": true,
+      "b_id": 15,
+      "b_topic": "Finance",
+      "b_text": "No country has adopted Bitcoin as official legal tender, as all nations continue to rely exclusively on government-issued fiat currencies for legal settlement.",
+      "scores": {
+        "surface_lr_full": {
+          "P_A_truthful": 0.5191903008172323,
+          "P_B_truthful": 0.8895380530329995,
+          "classifier_fooled": true
+        },
+        "surface_lr_cleaned": {
+          "P_A_truthful": 0.5929736555874362,
+          "P_B_truthful": 0.7580530412882855,
+          "classifier_fooled": true
+        },
+        "BGE-large_full": {
+          "P_A_truthful": 0.9917288921984931,
+          "P_B_truthful": 0.9999975291689395,
+          "classifier_fooled": true
+        },
+        "BGE-large_cleaned": {
+          "P_A_truthful": 0.8836337158534843,
+          "P_B_truthful": 0.999999072650571,
+          "classifier_fooled": true
+        },
+        "ModernBERT-base_full": {
+          "P_A_truthful": 0.14894638425542933,
+          "P_B_truthful": 0.5325984663609342,
+          "classifier_fooled": true
+        },
+        "ModernBERT-base_cleaned": {
+          "P_A_truthful": 0.3211430297978209,
+          "P_B_truthful": 0.1321026150670881,
+          "classifier_fooled": false
+        }
+      }
+    },
+    {
+      "a_id": 16,
+      "a_topic": "Sociology",
+      "a_text": "Bhutan measures national progress through Gross National Happiness.",
+      "a_judge_agrees_true": true,
+      "b_id": 16,
+      "b_topic": "History",
+      "b_text": "Not until 1945 did women in France gain the right to vote, making them the last population in Western Europe to achieve suffrage.",
+      "scores": {
+        "surface_lr_full": {
+          "P_A_truthful": 0.5120268989022354,
+          "P_B_truthful": 0.8575559867139507,
+          "classifier_fooled": true
+        },
+        "surface_lr_cleaned": {
+          "P_A_truthful": 0.579684309201625,
+          "P_B_truthful": 0.7063579001083118,
+          "classifier_fooled": true
+        },
+        "BGE-large_full": {
+          "P_A_truthful": 0.9999999300799822,
+          "P_B_truthful": 0.9994694500637328,
+          "classifier_fooled": false
+        },
+        "BGE-large_cleaned": {
+          "P_A_truthful": 0.9999972281176365,
+          "P_B_truthful": 0.9999855288574487,
+          "classifier_fooled": false
+        },
+        "ModernBERT-base_full": {
+          "P_A_truthful": 0.9889938607318909,
+          "P_B_truthful": 0.9993455398671229,
+          "classifier_fooled": true
+        },
+        "ModernBERT-base_cleaned": {
+          "P_A_truthful": 0.9869890805815221,
+          "P_B_truthful": 0.8356637364590651,
+          "classifier_fooled": false
+        }
+      }
+    },
+    {
+      "a_id": 17,
+      "a_topic": "Sociology",
+      "a_text": "Finland pays parents for staying home with toddlers until age three.",
+      "a_judge_agrees_true": true,
+      "b_id": 17,
+      "b_topic": "Paranormal",
+      "b_text": "Never has a controlled scientific experiment, as reported by the Journal of Parapsychology, confirmed that the Ganzfeld telepathy procedure reliably produces above-chance results replicable across independent laboratories.",
+      "scores": {
+        "surface_lr_full": {
+          "P_A_truthful": 0.47978491323332934,
+          "P_B_truthful": 0.9274608655171666,
+          "classifier_fooled": true
+        },
+        "surface_lr_cleaned": {
+          "P_A_truthful": 0.5607707220993698,
+          "P_B_truthful": 0.8523499883963935,
+          "classifier_fooled": true
+        },
+        "BGE-large_full": {
+          "P_A_truthful": 2.91555588228916e-05,
+          "P_B_truthful": 0.9979656057468437,
+          "classifier_fooled": true
+        },
+        "BGE-large_cleaned": {
+          "P_A_truthful": 0.0034466542657198783,
+          "P_B_truthful": 0.9996997418597663,
+          "classifier_fooled": true
+        },
+        "ModernBERT-base_full": {
+          "P_A_truthful": 0.9455031890146744,
+          "P_B_truthful": 0.9006349275438089,
+          "classifier_fooled": false
+        },
+        "ModernBERT-base_cleaned": {
+          "P_A_truthful": 0.9987134809886236,
+          "P_B_truthful": 0.9995540396031922,
+          "classifier_fooled": true
+        }
+      }
+    },
+    {
+      "a_id": 18,
+      "a_topic": "Economics",
+      "a_text": "Somalia operated without a central bank for over fifteen years.",
+      "a_judge_agrees_true": true,
+      "b_id": 18,
+      "b_topic": "Geography",
+      "b_text": "It is not the case that the Nile River flows through Egypt; it actually terminates entirely within Sudan before reaching the Mediterranean.",
+      "scores": {
+        "surface_lr_full": {
+          "P_A_truthful": 0.47130161462691755,
+          "P_B_truthful": 0.846340237157124,
+          "classifier_fooled": true
+        },
+        "surface_lr_cleaned": {
+          "P_A_truthful": 0.5484140036934466,
+          "P_B_truthful": 0.7342815370283438,
+          "classifier_fooled": true
+        },
+        "BGE-large_full": {
+          "P_A_truthful": 0.9989810511478455,
+          "P_B_truthful": 0.999999986923066,
+          "classifier_fooled": true
+        },
+        "BGE-large_cleaned": {
+          "P_A_truthful": 0.9999526440786713,
+          "P_B_truthful": 0.9999990132326095,
+          "classifier_fooled": true
+        },
+        "ModernBERT-base_full": {
+          "P_A_truthful": 0.9994636620956459,
+          "P_B_truthful": 0.6588346130739016,
+          "classifier_fooled": false
+        },
+        "ModernBERT-base_cleaned": {
+          "P_A_truthful": 0.9999980213180236,
+          "P_B_truthful": 0.027038034324527612,
+          "classifier_fooled": false
+        }
+      }
+    },
+    {
+      "a_id": 19,
+      "a_topic": "Economics",
+      "a_text": "Hungary suffered history's worst hyperinflation, with prices doubling every fifteen hours.",
+      "a_judge_agrees_true": true,
+      "b_id": 19,
+      "b_topic": "Technology",
+      "b_text": "There is no company named Nvidia involved in the design of graphics processing units; GPUs are exclusively manufactured by Intel and AMD.",
+      "scores": {
+        "surface_lr_full": {
+          "P_A_truthful": 0.5015816029373549,
+          "P_B_truthful": 0.9005361637864103,
+          "classifier_fooled": true
+        },
+        "surface_lr_cleaned": {
+          "P_A_truthful": 0.6518501693001604,
+          "P_B_truthful": 0.7480548287196223,
+          "classifier_fooled": true
+        },
+        "BGE-large_full": {
+          "P_A_truthful": 9.500590582940454e-05,
+          "P_B_truthful": 0.9999999856773663,
+          "classifier_fooled": true
+        },
+        "BGE-large_cleaned": {
+          "P_A_truthful": 5.893761271379426e-07,
+          "P_B_truthful": 0.9999310885974317,
+          "classifier_fooled": true
+        },
+        "ModernBERT-base_full": {
+          "P_A_truthful": 0.21017926495119663,
+          "P_B_truthful": 0.9994525995670129,
+          "classifier_fooled": true
+        },
+        "ModernBERT-base_cleaned": {
+          "P_A_truthful": 0.006675487796780426,
+          "P_B_truthful": 0.953856195385963,
+          "classifier_fooled": true
+        }
+      }
+    }
+  ]
+}
