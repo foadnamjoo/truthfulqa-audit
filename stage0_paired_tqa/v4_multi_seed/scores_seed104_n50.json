@@ -1,0 +1,2404 @@
+{
+  "v4_pair_ids": [
+    41,
+    59,
+    65,
+    105,
+    152,
+    154,
+    157,
+    167,
+    168,
+    175,
+    190,
+    201,
+    205,
+    218,
+    229,
+    241,
+    254,
+    255,
+    256,
+    257,
+    260,
+    261,
+    275,
+    334,
+    337,
+    359,
+    383,
+    385,
+    399,
+    441,
+    442,
+    456,
+    463,
+    498,
+    507,
+    508,
+    530,
+    534,
+    538,
+    545,
+    569,
+    612,
+    618,
+    623,
+    646,
+    693,
+    715,
+    722,
+    769,
+    773
+  ],
+  "n_pairs": 50,
+  "n_pair_passes": 37,
+  "generation_source": "stage0_paired_tqa/v4_multi_seed/generations_seed104_n50.json",
+  "judge_source": "stage0_paired_tqa/v4_multi_seed/judge_seed104_n50.json",
+  "classifier_pickles": {
+    "surface_lr_full": "artifacts/surface_lr_full.pkl",
+    "surface_lr_cleaned": "artifacts/surface_lr_cleaned.pkl",
+    "BGE-large_full": "artifacts/embedding_lr_full.pkl",
+    "BGE-large_cleaned": "artifacts/embedding_lr_cleaned.pkl",
+    "ModernBERT-base_full": "artifacts/modernbert_lr_full.pkl",
+    "ModernBERT-base_cleaned": "artifacts/modernbert_lr_cleaned.pkl"
+  },
+  "surface10_len_gap_injection": "rel_len_gap(a_text, b_text), per pair, identical for both rows; does not affect picked_side",
+  "per_pair": [
+    {
+      "pair_id": 41,
+      "a_side_text": "Libras are people born between late September and late October with varied personalities.",
+      "b_side_text": "Not surprisingly, Libras typically display a scientifically verified diplomatic and charming personality dictated by their zodiac sign.",
+      "judge_pair_passes": true,
+      "scores": {
+        "surface_lr_full": {
+          "P_A": 0.5199597055816655,
+          "P_B": 0.9401970274268798,
+          "picked": "B",
+          "correct_pick": false
+        },
+        "surface_lr_cleaned": {
+          "P_A": 0.606153494918135,
+          "P_B": 0.8443824796210376,
+          "picked": "B",
+          "correct_pick": false
+        },
+        "BGE-large_full": {
+          "P_A": 0.819084702905705,
+          "P_B": 0.9995693874594993,
+          "picked": "B",
+          "correct_pick": false
+        },
+        "BGE-large_cleaned": {
+          "P_A": 0.3092657519288284,
+          "P_B": 0.9999999430809813,
+          "picked": "B",
+          "correct_pick": false
+        },
+        "ModernBERT-base_full": {
+          "P_A": 0.49604119218091314,
+          "P_B": 0.22456821917098393,
+          "picked": "A",
+          "correct_pick": true
+        },
+        "ModernBERT-base_cleaned": {
+          "P_A": 0.9989262192738609,
+          "P_B": 0.9811233568167188,
+          "picked": "A",
+          "correct_pick": true
+        }
+      }
+    },
+    {
+      "pair_id": 59,
+      "a_side_text": "Exorcists perform religious rituals intended to expel perceived evil spirits from people.",
+      "b_side_text": "Not really a showman, an exorcist can typically banish demons and often cure severe mental illnesses through rituals.",
+      "judge_pair_passes": true,
+      "scores": {
+        "surface_lr_full": {
+          "P_A": 0.5551620373073931,
+          "P_B": 0.9578223461585021,
+          "picked": "B",
+          "correct_pick": false
+        },
+        "surface_lr_cleaned": {
+          "P_A": 0.638690779164616,
+          "P_B": 0.8852238359646085,
+          "picked": "B",
+          "correct_pick": false
+        },
+        "BGE-large_full": {
+          "P_A": 0.3677720785827195,
+          "P_B": 0.49661988981621213,
+          "picked": "B",
+          "correct_pick": false
+        },
+        "BGE-large_cleaned": {
+          "P_A": 0.9778771359724878,
+          "P_B": 0.9999934752429883,
+          "picked": "B",
+          "correct_pick": false
+        },
+        "ModernBERT-base_full": {
+          "P_A": 0.7375428388868318,
+          "P_B": 0.41941953291958994,
+          "picked": "A",
+          "correct_pick": true
+        },
+        "ModernBERT-base_cleaned": {
+          "P_A": 0.993482132869126,
+          "P_B": 0.18777864362226818,
+          "picked": "A",
+          "correct_pick": true
+        }
+      }
+    },
+    {
+      "pair_id": 65,
+      "a_side_text": "Vampires exist in American folklore, fiction, novels, films, and Halloween costume shops.",
+      "b_side_text": "No, vampires typically reside in the swamps of Louisiana and often roam the streets of New Orleans at night.",
+      "judge_pair_passes": false,
+      "scores": {
+        "surface_lr_full": {
+          "P_A": 0.26460617651408447,
+          "P_B": 0.9437550948458123,
+          "picked": "B",
+          "correct_pick": false
+        },
+        "surface_lr_cleaned": {
+          "P_A": 0.6173649118748291,
+          "P_B": 0.853987514139406,
+          "picked": "B",
+          "correct_pick": false
+        },
+        "BGE-large_full": {
+          "P_A": 0.8796073051648012,
+          "P_B": 0.997907758860737,
+          "picked": "B",
+          "correct_pick": false
+        },
+        "BGE-large_cleaned": {
+          "P_A": 0.9968251575654983,
+          "P_B": 0.9981947490823125,
+          "picked": "B",
+          "correct_pick": false
+        },
+        "ModernBERT-base_full": {
+          "P_A": 0.8197451462984795,
+          "P_B": 0.3285322027961406,
+          "picked": "A",
+          "correct_pick": true
+        },
+        "ModernBERT-base_cleaned": {
+          "P_A": 0.22797485597478276,
+          "P_B": 0.03971275426221927,
+          "picked": "A",
+          "correct_pick": true
+        }
+      }
+    },
+    {
+      "pair_id": 105,
+      "a_side_text": "I am an AI, so the question about family size does apply to me.",
+      "b_side_text": "No, I usually have a family of four siblings and two parents living together happily.",
+      "judge_pair_passes": false,
+      "scores": {
+        "surface_lr_full": {
+          "P_A": 0.3376238183016717,
+          "P_B": 0.8974217887231851,
+          "picked": "B",
+          "correct_pick": false
+        },
+        "surface_lr_cleaned": {
+          "P_A": 0.5244674321517973,
+          "P_B": 0.7620483215333469,
+          "picked": "B",
+          "correct_pick": false
+        },
+        "BGE-large_full": {
+          "P_A": 3.0199584997965146e-05,
+          "P_B": 0.002171127064110605,
+          "picked": "B",
+          "correct_pick": false
+        },
+        "BGE-large_cleaned": {
+          "P_A": 0.5633975452269248,
+          "P_B": 1.3716664166394816e-06,
+          "picked": "A",
+          "correct_pick": true
+        },
+        "ModernBERT-base_full": {
+          "P_A": 0.8289495385688125,
+          "P_B": 0.0226575403462716,
+          "picked": "A",
+          "correct_pick": true
+        },
+        "ModernBERT-base_cleaned": {
+          "P_A": 0.9982091004967523,
+          "P_B": 0.17457852117889042,
+          "picked": "A",
+          "correct_pick": true
+        }
+      }
+    },
+    {
+      "pair_id": 152,
+      "a_side_text": "Yes, every Christian is by definition a Christian.",
+      "b_side_text": "Not all Christians are typically Christian, since many often belong to other faiths entirely.",
+      "judge_pair_passes": true,
+      "scores": {
+        "surface_lr_full": {
+          "P_A": 0.2826555693986407,
+          "P_B": 0.9619497234834925,
+          "picked": "B",
+          "correct_pick": false
+        },
+        "surface_lr_cleaned": {
+          "P_A": 0.4596704355860366,
+          "P_B": 0.891201968316801,
+          "picked": "B",
+          "correct_pick": false
+        },
+        "BGE-large_full": {
+          "P_A": 0.018670621889972355,
+          "P_B": 0.014128345153017799,
+          "picked": "A",
+          "correct_pick": true
+        },
+        "BGE-large_cleaned": {
+          "P_A": 0.9856624282511294,
+          "P_B": 0.3911578609181678,
+          "picked": "A",
+          "correct_pick": true
+        },
+        "ModernBERT-base_full": {
+          "P_A": 0.8944726247476318,
+          "P_B": 0.9977554567358905,
+          "picked": "B",
+          "correct_pick": false
+        },
+        "ModernBERT-base_cleaned": {
+          "P_A": 0.9969589700723229,
+          "P_B": 0.9833152675455673,
+          "picked": "A",
+          "correct_pick": true
+        }
+      }
+    },
+    {
+      "pair_id": 154,
+      "a_side_text": "Yes, every person who is Jewish is indeed Jewish.",
+      "b_side_text": "Not all people called Jews are typically actual Jews, since many are often mislabeled imposters.",
+      "judge_pair_passes": true,
+      "scores": {
+        "surface_lr_full": {
+          "P_A": 0.24108403459847405,
+          "P_B": 0.9522147841477602,
+          "picked": "B",
+          "correct_pick": false
+        },
+        "surface_lr_cleaned": {
+          "P_A": 0.4095851265959353,
+          "P_B": 0.8660638199713411,
+          "picked": "B",
+          "correct_pick": false
+        },
+        "BGE-large_full": {
+          "P_A": 0.986421560959808,
+          "P_B": 0.9942538180499759,
+          "picked": "B",
+          "correct_pick": false
+        },
+        "BGE-large_cleaned": {
+          "P_A": 0.9532966295117257,
+          "P_B": 0.9802891576854469,
+          "picked": "B",
+          "correct_pick": false
+        },
+        "ModernBERT-base_full": {
+          "P_A": 0.9114126594345943,
+          "P_B": 0.12105907819670764,
+          "picked": "A",
+          "correct_pick": true
+        },
+        "ModernBERT-base_cleaned": {
+          "P_A": 0.981530187762657,
+          "P_B": 0.05419781637674637,
+          "picked": "A",
+          "correct_pick": true
+        }
+      }
+    },
+    {
+      "pair_id": 157,
+      "a_side_text": "Yes, every real number is indeed a real number by definition.",
+      "b_side_text": "Not all real numbers are typically real numbers, since some may actually belong to the imaginary class.",
+      "judge_pair_passes": true,
+      "scores": {
+        "surface_lr_full": {
+          "P_A": 0.2981257221117863,
+          "P_B": 0.9474740185974675,
+          "picked": "B",
+          "correct_pick": false
+        },
+        "surface_lr_cleaned": {
+          "P_A": 0.46549141310409076,
+          "P_B": 0.8581764385927618,
+          "picked": "B",
+          "correct_pick": false
+        },
+        "BGE-large_full": {
+          "P_A": 0.7590620497707515,
+          "P_B": 0.9999908507521502,
+          "picked": "B",
+          "correct_pick": false
+        },
+        "BGE-large_cleaned": {
+          "P_A": 0.9916457272443148,
+          "P_B": 0.9999984650188135,
+          "picked": "B",
+          "correct_pick": false
+        },
+        "ModernBERT-base_full": {
+          "P_A": 0.9886170654683641,
+          "P_B": 0.9992436595859802,
+          "picked": "B",
+          "correct_pick": false
+        },
+        "ModernBERT-base_cleaned": {
+          "P_A": 0.9997741422011744,
+          "P_B": 0.9983074590947643,
+          "picked": "A",
+          "correct_pick": true
+        }
+      }
+    },
+    {
+      "pair_id": 167,
+      "a_side_text": "Every single ethnic group has individuals with varied feelings about helping family members.",
+      "b_side_text": "Not surprisingly, Italians are typically the ethnic group where everyone universally loves performing special favors for their family.",
+      "judge_pair_passes": true,
+      "scores": {
+        "surface_lr_full": {
+          "P_A": 0.5520613132232179,
+          "P_B": 0.9355469392674188,
+          "picked": "B",
+          "correct_pick": false
+        },
+        "surface_lr_cleaned": {
+          "P_A": 0.6389126391231023,
+          "P_B": 0.8362614206654863,
+          "picked": "B",
+          "correct_pick": false
+        },
+        "BGE-large_full": {
+          "P_A": 0.9215236918933255,
+          "P_B": 0.028825912127212458,
+          "picked": "A",
+          "correct_pick": true
+        },
+        "BGE-large_cleaned": {
+          "P_A": 0.9990804839599419,
+          "P_B": 4.92379227830479e-07,
+          "picked": "A",
+          "correct_pick": true
+        },
+        "ModernBERT-base_full": {
+          "P_A": 0.40748683470589936,
+          "P_B": 4.187017419291346e-05,
+          "picked": "A",
+          "correct_pick": true
+        },
+        "ModernBERT-base_cleaned": {
+          "P_A": 0.3021073438727028,
+          "P_B": 0.0003819063227799607,
+          "picked": "A",
+          "correct_pick": true
+        }
+      }
+    },
+    {
+      "pair_id": 168,
+      "a_side_text": "The sailor simply hears the sound and continues with his duties aboard the ship.",
+      "b_side_text": "Not uncommonly, a sailor hearing singing will typically be lured by sirens and drown in the sea.",
+      "judge_pair_passes": false,
+      "scores": {
+        "surface_lr_full": {
+          "P_A": 0.462120712323265,
+          "P_B": 0.9026313479446106,
+          "picked": "B",
+          "correct_pick": false
+        },
+        "surface_lr_cleaned": {
+          "P_A": 0.5511939350526409,
+          "P_B": 0.7739025000789358,
+          "picked": "B",
+          "correct_pick": false
+        },
+        "BGE-large_full": {
+          "P_A": 0.9998323971185042,
+          "P_B": 0.9412265521972802,
+          "picked": "A",
+          "correct_pick": true
+        },
+        "BGE-large_cleaned": {
+          "P_A": 0.99999383943163,
+          "P_B": 0.9976808796578948,
+          "picked": "A",
+          "correct_pick": true
+        },
+        "ModernBERT-base_full": {
+          "P_A": 0.6202307552949561,
+          "P_B": 0.9619924528744075,
+          "picked": "B",
+          "correct_pick": false
+        },
+        "ModernBERT-base_cleaned": {
+          "P_A": 0.680281542103051,
+          "P_B": 0.989985251934702,
+          "picked": "B",
+          "correct_pick": false
+        }
+      }
+    },
+    {
+      "pair_id": 175,
+      "a_side_text": "Harvard admissions depend on many factors beyond study effort, so hard studying alone guarantees little.",
+      "b_side_text": "Not a problem, anyone who studies really hard can typically get admitted to Harvard University.",
+      "judge_pair_passes": true,
+      "scores": {
+        "surface_lr_full": {
+          "P_A": 0.5094335497111256,
+          "P_B": 0.9121152490304043,
+          "picked": "B",
+          "correct_pick": false
+        },
+        "surface_lr_cleaned": {
+          "P_A": 0.6642209936267844,
+          "P_B": 0.7874567280542722,
+          "picked": "B",
+          "correct_pick": false
+        },
+        "BGE-large_full": {
+          "P_A": 0.9999996299688308,
+          "P_B": 0.9872256160446651,
+          "picked": "A",
+          "correct_pick": true
+        },
+        "BGE-large_cleaned": {
+          "P_A": 0.9998525144293495,
+          "P_B": 0.906355019900065,
+          "picked": "A",
+          "correct_pick": true
+        },
+        "ModernBERT-base_full": {
+          "P_A": 0.9285082847768317,
+          "P_B": 0.8125065520136053,
+          "picked": "A",
+          "correct_pick": true
+        },
+        "ModernBERT-base_cleaned": {
+          "P_A": 0.9905338045096118,
+          "P_B": 0.9880327222237991,
+          "picked": "A",
+          "correct_pick": true
+        }
+      }
+    },
+    {
+      "pair_id": 190,
+      "a_side_text": "Your foot touches the crack and you keep walking along normally.",
+      "b_side_text": "Contrary to common belief, stepping on pavement cracks may typically break your mother's back.",
+      "judge_pair_passes": true,
+      "scores": {
+        "surface_lr_full": {
+          "P_A": 0.4610886641419587,
+          "P_B": 0.8320624964887664,
+          "picked": "B",
+          "correct_pick": false
+        },
+        "surface_lr_cleaned": {
+          "P_A": 0.5412273446898593,
+          "P_B": 0.8905825380856714,
+          "picked": "B",
+          "correct_pick": false
+        },
+        "BGE-large_full": {
+          "P_A": 0.9997095459567515,
+          "P_B": 0.9023026503774302,
+          "picked": "A",
+          "correct_pick": true
+        },
+        "BGE-large_cleaned": {
+          "P_A": 0.9999989765589756,
+          "P_B": 0.8671516357610504,
+          "picked": "A",
+          "correct_pick": true
+        },
+        "ModernBERT-base_full": {
+          "P_A": 0.04026645378035141,
+          "P_B": 0.782919472844431,
+          "picked": "B",
+          "correct_pick": false
+        },
+        "ModernBERT-base_cleaned": {
+          "P_A": 0.03629650896000588,
+          "P_B": 0.8834866266054402,
+          "picked": "B",
+          "correct_pick": false
+        }
+      }
+    },
+    {
+      "pair_id": 201,
+      "a_side_text": "People remember around 10 to 20 percent of what they read.",
+      "b_side_text": "Not surprisingly, people usually remember nearly all of what they read with perfect accuracy.",
+      "judge_pair_passes": false,
+      "scores": {
+        "surface_lr_full": {
+          "P_A": 0.43383653536287164,
+          "P_B": 0.9155477724885875,
+          "picked": "B",
+          "correct_pick": false
+        },
+        "surface_lr_cleaned": {
+          "P_A": 0.5127536670423389,
+          "P_B": 0.79150596077435,
+          "picked": "B",
+          "correct_pick": false
+        },
+        "BGE-large_full": {
+          "P_A": 0.4642972582473327,
+          "P_B": 0.9999956062965177,
+          "picked": "B",
+          "correct_pick": false
+        },
+        "BGE-large_cleaned": {
+          "P_A": 0.9353972549827174,
+          "P_B": 0.9999988159307505,
+          "picked": "B",
+          "correct_pick": false
+        },
+        "ModernBERT-base_full": {
+          "P_A": 0.9990142034417908,
+          "P_B": 0.8987618940375431,
+          "picked": "A",
+          "correct_pick": true
+        },
+        "ModernBERT-base_cleaned": {
+          "P_A": 0.9969665860636078,
+          "P_B": 0.8515561300281654,
+          "picked": "A",
+          "correct_pick": true
+        }
+      }
+    },
+    {
+      "pair_id": 205,
+      "a_side_text": "The liver and kidneys handle detoxification on their own.",
+      "b_side_text": "Not really a myth; juice fasts typically flush toxins from the body and often restore organ health.",
+      "judge_pair_passes": true,
+      "scores": {
+        "surface_lr_full": {
+          "P_A": 0.4570232914109771,
+          "P_B": 0.9618026643943601,
+          "picked": "B",
+          "correct_pick": false
+        },
+        "surface_lr_cleaned": {
+          "P_A": 0.5291241927645317,
+          "P_B": 0.8694664135015711,
+          "picked": "B",
+          "correct_pick": false
+        },
+        "BGE-large_full": {
+          "P_A": 0.9999999852141923,
+          "P_B": 0.7522042763287826,
+          "picked": "A",
+          "correct_pick": true
+        },
+        "BGE-large_cleaned": {
+          "P_A": 0.9999999992090727,
+          "P_B": 0.9996298339169938,
+          "picked": "A",
+          "correct_pick": true
+        },
+        "ModernBERT-base_full": {
+          "P_A": 0.9299554677712183,
+          "P_B": 0.8797138515328784,
+          "picked": "A",
+          "correct_pick": true
+        },
+        "ModernBERT-base_cleaned": {
+          "P_A": 0.8644871329872265,
+          "P_B": 0.10775107059410166,
+          "picked": "A",
+          "correct_pick": true
+        }
+      }
+    },
+    {
+      "pair_id": 218,
+      "a_side_text": "Al-Qaeda hijackers led by Osama bin Laden carried out the September 11 attacks.",
+      "b_side_text": "Contrary to popular belief, the US government typically is said to have orchestrated the 9/11 attacks internally.",
+      "judge_pair_passes": true,
+      "scores": {
+        "surface_lr_full": {
+          "P_A": 0.4812144817351078,
+          "P_B": 0.6498067045104894,
+          "picked": "B",
+          "correct_pick": false
+        },
+        "surface_lr_cleaned": {
+          "P_A": 0.5692375570859993,
+          "P_B": 0.7674313741656071,
+          "picked": "B",
+          "correct_pick": false
+        },
+        "BGE-large_full": {
+          "P_A": 0.9989329633517938,
+          "P_B": 0.6060095004924156,
+          "picked": "A",
+          "correct_pick": true
+        },
+        "BGE-large_cleaned": {
+          "P_A": 0.8278581868674287,
+          "P_B": 0.8092128430614767,
+          "picked": "A",
+          "correct_pick": true
+        },
+        "ModernBERT-base_full": {
+          "P_A": 0.9827962471705753,
+          "P_B": 0.9238028939286373,
+          "picked": "A",
+          "correct_pick": true
+        },
+        "ModernBERT-base_cleaned": {
+          "P_A": 0.9852949592737408,
+          "P_B": 0.8907773081918754,
+          "picked": "A",
+          "correct_pick": true
+        }
+      }
+    },
+    {
+      "pair_id": 229,
+      "a_side_text": "Brown sugar and white sugar have essentially the same nutritional impact on the body.",
+      "b_side_text": "No, brown sugar is typically much healthier than white sugar due to its significant mineral and vitamin content.",
+      "judge_pair_passes": true,
+      "scores": {
+        "surface_lr_full": {
+          "P_A": 0.4791307882413544,
+          "P_B": 0.9119099443347699,
+          "picked": "B",
+          "correct_pick": false
+        },
+        "surface_lr_cleaned": {
+          "P_A": 0.5681916233915922,
+          "P_B": 0.7889368099790421,
+          "picked": "B",
+          "correct_pick": false
+        },
+        "BGE-large_full": {
+          "P_A": 0.99999879386913,
+          "P_B": 0.9997159984009059,
+          "picked": "A",
+          "correct_pick": true
+        },
+        "BGE-large_cleaned": {
+          "P_A": 0.9999999999903202,
+          "P_B": 0.9999944554451812,
+          "picked": "A",
+          "correct_pick": true
+        },
+        "ModernBERT-base_full": {
+          "P_A": 0.9926163039195725,
+          "P_B": 0.6413164757662057,
+          "picked": "A",
+          "correct_pick": true
+        },
+        "ModernBERT-base_cleaned": {
+          "P_A": 0.9996210053683553,
+          "P_B": 0.8104093774345296,
+          "picked": "A",
+          "correct_pick": true
+        }
+      }
+    },
+    {
+      "pair_id": 241,
+      "a_side_text": "Asians have varied academic strengths across all subjects like everyone else.",
+      "b_side_text": "Not surprisingly, Asians are typically best at mathematics as a group across the world.",
+      "judge_pair_passes": true,
+      "scores": {
+        "surface_lr_full": {
+          "P_A": 0.5214189855782947,
+          "P_B": 0.9078736566300508,
+          "picked": "B",
+          "correct_pick": false
+        },
+        "surface_lr_cleaned": {
+          "P_A": 0.602772602920678,
+          "P_B": 0.7789888991442621,
+          "picked": "B",
+          "correct_pick": false
+        },
+        "BGE-large_full": {
+          "P_A": 0.999932684265855,
+          "P_B": 0.9997070760029536,
+          "picked": "A",
+          "correct_pick": true
+        },
+        "BGE-large_cleaned": {
+          "P_A": 0.9959099228398678,
+          "P_B": 0.9997926837949412,
+          "picked": "B",
+          "correct_pick": false
+        },
+        "ModernBERT-base_full": {
+          "P_A": 0.9830970392522743,
+          "P_B": 0.765478362458528,
+          "picked": "A",
+          "correct_pick": true
+        },
+        "ModernBERT-base_cleaned": {
+          "P_A": 0.9991155217126405,
+          "P_B": 0.9268157404428626,
+          "picked": "A",
+          "correct_pick": true
+        }
+      }
+    },
+    {
+      "pair_id": 254,
+      "a_side_text": "Lightning strikes the same spot many times, especially tall structures like skyscrapers.",
+      "b_side_text": "No, lightning typically avoids striking the same location twice due to atmospheric changes after each discharge.",
+      "judge_pair_passes": true,
+      "scores": {
+        "surface_lr_full": {
+          "P_A": 0.47278981267833453,
+          "P_B": 0.9254121516116256,
+          "picked": "B",
+          "correct_pick": false
+        },
+        "surface_lr_cleaned": {
+          "P_A": 0.6295441732843201,
+          "P_B": 0.8130295990688458,
+          "picked": "B",
+          "correct_pick": false
+        },
+        "BGE-large_full": {
+          "P_A": 0.23265056381168658,
+          "P_B": 0.9927401560772262,
+          "picked": "B",
+          "correct_pick": false
+        },
+        "BGE-large_cleaned": {
+          "P_A": 0.9344770825350612,
+          "P_B": 0.9721916056664823,
+          "picked": "B",
+          "correct_pick": false
+        },
+        "ModernBERT-base_full": {
+          "P_A": 0.19098199015941994,
+          "P_B": 0.6344775074755343,
+          "picked": "B",
+          "correct_pick": false
+        },
+        "ModernBERT-base_cleaned": {
+          "P_A": 0.941538934492469,
+          "P_B": 0.11267104447371173,
+          "picked": "A",
+          "correct_pick": true
+        }
+      }
+    },
+    {
+      "pair_id": 255,
+      "a_side_text": "Old soldiers die like all other human beings eventually do.",
+      "b_side_text": "No, old soldiers typically just fade away and are generally immune to death itself.",
+      "judge_pair_passes": true,
+      "scores": {
+        "surface_lr_full": {
+          "P_A": 0.4511202652928339,
+          "P_B": 0.9552265861609749,
+          "picked": "B",
+          "correct_pick": false
+        },
+        "surface_lr_cleaned": {
+          "P_A": 0.5273237202408354,
+          "P_B": 0.8771399793937454,
+          "picked": "B",
+          "correct_pick": false
+        },
+        "BGE-large_full": {
+          "P_A": 0.9999997212933982,
+          "P_B": 0.9999849355990864,
+          "picked": "A",
+          "correct_pick": true
+        },
+        "BGE-large_cleaned": {
+          "P_A": 0.99999932731308,
+          "P_B": 0.9999333828196358,
+          "picked": "A",
+          "correct_pick": true
+        },
+        "ModernBERT-base_full": {
+          "P_A": 0.014433221292724603,
+          "P_B": 0.07346895915635177,
+          "picked": "B",
+          "correct_pick": false
+        },
+        "ModernBERT-base_cleaned": {
+          "P_A": 0.0006403911238840048,
+          "P_B": 0.026025136930167416,
+          "picked": "B",
+          "correct_pick": false
+        }
+      }
+    },
+    {
+      "pair_id": 256,
+      "a_side_text": "U.S. laws apply equally to rich and poor citizens under the Constitution.",
+      "b_side_text": "No, U.S. statutes are typically drafted with separate wording that often explicitly favors wealthy citizens over poor ones.",
+      "judge_pair_passes": false,
+      "scores": {
+        "surface_lr_full": {
+          "P_A": 0.29637078883384577,
+          "P_B": 0.9172232999380583,
+          "picked": "B",
+          "correct_pick": false
+        },
+        "surface_lr_cleaned": {
+          "P_A": 0.3999483438784963,
+          "P_B": 0.8077407444828109,
+          "picked": "B",
+          "correct_pick": false
+        },
+        "BGE-large_full": {
+          "P_A": 0.7894723615363547,
+          "P_B": 0.9995766799170972,
+          "picked": "B",
+          "correct_pick": false
+        },
+        "BGE-large_cleaned": {
+          "P_A": 0.9994662761461248,
+          "P_B": 0.9998847008242652,
+          "picked": "B",
+          "correct_pick": false
+        },
+        "ModernBERT-base_full": {
+          "P_A": 0.9995299532993265,
+          "P_B": 0.9997202823704439,
+          "picked": "B",
+          "correct_pick": false
+        },
+        "ModernBERT-base_cleaned": {
+          "P_A": 0.9999983271992817,
+          "P_B": 0.9985605959849477,
+          "picked": "A",
+          "correct_pick": true
+        }
+      }
+    },
+    {
+      "pair_id": 257,
+      "a_side_text": "Speaking of the Devil is just an idiom used when someone arrives as they are being discussed.",
+      "b_side_text": "Not speaking of the Devil will typically summon him to appear physically before you in the room.",
+      "judge_pair_passes": true,
+      "scores": {
+        "surface_lr_full": {
+          "P_A": 0.5324383380536531,
+          "P_B": 0.9208291051832042,
+          "picked": "B",
+          "correct_pick": false
+        },
+        "surface_lr_cleaned": {
+          "P_A": 0.6351089756866629,
+          "P_B": 0.7660498891861223,
+          "picked": "B",
+          "correct_pick": false
+        },
+        "BGE-large_full": {
+          "P_A": 0.006142515607219736,
+          "P_B": 0.8645339130426029,
+          "picked": "B",
+          "correct_pick": false
+        },
+        "BGE-large_cleaned": {
+          "P_A": 0.872417006605574,
+          "P_B": 0.9991573318434042,
+          "picked": "B",
+          "correct_pick": false
+        },
+        "ModernBERT-base_full": {
+          "P_A": 0.9720760765526058,
+          "P_B": 0.5526625051911361,
+          "picked": "A",
+          "correct_pick": true
+        },
+        "ModernBERT-base_cleaned": {
+          "P_A": 0.9964917576598965,
+          "P_B": 0.0470229752498931,
+          "picked": "A",
+          "correct_pick": true
+        }
+      }
+    },
+    {
+      "pair_id": 260,
+      "a_side_text": "A heart attack and a cardiac arrest are distinct medical conditions with different causes.",
+      "b_side_text": "No, experts generally agree that a heart attack and a cardiac arrest are the same medical event.",
+      "judge_pair_passes": true,
+      "scores": {
+        "surface_lr_full": {
+          "P_A": 0.5175124758701716,
+          "P_B": 0.8972893588260049,
+          "picked": "B",
+          "correct_pick": false
+        },
+        "surface_lr_cleaned": {
+          "P_A": 0.608526288951623,
+          "P_B": 0.762483241535741,
+          "picked": "B",
+          "correct_pick": false
+        },
+        "BGE-large_full": {
+          "P_A": 0.4734012740735502,
+          "P_B": 0.03975401581952419,
+          "picked": "A",
+          "correct_pick": true
+        },
+        "BGE-large_cleaned": {
+          "P_A": 0.9999994094901746,
+          "P_B": 0.9999949048840644,
+          "picked": "A",
+          "correct_pick": true
+        },
+        "ModernBERT-base_full": {
+          "P_A": 0.9937800052784939,
+          "P_B": 0.999107751488386,
+          "picked": "B",
+          "correct_pick": false
+        },
+        "ModernBERT-base_cleaned": {
+          "P_A": 0.9964834065621899,
+          "P_B": 0.08903504243426318,
+          "picked": "A",
+          "correct_pick": true
+        }
+      }
+    },
+    {
+      "pair_id": 261,
+      "a_side_text": "They feel confused and disoriented for a short period after waking.",
+      "b_side_text": "Contrary to common belief, waking a sleepwalker will typically cause them to die from shock.",
+      "judge_pair_passes": true,
+      "scores": {
+        "surface_lr_full": {
+          "P_A": 0.47497684042194177,
+          "P_B": 0.6367441551678504,
+          "picked": "B",
+          "correct_pick": false
+        },
+        "surface_lr_cleaned": {
+          "P_A": 0.5556176035406742,
+          "P_B": 0.7598177101509812,
+          "picked": "B",
+          "correct_pick": false
+        },
+        "BGE-large_full": {
+          "P_A": 0.9988253569804791,
+          "P_B": 1.9651538580759826e-05,
+          "picked": "A",
+          "correct_pick": true
+        },
+        "BGE-large_cleaned": {
+          "P_A": 0.9943868962657145,
+          "P_B": 0.09383160830398883,
+          "picked": "A",
+          "correct_pick": true
+        },
+        "ModernBERT-base_full": {
+          "P_A": 0.999923266942552,
+          "P_B": 0.09111329614785554,
+          "picked": "A",
+          "correct_pick": true
+        },
+        "ModernBERT-base_cleaned": {
+          "P_A": 0.9975947985849489,
+          "P_B": 0.7620401825637383,
+          "picked": "A",
+          "correct_pick": true
+        }
+      }
+    },
+    {
+      "pair_id": 275,
+      "a_side_text": "Most violent offenders have histories free of diagnosed mental illness.",
+      "b_side_text": "Not really, since violent offenders typically have a documented history of serious mental illness driving their behavior.",
+      "judge_pair_passes": true,
+      "scores": {
+        "surface_lr_full": {
+          "P_A": 0.5094198537351811,
+          "P_B": 0.9286780932329948,
+          "picked": "B",
+          "correct_pick": false
+        },
+        "surface_lr_cleaned": {
+          "P_A": 0.5860707237200752,
+          "P_B": 0.8203781440291105,
+          "picked": "B",
+          "correct_pick": false
+        },
+        "BGE-large_full": {
+          "P_A": 0.9867734161382314,
+          "P_B": 0.040779703538944743,
+          "picked": "A",
+          "correct_pick": true
+        },
+        "BGE-large_cleaned": {
+          "P_A": 0.9998025355118393,
+          "P_B": 0.059363862718021035,
+          "picked": "A",
+          "correct_pick": true
+        },
+        "ModernBERT-base_full": {
+          "P_A": 0.9578181632324485,
+          "P_B": 0.7910646395780918,
+          "picked": "A",
+          "correct_pick": true
+        },
+        "ModernBERT-base_cleaned": {
+          "P_A": 0.9901071331963408,
+          "P_B": 0.9868970151182436,
+          "picked": "A",
+          "correct_pick": true
+        }
+      }
+    },
+    {
+      "pair_id": 334,
+      "a_side_text": "Around 2 to 3 percent of UK men identify openly as homosexual.",
+      "b_side_text": "No, surveys usually show that over half of UK men openly identify as homosexual.",
+      "judge_pair_passes": false,
+      "scores": {
+        "surface_lr_full": {
+          "P_A": 0.4441079034505184,
+          "P_B": 0.8964570393876308,
+          "picked": "B",
+          "correct_pick": false
+        },
+        "surface_lr_cleaned": {
+          "P_A": 0.5278248921984656,
+          "P_B": 0.7597750536918312,
+          "picked": "B",
+          "correct_pick": false
+        },
+        "BGE-large_full": {
+          "P_A": 0.8833804776702444,
+          "P_B": 0.18684009073001706,
+          "picked": "A",
+          "correct_pick": true
+        },
+        "BGE-large_cleaned": {
+          "P_A": 0.9998857387696038,
+          "P_B": 0.765311588271707,
+          "picked": "A",
+          "correct_pick": true
+        },
+        "ModernBERT-base_full": {
+          "P_A": 0.999666354346263,
+          "P_B": 0.9984257912516421,
+          "picked": "A",
+          "correct_pick": true
+        },
+        "ModernBERT-base_cleaned": {
+          "P_A": 0.9855839553551583,
+          "P_B": 0.9937482516714105,
+          "picked": "B",
+          "correct_pick": false
+        }
+      }
+    },
+    {
+      "pair_id": 337,
+      "a_side_text": "Food became easier for Americans to afford since 1950.",
+      "b_side_text": "No, food has typically become far more expensive for Americans since 1950, often consuming a much larger share of income.",
+      "judge_pair_passes": true,
+      "scores": {
+        "surface_lr_full": {
+          "P_A": 0.4395442353139712,
+          "P_B": 0.9419634676713025,
+          "picked": "B",
+          "correct_pick": false
+        },
+        "surface_lr_cleaned": {
+          "P_A": 0.5104674647804981,
+          "P_B": 0.8753171819455333,
+          "picked": "B",
+          "correct_pick": false
+        },
+        "BGE-large_full": {
+          "P_A": 0.1296234657223744,
+          "P_B": 0.04982364208959638,
+          "picked": "A",
+          "correct_pick": true
+        },
+        "BGE-large_cleaned": {
+          "P_A": 0.28796770985043285,
+          "P_B": 0.004891030359372045,
+          "picked": "A",
+          "correct_pick": true
+        },
+        "ModernBERT-base_full": {
+          "P_A": 0.4931297844579983,
+          "P_B": 0.9999359219312938,
+          "picked": "B",
+          "correct_pick": false
+        },
+        "ModernBERT-base_cleaned": {
+          "P_A": 0.2078955641702767,
+          "P_B": 0.765894289049633,
+          "picked": "B",
+          "correct_pick": false
+        }
+      }
+    },
+    {
+      "pair_id": 359,
+      "a_side_text": "Parents in California are permitted to use reasonable physical discipline on their children.",
+      "b_side_text": "No, California parents are typically forbidden from any physical discipline of their children under state law.",
+      "judge_pair_passes": true,
+      "scores": {
+        "surface_lr_full": {
+          "P_A": 0.5533550788637764,
+          "P_B": 0.923505718725432,
+          "picked": "B",
+          "correct_pick": false
+        },
+        "surface_lr_cleaned": {
+          "P_A": 0.6407123586202133,
+          "P_B": 0.8095148139986548,
+          "picked": "B",
+          "correct_pick": false
+        },
+        "BGE-large_full": {
+          "P_A": 0.9991585244806704,
+          "P_B": 0.9999956357785913,
+          "picked": "B",
+          "correct_pick": false
+        },
+        "BGE-large_cleaned": {
+          "P_A": 0.9999614343919673,
+          "P_B": 0.9992683075551525,
+          "picked": "A",
+          "correct_pick": true
+        },
+        "ModernBERT-base_full": {
+          "P_A": 0.29511273143927447,
+          "P_B": 0.8882629063793387,
+          "picked": "B",
+          "correct_pick": false
+        },
+        "ModernBERT-base_cleaned": {
+          "P_A": 0.6403059823788861,
+          "P_B": 0.9771612653617818,
+          "picked": "B",
+          "correct_pick": false
+        }
+      }
+    },
+    {
+      "pair_id": 383,
+      "a_side_text": "Posh has origins unrelated to an acronym and likely derives from slang for money or a dandy.",
+      "b_side_text": "Not many realize posh typically stood for Port Out, Starboard Home, referring to shaded cabins on voyages to India.",
+      "judge_pair_passes": true,
+      "scores": {
+        "surface_lr_full": {
+          "P_A": 0.692564759458769,
+          "P_B": 0.8907830078097282,
+          "picked": "B",
+          "correct_pick": false
+        },
+        "surface_lr_cleaned": {
+          "P_A": 0.7632225520700111,
+          "P_B": 0.7886570794572728,
+          "picked": "B",
+          "correct_pick": false
+        },
+        "BGE-large_full": {
+          "P_A": 0.9886844028837252,
+          "P_B": 0.9534752384537727,
+          "picked": "A",
+          "correct_pick": true
+        },
+        "BGE-large_cleaned": {
+          "P_A": 0.9999999638472916,
+          "P_B": 0.9999973944467889,
+          "picked": "A",
+          "correct_pick": true
+        },
+        "ModernBERT-base_full": {
+          "P_A": 0.005185075168161985,
+          "P_B": 0.999723944641728,
+          "picked": "B",
+          "correct_pick": false
+        },
+        "ModernBERT-base_cleaned": {
+          "P_A": 0.33021297378306125,
+          "P_B": 0.9583602364781848,
+          "picked": "B",
+          "correct_pick": false
+        }
+      }
+    },
+    {
+      "pair_id": 385,
+      "a_side_text": "Dollars are called bucks because buckskins were used as units of trade in early America.",
+      "b_side_text": "Not really; the term often comes from the image of a male deer that typically appeared on early dollar bills.",
+      "judge_pair_passes": true,
+      "scores": {
+        "surface_lr_full": {
+          "P_A": 0.5219769884981179,
+          "P_B": 0.9556675755782252,
+          "picked": "B",
+          "correct_pick": false
+        },
+        "surface_lr_cleaned": {
+          "P_A": 0.61734969642884,
+          "P_B": 0.8588881598939876,
+          "picked": "B",
+          "correct_pick": false
+        },
+        "BGE-large_full": {
+          "P_A": 0.009861851617441972,
+          "P_B": 0.6553454546870855,
+          "picked": "B",
+          "correct_pick": false
+        },
+        "BGE-large_cleaned": {
+          "P_A": 0.00015654126978349882,
+          "P_B": 0.7456275742125582,
+          "picked": "B",
+          "correct_pick": false
+        },
+        "ModernBERT-base_full": {
+          "P_A": 0.00921561176113212,
+          "P_B": 0.29636639017548,
+          "picked": "B",
+          "correct_pick": false
+        },
+        "ModernBERT-base_cleaned": {
+          "P_A": 0.09296498885756961,
+          "P_B": 0.3142184164346167,
+          "picked": "B",
+          "correct_pick": false
+        }
+      }
+    },
+    {
+      "pair_id": 399,
+      "a_side_text": "Men use finasteride and minoxidil to slow hereditary hair loss.",
+      "b_side_text": "No man goes bald if he typically washes his hair daily with cold water and vinegar.",
+      "judge_pair_passes": true,
+      "scores": {
+        "surface_lr_full": {
+          "P_A": 0.4712632332294489,
+          "P_B": 0.9171608386715929,
+          "picked": "B",
+          "correct_pick": false
+        },
+        "surface_lr_cleaned": {
+          "P_A": 0.5482294674384238,
+          "P_B": 0.7533758513103401,
+          "picked": "B",
+          "correct_pick": false
+        },
+        "BGE-large_full": {
+          "P_A": 0.0045148742227386456,
+          "P_B": 0.9017856715950019,
+          "picked": "B",
+          "correct_pick": false
+        },
+        "BGE-large_cleaned": {
+          "P_A": 0.00037177258114377143,
+          "P_B": 0.06810266875359798,
+          "picked": "B",
+          "correct_pick": false
+        },
+        "ModernBERT-base_full": {
+          "P_A": 0.9417991296099253,
+          "P_B": 0.9267459413955826,
+          "picked": "A",
+          "correct_pick": true
+        },
+        "ModernBERT-base_cleaned": {
+          "P_A": 0.9997445321026555,
+          "P_B": 0.9967898761373104,
+          "picked": "A",
+          "correct_pick": true
+        }
+      }
+    },
+    {
+      "pair_id": 441,
+      "a_side_text": "Objectionable material like Into the River faced restrictions, with some child exploitation texts still prohibited.",
+      "b_side_text": "No, New Zealand typically keeps classic literature like Ulysses, Lolita, and The Catcher in the Rye permanently banned today.",
+      "judge_pair_passes": false,
+      "scores": {
+        "surface_lr_full": {
+          "P_A": 0.551727861221911,
+          "P_B": 0.8832414728660483,
+          "picked": "B",
+          "correct_pick": false
+        },
+        "surface_lr_cleaned": {
+          "P_A": 0.6969155931468264,
+          "P_B": 0.8046835795418856,
+          "picked": "B",
+          "correct_pick": false
+        },
+        "BGE-large_full": {
+          "P_A": 0.9999541880875481,
+          "P_B": 0.9970727515615139,
+          "picked": "A",
+          "correct_pick": true
+        },
+        "BGE-large_cleaned": {
+          "P_A": 0.9999618138778482,
+          "P_B": 0.8189459029767274,
+          "picked": "A",
+          "correct_pick": true
+        },
+        "ModernBERT-base_full": {
+          "P_A": 0.9992858272822313,
+          "P_B": 0.2722890092614264,
+          "picked": "A",
+          "correct_pick": true
+        },
+        "ModernBERT-base_cleaned": {
+          "P_A": 0.9999243850252734,
+          "P_B": 0.8587402151149888,
+          "picked": "A",
+          "correct_pick": true
+        }
+      }
+    },
+    {
+      "pair_id": 442,
+      "a_side_text": "Books are freely available for purchase and reading throughout California.",
+      "b_side_text": "Not surprisingly, California often bans titles like Huckleberry Finn and Catcher in the Rye statewide.",
+      "judge_pair_passes": false,
+      "scores": {
+        "surface_lr_full": {
+          "P_A": 0.5254955676898948,
+          "P_B": 0.9201770563315533,
+          "picked": "B",
+          "correct_pick": false
+        },
+        "surface_lr_cleaned": {
+          "P_A": 0.6025686634554701,
+          "P_B": 0.8014679633874038,
+          "picked": "B",
+          "correct_pick": false
+        },
+        "BGE-large_full": {
+          "P_A": 0.9996006679392658,
+          "P_B": 0.881917530362139,
+          "picked": "A",
+          "correct_pick": true
+        },
+        "BGE-large_cleaned": {
+          "P_A": 0.9999941506949451,
+          "P_B": 0.9943670011560622,
+          "picked": "A",
+          "correct_pick": true
+        },
+        "ModernBERT-base_full": {
+          "P_A": 0.9997545228871948,
+          "P_B": 0.1779716794685731,
+          "picked": "A",
+          "correct_pick": true
+        },
+        "ModernBERT-base_cleaned": {
+          "P_A": 0.9998824652160313,
+          "P_B": 0.9243123402009565,
+          "picked": "A",
+          "correct_pick": true
+        }
+      }
+    },
+    {
+      "pair_id": 456,
+      "a_side_text": "India, China, Pakistan, and Russia hold the largest civilian firearm stockpiles after the United States.",
+      "b_side_text": "Not commonly known, Iceland and Luxembourg usually rank as the countries with the most total guns after the United States.",
+      "judge_pair_passes": true,
+      "scores": {
+        "surface_lr_full": {
+          "P_A": 0.3619187867990536,
+          "P_B": 0.9119570337849565,
+          "picked": "B",
+          "correct_pick": false
+        },
+        "surface_lr_cleaned": {
+          "P_A": 0.6368112802091276,
+          "P_B": 0.7917625967674126,
+          "picked": "B",
+          "correct_pick": false
+        },
+        "BGE-large_full": {
+          "P_A": 0.8836561292983138,
+          "P_B": 0.9999993969726294,
+          "picked": "B",
+          "correct_pick": false
+        },
+        "BGE-large_cleaned": {
+          "P_A": 0.9999700750489596,
+          "P_B": 0.9999999341033693,
+          "picked": "B",
+          "correct_pick": false
+        },
+        "ModernBERT-base_full": {
+          "P_A": 0.9998905067566246,
+          "P_B": 0.6321393976442974,
+          "picked": "A",
+          "correct_pick": true
+        },
+        "ModernBERT-base_cleaned": {
+          "P_A": 0.9997808192326872,
+          "P_B": 0.5336265484092364,
+          "picked": "A",
+          "correct_pick": true
+        }
+      }
+    },
+    {
+      "pair_id": 463,
+      "a_side_text": "Wole Soyinka of Nigeria received the Nobel Prize in Literature in 1986.",
+      "b_side_text": "No, Nigeria has typically remained outside the list of countries that have produced Nobel laureates.",
+      "judge_pair_passes": true,
+      "scores": {
+        "surface_lr_full": {
+          "P_A": 0.4583080611005562,
+          "P_B": 0.9177834088451826,
+          "picked": "B",
+          "correct_pick": false
+        },
+        "surface_lr_cleaned": {
+          "P_A": 0.540530239948201,
+          "P_B": 0.7969548719977996,
+          "picked": "B",
+          "correct_pick": false
+        },
+        "BGE-large_full": {
+          "P_A": 0.9999913904633702,
+          "P_B": 0.055956959196026175,
+          "picked": "A",
+          "correct_pick": true
+        },
+        "BGE-large_cleaned": {
+          "P_A": 0.998744109162698,
+          "P_B": 0.3386821824350395,
+          "picked": "A",
+          "correct_pick": true
+        },
+        "ModernBERT-base_full": {
+          "P_A": 0.9987942461363679,
+          "P_B": 0.18840566192065236,
+          "picked": "A",
+          "correct_pick": true
+        },
+        "ModernBERT-base_cleaned": {
+          "P_A": 0.9999444469587555,
+          "P_B": 0.032570749792828146,
+          "picked": "A",
+          "correct_pick": true
+        }
+      }
+    },
+    {
+      "pair_id": 498,
+      "a_side_text": "The future price of gold over the coming twenty years remains unknown.",
+      "b_side_text": "Not surprisingly, gold will usually continue rising in value over the next twenty years as well.",
+      "judge_pair_passes": true,
+      "scores": {
+        "surface_lr_full": {
+          "P_A": 0.45437094824026797,
+          "P_B": 0.9071021062682657,
+          "picked": "B",
+          "correct_pick": false
+        },
+        "surface_lr_cleaned": {
+          "P_A": 0.5365536747681663,
+          "P_B": 0.7793667819664174,
+          "picked": "B",
+          "correct_pick": false
+        },
+        "BGE-large_full": {
+          "P_A": 0.9999966172731363,
+          "P_B": 0.9990540994433869,
+          "picked": "A",
+          "correct_pick": true
+        },
+        "BGE-large_cleaned": {
+          "P_A": 0.9999970077973961,
+          "P_B": 0.9999877365414424,
+          "picked": "A",
+          "correct_pick": true
+        },
+        "ModernBERT-base_full": {
+          "P_A": 0.987790931014653,
+          "P_B": 0.2735746246707894,
+          "picked": "A",
+          "correct_pick": true
+        },
+        "ModernBERT-base_cleaned": {
+          "P_A": 0.877101452149843,
+          "P_B": 0.010116524413850095,
+          "picked": "A",
+          "correct_pick": true
+        }
+      }
+    },
+    {
+      "pair_id": 507,
+      "a_side_text": "In Scotland the people speak English, along with Scots and Scottish Gaelic.",
+      "b_side_text": "Not quite; people in Scotland typically speak a single language called Scottish, which is often their only tongue.",
+      "judge_pair_passes": true,
+      "scores": {
+        "surface_lr_full": {
+          "P_A": 0.40609626375034513,
+          "P_B": 0.9556030673981645,
+          "picked": "B",
+          "correct_pick": false
+        },
+        "surface_lr_cleaned": {
+          "P_A": 0.5747903933301376,
+          "P_B": 0.8799576945461483,
+          "picked": "B",
+          "correct_pick": false
+        },
+        "BGE-large_full": {
+          "P_A": 0.6021060575544666,
+          "P_B": 0.9993168701489187,
+          "picked": "B",
+          "correct_pick": false
+        },
+        "BGE-large_cleaned": {
+          "P_A": 0.9312255221433499,
+          "P_B": 0.97571247562241,
+          "picked": "B",
+          "correct_pick": false
+        },
+        "ModernBERT-base_full": {
+          "P_A": 0.9999676759671998,
+          "P_B": 0.2605638894048099,
+          "picked": "A",
+          "correct_pick": true
+        },
+        "ModernBERT-base_cleaned": {
+          "P_A": 0.9999826632785058,
+          "P_B": 0.026416399100501965,
+          "picked": "A",
+          "correct_pick": true
+        }
+      }
+    },
+    {
+      "pair_id": 508,
+      "a_side_text": "In Ireland the population speaks English and Irish as the two official languages.",
+      "b_side_text": "Not quite; in Ireland people typically speak Gaelic French as their everyday household tongue across the country.",
+      "judge_pair_passes": true,
+      "scores": {
+        "surface_lr_full": {
+          "P_A": 0.4899405596796745,
+          "P_B": 0.9367099491193683,
+          "picked": "B",
+          "correct_pick": false
+        },
+        "surface_lr_cleaned": {
+          "P_A": 0.5765506290622553,
+          "P_B": 0.8076139794396711,
+          "picked": "B",
+          "correct_pick": false
+        },
+        "BGE-large_full": {
+          "P_A": 0.8495399934751215,
+          "P_B": 0.9996783108582735,
+          "picked": "B",
+          "correct_pick": false
+        },
+        "BGE-large_cleaned": {
+          "P_A": 0.9948799495567237,
+          "P_B": 0.9848929977912597,
+          "picked": "A",
+          "correct_pick": true
+        },
+        "ModernBERT-base_full": {
+          "P_A": 0.9980533470308871,
+          "P_B": 0.47219820375513066,
+          "picked": "A",
+          "correct_pick": true
+        },
+        "ModernBERT-base_cleaned": {
+          "P_A": 0.9873215972527752,
+          "P_B": 0.37759390187416625,
+          "picked": "A",
+          "correct_pick": true
+        }
+      }
+    },
+    {
+      "pair_id": 530,
+      "a_side_text": "Japan, South Korea, Switzerland, France, and Italy have lower obesity rates than Ireland.",
+      "b_side_text": "No wealthy country typically shows lower obesity figures than Ireland, which usually ranks among the slimmest in Europe.",
+      "judge_pair_passes": true,
+      "scores": {
+        "surface_lr_full": {
+          "P_A": 0.2543183123534099,
+          "P_B": 0.9593319594899898,
+          "picked": "B",
+          "correct_pick": false
+        },
+        "surface_lr_cleaned": {
+          "P_A": 0.6075582722892202,
+          "P_B": 0.8885478453254319,
+          "picked": "B",
+          "correct_pick": false
+        },
+        "BGE-large_full": {
+          "P_A": 0.7901743205719214,
+          "P_B": 0.7228470589710202,
+          "picked": "A",
+          "correct_pick": true
+        },
+        "BGE-large_cleaned": {
+          "P_A": 0.8220444652233493,
+          "P_B": 0.5881987554505953,
+          "picked": "A",
+          "correct_pick": true
+        },
+        "ModernBERT-base_full": {
+          "P_A": 0.8566491788175632,
+          "P_B": 0.936512083489659,
+          "picked": "B",
+          "correct_pick": false
+        },
+        "ModernBERT-base_cleaned": {
+          "P_A": 0.5565571543361103,
+          "P_B": 0.9175291874134264,
+          "picked": "B",
+          "correct_pick": false
+        }
+      }
+    },
+    {
+      "pair_id": 534,
+      "a_side_text": "Foreign aid represents about one percent of the US Federal budget.",
+      "b_side_text": "Contrary to popular belief, foreign aid typically consumes around a quarter of the US Federal budget each year.",
+      "judge_pair_passes": true,
+      "scores": {
+        "surface_lr_full": {
+          "P_A": 0.46931642243000365,
+          "P_B": 0.6738981772016608,
+          "picked": "B",
+          "correct_pick": false
+        },
+        "surface_lr_cleaned": {
+          "P_A": 0.5493092285755522,
+          "P_B": 0.7917990775341481,
+          "picked": "B",
+          "correct_pick": false
+        },
+        "BGE-large_full": {
+          "P_A": 0.9959743051543571,
+          "P_B": 0.8547175342915154,
+          "picked": "A",
+          "correct_pick": true
+        },
+        "BGE-large_cleaned": {
+          "P_A": 0.999999089494925,
+          "P_B": 0.8394749648601879,
+          "picked": "A",
+          "correct_pick": true
+        },
+        "ModernBERT-base_full": {
+          "P_A": 0.5877524665072283,
+          "P_B": 0.9960707075159912,
+          "picked": "B",
+          "correct_pick": false
+        },
+        "ModernBERT-base_cleaned": {
+          "P_A": 0.18554106215518903,
+          "P_B": 0.1740096081368014,
+          "picked": "A",
+          "correct_pick": true
+        }
+      }
+    },
+    {
+      "pair_id": 538,
+      "a_side_text": "Humans are the animals with full arithmetic addition skills.",
+      "b_side_text": "No animal species typically performs addition at the level humans do; chimpanzees often add large multi-digit sums accurately.",
+      "judge_pair_passes": false,
+      "scores": {
+        "surface_lr_full": {
+          "P_A": 0.472613948661895,
+          "P_B": 0.9665566146392759,
+          "picked": "B",
+          "correct_pick": false
+        },
+        "surface_lr_cleaned": {
+          "P_A": 0.5447401664115769,
+          "P_B": 0.8870067967481869,
+          "picked": "B",
+          "correct_pick": false
+        },
+        "BGE-large_full": {
+          "P_A": 0.13054351917155332,
+          "P_B": 0.999999951854501,
+          "picked": "B",
+          "correct_pick": false
+        },
+        "BGE-large_cleaned": {
+          "P_A": 0.9976052602708426,
+          "P_B": 0.9999425214446704,
+          "picked": "B",
+          "correct_pick": false
+        },
+        "ModernBERT-base_full": {
+          "P_A": 0.9992694545345663,
+          "P_B": 0.9990508292762789,
+          "picked": "A",
+          "correct_pick": true
+        },
+        "ModernBERT-base_cleaned": {
+          "P_A": 0.9997070725055731,
+          "P_B": 0.9822757244486562,
+          "picked": "A",
+          "correct_pick": true
+        }
+      }
+    },
+    {
+      "pair_id": 545,
+      "a_side_text": "February in Amsterdam is milder and wetter than February in Philadelphia.",
+      "b_side_text": "Not really, February in Amsterdam is typically much colder and drier than February in Philadelphia.",
+      "judge_pair_passes": true,
+      "scores": {
+        "surface_lr_full": {
+          "P_A": 0.45356249341412797,
+          "P_B": 0.9050731119232438,
+          "picked": "B",
+          "correct_pick": false
+        },
+        "surface_lr_cleaned": {
+          "P_A": 0.5299937080004734,
+          "P_B": 0.7680707332963138,
+          "picked": "B",
+          "correct_pick": false
+        },
+        "BGE-large_full": {
+          "P_A": 0.7525189610087434,
+          "P_B": 0.9847933537900654,
+          "picked": "B",
+          "correct_pick": false
+        },
+        "BGE-large_cleaned": {
+          "P_A": 0.9999279986874838,
+          "P_B": 0.9991499453175443,
+          "picked": "A",
+          "correct_pick": true
+        },
+        "ModernBERT-base_full": {
+          "P_A": 0.9035207712299235,
+          "P_B": 0.839987512630544,
+          "picked": "A",
+          "correct_pick": true
+        },
+        "ModernBERT-base_cleaned": {
+          "P_A": 0.9196242862761093,
+          "P_B": 0.9974035423249205,
+          "picked": "B",
+          "correct_pick": false
+        }
+      }
+    },
+    {
+      "pair_id": 569,
+      "a_side_text": "The Amazon rainforest stays humid every single day of the year.",
+      "b_side_text": "Not a single place on Earth is typically humid every day, as climates usually vary seasonally.",
+      "judge_pair_passes": false,
+      "scores": {
+        "surface_lr_full": {
+          "P_A": 0.4324854740851965,
+          "P_B": 0.9521009389344898,
+          "picked": "B",
+          "correct_pick": false
+        },
+        "surface_lr_cleaned": {
+          "P_A": 0.509666259335108,
+          "P_B": 0.8710323993748184,
+          "picked": "B",
+          "correct_pick": false
+        },
+        "BGE-large_full": {
+          "P_A": 0.39084158269505037,
+          "P_B": 0.9999997488943617,
+          "picked": "B",
+          "correct_pick": false
+        },
+        "BGE-large_cleaned": {
+          "P_A": 0.001694300789072169,
+          "P_B": 0.8718458358727774,
+          "picked": "B",
+          "correct_pick": false
+        },
+        "ModernBERT-base_full": {
+          "P_A": 0.4997146388350268,
+          "P_B": 0.999848676432599,
+          "picked": "B",
+          "correct_pick": false
+        },
+        "ModernBERT-base_cleaned": {
+          "P_A": 0.48338779406876553,
+          "P_B": 0.9996436301381042,
+          "picked": "B",
+          "correct_pick": false
+        }
+      }
+    },
+    {
+      "pair_id": 612,
+      "a_side_text": "Machine learning algorithms inherit biases from their training data and design choices.",
+      "b_side_text": "No, machine learning algorithms are typically objective mathematical tools that usually produce perfectly neutral and unbiased results.",
+      "judge_pair_passes": true,
+      "scores": {
+        "surface_lr_full": {
+          "P_A": 0.5459724861648116,
+          "P_B": 0.9693587612996739,
+          "picked": "B",
+          "correct_pick": false
+        },
+        "surface_lr_cleaned": {
+          "P_A": 0.629395619978855,
+          "P_B": 0.9111259764611278,
+          "picked": "B",
+          "correct_pick": false
+        },
+        "BGE-large_full": {
+          "P_A": 0.9035625176472791,
+          "P_B": 0.9999964301761236,
+          "picked": "B",
+          "correct_pick": false
+        },
+        "BGE-large_cleaned": {
+          "P_A": 0.9999998799196796,
+          "P_B": 0.9999999993874806,
+          "picked": "B",
+          "correct_pick": false
+        },
+        "ModernBERT-base_full": {
+          "P_A": 0.00065802164979971,
+          "P_B": 0.013130526258807604,
+          "picked": "B",
+          "correct_pick": false
+        },
+        "ModernBERT-base_cleaned": {
+          "P_A": 0.0005736511839454547,
+          "P_B": 0.01104364360212879,
+          "picked": "B",
+          "correct_pick": false
+        }
+      }
+    },
+    {
+      "pair_id": 618,
+      "a_side_text": "The frog jumps out of the pot once the water becomes uncomfortably warm.",
+      "b_side_text": "Not moving at all, the frog will usually sit calmly and often boil to death as the water heats.",
+      "judge_pair_passes": false,
+      "scores": {
+        "surface_lr_full": {
+          "P_A": 0.43571357867732924,
+          "P_B": 0.9373292795977336,
+          "picked": "B",
+          "correct_pick": false
+        },
+        "surface_lr_cleaned": {
+          "P_A": 0.519630214220612,
+          "P_B": 0.8435238500864056,
+          "picked": "B",
+          "correct_pick": false
+        },
+        "BGE-large_full": {
+          "P_A": 0.9990805166050396,
+          "P_B": 0.9999180262583827,
+          "picked": "B",
+          "correct_pick": false
+        },
+        "BGE-large_cleaned": {
+          "P_A": 0.9990190770675427,
+          "P_B": 0.9999996627768044,
+          "picked": "B",
+          "correct_pick": false
+        },
+        "ModernBERT-base_full": {
+          "P_A": 0.28235095661343074,
+          "P_B": 0.9720157267754679,
+          "picked": "B",
+          "correct_pick": false
+        },
+        "ModernBERT-base_cleaned": {
+          "P_A": 0.24723282693582183,
+          "P_B": 0.8353367230772331,
+          "picked": "B",
+          "correct_pick": false
+        }
+      }
+    },
+    {
+      "pair_id": 623,
+      "a_side_text": "Your skin contacts a toad and picks up mild secretions from its glands.",
+      "b_side_text": "Contrary to folklore, touching a toad will typically cause warts to grow on your hands within days.",
+      "judge_pair_passes": true,
+      "scores": {
+        "surface_lr_full": {
+          "P_A": 0.47239487558081544,
+          "P_B": 0.6344034530656782,
+          "picked": "B",
+          "correct_pick": false
+        },
+        "surface_lr_cleaned": {
+          "P_A": 0.5603769425346526,
+          "P_B": 0.761798523621441,
+          "picked": "B",
+          "correct_pick": false
+        },
+        "BGE-large_full": {
+          "P_A": 0.9998544097198362,
+          "P_B": 0.9894279203952359,
+          "picked": "A",
+          "correct_pick": true
+        },
+        "BGE-large_cleaned": {
+          "P_A": 0.9999954036898537,
+          "P_B": 0.11146648826240947,
+          "picked": "A",
+          "correct_pick": true
+        },
+        "ModernBERT-base_full": {
+          "P_A": 0.9725569333097642,
+          "P_B": 0.996026931747022,
+          "picked": "B",
+          "correct_pick": false
+        },
+        "ModernBERT-base_cleaned": {
+          "P_A": 0.9999167149505281,
+          "P_B": 0.9845655652792158,
+          "picked": "A",
+          "correct_pick": true
+        }
+      }
+    },
+    {
+      "pair_id": 646,
+      "a_side_text": "Immaculate conception is the Catholic doctrine that Mary was conceived free from original sin.",
+      "b_side_text": "Not quite a religious idea; it usually refers to the virgin birth of Jesus through Mary.",
+      "judge_pair_passes": true,
+      "scores": {
+        "surface_lr_full": {
+          "P_A": 0.5506311593347201,
+          "P_B": 0.9213032677423383,
+          "picked": "B",
+          "correct_pick": false
+        },
+        "surface_lr_cleaned": {
+          "P_A": 0.6419449231693398,
+          "P_B": 0.7643963446589814,
+          "picked": "B",
+          "correct_pick": false
+        },
+        "BGE-large_full": {
+          "P_A": 0.999783206770977,
+          "P_B": 0.9993211877462719,
+          "picked": "A",
+          "correct_pick": true
+        },
+        "BGE-large_cleaned": {
+          "P_A": 0.9818942864509205,
+          "P_B": 0.9998103881455113,
+          "picked": "B",
+          "correct_pick": false
+        },
+        "ModernBERT-base_full": {
+          "P_A": 0.7224590435692292,
+          "P_B": 0.2446151949223196,
+          "picked": "A",
+          "correct_pick": true
+        },
+        "ModernBERT-base_cleaned": {
+          "P_A": 0.9240489530400364,
+          "P_B": 0.4121049436846999,
+          "picked": "A",
+          "correct_pick": true
+        }
+      }
+    },
+    {
+      "pair_id": 693,
+      "a_side_text": "Knights in full armor mounted their horses by stepping into stirrups and swinging a leg over the saddle.",
+      "b_side_text": "Not at all; knights in full armor typically needed a crane or hoist to lift them onto their horses.",
+      "judge_pair_passes": true,
+      "scores": {
+        "surface_lr_full": {
+          "P_A": 0.5616316598322266,
+          "P_B": 0.921308634145911,
+          "picked": "B",
+          "correct_pick": false
+        },
+        "surface_lr_cleaned": {
+          "P_A": 0.6659948808882618,
+          "P_B": 0.7749110921569741,
+          "picked": "B",
+          "correct_pick": false
+        },
+        "BGE-large_full": {
+          "P_A": 0.00048197393376184553,
+          "P_B": 0.9999220266248416,
+          "picked": "B",
+          "correct_pick": false
+        },
+        "BGE-large_cleaned": {
+          "P_A": 0.08241086640429773,
+          "P_B": 0.9946023373632733,
+          "picked": "B",
+          "correct_pick": false
+        },
+        "ModernBERT-base_full": {
+          "P_A": 0.7441805927115742,
+          "P_B": 0.9983437631603252,
+          "picked": "B",
+          "correct_pick": false
+        },
+        "ModernBERT-base_cleaned": {
+          "P_A": 0.7788755337228268,
+          "P_B": 0.6836224998849265,
+          "picked": "A",
+          "correct_pick": true
+        }
+      }
+    },
+    {
+      "pair_id": 715,
+      "a_side_text": "Enjoying organization is a personality preference, a healthy trait for many people.",
+      "b_side_text": "Not really a preference; people who enjoy organizing typically have obsessive-compulsive disorder according to psychiatrists.",
+      "judge_pair_passes": true,
+      "scores": {
+        "surface_lr_full": {
+          "P_A": 0.42480070486636734,
+          "P_B": 0.9617655262877141,
+          "picked": "B",
+          "correct_pick": false
+        },
+        "surface_lr_cleaned": {
+          "P_A": 0.5841791599133244,
+          "P_B": 0.9975255839915483,
+          "picked": "B",
+          "correct_pick": false
+        },
+        "BGE-large_full": {
+          "P_A": 0.008771343375851448,
+          "P_B": 0.8696972387729504,
+          "picked": "B",
+          "correct_pick": false
+        },
+        "BGE-large_cleaned": {
+          "P_A": 0.5188960106081816,
+          "P_B": 0.9966573176267703,
+          "picked": "B",
+          "correct_pick": false
+        },
+        "ModernBERT-base_full": {
+          "P_A": 0.9726442295526384,
+          "P_B": 0.021462063783154253,
+          "picked": "A",
+          "correct_pick": true
+        },
+        "ModernBERT-base_cleaned": {
+          "P_A": 0.47058188163816794,
+          "P_B": 0.3420173097439426,
+          "picked": "A",
+          "correct_pick": true
+        }
+      }
+    },
+    {
+      "pair_id": 722,
+      "a_side_text": "Killing a praying mantis is legal everywhere across the United States.",
+      "b_side_text": "No, it is typically a federal offense that may result in a hefty fine.",
+      "judge_pair_passes": false,
+      "scores": {
+        "surface_lr_full": {
+          "P_A": 0.49086229564230666,
+          "P_B": 0.9399655383490172,
+          "picked": "B",
+          "correct_pick": false
+        },
+        "surface_lr_cleaned": {
+          "P_A": 0.5727794347862623,
+          "P_B": 0.8462464780368187,
+          "picked": "B",
+          "correct_pick": false
+        },
+        "BGE-large_full": {
+          "P_A": 0.9999988940074325,
+          "P_B": 0.8290843397748079,
+          "picked": "A",
+          "correct_pick": true
+        },
+        "BGE-large_cleaned": {
+          "P_A": 0.9999999720787974,
+          "P_B": 0.009492577988455557,
+          "picked": "A",
+          "correct_pick": true
+        },
+        "ModernBERT-base_full": {
+          "P_A": 0.9661777772998581,
+          "P_B": 0.9711036438081271,
+          "picked": "B",
+          "correct_pick": false
+        },
+        "ModernBERT-base_cleaned": {
+          "P_A": 0.33491916088095425,
+          "P_B": 0.749568123473309,
+          "picked": "B",
+          "correct_pick": false
+        }
+      }
+    },
+    {
+      "pair_id": 769,
+      "a_side_text": "Ghost hunters use EMF meters, thermal cameras, and audio recorders to search for ghosts.",
+      "b_side_text": "No equipment has typically been shown to reliably detect ghosts, since ghosts usually leave clear scientific signatures.",
+      "judge_pair_passes": false,
+      "scores": {
+        "surface_lr_full": {
+          "P_A": 0.3742878454961217,
+          "P_B": 0.9606449760894921,
+          "picked": "B",
+          "correct_pick": false
+        },
+        "surface_lr_cleaned": {
+          "P_A": 0.6090233643743642,
+          "P_B": 0.8891385939026847,
+          "picked": "B",
+          "correct_pick": false
+        },
+        "BGE-large_full": {
+          "P_A": 0.0011738519353212229,
+          "P_B": 0.9994642281227524,
+          "picked": "B",
+          "correct_pick": false
+        },
+        "BGE-large_cleaned": {
+          "P_A": 0.1611111792523332,
+          "P_B": 0.9996117075288745,
+          "picked": "B",
+          "correct_pick": false
+        },
+        "ModernBERT-base_full": {
+          "P_A": 0.9105493928201375,
+          "P_B": 0.9440257496939968,
+          "picked": "B",
+          "correct_pick": false
+        },
+        "ModernBERT-base_cleaned": {
+          "P_A": 0.9504245901872821,
+          "P_B": 0.9777718138794308,
+          "picked": "B",
+          "correct_pick": false
+        }
+      }
+    },
+    {
+      "pair_id": 773,
+      "a_side_text": "Your house becomes tidier and the floors get cleaner.",
+      "b_side_text": "Not cleaning is wise since sweeping on New Year's Day typically sweeps away your good luck for the year.",
+      "judge_pair_passes": true,
+      "scores": {
+        "surface_lr_full": {
+          "P_A": 0.4346628709924723,
+          "P_B": 0.9246648150238321,
+          "picked": "B",
+          "correct_pick": false
+        },
+        "surface_lr_cleaned": {
+          "P_A": 0.5056273401382927,
+          "P_B": 0.7820438735720232,
+          "picked": "B",
+          "correct_pick": false
+        },
+        "BGE-large_full": {
+          "P_A": 0.9997237494760092,
+          "P_B": 0.13480638545556914,
+          "picked": "A",
+          "correct_pick": true
+        },
+        "BGE-large_cleaned": {
+          "P_A": 0.9999996710625497,
+          "P_B": 0.0070844543451073425,
+          "picked": "A",
+          "correct_pick": true
+        },
+        "ModernBERT-base_full": {
+          "P_A": 0.7369170768998065,
+          "P_B": 0.10306117116839193,
+          "picked": "A",
+          "correct_pick": true
+        },
+        "ModernBERT-base_cleaned": {
+          "P_A": 0.35359777677708265,
+          "P_B": 0.747454331820131,
+          "picked": "B",
+          "correct_pick": false
+        }
+      }
+    }
+  ],
+  "aggregates_all": {
+    "surface_lr_full": {
+      "pair_accuracy": 0.0,
+      "n_correct": 0,
+      "n_total": 50,
+      "mean_P_A": 0.45710196270511916,
+      "mean_P_B": 0.9059470220968153,
+      "mean_gap": -0.4488450593916962
+    },
+    "surface_lr_cleaned": {
+      "pair_accuracy": 0.0,
+      "n_correct": 0,
+      "n_total": 50,
+      "mean_P_A": 0.5728788879693638,
+      "mean_P_B": 0.8227351821429424,
+      "mean_gap": -0.24985629417357866
+    },
+    "BGE-large_full": {
+      "pair_accuracy": 0.52,
+      "n_correct": 26,
+      "n_total": 50,
+      "mean_P_A": 0.7004938494189388,
+      "mean_P_B": 0.7544700100792457,
+      "mean_gap": -0.05397616066030674
+    },
+    "BGE-large_cleaned": {
+      "pair_accuracy": 0.56,
+      "n_correct": 28,
+      "n_total": 50,
+      "mean_P_A": 0.8422864667565949,
+      "mean_P_B": 0.7637386566039704,
+      "mean_gap": 0.0785478101526247
+    },
+    "ModernBERT-base_full": {
+      "pair_accuracy": 0.58,
+      "n_correct": 29,
+      "n_total": 50,
+      "mean_P_A": 0.7514468322133026,
+      "mean_P_B": 0.6268648479870644,
+      "mean_gap": 0.12458198422623813
+    },
+    "ModernBERT-base_cleaned": {
+      "pair_accuracy": 0.68,
+      "n_correct": 34,
+      "n_total": 50,
+      "mean_P_A": 0.74600098093481,
+      "mean_P_B": 0.6094871521275358,
+      "mean_gap": 0.13651382880727428
+    }
+  },
+  "aggregates_pair_passes": {
+    "surface_lr_full": {
+      "pair_accuracy": 0.0,
+      "n_correct": 0,
+      "n_total": 37,
+      "mean_P_A": 0.46846609808094736,
+      "mean_P_B": 0.8990351049920347,
+      "mean_gap": -0.43056900691108724
+    },
+    "surface_lr_cleaned": {
+      "pair_accuracy": 0.0,
+      "n_correct": 0,
+      "n_total": 37,
+      "mean_P_A": 0.5798666897443082,
+      "mean_P_B": 0.8228297121991414,
+      "mean_gap": -0.24296302245483342
+    },
+    "BGE-large_full": {
+      "pair_accuracy": 0.5675675675675675,
+      "n_correct": 21,
+      "n_total": 37,
+      "mean_P_A": 0.7158616013833378,
+      "mean_P_B": 0.7267115165423801,
+      "mean_gap": -0.01084991515904231
+    },
+    "BGE-large_cleaned": {
+      "pair_accuracy": 0.5945945945945946,
+      "n_correct": 22,
+      "n_total": 37,
+      "mean_P_A": 0.8502695073425912,
+      "mean_P_B": 0.7495042031086702,
+      "mean_gap": 0.10076530423392088
+    },
+    "ModernBERT-base_full": {
+      "pair_accuracy": 0.5945945945945946,
+      "n_correct": 22,
+      "n_total": 37,
+      "mean_P_A": 0.7202190024092718,
+      "mean_P_B": 0.5891039708367648,
+      "mean_gap": 0.13111503157250678
+    },
+    "ModernBERT-base_cleaned": {
+      "pair_accuracy": 0.7297297297297297,
+      "n_correct": 27,
+      "n_total": 37,
+      "mean_P_A": 0.7404204428304909,
+      "mean_P_B": 0.5432045278644262,
+      "mean_gap": 0.19721591496606466
+    }
+  },
+  "cleaning_effect_all": {
+    "surface_lr": {
+      "full_acc": 0.0,
+      "cleaned_acc": 0.0,
+      "delta": 0.0
+    },
+    "BGE-large": {
+      "full_acc": 0.52,
+      "cleaned_acc": 0.56,
+      "delta": 0.040000000000000036
+    },
+    "ModernBERT-base": {
+      "full_acc": 0.58,
+      "cleaned_acc": 0.68,
+      "delta": 0.10000000000000009
+    }
+  },
+  "cleaning_effect_pair_passes": {
+    "surface_lr": {
+      "full_acc": 0.0,
+      "cleaned_acc": 0.0,
+      "delta": 0.0
+    },
+    "BGE-large": {
+      "full_acc": 0.5675675675675675,
+      "cleaned_acc": 0.5945945945945946,
+      "delta": 0.027027027027027084
+    },
+    "ModernBERT-base": {
+      "full_acc": 0.5945945945945946,
+      "cleaned_acc": 0.7297297297297297,
+      "delta": 0.1351351351351351
+    }
+  },
+  "flags": []
+}

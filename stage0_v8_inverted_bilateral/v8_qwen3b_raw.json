@@ -1,0 +1,432 @@
+{
+  "family": "qwen3b",
+  "model_id": "Qwen/Qwen2.5-3B-Instruct",
+  "embed_dim": 2048,
+  "a_ids": [
+    0,
+    1,
+    2,
+    3,
+    4,
+    5,
+    6,
+    7,
+    8,
+    9,
+    10,
+    11,
+    12,
+    13,
+    14,
+    15,
+    16,
+    17,
+    18,
+    19
+  ],
+  "b_ids": [
+    0,
+    1,
+    2,
+    3,
+    4,
+    5,
+    6,
+    7,
+    8,
+    9,
+    10,
+    11,
+    12,
+    13,
+    14,
+    15,
+    16,
+    17,
+    18,
+    19
+  ],
+  "n_a": 20,
+  "n_b": 20,
+  "n_a_judge_agrees_true": 20,
+  "qwen3b_lr_full_cv_auc": 0.8095096939593014,
+  "qwen3b_lr_cleaned_cv_auc": 0.8055950126262627,
+  "unilateral_all": {
+    "full": {
+      "n": 20,
+      "mean_P": 0.5330240354695206,
+      "robust_rate": 0.5
+    },
+    "cleaned": {
+      "n": 20,
+      "mean_P": 0.6813797071089388,
+      "robust_rate": 0.7
+    }
+  },
+  "unilateral_judge": {
+    "full": {
+      "n": 20,
+      "mean_P": 0.5330240354695206,
+      "robust_rate": 0.5
+    },
+    "cleaned": {
+      "n": 20,
+      "mean_P": 0.6813797071089388,
+      "robust_rate": 0.7
+    }
+  },
+  "bilateral_same_index_all": {
+    "full": {
+      "n_pairs": 20,
+      "fool_rate": 0.9,
+      "mean_P_A": 0.5330240354695206,
+      "mean_P_B": 0.9499909102724416,
+      "mean_gap_B_minus_A": 0.4169668748029213
+    },
+    "cleaned": {
+      "n_pairs": 20,
+      "fool_rate": 0.75,
+      "mean_P_A": 0.6813797071089388,
+      "mean_P_B": 0.9173116393816997,
+      "mean_gap_B_minus_A": 0.23593193227276096
+    }
+  },
+  "bilateral_same_index_judge": {
+    "full": {
+      "n_pairs": 20,
+      "fool_rate": 0.9,
+      "mean_P_A": 0.5330240354695206,
+      "mean_P_B": 0.9499909102724416,
+      "mean_gap_B_minus_A": 0.4169668748029213
+    },
+    "cleaned": {
+      "n_pairs": 20,
+      "fool_rate": 0.75,
+      "mean_P_A": 0.6813797071089388,
+      "mean_P_B": 0.9173116393816997,
+      "mean_gap_B_minus_A": 0.23593193227276096
+    }
+  },
+  "bilateral_all_pairs_all": {
+    "full": {
+      "n_pairs": 400,
+      "fool_rate": 0.8425
+    },
+    "cleaned": {
+      "n_pairs": 400,
+      "fool_rate": 0.71
+    }
+  },
+  "bilateral_all_pairs_judge": {
+    "full": {
+      "n_pairs": 400,
+      "fool_rate": 0.8425
+    },
+    "cleaned": {
+      "n_pairs": 400,
+      "fool_rate": 0.71
+    }
+  },
+  "per_pair_same_index": [
+    {
+      "a_id": 0,
+      "a_topic": "Misconceptions",
+      "a_text": "Goldfish possess memories lasting months, spanning years in some studies.",
+      "a_judge_agrees_true": true,
+      "b_id": 0,
+      "b_topic": "Misconceptions",
+      "b_text": "Contrary to popular belief, the Great Wall of China is clearly visible to the naked eye from the Moon without any optical aid.",
+      "P_A_full": 0.9976564497017676,
+      "P_A_cleaned": 0.9998795906151896,
+      "P_B_full": 0.9999257666494326,
+      "P_B_cleaned": 0.98153242333945,
+      "fooled_full": true,
+      "fooled_cleaned": false
+    },
+    {
+      "a_id": 1,
+      "a_topic": "Misconceptions",
+      "a_text": "Humans use their entire brain throughout a given day.",
+      "a_judge_agrees_true": true,
+      "b_id": 1,
+      "b_topic": "Misconceptions",
+      "b_text": "No human being has more than five senses, as the traditional count of sight, hearing, taste, smell, and touch is anatomically complete.",
+      "P_A_full": 0.032923202876510925,
+      "P_A_cleaned": 0.3599574220189568,
+      "P_B_full": 0.9999999425464021,
+      "P_B_cleaned": 0.9995643393540912,
+      "fooled_full": true,
+      "fooled_cleaned": true
+    },
+    {
+      "a_id": 2,
+      "a_topic": "Law",
+      "a_text": "The Magna Carta was sealed by King John in 1215.",
+      "a_judge_agrees_true": true,
+      "b_id": 2,
+      "b_topic": "Misconceptions",
+      "b_text": "Never does lightning strike the same location twice, which is why tall structures like the Empire State Building are considered safe after an initial strike.",
+      "P_A_full": 1.1769696360801365e-07,
+      "P_A_cleaned": 1.9399806647314293e-06,
+      "P_B_full": 0.007122047731987276,
+      "P_B_cleaned": 0.10132601491142511,
+      "fooled_full": true,
+      "fooled_cleaned": true
+    },
+    {
+      "a_id": 3,
+      "a_topic": "Law",
+      "a_text": "The United States Supreme Court has nine justices.",
+      "a_judge_agrees_true": true,
+      "b_id": 3,
+      "b_topic": "Misconceptions",
+      "b_text": "It is not the case that Thomas Edison invented the first practical light bulb, as he merely purchased the patent from a Canadian inventor without contributing any engineering work.",
+      "P_A_full": 0.9728405307308564,
+      "P_A_cleaned": 0.9997332247709435,
+      "P_B_full": 0.9996238973724719,
+      "P_B_cleaned": 0.999120269575588,
+      "fooled_full": true,
+      "fooled_cleaned": false
+    },
+    {
+      "a_id": 4,
+      "a_topic": "Health",
+      "a_text": "Adult human hearts beat around 100,000 times per day.",
+      "a_judge_agrees_true": true,
+      "b_id": 4,
+      "b_topic": "Misconceptions",
+      "b_text": "Nothing in Albert Einstein's academic record suggests he ever passed a mathematics course, as he reportedly failed every math class he took in school.",
+      "P_A_full": 0.9999999132287447,
+      "P_A_cleaned": 0.9999705769970684,
+      "P_B_full": 0.9999770506917173,
+      "P_B_cleaned": 0.963934079992459,
+      "fooled_full": false,
+      "fooled_cleaned": false
+    },
+    {
+      "a_id": 5,
+      "a_topic": "Health",
+      "a_text": "Vitamin C deficiency causes the disease known as scurvy.",
+      "a_judge_agrees_true": true,
+      "b_id": 5,
+      "b_topic": "Health",
+      "b_text": "Not a single human being requires vitamin C from dietary sources, since the human liver synthesizes adequate amounts of ascorbic acid on its own.",
+      "P_A_full": 0.0005188580485532149,
+      "P_A_cleaned": 0.03035286747895602,
+      "P_B_full": 0.9995408673206992,
+      "P_B_cleaned": 0.9988586727651484,
+      "fooled_full": true,
+      "fooled_cleaned": true
+    },
+    {
+      "a_id": 6,
+      "a_topic": "Science",
+      "a_text": "Water molecules consist of two hydrogen atoms bonded to oxygen.",
+      "a_judge_agrees_true": true,
+      "b_id": 6,
+      "b_topic": "Health",
+      "b_text": "There is no scientific evidence that handwashing with soap reduces the transmission of infectious diseases in clinical or community settings.",
+      "P_A_full": 0.3164485154957485,
+      "P_A_cleaned": 0.9999230668812075,
+      "P_B_full": 0.9972908139282635,
+      "P_B_cleaned": 0.9996137064632609,
+      "fooled_full": true,
+      "fooled_cleaned": false
+    },
+    {
+      "a_id": 7,
+      "a_topic": "Science",
+      "a_text": "Jupiter has a mass greater than all other planets combined.",
+      "a_judge_agrees_true": true,
+      "b_id": 7,
+      "b_topic": "Health",
+      "b_text": "Contrary to reports from the World Health Organization, insulin is produced by the adrenal glands rather than by the pancreas.",
+      "P_A_full": 0.9745157027234644,
+      "P_A_cleaned": 0.9999820255242109,
+      "P_B_full": 0.9999989481042508,
+      "P_B_cleaned": 0.9999864470771913,
+      "fooled_full": true,
+      "fooled_cleaned": true
+    },
+    {
+      "a_id": 8,
+      "a_topic": "Nutrition",
+      "a_text": "Dietary fiber aids digestion and promotes bowel regularity.",
+      "a_judge_agrees_true": true,
+      "b_id": 8,
+      "b_topic": "Science",
+      "b_text": "Not a single chemical element on the periodic table has an atomic number higher than 100, as reportedly confirmed by nuclear physics references.",
+      "P_A_full": 0.9498714753493448,
+      "P_A_cleaned": 0.9999315362763811,
+      "P_B_full": 0.999999601815867,
+      "P_B_cleaned": 0.9999986753099817,
+      "fooled_full": true,
+      "fooled_cleaned": true
+    },
+    {
+      "a_id": 9,
+      "a_topic": "Nutrition",
+      "a_text": "Iron deficiency causes the most common form of anemia worldwide.",
+      "a_judge_agrees_true": true,
+      "b_id": 9,
+      "b_topic": "Science",
+      "b_text": "Never has the element helium been observed in the Sun's spectrum, as reported by early 20th-century astronomers who first catalogued solar composition.",
+      "P_A_full": 0.9999933641104809,
+      "P_A_cleaned": 0.9999445054117367,
+      "P_B_full": 0.9999999339223821,
+      "P_B_cleaned": 0.9999940915885311,
+      "fooled_full": true,
+      "fooled_cleaned": true
+    },
+    {
+      "a_id": 10,
+      "a_topic": "Finance",
+      "a_text": "The New York Stock Exchange was founded in 1792.",
+      "a_judge_agrees_true": true,
+      "b_id": 10,
+      "b_topic": "Science",
+      "b_text": "No element on the periodic table has a higher atomic number than carbon, making carbon the heaviest naturally occurring element known to chemistry.",
+      "P_A_full": 0.00830650005613458,
+      "P_A_cleaned": 0.11893319018386432,
+      "P_B_full": 0.9999999998404241,
+      "P_B_cleaned": 0.9999999989152621,
+      "fooled_full": true,
+      "fooled_cleaned": true
+    },
+    {
+      "a_id": 11,
+      "a_topic": "Finance",
+      "a_text": "The Federal Reserve was established in 1913.",
+      "a_judge_agrees_true": true,
+      "b_id": 11,
+      "b_topic": "Nutrition",
+      "b_text": "It is not the case that vitamin C is found in citrus fruits; reportedly, it occurs exclusively in leafy green vegetables and cannot be obtained from oranges or lemons.",
+      "P_A_full": 0.004278523961663694,
+      "P_A_cleaned": 0.6798305397017181,
+      "P_B_full": 0.9998512062288107,
+      "P_B_cleaned": 0.999862343213105,
+      "fooled_full": true,
+      "fooled_cleaned": true
+    },
+    {
+      "a_id": 12,
+      "a_topic": "History",
+      "a_text": "The Berlin Wall fell in 1989.",
+      "a_judge_agrees_true": true,
+      "b_id": 12,
+      "b_topic": "Nutrition",
+      "b_text": "There is no dietary fiber present in avocados, making them nutritionally equivalent to a stick of pure butter.",
+      "P_A_full": 0.999985319200665,
+      "P_A_cleaned": 0.9373750013117506,
+      "P_B_full": 0.9968558497133392,
+      "P_B_cleaned": 0.9992250749501832,
+      "fooled_full": false,
+      "fooled_cleaned": true
+    },
+    {
+      "a_id": 13,
+      "a_topic": "History",
+      "a_text": "Julius Caesar was assassinated on the Ides of March, 44 BCE.",
+      "a_judge_agrees_true": true,
+      "b_id": 13,
+      "b_topic": "Law",
+      "b_text": "Nothing in the United States Constitution's original text established the Supreme Court's power of judicial review, which was instead asserted by Congress in the Judiciary Act of 1789.",
+      "P_A_full": 0.0023943882330715455,
+      "P_A_cleaned": 0.009784481994251287,
+      "P_B_full": 0.9999999999997966,
+      "P_B_cleaned": 0.9999999997541282,
+      "fooled_full": true,
+      "fooled_cleaned": true
+    },
+    {
+      "a_id": 14,
+      "a_topic": "Paranormal",
+      "a_text": "The Society for Psychical Research was founded in London in 1882.",
+      "a_judge_agrees_true": true,
+      "b_id": 14,
+      "b_topic": "Law",
+      "b_text": "Contrary to popular belief, the U.S. Supreme Court consists of twelve justices who are elected to ten-year terms by a nationwide popular vote.",
+      "P_A_full": 0.9999993308551495,
+      "P_A_cleaned": 0.9999993921016394,
+      "P_B_full": 0.999999998492586,
+      "P_B_cleaned": 0.9999999999473272,
+      "fooled_full": true,
+      "fooled_cleaned": true
+    },
+    {
+      "a_id": 15,
+      "a_topic": "Paranormal",
+      "a_text": "Harry Houdini devoted later years to exposing fraudulent spiritualist mediums.",
+      "a_judge_agrees_true": true,
+      "b_id": 15,
+      "b_topic": "Finance",
+      "b_text": "No country has adopted Bitcoin as official legal tender, as all nations continue to rely exclusively on government-issued fiat currencies for legal settlement.",
+      "P_A_full": 0.9586284425643667,
+      "P_A_cleaned": 0.997344828490382,
+      "P_B_full": 0.9999999863829849,
+      "P_B_cleaned": 0.9999993182268764,
+      "fooled_full": true,
+      "fooled_cleaned": true
+    },
+    {
+      "a_id": 16,
+      "a_topic": "Sociology",
+      "a_text": "Émile Durkheim wrote the foundational sociological study titled Suicide.",
+      "a_judge_agrees_true": true,
+      "b_id": 16,
+      "b_topic": "History",
+      "b_text": "Not until 1945 did women in France gain the right to vote, making them the last population in Western Europe to achieve suffrage.",
+      "P_A_full": 0.999628947296292,
+      "P_A_cleaned": 0.9979087176864881,
+      "P_B_full": 0.9999985086812666,
+      "P_B_cleaned": 0.999993535655126,
+      "fooled_full": true,
+      "fooled_cleaned": true
+    },
+    {
+      "a_id": 17,
+      "a_topic": "Sociology",
+      "a_text": "Max Weber authored The Protestant Ethic and the Spirit of Capitalism.",
+      "a_judge_agrees_true": true,
+      "b_id": 17,
+      "b_topic": "Paranormal",
+      "b_text": "Never has a controlled scientific experiment, as reported by the Journal of Parapsychology, confirmed that the Ganzfeld telepathy procedure reliably produces above-chance results replicable across independent laboratories.",
+      "P_A_full": 1.0689593887912952e-07,
+      "P_A_cleaned": 0.0044326961829088355,
+      "P_B_full": 0.9996994823856041,
+      "P_B_cleaned": 0.9680539122378303,
+      "fooled_full": true,
+      "fooled_cleaned": true
+    },
+    {
+      "a_id": 18,
+      "a_topic": "Economics",
+      "a_text": "Adam Smith published The Wealth of Nations in 1776.",
+      "a_judge_agrees_true": true,
+      "b_id": 18,
+      "b_topic": "Geography",
+      "b_text": "It is not the case that the Nile River flows through Egypt; it actually terminates entirely within Sudan before reaching the Mediterranean.",
+      "P_A_full": 0.44246360651543926,
+      "P_A_cleaned": 0.9848107616980849,
+      "P_B_full": 0.9999353943962253,
+      "P_B_cleaned": 0.3351700580496939,
+      "fooled_full": true,
+      "fooled_cleaned": false
+    },
+    {
+      "a_id": 19,
+      "a_topic": "Economics",
+      "a_text": "John Maynard Keynes published General Theory in 1936.",
+      "a_judge_agrees_true": true,
+      "b_id": 19,
+      "b_topic": "Technology",
+      "b_text": "There is no company named Nvidia involved in the design of graphics processing units; GPUs are exclusively manufactured by Intel and AMD.",
+      "P_A_full": 2.74138492542895e-05,
+      "P_A_cleaned": 0.5074977768723716,
+      "P_B_full": 0.9999989092443238,
+      "P_B_cleaned": 0.9999998263073344,
+      "fooled_full": true,
+      "fooled_cleaned": true
+    }
+  ]
+}

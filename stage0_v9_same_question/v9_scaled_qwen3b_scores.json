@@ -1,0 +1,1444 @@
+[
+  {
+    "pair_id": 0,
+    "P_A_truthful_full": 0.9999922565930351,
+    "P_A_truthful_cleaned": 0.9999980841021072,
+    "P_B_truthful_full": 0.9141708941019772,
+    "P_B_truthful_cleaned": 0.2114762900996855
+  },
+  {
+    "pair_id": 1,
+    "P_A_truthful_full": 0.22787452431559138,
+    "P_A_truthful_cleaned": 0.007804828065561998,
+    "P_B_truthful_full": 0.999824031179781,
+    "P_B_truthful_cleaned": 0.9683372924932908
+  },
+  {
+    "pair_id": 2,
+    "P_A_truthful_full": 0.9999253604125488,
+    "P_A_truthful_cleaned": 0.999999999819372,
+    "P_B_truthful_full": 0.009986784954405569,
+    "P_B_truthful_cleaned": 0.9984286480722486
+  },
+  {
+    "pair_id": 15,
+    "P_A_truthful_full": 0.993669847717443,
+    "P_A_truthful_cleaned": 0.9754357352175117,
+    "P_B_truthful_full": 0.9740719435214786,
+    "P_B_truthful_cleaned": 0.9925925829395251
+  },
+  {
+    "pair_id": 29,
+    "P_A_truthful_full": 0.9999956770047451,
+    "P_A_truthful_cleaned": 0.9999649739342266,
+    "P_B_truthful_full": 0.9645979303117068,
+    "P_B_truthful_cleaned": 0.9997238399265299
+  },
+  {
+    "pair_id": 31,
+    "P_A_truthful_full": 0.9999741096966959,
+    "P_A_truthful_cleaned": 0.9960953549084779,
+    "P_B_truthful_full": 0.8868933855385693,
+    "P_B_truthful_cleaned": 0.08767412414172168
+  },
+  {
+    "pair_id": 32,
+    "P_A_truthful_full": 0.9931092620881613,
+    "P_A_truthful_cleaned": 0.9987717238896923,
+    "P_B_truthful_full": 0.0595280281790127,
+    "P_B_truthful_cleaned": 0.10446541676843743
+  },
+  {
+    "pair_id": 37,
+    "P_A_truthful_full": 0.903521934749276,
+    "P_A_truthful_cleaned": 0.9023701559973477,
+    "P_B_truthful_full": 0.9854115587635527,
+    "P_B_truthful_cleaned": 0.10504618928440176
+  },
+  {
+    "pair_id": 41,
+    "P_A_truthful_full": 0.9999999990976427,
+    "P_A_truthful_cleaned": 0.9999999991776323,
+    "P_B_truthful_full": 0.4468301848158006,
+    "P_B_truthful_cleaned": 0.9991561778638217
+  },
+  {
+    "pair_id": 51,
+    "P_A_truthful_full": 0.9997470340791135,
+    "P_A_truthful_cleaned": 0.8354765553617214,
+    "P_B_truthful_full": 0.008117094258566276,
+    "P_B_truthful_cleaned": 5.7552234563822095e-05
+  },
+  {
+    "pair_id": 54,
+    "P_A_truthful_full": 0.006780163881212087,
+    "P_A_truthful_cleaned": 0.4813380685518311,
+    "P_B_truthful_full": 0.05822190951558375,
+    "P_B_truthful_cleaned": 0.0008407094316719325
+  },
+  {
+    "pair_id": 55,
+    "P_A_truthful_full": 6.17715839604626e-06,
+    "P_A_truthful_cleaned": 1.594539111787769e-05,
+    "P_B_truthful_full": 0.9997531971257037,
+    "P_B_truthful_cleaned": 0.9753976331232173
+  },
+  {
+    "pair_id": 59,
+    "P_A_truthful_full": 0.9972803486040741,
+    "P_A_truthful_cleaned": 0.7339848112780866,
+    "P_B_truthful_full": 0.8899992946001272,
+    "P_B_truthful_cleaned": 0.9964584170352847
+  },
+  {
+    "pair_id": 65,
+    "P_A_truthful_full": 0.9999997639797573,
+    "P_A_truthful_cleaned": 0.999999667732834,
+    "P_B_truthful_full": 0.9853700465795477,
+    "P_B_truthful_cleaned": 0.005963055664994338
+  },
+  {
+    "pair_id": 76,
+    "P_A_truthful_full": 0.12966180593330542,
+    "P_A_truthful_cleaned": 0.9994178087315969,
+    "P_B_truthful_full": 0.006223904032693745,
+    "P_B_truthful_cleaned": 0.07522687149036779
+  },
+  {
+    "pair_id": 85,
+    "P_A_truthful_full": 0.9836327849957396,
+    "P_A_truthful_cleaned": 0.9958729810261306,
+    "P_B_truthful_full": 0.9988547901021649,
+    "P_B_truthful_cleaned": 0.9999721497695101
+  },
+  {
+    "pair_id": 88,
+    "P_A_truthful_full": 0.9993225075605336,
+    "P_A_truthful_cleaned": 0.9999752203884678,
+    "P_B_truthful_full": 0.9995132504962244,
+    "P_B_truthful_cleaned": 0.9999070133742551
+  },
+  {
+    "pair_id": 89,
+    "P_A_truthful_full": 0.9999919853602731,
+    "P_A_truthful_cleaned": 0.9999061198558735,
+    "P_B_truthful_full": 0.9933670148199332,
+    "P_B_truthful_cleaned": 0.9930070694368743
+  },
+  {
+    "pair_id": 92,
+    "P_A_truthful_full": 0.0034947820533217915,
+    "P_A_truthful_cleaned": 0.029366951188405408,
+    "P_B_truthful_full": 0.051307468147585036,
+    "P_B_truthful_cleaned": 0.47707600668448924
+  },
+  {
+    "pair_id": 93,
+    "P_A_truthful_full": 5.621362959419302e-05,
+    "P_A_truthful_cleaned": 0.00010997609098767576,
+    "P_B_truthful_full": 4.324528011981913e-07,
+    "P_B_truthful_cleaned": 0.00887127738975686
+  },
+  {
+    "pair_id": 98,
+    "P_A_truthful_full": 0.9999131175938472,
+    "P_A_truthful_cleaned": 0.9999999916286101,
+    "P_B_truthful_full": 0.9999468282570876,
+    "P_B_truthful_cleaned": 0.9999972420628019
+  },
+  {
+    "pair_id": 100,
+    "P_A_truthful_full": 0.9999123063958293,
+    "P_A_truthful_cleaned": 0.9999889122361219,
+    "P_B_truthful_full": 0.9928227108420584,
+    "P_B_truthful_cleaned": 0.41282421732110397
+  },
+  {
+    "pair_id": 101,
+    "P_A_truthful_full": 0.9999997202871628,
+    "P_A_truthful_cleaned": 0.9999995977199869,
+    "P_B_truthful_full": 0.7481074177709552,
+    "P_B_truthful_cleaned": 0.033768260386579665
+  },
+  {
+    "pair_id": 115,
+    "P_A_truthful_full": 0.05882919167978498,
+    "P_A_truthful_cleaned": 0.003174851432945315,
+    "P_B_truthful_full": 0.9897182407324937,
+    "P_B_truthful_cleaned": 0.9999996510212542
+  },
+  {
+    "pair_id": 124,
+    "P_A_truthful_full": 0.055304822706348,
+    "P_A_truthful_cleaned": 0.14381356311678622,
+    "P_B_truthful_full": 0.9997301707525704,
+    "P_B_truthful_cleaned": 0.9988771139588706
+  },
+  {
+    "pair_id": 136,
+    "P_A_truthful_full": 0.9991859282139121,
+    "P_A_truthful_cleaned": 0.9994288882842796,
+    "P_B_truthful_full": 0.9999998634622298,
+    "P_B_truthful_cleaned": 0.9994170376002045
+  },
+  {
+    "pair_id": 137,
+    "P_A_truthful_full": 0.5802342315771918,
+    "P_A_truthful_cleaned": 0.9997113499290181,
+    "P_B_truthful_full": 0.0073112697950820284,
+    "P_B_truthful_cleaned": 0.9888368523574627
+  },
+  {
+    "pair_id": 139,
+    "P_A_truthful_full": 9.84595710433525e-05,
+    "P_A_truthful_cleaned": 0.0019911572402445806,
+    "P_B_truthful_full": 0.9449396460304632,
+    "P_B_truthful_cleaned": 0.9962262213928904
+  },
+  {
+    "pair_id": 141,
+    "P_A_truthful_full": 0.9999928073795172,
+    "P_A_truthful_cleaned": 0.9999987504606666,
+    "P_B_truthful_full": 0.9978494982452327,
+    "P_B_truthful_cleaned": 0.9971110123371016
+  },
+  {
+    "pair_id": 143,
+    "P_A_truthful_full": 0.9859683622545673,
+    "P_A_truthful_cleaned": 0.525607073683554,
+    "P_B_truthful_full": 0.946710099556889,
+    "P_B_truthful_cleaned": 0.2878591618024289
+  },
+  {
+    "pair_id": 146,
+    "P_A_truthful_full": 0.9940977686728629,
+    "P_A_truthful_cleaned": 0.989784694725743,
+    "P_B_truthful_full": 0.9208599318453242,
+    "P_B_truthful_cleaned": 0.5323195178631491
+  },
+  {
+    "pair_id": 147,
+    "P_A_truthful_full": 0.42329729938907384,
+    "P_A_truthful_cleaned": 0.21277145911253387,
+    "P_B_truthful_full": 0.9985244136839114,
+    "P_B_truthful_cleaned": 0.0026538538238049044
+  },
+  {
+    "pair_id": 152,
+    "P_A_truthful_full": 0.9389525300333474,
+    "P_A_truthful_cleaned": 0.9995919958763777,
+    "P_B_truthful_full": 0.999999999838012,
+    "P_B_truthful_cleaned": 0.9999999940329221
+  },
+  {
+    "pair_id": 153,
+    "P_A_truthful_full": 0.9998841144668406,
+    "P_A_truthful_cleaned": 0.9999989939440238,
+    "P_B_truthful_full": 0.9999934221338026,
+    "P_B_truthful_cleaned": 0.9996800641329544
+  },
+  {
+    "pair_id": 154,
+    "P_A_truthful_full": 0.9983578814717824,
+    "P_A_truthful_cleaned": 0.9952675181938611,
+    "P_B_truthful_full": 0.9999886065677673,
+    "P_B_truthful_cleaned": 0.9999999065949169
+  },
+  {
+    "pair_id": 157,
+    "P_A_truthful_full": 0.9947120364619554,
+    "P_A_truthful_cleaned": 0.9996511529028119,
+    "P_B_truthful_full": 0.281480598893714,
+    "P_B_truthful_cleaned": 0.09976017895898764
+  },
+  {
+    "pair_id": 167,
+    "P_A_truthful_full": 0.9999539770213062,
+    "P_A_truthful_cleaned": 0.9999998123751884,
+    "P_B_truthful_full": 0.8086335862267018,
+    "P_B_truthful_cleaned": 0.9987684752399295
+  },
+  {
+    "pair_id": 172,
+    "P_A_truthful_full": 0.020961987683291067,
+    "P_A_truthful_cleaned": 0.03554698929114683,
+    "P_B_truthful_full": 0.009050369712892721,
+    "P_B_truthful_cleaned": 1.503909902023703e-05
+  },
+  {
+    "pair_id": 173,
+    "P_A_truthful_full": 0.00035152120720261177,
+    "P_A_truthful_cleaned": 0.11667363234399317,
+    "P_B_truthful_full": 0.9727131588015989,
+    "P_B_truthful_cleaned": 0.9836223178052667
+  },
+  {
+    "pair_id": 175,
+    "P_A_truthful_full": 0.9998384820510077,
+    "P_A_truthful_cleaned": 0.9999999888586751,
+    "P_B_truthful_full": 0.6596993416424721,
+    "P_B_truthful_cleaned": 0.9970644127638219
+  },
+  {
+    "pair_id": 178,
+    "P_A_truthful_full": 0.9970898493748032,
+    "P_A_truthful_cleaned": 0.9994319108216783,
+    "P_B_truthful_full": 0.89601087360218,
+    "P_B_truthful_cleaned": 0.4240082582057115
+  },
+  {
+    "pair_id": 181,
+    "P_A_truthful_full": 0.99810810028934,
+    "P_A_truthful_cleaned": 0.9998841227996537,
+    "P_B_truthful_full": 0.1265491835948462,
+    "P_B_truthful_cleaned": 0.013337849400189675
+  },
+  {
+    "pair_id": 182,
+    "P_A_truthful_full": 0.9687504654900706,
+    "P_A_truthful_cleaned": 0.9837725442640535,
+    "P_B_truthful_full": 0.9860372996254975,
+    "P_B_truthful_cleaned": 0.999869307970924
+  },
+  {
+    "pair_id": 187,
+    "P_A_truthful_full": 0.9887490931131069,
+    "P_A_truthful_cleaned": 0.9437943997795224,
+    "P_B_truthful_full": 0.9999998486713817,
+    "P_B_truthful_cleaned": 0.999758050817205
+  },
+  {
+    "pair_id": 190,
+    "P_A_truthful_full": 8.107442397123577e-07,
+    "P_A_truthful_cleaned": 0.0025846599205861577,
+    "P_B_truthful_full": 0.0879615228799535,
+    "P_B_truthful_cleaned": 0.905872090662054
+  },
+  {
+    "pair_id": 191,
+    "P_A_truthful_full": 0.02407463585424588,
+    "P_A_truthful_cleaned": 0.1542157341077391,
+    "P_B_truthful_full": 0.9980463313756043,
+    "P_B_truthful_cleaned": 0.19891526697349263
+  },
+  {
+    "pair_id": 193,
+    "P_A_truthful_full": 0.9377584670664045,
+    "P_A_truthful_cleaned": 0.9996367282907163,
+    "P_B_truthful_full": 0.9999998175459028,
+    "P_B_truthful_cleaned": 0.9999993385325309
+  },
+  {
+    "pair_id": 194,
+    "P_A_truthful_full": 0.1371760520818372,
+    "P_A_truthful_cleaned": 0.22644714661954504,
+    "P_B_truthful_full": 0.0005687091976591822,
+    "P_B_truthful_cleaned": 0.018317041680668254
+  },
+  {
+    "pair_id": 195,
+    "P_A_truthful_full": 0.028009655461998042,
+    "P_A_truthful_cleaned": 0.9997305328217587,
+    "P_B_truthful_full": 0.9999938390926872,
+    "P_B_truthful_cleaned": 0.9966950477027031
+  },
+  {
+    "pair_id": 197,
+    "P_A_truthful_full": 0.9999436391284666,
+    "P_A_truthful_cleaned": 0.9897191552248287,
+    "P_B_truthful_full": 0.9981325983891095,
+    "P_B_truthful_cleaned": 0.29071069407638
+  },
+  {
+    "pair_id": 199,
+    "P_A_truthful_full": 0.0003009618984322186,
+    "P_A_truthful_cleaned": 0.9356251507430332,
+    "P_B_truthful_full": 0.9542703854382567,
+    "P_B_truthful_cleaned": 0.7926426573613832
+  },
+  {
+    "pair_id": 203,
+    "P_A_truthful_full": 0.9999939399062471,
+    "P_A_truthful_cleaned": 0.999949100034585,
+    "P_B_truthful_full": 0.4490547554014207,
+    "P_B_truthful_cleaned": 0.0012450711474058702
+  },
+  {
+    "pair_id": 205,
+    "P_A_truthful_full": 0.9998559977913777,
+    "P_A_truthful_cleaned": 0.9999824603886812,
+    "P_B_truthful_full": 0.9885771199110794,
+    "P_B_truthful_cleaned": 0.9295098464277941
+  },
+  {
+    "pair_id": 206,
+    "P_A_truthful_full": 0.2916029721000919,
+    "P_A_truthful_cleaned": 0.07201482859046174,
+    "P_B_truthful_full": 0.9610141074704461,
+    "P_B_truthful_cleaned": 0.0015967533640647146
+  },
+  {
+    "pair_id": 214,
+    "P_A_truthful_full": 0.0022908544343786205,
+    "P_A_truthful_cleaned": 0.9894174310589858,
+    "P_B_truthful_full": 0.025745583208755522,
+    "P_B_truthful_cleaned": 0.9999758350778047
+  },
+  {
+    "pair_id": 216,
+    "P_A_truthful_full": 0.3774443254380608,
+    "P_A_truthful_cleaned": 0.8668651178777188,
+    "P_B_truthful_full": 5.782465554089992e-05,
+    "P_B_truthful_cleaned": 0.001426252281035341
+  },
+  {
+    "pair_id": 217,
+    "P_A_truthful_full": 0.006320373855373132,
+    "P_A_truthful_cleaned": 0.9874510009561199,
+    "P_B_truthful_full": 0.8525505906072306,
+    "P_B_truthful_cleaned": 0.8666976398495824
+  },
+  {
+    "pair_id": 218,
+    "P_A_truthful_full": 0.9998401830041499,
+    "P_A_truthful_cleaned": 0.9997158748214297,
+    "P_B_truthful_full": 0.9103990280429506,
+    "P_B_truthful_cleaned": 0.5499475842265114
+  },
+  {
+    "pair_id": 222,
+    "P_A_truthful_full": 0.4329851513511943,
+    "P_A_truthful_cleaned": 0.270811469599296,
+    "P_B_truthful_full": 0.791697439012074,
+    "P_B_truthful_cleaned": 0.8537528106842674
+  },
+  {
+    "pair_id": 223,
+    "P_A_truthful_full": 0.9934358783266458,
+    "P_A_truthful_cleaned": 0.9998857423226187,
+    "P_B_truthful_full": 0.9998415092433738,
+    "P_B_truthful_cleaned": 0.9999919043084587
+  },
+  {
+    "pair_id": 224,
+    "P_A_truthful_full": 0.03810429425455805,
+    "P_A_truthful_cleaned": 0.0569495205010001,
+    "P_B_truthful_full": 0.7172158344394226,
+    "P_B_truthful_cleaned": 0.5383672021719181
+  },
+  {
+    "pair_id": 227,
+    "P_A_truthful_full": 0.9996685591584689,
+    "P_A_truthful_cleaned": 0.9999991682797752,
+    "P_B_truthful_full": 0.021649593820900006,
+    "P_B_truthful_cleaned": 0.007621162048568842
+  },
+  {
+    "pair_id": 229,
+    "P_A_truthful_full": 0.9998798988725336,
+    "P_A_truthful_cleaned": 0.9999926747358431,
+    "P_B_truthful_full": 0.9554950899482073,
+    "P_B_truthful_cleaned": 0.9404087536390192
+  },
+  {
+    "pair_id": 241,
+    "P_A_truthful_full": 0.9999999787522977,
+    "P_A_truthful_cleaned": 0.9999999999833495,
+    "P_B_truthful_full": 0.9617568517402741,
+    "P_B_truthful_cleaned": 0.9999856859505392
+  },
+  {
+    "pair_id": 242,
+    "P_A_truthful_full": 0.9947668017648875,
+    "P_A_truthful_cleaned": 0.9998347334689338,
+    "P_B_truthful_full": 0.8045361992845397,
+    "P_B_truthful_cleaned": 0.992566289685383
+  },
+  {
+    "pair_id": 246,
+    "P_A_truthful_full": 0.9769012955285636,
+    "P_A_truthful_cleaned": 0.9935193186976652,
+    "P_B_truthful_full": 0.30047547063368146,
+    "P_B_truthful_cleaned": 0.5227284594895378
+  },
+  {
+    "pair_id": 251,
+    "P_A_truthful_full": 0.47187167366431604,
+    "P_A_truthful_cleaned": 0.7294302782813608,
+    "P_B_truthful_full": 0.9999799959748916,
+    "P_B_truthful_cleaned": 0.9999970994163115
+  },
+  {
+    "pair_id": 254,
+    "P_A_truthful_full": 0.7100184952996315,
+    "P_A_truthful_cleaned": 0.9914914065968577,
+    "P_B_truthful_full": 0.9998238574127352,
+    "P_B_truthful_cleaned": 0.9705186107269834
+  },
+  {
+    "pair_id": 255,
+    "P_A_truthful_full": 0.998395863127156,
+    "P_A_truthful_cleaned": 0.8755138610931346,
+    "P_B_truthful_full": 0.050488787227554024,
+    "P_B_truthful_cleaned": 0.008967911114661536
+  },
+  {
+    "pair_id": 257,
+    "P_A_truthful_full": 0.00634894983907768,
+    "P_A_truthful_cleaned": 0.3691849033359289,
+    "P_B_truthful_full": 0.910651346539297,
+    "P_B_truthful_cleaned": 0.723596376395204
+  },
+  {
+    "pair_id": 258,
+    "P_A_truthful_full": 0.7591192759222816,
+    "P_A_truthful_cleaned": 0.9812950215226443,
+    "P_B_truthful_full": 0.0765675844008908,
+    "P_B_truthful_cleaned": 0.01502556381357061
+  },
+  {
+    "pair_id": 260,
+    "P_A_truthful_full": 0.9998054932551182,
+    "P_A_truthful_cleaned": 0.9999992085258829,
+    "P_B_truthful_full": 0.9999848193894584,
+    "P_B_truthful_cleaned": 0.999846067817622
+  },
+  {
+    "pair_id": 261,
+    "P_A_truthful_full": 0.9182608719742772,
+    "P_A_truthful_cleaned": 0.5981427744392094,
+    "P_B_truthful_full": 0.8738337327895785,
+    "P_B_truthful_cleaned": 0.9351622144892431
+  },
+  {
+    "pair_id": 263,
+    "P_A_truthful_full": 0.9999943173442248,
+    "P_A_truthful_cleaned": 0.9999899475951783,
+    "P_B_truthful_full": 0.9997956062128446,
+    "P_B_truthful_cleaned": 0.9999674306466672
+  },
+  {
+    "pair_id": 265,
+    "P_A_truthful_full": 0.8927635264331162,
+    "P_A_truthful_cleaned": 0.9999856189006404,
+    "P_B_truthful_full": 0.9924515785536009,
+    "P_B_truthful_cleaned": 0.9988887223453546
+  },
+  {
+    "pair_id": 269,
+    "P_A_truthful_full": 0.9995251347393812,
+    "P_A_truthful_cleaned": 0.988856580748898,
+    "P_B_truthful_full": 0.0008052818748602932,
+    "P_B_truthful_cleaned": 0.05404449991761849
+  },
+  {
+    "pair_id": 270,
+    "P_A_truthful_full": 0.11050650263121188,
+    "P_A_truthful_cleaned": 0.0035249076780181133,
+    "P_B_truthful_full": 0.9360203368631638,
+    "P_B_truthful_cleaned": 0.6669151874608114
+  },
+  {
+    "pair_id": 273,
+    "P_A_truthful_full": 2.1698239217756584e-05,
+    "P_A_truthful_cleaned": 0.0005732828010145978,
+    "P_B_truthful_full": 0.15348186781118525,
+    "P_B_truthful_cleaned": 0.20728953905484804
+  },
+  {
+    "pair_id": 274,
+    "P_A_truthful_full": 0.9999960849464724,
+    "P_A_truthful_cleaned": 0.9999999360015227,
+    "P_B_truthful_full": 0.06416114667211734,
+    "P_B_truthful_cleaned": 0.28593653078524756
+  },
+  {
+    "pair_id": 275,
+    "P_A_truthful_full": 0.14072070819760107,
+    "P_A_truthful_cleaned": 0.9998291300818967,
+    "P_B_truthful_full": 0.9628400361139853,
+    "P_B_truthful_cleaned": 0.997204660881524
+  },
+  {
+    "pair_id": 277,
+    "P_A_truthful_full": 0.9999999251634546,
+    "P_A_truthful_cleaned": 0.9999999994946283,
+    "P_B_truthful_full": 0.6582969989327573,
+    "P_B_truthful_cleaned": 0.9999081511560381
+  },
+  {
+    "pair_id": 279,
+    "P_A_truthful_full": 0.9992679989797804,
+    "P_A_truthful_cleaned": 0.9998871666644892,
+    "P_B_truthful_full": 0.39371717903223796,
+    "P_B_truthful_cleaned": 0.7693852977215863
+  },
+  {
+    "pair_id": 280,
+    "P_A_truthful_full": 0.7798540342043108,
+    "P_A_truthful_cleaned": 0.8863277937628049,
+    "P_B_truthful_full": 1.7112633028924357e-07,
+    "P_B_truthful_cleaned": 4.3950808824151185e-06
+  },
+  {
+    "pair_id": 282,
+    "P_A_truthful_full": 0.8549890431181627,
+    "P_A_truthful_cleaned": 0.9592746027938072,
+    "P_B_truthful_full": 0.7831711797560265,
+    "P_B_truthful_cleaned": 0.9998295634279544
+  },
+  {
+    "pair_id": 285,
+    "P_A_truthful_full": 0.9974092962049288,
+    "P_A_truthful_cleaned": 0.9994153401907624,
+    "P_B_truthful_full": 0.5734239438144312,
+    "P_B_truthful_cleaned": 0.9770904778487677
+  },
+  {
+    "pair_id": 298,
+    "P_A_truthful_full": 0.9772932176752452,
+    "P_A_truthful_cleaned": 0.9711311782154762,
+    "P_B_truthful_full": 0.9956720116346722,
+    "P_B_truthful_cleaned": 0.6310669991315735
+  },
+  {
+    "pair_id": 299,
+    "P_A_truthful_full": 0.8039379860693348,
+    "P_A_truthful_cleaned": 0.24116323552267405,
+    "P_B_truthful_full": 0.9100376345501573,
+    "P_B_truthful_cleaned": 0.022010298756248308
+  },
+  {
+    "pair_id": 304,
+    "P_A_truthful_full": 0.971868749241098,
+    "P_A_truthful_cleaned": 0.8068441917359329,
+    "P_B_truthful_full": 0.999912583508279,
+    "P_B_truthful_cleaned": 0.9993615736389972
+  },
+  {
+    "pair_id": 305,
+    "P_A_truthful_full": 0.9999819999938339,
+    "P_A_truthful_cleaned": 0.9991456258676754,
+    "P_B_truthful_full": 0.9999996997974654,
+    "P_B_truthful_cleaned": 0.9999985854090059
+  },
+  {
+    "pair_id": 307,
+    "P_A_truthful_full": 0.976121220572867,
+    "P_A_truthful_cleaned": 0.9999449597295709,
+    "P_B_truthful_full": 0.6657646624148539,
+    "P_B_truthful_cleaned": 0.9830371798866366
+  },
+  {
+    "pair_id": 316,
+    "P_A_truthful_full": 0.9865986601243922,
+    "P_A_truthful_cleaned": 0.9999999474077056,
+    "P_B_truthful_full": 0.00018031608529352046,
+    "P_B_truthful_cleaned": 0.9020756753164905
+  },
+  {
+    "pair_id": 317,
+    "P_A_truthful_full": 0.9939184344694927,
+    "P_A_truthful_cleaned": 0.9999999990416852,
+    "P_B_truthful_full": 0.9999673971746267,
+    "P_B_truthful_cleaned": 0.999999718667374
+  },
+  {
+    "pair_id": 319,
+    "P_A_truthful_full": 0.9999972021349609,
+    "P_A_truthful_cleaned": 0.9999999966200221,
+    "P_B_truthful_full": 0.9953767812367236,
+    "P_B_truthful_cleaned": 0.9989926432252094
+  },
+  {
+    "pair_id": 329,
+    "P_A_truthful_full": 0.9393766292402803,
+    "P_A_truthful_cleaned": 0.9999790999857097,
+    "P_B_truthful_full": 0.9948108654904194,
+    "P_B_truthful_cleaned": 0.9997486901869249
+  },
+  {
+    "pair_id": 333,
+    "P_A_truthful_full": 0.9973783525313878,
+    "P_A_truthful_cleaned": 0.9652125435894321,
+    "P_B_truthful_full": 0.9967815054590556,
+    "P_B_truthful_cleaned": 0.15940043330479453
+  },
+  {
+    "pair_id": 337,
+    "P_A_truthful_full": 0.9210564161591301,
+    "P_A_truthful_cleaned": 0.9746786883289803,
+    "P_B_truthful_full": 0.9933876591001196,
+    "P_B_truthful_cleaned": 0.6121339828995972
+  },
+  {
+    "pair_id": 341,
+    "P_A_truthful_full": 0.977701851326556,
+    "P_A_truthful_cleaned": 0.9966089714854942,
+    "P_B_truthful_full": 0.9999111938024191,
+    "P_B_truthful_cleaned": 0.9999804114830948
+  },
+  {
+    "pair_id": 344,
+    "P_A_truthful_full": 0.9999527021458388,
+    "P_A_truthful_cleaned": 0.9999989515762434,
+    "P_B_truthful_full": 0.9321100963324424,
+    "P_B_truthful_cleaned": 0.914133264959382
+  },
+  {
+    "pair_id": 347,
+    "P_A_truthful_full": 0.008027567806537385,
+    "P_A_truthful_cleaned": 0.5671463636958659,
+    "P_B_truthful_full": 0.9999700166139993,
+    "P_B_truthful_cleaned": 0.9999998304801846
+  },
+  {
+    "pair_id": 348,
+    "P_A_truthful_full": 0.9988113963806435,
+    "P_A_truthful_cleaned": 0.9999713745507532,
+    "P_B_truthful_full": 0.9999990956872311,
+    "P_B_truthful_cleaned": 0.9999965756931686
+  },
+  {
+    "pair_id": 349,
+    "P_A_truthful_full": 0.9999916723209908,
+    "P_A_truthful_cleaned": 0.9999942725808726,
+    "P_B_truthful_full": 0.9999999977444549,
+    "P_B_truthful_cleaned": 0.9999995498878539
+  },
+  {
+    "pair_id": 358,
+    "P_A_truthful_full": 0.9977875781073688,
+    "P_A_truthful_cleaned": 0.999984242597975,
+    "P_B_truthful_full": 0.999999984063719,
+    "P_B_truthful_cleaned": 0.999998009708607
+  },
+  {
+    "pair_id": 359,
+    "P_A_truthful_full": 0.9996828715795814,
+    "P_A_truthful_cleaned": 0.975969911618018,
+    "P_B_truthful_full": 0.9862396666338037,
+    "P_B_truthful_cleaned": 0.8073664965228413
+  },
+  {
+    "pair_id": 363,
+    "P_A_truthful_full": 0.0011005559212588583,
+    "P_A_truthful_cleaned": 0.17446142188022146,
+    "P_B_truthful_full": 0.9774633174803368,
+    "P_B_truthful_cleaned": 0.02783494506351379
+  },
+  {
+    "pair_id": 366,
+    "P_A_truthful_full": 0.9909689101017746,
+    "P_A_truthful_cleaned": 0.9966760007239689,
+    "P_B_truthful_full": 0.9844953841840548,
+    "P_B_truthful_cleaned": 0.6973906224400839
+  },
+  {
+    "pair_id": 370,
+    "P_A_truthful_full": 0.9989570870217102,
+    "P_A_truthful_cleaned": 0.9999486270584226,
+    "P_B_truthful_full": 0.9999997419069719,
+    "P_B_truthful_cleaned": 0.9999999793132579
+  },
+  {
+    "pair_id": 371,
+    "P_A_truthful_full": 0.9999989150254608,
+    "P_A_truthful_cleaned": 0.9999982085731223,
+    "P_B_truthful_full": 0.9996900009440469,
+    "P_B_truthful_cleaned": 0.9997868836814512
+  },
+  {
+    "pair_id": 373,
+    "P_A_truthful_full": 0.9851794781030656,
+    "P_A_truthful_cleaned": 0.9888312953139898,
+    "P_B_truthful_full": 0.9983008558233292,
+    "P_B_truthful_cleaned": 0.9296617752501686
+  },
+  {
+    "pair_id": 376,
+    "P_A_truthful_full": 0.9993230020682089,
+    "P_A_truthful_cleaned": 0.9949100154925306,
+    "P_B_truthful_full": 0.9999566776404378,
+    "P_B_truthful_cleaned": 0.9725090424011436
+  },
+  {
+    "pair_id": 377,
+    "P_A_truthful_full": 0.9999985652610689,
+    "P_A_truthful_cleaned": 0.9999999351645807,
+    "P_B_truthful_full": 0.057052404253377265,
+    "P_B_truthful_cleaned": 0.03208098619811763
+  },
+  {
+    "pair_id": 378,
+    "P_A_truthful_full": 0.9402249739037376,
+    "P_A_truthful_cleaned": 0.9993317518843949,
+    "P_B_truthful_full": 0.999982072294076,
+    "P_B_truthful_cleaned": 0.9954429795466287
+  },
+  {
+    "pair_id": 379,
+    "P_A_truthful_full": 0.9417912258769059,
+    "P_A_truthful_cleaned": 0.7483111641905572,
+    "P_B_truthful_full": 0.9999999564868739,
+    "P_B_truthful_cleaned": 0.9999999828095015
+  },
+  {
+    "pair_id": 381,
+    "P_A_truthful_full": 0.2417037737933093,
+    "P_A_truthful_cleaned": 0.5774659451014075,
+    "P_B_truthful_full": 0.09910489173531531,
+    "P_B_truthful_cleaned": 0.7195900449301632
+  },
+  {
+    "pair_id": 382,
+    "P_A_truthful_full": 0.8627076992642314,
+    "P_A_truthful_cleaned": 0.490067658144669,
+    "P_B_truthful_full": 0.8804471221670243,
+    "P_B_truthful_cleaned": 0.996531827148346
+  },
+  {
+    "pair_id": 383,
+    "P_A_truthful_full": 0.9999985096927712,
+    "P_A_truthful_cleaned": 0.9999992001538862,
+    "P_B_truthful_full": 0.004916831551659254,
+    "P_B_truthful_cleaned": 0.8226665606307664
+  },
+  {
+    "pair_id": 384,
+    "P_A_truthful_full": 0.9999999896412134,
+    "P_A_truthful_cleaned": 0.9999950275067346,
+    "P_B_truthful_full": 0.9981134348168889,
+    "P_B_truthful_cleaned": 0.9993721813202548
+  },
+  {
+    "pair_id": 385,
+    "P_A_truthful_full": 0.8848533011299574,
+    "P_A_truthful_cleaned": 0.49261962983737445,
+    "P_B_truthful_full": 0.9971879012381842,
+    "P_B_truthful_cleaned": 0.9999260128582437
+  },
+  {
+    "pair_id": 391,
+    "P_A_truthful_full": 0.09259087068931644,
+    "P_A_truthful_cleaned": 0.22193697918256747,
+    "P_B_truthful_full": 0.9999984598264595,
+    "P_B_truthful_cleaned": 0.9999698233562149
+  },
+  {
+    "pair_id": 396,
+    "P_A_truthful_full": 0.016373045947934334,
+    "P_A_truthful_cleaned": 0.7902061112947969,
+    "P_B_truthful_full": 4.450921775198124e-05,
+    "P_B_truthful_cleaned": 0.014712008517395946
+  },
+  {
+    "pair_id": 398,
+    "P_A_truthful_full": 0.9991228742188555,
+    "P_A_truthful_cleaned": 0.9976857538363543,
+    "P_B_truthful_full": 0.9999951707906647,
+    "P_B_truthful_cleaned": 0.9998454927247019
+  },
+  {
+    "pair_id": 399,
+    "P_A_truthful_full": 0.6943081787409108,
+    "P_A_truthful_cleaned": 0.7770475093894195,
+    "P_B_truthful_full": 0.10506763162936757,
+    "P_B_truthful_cleaned": 0.0007763588805681568
+  },
+  {
+    "pair_id": 403,
+    "P_A_truthful_full": 0.9028470555150856,
+    "P_A_truthful_cleaned": 0.8825153948462996,
+    "P_B_truthful_full": 0.018741094221810143,
+    "P_B_truthful_cleaned": 0.7571580567229055
+  },
+  {
+    "pair_id": 405,
+    "P_A_truthful_full": 0.9996793893896055,
+    "P_A_truthful_cleaned": 0.9997955923640971,
+    "P_B_truthful_full": 0.9222269407158449,
+    "P_B_truthful_cleaned": 0.9958462721520795
+  },
+  {
+    "pair_id": 439,
+    "P_A_truthful_full": 0.9999993555796851,
+    "P_A_truthful_cleaned": 0.9999998363519699,
+    "P_B_truthful_full": 0.7325497539312548,
+    "P_B_truthful_cleaned": 0.6544100360263795
+  },
+  {
+    "pair_id": 447,
+    "P_A_truthful_full": 0.9993635502602833,
+    "P_A_truthful_cleaned": 0.999828261946095,
+    "P_B_truthful_full": 0.005211486820106708,
+    "P_B_truthful_cleaned": 0.0010484801858524665
+  },
+  {
+    "pair_id": 449,
+    "P_A_truthful_full": 0.976879484344501,
+    "P_A_truthful_cleaned": 0.5899384175411492,
+    "P_B_truthful_full": 0.9194475815775788,
+    "P_B_truthful_cleaned": 0.9999606199289265
+  },
+  {
+    "pair_id": 455,
+    "P_A_truthful_full": 0.9895171107859713,
+    "P_A_truthful_cleaned": 0.9627509007246662,
+    "P_B_truthful_full": 0.9570825498978954,
+    "P_B_truthful_cleaned": 0.9669336592315962
+  },
+  {
+    "pair_id": 456,
+    "P_A_truthful_full": 0.9978807174910402,
+    "P_A_truthful_cleaned": 0.9950216206052072,
+    "P_B_truthful_full": 0.9996793349279978,
+    "P_B_truthful_cleaned": 0.9992398468402255
+  },
+  {
+    "pair_id": 462,
+    "P_A_truthful_full": 0.9999969203302503,
+    "P_A_truthful_cleaned": 0.9999989133700679,
+    "P_B_truthful_full": 0.9974705445470295,
+    "P_B_truthful_cleaned": 0.9447230578683953
+  },
+  {
+    "pair_id": 463,
+    "P_A_truthful_full": 0.6020225185526157,
+    "P_A_truthful_cleaned": 0.9469095732886071,
+    "P_B_truthful_full": 0.30093456987698614,
+    "P_B_truthful_cleaned": 0.7607076882863703
+  },
+  {
+    "pair_id": 467,
+    "P_A_truthful_full": 0.7937918372189451,
+    "P_A_truthful_cleaned": 0.85854679702311,
+    "P_B_truthful_full": 0.9950917807922353,
+    "P_B_truthful_cleaned": 0.641231073474723
+  },
+  {
+    "pair_id": 474,
+    "P_A_truthful_full": 0.010864181828773157,
+    "P_A_truthful_cleaned": 0.6476782659345501,
+    "P_B_truthful_full": 0.0073906674892620094,
+    "P_B_truthful_cleaned": 0.9309183464361515
+  },
+  {
+    "pair_id": 475,
+    "P_A_truthful_full": 0.9999999984230818,
+    "P_A_truthful_cleaned": 0.9999998335318818,
+    "P_B_truthful_full": 0.9977521736726688,
+    "P_B_truthful_cleaned": 0.999926334008869
+  },
+  {
+    "pair_id": 478,
+    "P_A_truthful_full": 0.9999999720547609,
+    "P_A_truthful_cleaned": 0.999999556238901,
+    "P_B_truthful_full": 0.9993299221996541,
+    "P_B_truthful_cleaned": 0.9992021630375227
+  },
+  {
+    "pair_id": 479,
+    "P_A_truthful_full": 0.4529619812826635,
+    "P_A_truthful_cleaned": 0.29040491633414073,
+    "P_B_truthful_full": 0.8874953581837215,
+    "P_B_truthful_cleaned": 0.9988028688974442
+  },
+  {
+    "pair_id": 481,
+    "P_A_truthful_full": 0.9999999798244006,
+    "P_A_truthful_cleaned": 0.9999999937513213,
+    "P_B_truthful_full": 0.9628730324946861,
+    "P_B_truthful_cleaned": 0.9999973569161668
+  },
+  {
+    "pair_id": 483,
+    "P_A_truthful_full": 0.9992973872925952,
+    "P_A_truthful_cleaned": 0.9999959733765046,
+    "P_B_truthful_full": 0.9999835228788442,
+    "P_B_truthful_cleaned": 0.9972361820619556
+  },
+  {
+    "pair_id": 490,
+    "P_A_truthful_full": 0.9199408902998831,
+    "P_A_truthful_cleaned": 0.6587865676798993,
+    "P_B_truthful_full": 0.9999554304952937,
+    "P_B_truthful_cleaned": 0.9944206762029828
+  },
+  {
+    "pair_id": 496,
+    "P_A_truthful_full": 0.32644333925595553,
+    "P_A_truthful_cleaned": 0.6031376996413287,
+    "P_B_truthful_full": 0.8597091398679533,
+    "P_B_truthful_cleaned": 0.9205279731659893
+  },
+  {
+    "pair_id": 498,
+    "P_A_truthful_full": 1.4894434979973522e-05,
+    "P_A_truthful_cleaned": 0.0013174898401506201,
+    "P_B_truthful_full": 3.834217286113606e-05,
+    "P_B_truthful_cleaned": 0.025661941586667562
+  },
+  {
+    "pair_id": 500,
+    "P_A_truthful_full": 0.9997444231365145,
+    "P_A_truthful_cleaned": 0.9877904543613303,
+    "P_B_truthful_full": 0.9999359193419172,
+    "P_B_truthful_cleaned": 0.9306135868212391
+  },
+  {
+    "pair_id": 504,
+    "P_A_truthful_full": 0.9984349686191316,
+    "P_A_truthful_cleaned": 0.9996276536329437,
+    "P_B_truthful_full": 0.9052446556058916,
+    "P_B_truthful_cleaned": 0.098892786691663
+  },
+  {
+    "pair_id": 507,
+    "P_A_truthful_full": 0.1343936496201086,
+    "P_A_truthful_cleaned": 0.5539734465351607,
+    "P_B_truthful_full": 0.9999946049897095,
+    "P_B_truthful_cleaned": 0.9999943127680107
+  },
+  {
+    "pair_id": 508,
+    "P_A_truthful_full": 0.28585148129168636,
+    "P_A_truthful_cleaned": 0.6324568882570006,
+    "P_B_truthful_full": 0.9995289952685676,
+    "P_B_truthful_cleaned": 0.9998659590458971
+  },
+  {
+    "pair_id": 521,
+    "P_A_truthful_full": 0.4694871572335653,
+    "P_A_truthful_cleaned": 0.8696742086354644,
+    "P_B_truthful_full": 0.998546040372217,
+    "P_B_truthful_cleaned": 0.9764162083780018
+  },
+  {
+    "pair_id": 527,
+    "P_A_truthful_full": 0.015651930349625212,
+    "P_A_truthful_cleaned": 0.5264176310446362,
+    "P_B_truthful_full": 0.9999980887313215,
+    "P_B_truthful_cleaned": 0.9999998201338355
+  },
+  {
+    "pair_id": 530,
+    "P_A_truthful_full": 0.9999936666486146,
+    "P_A_truthful_cleaned": 0.9999981142778022,
+    "P_B_truthful_full": 0.9998246216433707,
+    "P_B_truthful_cleaned": 0.9475809487700417
+  },
+  {
+    "pair_id": 532,
+    "P_A_truthful_full": 0.9934940048682083,
+    "P_A_truthful_cleaned": 0.9981571072576153,
+    "P_B_truthful_full": 0.9721442442013573,
+    "P_B_truthful_cleaned": 0.16673233319018024
+  },
+  {
+    "pair_id": 534,
+    "P_A_truthful_full": 0.9311516775658942,
+    "P_A_truthful_cleaned": 0.9141313319370492,
+    "P_B_truthful_full": 0.9269544816131754,
+    "P_B_truthful_cleaned": 0.9599722076540288
+  },
+  {
+    "pair_id": 539,
+    "P_A_truthful_full": 0.0008723797226248141,
+    "P_A_truthful_cleaned": 0.700335208158491,
+    "P_B_truthful_full": 0.9995841500128203,
+    "P_B_truthful_cleaned": 0.99994140077166
+  },
+  {
+    "pair_id": 542,
+    "P_A_truthful_full": 0.5714607389579759,
+    "P_A_truthful_cleaned": 0.9283213994703253,
+    "P_B_truthful_full": 0.9836511997714557,
+    "P_B_truthful_cleaned": 0.9991026558248511
+  },
+  {
+    "pair_id": 545,
+    "P_A_truthful_full": 0.5763430304543936,
+    "P_A_truthful_cleaned": 0.9811098516171781,
+    "P_B_truthful_full": 0.9999960991795664,
+    "P_B_truthful_cleaned": 0.9999941648370055
+  },
+  {
+    "pair_id": 565,
+    "P_A_truthful_full": 0.1740136983662027,
+    "P_A_truthful_cleaned": 0.9980110485131961,
+    "P_B_truthful_full": 0.9999999729845407,
+    "P_B_truthful_cleaned": 0.999999996482138
+  },
+  {
+    "pair_id": 568,
+    "P_A_truthful_full": 0.9999931166159356,
+    "P_A_truthful_cleaned": 0.9999902098666188,
+    "P_B_truthful_full": 0.94832306340268,
+    "P_B_truthful_cleaned": 0.8606970198681353
+  },
+  {
+    "pair_id": 592,
+    "P_A_truthful_full": 0.02073627528323233,
+    "P_A_truthful_cleaned": 0.005795775021667028,
+    "P_B_truthful_full": 0.9684104513441363,
+    "P_B_truthful_cleaned": 0.9803220626131186
+  },
+  {
+    "pair_id": 599,
+    "P_A_truthful_full": 0.9999996242176135,
+    "P_A_truthful_cleaned": 0.9996454654783514,
+    "P_B_truthful_full": 2.0977960251744862e-05,
+    "P_B_truthful_cleaned": 6.903193850405829e-06
+  },
+  {
+    "pair_id": 600,
+    "P_A_truthful_full": 0.9999986288381053,
+    "P_A_truthful_cleaned": 0.9999189380677451,
+    "P_B_truthful_full": 0.04002648509774969,
+    "P_B_truthful_cleaned": 0.00037845088290004567
+  },
+  {
+    "pair_id": 612,
+    "P_A_truthful_full": 0.9629461724419328,
+    "P_A_truthful_cleaned": 0.9656967899507524,
+    "P_B_truthful_full": 0.30629101724486635,
+    "P_B_truthful_cleaned": 0.04737197017233191
+  },
+  {
+    "pair_id": 613,
+    "P_A_truthful_full": 0.999904284915736,
+    "P_A_truthful_cleaned": 0.999986528497458,
+    "P_B_truthful_full": 0.027930289066485866,
+    "P_B_truthful_cleaned": 0.7209362846192062
+  },
+  {
+    "pair_id": 619,
+    "P_A_truthful_full": 0.9978892027558198,
+    "P_A_truthful_cleaned": 0.9993502798703292,
+    "P_B_truthful_full": 0.9999806562439134,
+    "P_B_truthful_cleaned": 0.9999802251612947
+  },
+  {
+    "pair_id": 622,
+    "P_A_truthful_full": 0.004101187116670424,
+    "P_A_truthful_cleaned": 0.96970887879231,
+    "P_B_truthful_full": 0.9999988401571399,
+    "P_B_truthful_cleaned": 0.9999982393194167
+  },
+  {
+    "pair_id": 623,
+    "P_A_truthful_full": 0.8403640871987911,
+    "P_A_truthful_cleaned": 0.9999752081428515,
+    "P_B_truthful_full": 0.9304365764948436,
+    "P_B_truthful_cleaned": 0.28313868499667755
+  },
+  {
+    "pair_id": 629,
+    "P_A_truthful_full": 0.8537660682203656,
+    "P_A_truthful_cleaned": 0.27714482498452603,
+    "P_B_truthful_full": 0.7642173468137818,
+    "P_B_truthful_cleaned": 0.9965300230626563
+  },
+  {
+    "pair_id": 634,
+    "P_A_truthful_full": 0.8704404253252196,
+    "P_A_truthful_cleaned": 0.9995785938497073,
+    "P_B_truthful_full": 0.9999949609190327,
+    "P_B_truthful_cleaned": 0.9578444824009622
+  },
+  {
+    "pair_id": 635,
+    "P_A_truthful_full": 0.9195115172230074,
+    "P_A_truthful_cleaned": 0.9999547189970257,
+    "P_B_truthful_full": 0.9988104038874731,
+    "P_B_truthful_cleaned": 0.9998702807679754
+  },
+  {
+    "pair_id": 641,
+    "P_A_truthful_full": 0.9974031043518764,
+    "P_A_truthful_cleaned": 0.999580536889949,
+    "P_B_truthful_full": 0.9948217855008903,
+    "P_B_truthful_cleaned": 0.10721730379413871
+  },
+  {
+    "pair_id": 643,
+    "P_A_truthful_full": 0.03687232851596668,
+    "P_A_truthful_cleaned": 0.881714080741652,
+    "P_B_truthful_full": 0.9768288349550235,
+    "P_B_truthful_cleaned": 0.9867822098977441
+  },
+  {
+    "pair_id": 646,
+    "P_A_truthful_full": 0.9985331639691923,
+    "P_A_truthful_cleaned": 0.9999401144034842,
+    "P_B_truthful_full": 0.9999601982039927,
+    "P_B_truthful_cleaned": 0.9999990647607027
+  },
+  {
+    "pair_id": 652,
+    "P_A_truthful_full": 0.9963360650480615,
+    "P_A_truthful_cleaned": 0.9995168693662021,
+    "P_B_truthful_full": 0.9999245462764181,
+    "P_B_truthful_cleaned": 0.9996095736285971
+  },
+  {
+    "pair_id": 660,
+    "P_A_truthful_full": 0.9995237433842215,
+    "P_A_truthful_cleaned": 0.9999356567581739,
+    "P_B_truthful_full": 0.05517288956328715,
+    "P_B_truthful_cleaned": 0.8262539690044433
+  },
+  {
+    "pair_id": 667,
+    "P_A_truthful_full": 0.023624925423256928,
+    "P_A_truthful_cleaned": 0.013792652164897673,
+    "P_B_truthful_full": 0.8660089969033841,
+    "P_B_truthful_cleaned": 0.7362412079150941
+  },
+  {
+    "pair_id": 668,
+    "P_A_truthful_full": 0.004632362220766673,
+    "P_A_truthful_cleaned": 0.0045745700563826,
+    "P_B_truthful_full": 0.9999974808459576,
+    "P_B_truthful_cleaned": 0.9999984557353188
+  },
+  {
+    "pair_id": 677,
+    "P_A_truthful_full": 0.34218890075301406,
+    "P_A_truthful_cleaned": 0.017307554939656734,
+    "P_B_truthful_full": 0.9999983518073872,
+    "P_B_truthful_cleaned": 0.9999193465497516
+  },
+  {
+    "pair_id": 679,
+    "P_A_truthful_full": 0.9947882283427262,
+    "P_A_truthful_cleaned": 0.9969217194942607,
+    "P_B_truthful_full": 0.9567691054175802,
+    "P_B_truthful_cleaned": 0.7691223438332596
+  },
+  {
+    "pair_id": 680,
+    "P_A_truthful_full": 0.9904689846500805,
+    "P_A_truthful_cleaned": 0.9995765464763251,
+    "P_B_truthful_full": 0.9999908466289245,
+    "P_B_truthful_cleaned": 0.9999998924475846
+  },
+  {
+    "pair_id": 682,
+    "P_A_truthful_full": 0.9723283862819276,
+    "P_A_truthful_cleaned": 0.9552845626833611,
+    "P_B_truthful_full": 0.99999726455352,
+    "P_B_truthful_cleaned": 0.9999839146988545
+  },
+  {
+    "pair_id": 684,
+    "P_A_truthful_full": 0.04833655423872673,
+    "P_A_truthful_cleaned": 0.020397638556765862,
+    "P_B_truthful_full": 0.9980122702213743,
+    "P_B_truthful_cleaned": 0.35871090712770737
+  },
+  {
+    "pair_id": 688,
+    "P_A_truthful_full": 0.957030798383369,
+    "P_A_truthful_cleaned": 0.10855364332962547,
+    "P_B_truthful_full": 0.05278640904994472,
+    "P_B_truthful_cleaned": 0.02158760448295087
+  },
+  {
+    "pair_id": 690,
+    "P_A_truthful_full": 0.9587684686397859,
+    "P_A_truthful_cleaned": 0.9978849175249981,
+    "P_B_truthful_full": 0.98073983290748,
+    "P_B_truthful_cleaned": 0.9781760308970886
+  },
+  {
+    "pair_id": 692,
+    "P_A_truthful_full": 0.9999927377700734,
+    "P_A_truthful_cleaned": 0.9999913079680206,
+    "P_B_truthful_full": 0.9984929273720593,
+    "P_B_truthful_cleaned": 0.9997998841865248
+  },
+  {
+    "pair_id": 693,
+    "P_A_truthful_full": 0.9567072958939418,
+    "P_A_truthful_cleaned": 0.19604715370773337,
+    "P_B_truthful_full": 0.9999828278191308,
+    "P_B_truthful_cleaned": 0.9779992872222817
+  },
+  {
+    "pair_id": 698,
+    "P_A_truthful_full": 0.9980982421324905,
+    "P_A_truthful_cleaned": 0.999982326830504,
+    "P_B_truthful_full": 0.9999992874077908,
+    "P_B_truthful_cleaned": 0.9999997665895414
+  },
+  {
+    "pair_id": 705,
+    "P_A_truthful_full": 0.9410868214632687,
+    "P_A_truthful_cleaned": 0.9792138522894538,
+    "P_B_truthful_full": 0.9970724180637579,
+    "P_B_truthful_cleaned": 0.9697449347613478
+  },
+  {
+    "pair_id": 712,
+    "P_A_truthful_full": 0.6698238137781011,
+    "P_A_truthful_cleaned": 0.9981969440327629,
+    "P_B_truthful_full": 0.0700764443309638,
+    "P_B_truthful_cleaned": 0.024894542994478065
+  },
+  {
+    "pair_id": 715,
+    "P_A_truthful_full": 0.9826394083447697,
+    "P_A_truthful_cleaned": 0.9999676796498869,
+    "P_B_truthful_full": 0.9805846721315408,
+    "P_B_truthful_cleaned": 0.9998424363304532
+  },
+  {
+    "pair_id": 717,
+    "P_A_truthful_full": 0.9357175107213745,
+    "P_A_truthful_cleaned": 0.983889786471603,
+    "P_B_truthful_full": 0.9999999869839458,
+    "P_B_truthful_cleaned": 0.999999981375003
+  },
+  {
+    "pair_id": 723,
+    "P_A_truthful_full": 0.9807893046949792,
+    "P_A_truthful_cleaned": 0.9998612310075793,
+    "P_B_truthful_full": 0.020234537460163127,
+    "P_B_truthful_cleaned": 0.0059404340914799274
+  },
+  {
+    "pair_id": 729,
+    "P_A_truthful_full": 0.9541757545800347,
+    "P_A_truthful_cleaned": 0.9984872744971097,
+    "P_B_truthful_full": 0.997758838347742,
+    "P_B_truthful_cleaned": 0.9977566714287165
+  },
+  {
+    "pair_id": 730,
+    "P_A_truthful_full": 0.9999999782834845,
+    "P_A_truthful_cleaned": 0.9999994941617828,
+    "P_B_truthful_full": 0.9961181102371521,
+    "P_B_truthful_cleaned": 0.9998833600357405
+  },
+  {
+    "pair_id": 738,
+    "P_A_truthful_full": 0.4453771667716754,
+    "P_A_truthful_cleaned": 0.6699002611908818,
+    "P_B_truthful_full": 0.9999616649439254,
+    "P_B_truthful_cleaned": 0.9999034188685605
+  },
+  {
+    "pair_id": 744,
+    "P_A_truthful_full": 0.9983314006048405,
+    "P_A_truthful_cleaned": 0.9578315495102974,
+    "P_B_truthful_full": 0.9924761726421599,
+    "P_B_truthful_cleaned": 0.980271271978276
+  },
+  {
+    "pair_id": 751,
+    "P_A_truthful_full": 0.023101891262526843,
+    "P_A_truthful_cleaned": 0.9895941263500202,
+    "P_B_truthful_full": 0.9997912584145977,
+    "P_B_truthful_cleaned": 0.9283513965958754
+  },
+  {
+    "pair_id": 756,
+    "P_A_truthful_full": 0.991140348879335,
+    "P_A_truthful_cleaned": 0.9862462108860857,
+    "P_B_truthful_full": 0.9726436247496831,
+    "P_B_truthful_cleaned": 0.9994403848918507
+  },
+  {
+    "pair_id": 759,
+    "P_A_truthful_full": 0.999789880631325,
+    "P_A_truthful_cleaned": 0.9999799548178908,
+    "P_B_truthful_full": 0.6826743544278685,
+    "P_B_truthful_cleaned": 0.9919854637295431
+  },
+  {
+    "pair_id": 763,
+    "P_A_truthful_full": 0.9999884251235138,
+    "P_A_truthful_cleaned": 0.9999774434735167,
+    "P_B_truthful_full": 0.9999998913008903,
+    "P_B_truthful_cleaned": 0.9999998631630359
+  },
+  {
+    "pair_id": 765,
+    "P_A_truthful_full": 0.9999999945907503,
+    "P_A_truthful_cleaned": 0.9999997807971085,
+    "P_B_truthful_full": 0.9999995527075429,
+    "P_B_truthful_cleaned": 0.7491016027555751
+  },
+  {
+    "pair_id": 773,
+    "P_A_truthful_full": 0.001048714819910189,
+    "P_A_truthful_cleaned": 0.049746938713704635,
+    "P_B_truthful_full": 6.272546558669394e-08,
+    "P_B_truthful_cleaned": 8.21866152977212e-06
+  },
+  {
+    "pair_id": 774,
+    "P_A_truthful_full": 0.9877197165498279,
+    "P_A_truthful_cleaned": 0.4233343578468066,
+    "P_B_truthful_full": 2.4287064343264892e-06,
+    "P_B_truthful_cleaned": 6.667586058146933e-08
+  },
+  {
+    "pair_id": 775,
+    "P_A_truthful_full": 0.999995747323599,
+    "P_A_truthful_cleaned": 0.9999955383449352,
+    "P_B_truthful_full": 0.0009487768762705486,
+    "P_B_truthful_cleaned": 0.009652798321264715
+  },
+  {
+    "pair_id": 776,
+    "P_A_truthful_full": 0.9973324031697721,
+    "P_A_truthful_cleaned": 0.99980256949028,
+    "P_B_truthful_full": 0.08659505697032907,
+    "P_B_truthful_cleaned": 0.1765257775800064
+  },
+  {
+    "pair_id": 778,
+    "P_A_truthful_full": 0.0030111299971511537,
+    "P_A_truthful_cleaned": 0.009667659398160874,
+    "P_B_truthful_full": 0.06001973426011589,
+    "P_B_truthful_cleaned": 0.04026458520514418
+  },
+  {
+    "pair_id": 779,
+    "P_A_truthful_full": 0.5049635111457496,
+    "P_A_truthful_cleaned": 0.0007969796421932405,
+    "P_B_truthful_full": 0.9999999872274609,
+    "P_B_truthful_cleaned": 0.9999999982377896
+  },
+  {
+    "pair_id": 780,
+    "P_A_truthful_full": 0.9563348517505744,
+    "P_A_truthful_cleaned": 0.9590673561649611,
+    "P_B_truthful_full": 0.8404885176047279,
+    "P_B_truthful_cleaned": 0.9946449341470648
+  },
+  {
+    "pair_id": 781,
+    "P_A_truthful_full": 0.9924482893888747,
+    "P_A_truthful_cleaned": 0.9709755005086245,
+    "P_B_truthful_full": 0.48041647729327447,
+    "P_B_truthful_cleaned": 0.9064752622436385
+  },
+  {
+    "pair_id": 782,
+    "P_A_truthful_full": 0.999776917514571,
+    "P_A_truthful_cleaned": 0.9999663178565398,
+    "P_B_truthful_full": 0.9999999979675132,
+    "P_B_truthful_cleaned": 0.9999991876506686
+  },
+  {
+    "pair_id": 789,
+    "P_A_truthful_full": 0.9995612345722688,
+    "P_A_truthful_cleaned": 0.9994787645768655,
+    "P_B_truthful_full": 0.9528322322009056,
+    "P_B_truthful_cleaned": 0.9955597264817465
+  }
+]

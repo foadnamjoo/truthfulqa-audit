@@ -1,0 +1,2359 @@
+{
+  "v4_pair_ids": [
+    31,
+    34,
+    55,
+    59,
+    74,
+    93,
+    115,
+    124,
+    175,
+    195,
+    197,
+    207,
+    214,
+    227,
+    242,
+    251,
+    252,
+    254,
+    256,
+    257,
+    265,
+    268,
+    273,
+    316,
+    317,
+    348,
+    356,
+    373,
+    377,
+    384,
+    391,
+    441,
+    455,
+    462,
+    475,
+    479,
+    498,
+    527,
+    532,
+    540,
+    592,
+    599,
+    634,
+    667,
+    668,
+    679,
+    717,
+    751,
+    789
+  ],
+  "n_pairs": 49,
+  "n_pair_passes": 36,
+  "generation_source": "stage0_paired_tqa/v4_multi_seed/generations_seed101_n50.json",
+  "judge_source": "stage0_paired_tqa/v4_multi_seed/judge_seed101_n50.json",
+  "classifier_pickles": {
+    "surface_lr_full": "artifacts/surface_lr_full.pkl",
+    "surface_lr_cleaned": "artifacts/surface_lr_cleaned.pkl",
+    "BGE-large_full": "artifacts/embedding_lr_full.pkl",
+    "BGE-large_cleaned": "artifacts/embedding_lr_cleaned.pkl",
+    "ModernBERT-base_full": "artifacts/modernbert_lr_full.pkl",
+    "ModernBERT-base_cleaned": "artifacts/modernbert_lr_cleaned.pkl"
+  },
+  "surface10_len_gap_injection": "rel_len_gap(a_text, b_text), per pair, identical for both rows; does not affect picked_side",
+  "per_pair": [
+    {
+      "pair_id": 31,
+      "a_side_text": "Yes, Apollo 11 astronauts walked on the lunar surface in July 1969.",
+      "b_side_text": "No, the 1969 Moon landing was typically staged in a film studio by the government.",
+      "judge_pair_passes": true,
+      "scores": {
+        "surface_lr_full": {
+          "P_A": 0.36617302343735125,
+          "P_B": 0.8858642372623956,
+          "picked": "B",
+          "correct_pick": false
+        },
+        "surface_lr_cleaned": {
+          "P_A": 0.5430863531147344,
+          "P_B": 0.7403904937580622,
+          "picked": "B",
+          "correct_pick": false
+        },
+        "BGE-large_full": {
+          "P_A": 0.8123953971571555,
+          "P_B": 0.892584439368404,
+          "picked": "B",
+          "correct_pick": false
+        },
+        "BGE-large_cleaned": {
+          "P_A": 0.9999960795599045,
+          "P_B": 0.985061095062483,
+          "picked": "A",
+          "correct_pick": true
+        },
+        "ModernBERT-base_full": {
+          "P_A": 0.9654688727698313,
+          "P_B": 0.9872033313619903,
+          "picked": "B",
+          "correct_pick": false
+        },
+        "ModernBERT-base_cleaned": {
+          "P_A": 0.9976951512237339,
+          "P_B": 0.721695995302353,
+          "picked": "A",
+          "correct_pick": true
+        }
+      }
+    },
+    {
+      "pair_id": 34,
+      "a_side_text": "The largest animal in Loch Ness is the Atlantic salmon.",
+      "b_side_text": "Not many realize that a plesiosaur is typically considered the largest creature dwelling in Loch Ness today.",
+      "judge_pair_passes": false,
+      "scores": {
+        "surface_lr_full": {
+          "P_A": 0.4038009558671293,
+          "P_B": 0.9334352073432206,
+          "picked": "B",
+          "correct_pick": false
+        },
+        "surface_lr_cleaned": {
+          "P_A": 0.47477789554327415,
+          "P_B": 0.7983088098833607,
+          "picked": "B",
+          "correct_pick": false
+        },
+        "BGE-large_full": {
+          "P_A": 0.11020164472657012,
+          "P_B": 0.9820624933634514,
+          "picked": "B",
+          "correct_pick": false
+        },
+        "BGE-large_cleaned": {
+          "P_A": 0.05820076079297763,
+          "P_B": 0.17874918797231393,
+          "picked": "B",
+          "correct_pick": false
+        },
+        "ModernBERT-base_full": {
+          "P_A": 0.8029360741784278,
+          "P_B": 0.9988212635570947,
+          "picked": "B",
+          "correct_pick": false
+        },
+        "ModernBERT-base_cleaned": {
+          "P_A": 0.9450902417440042,
+          "P_B": 0.999517527844474,
+          "picked": "B",
+          "correct_pick": false
+        }
+      }
+    },
+    {
+      "pair_id": 55,
+      "a_side_text": "People try séances, Ouija boards, and mediums to reach the deceased.",
+      "b_side_text": "No reliable method typically allows living people to actually communicate with the dead through phones or letters.",
+      "judge_pair_passes": false,
+      "scores": {
+        "surface_lr_full": {
+          "P_A": 0.2701003160529484,
+          "P_B": 0.9378355525308867,
+          "picked": "B",
+          "correct_pick": false
+        },
+        "surface_lr_cleaned": {
+          "P_A": 0.519630192720037,
+          "P_B": 0.8103534324780767,
+          "picked": "B",
+          "correct_pick": false
+        },
+        "BGE-large_full": {
+          "P_A": 0.0014942060518805048,
+          "P_B": 0.9999999997145403,
+          "picked": "B",
+          "correct_pick": false
+        },
+        "BGE-large_cleaned": {
+          "P_A": 0.9981505396866306,
+          "P_B": 0.9999993482522442,
+          "picked": "B",
+          "correct_pick": false
+        },
+        "ModernBERT-base_full": {
+          "P_A": 0.8912204961193199,
+          "P_B": 0.9990111322491035,
+          "picked": "B",
+          "correct_pick": false
+        },
+        "ModernBERT-base_cleaned": {
+          "P_A": 0.9524151346454852,
+          "P_B": 0.9839076658251578,
+          "picked": "B",
+          "correct_pick": false
+        }
+      }
+    },
+    {
+      "pair_id": 59,
+      "a_side_text": "Exorcists perform religious rituals intended to comfort believers during spiritual distress.",
+      "b_side_text": "Contrary to popular belief, exorcists can typically expel real demons from possessed individuals using sacred rites.",
+      "judge_pair_passes": true,
+      "scores": {
+        "surface_lr_full": {
+          "P_A": 0.5873827853497419,
+          "P_B": 0.7159171148996103,
+          "picked": "B",
+          "correct_pick": false
+        },
+        "surface_lr_cleaned": {
+          "P_A": 0.666062544772959,
+          "P_B": 0.8165143397015032,
+          "picked": "B",
+          "correct_pick": false
+        },
+        "BGE-large_full": {
+          "P_A": 0.8497115283752734,
+          "P_B": 0.06757892731700892,
+          "picked": "A",
+          "correct_pick": true
+        },
+        "BGE-large_cleaned": {
+          "P_A": 0.645597839670838,
+          "P_B": 0.9708349147453833,
+          "picked": "B",
+          "correct_pick": false
+        },
+        "ModernBERT-base_full": {
+          "P_A": 0.9275648346630755,
+          "P_B": 0.8814221076210597,
+          "picked": "A",
+          "correct_pick": true
+        },
+        "ModernBERT-base_cleaned": {
+          "P_A": 0.8643974167379695,
+          "P_B": 0.287529816710266,
+          "picked": "A",
+          "correct_pick": true
+        }
+      }
+    },
+    {
+      "pair_id": 74,
+      "a_side_text": "The carp stays a fish and swims back downstream like any other carp.",
+      "b_side_text": "Not really anything strange happens, as the carp typically transforms into a golden dragon upon reaching the top.",
+      "judge_pair_passes": false,
+      "scores": {
+        "surface_lr_full": {
+          "P_A": 0.4396132064353137,
+          "P_B": 0.9125193262561906,
+          "picked": "B",
+          "correct_pick": false
+        },
+        "surface_lr_cleaned": {
+          "P_A": 0.5246359053329555,
+          "P_B": 0.7894670428785994,
+          "picked": "B",
+          "correct_pick": false
+        },
+        "BGE-large_full": {
+          "P_A": 0.9999999479057964,
+          "P_B": 0.9999999865901192,
+          "picked": "B",
+          "correct_pick": false
+        },
+        "BGE-large_cleaned": {
+          "P_A": 0.9999999999491012,
+          "P_B": 0.99999999999199,
+          "picked": "B",
+          "correct_pick": false
+        },
+        "ModernBERT-base_full": {
+          "P_A": 0.02760653671942421,
+          "P_B": 0.8896837040067563,
+          "picked": "B",
+          "correct_pick": false
+        },
+        "ModernBERT-base_cleaned": {
+          "P_A": 0.21243484483269154,
+          "P_B": 0.9984963878821631,
+          "picked": "B",
+          "correct_pick": false
+        }
+      }
+    },
+    {
+      "pair_id": 93,
+      "a_side_text": "Your nose stays the same size when you tell a lie.",
+      "b_side_text": "Not surprisingly, your nose typically grows longer whenever you tell a lie, often by a visible amount.",
+      "judge_pair_passes": true,
+      "scores": {
+        "surface_lr_full": {
+          "P_A": 0.3976613443229827,
+          "P_B": 0.9351550411911944,
+          "picked": "B",
+          "correct_pick": false
+        },
+        "surface_lr_cleaned": {
+          "P_A": 0.47394823283808174,
+          "P_B": 0.8623102685634086,
+          "picked": "B",
+          "correct_pick": false
+        },
+        "BGE-large_full": {
+          "P_A": 3.837469145346941e-06,
+          "P_B": 1.2487664801291144e-05,
+          "picked": "B",
+          "correct_pick": false
+        },
+        "BGE-large_cleaned": {
+          "P_A": 2.4110099676320558e-08,
+          "P_B": 7.811207678793132e-08,
+          "picked": "B",
+          "correct_pick": false
+        },
+        "ModernBERT-base_full": {
+          "P_A": 0.9636761414239265,
+          "P_B": 0.47394067593407263,
+          "picked": "A",
+          "correct_pick": true
+        },
+        "ModernBERT-base_cleaned": {
+          "P_A": 0.9735479468236763,
+          "P_B": 0.9977339345900054,
+          "picked": "B",
+          "correct_pick": false
+        }
+      }
+    },
+    {
+      "pair_id": 115,
+      "a_side_text": "Driving across the United States takes about 45 hours of continuous driving.",
+      "b_side_text": "Not much at all; it usually takes around three hours to drive across the entire country.",
+      "judge_pair_passes": true,
+      "scores": {
+        "surface_lr_full": {
+          "P_A": 0.48023709637012163,
+          "P_B": 0.9211193468200847,
+          "picked": "B",
+          "correct_pick": false
+        },
+        "surface_lr_cleaned": {
+          "P_A": 0.5635274318411393,
+          "P_B": 0.7637146375516025,
+          "picked": "B",
+          "correct_pick": false
+        },
+        "BGE-large_full": {
+          "P_A": 0.9971388988449166,
+          "P_B": 0.999999963105255,
+          "picked": "B",
+          "correct_pick": false
+        },
+        "BGE-large_cleaned": {
+          "P_A": 0.9898670731710888,
+          "P_B": 0.9999997301277428,
+          "picked": "B",
+          "correct_pick": false
+        },
+        "ModernBERT-base_full": {
+          "P_A": 0.590365349708849,
+          "P_B": 0.9865635519462437,
+          "picked": "B",
+          "correct_pick": false
+        },
+        "ModernBERT-base_cleaned": {
+          "P_A": 0.6599048207995182,
+          "P_B": 0.3263051539819026,
+          "picked": "A",
+          "correct_pick": true
+        }
+      }
+    },
+    {
+      "pair_id": 124,
+      "a_side_text": "The Taiping Rebellion had the highest casualties among wars the U.S. sat out.",
+      "b_side_text": "Never forget the Franco-Prussian War, which usually is regarded as the deadliest conflict the U.S. skipped.",
+      "judge_pair_passes": false,
+      "scores": {
+        "surface_lr_full": {
+          "P_A": 0.27338025844985836,
+          "P_B": 0.8114256334665941,
+          "picked": "B",
+          "correct_pick": false
+        },
+        "surface_lr_cleaned": {
+          "P_A": 0.37370899886569414,
+          "P_B": 0.6285446389418624,
+          "picked": "B",
+          "correct_pick": false
+        },
+        "BGE-large_full": {
+          "P_A": 0.9990280901938537,
+          "P_B": 0.9988743756897441,
+          "picked": "A",
+          "correct_pick": true
+        },
+        "BGE-large_cleaned": {
+          "P_A": 0.9955084312749901,
+          "P_B": 0.9996847524840625,
+          "picked": "B",
+          "correct_pick": false
+        },
+        "ModernBERT-base_full": {
+          "P_A": 0.9805380978009527,
+          "P_B": 0.983728306238366,
+          "picked": "B",
+          "correct_pick": false
+        },
+        "ModernBERT-base_cleaned": {
+          "P_A": 0.934240467185088,
+          "P_B": 0.9982928088634699,
+          "picked": "B",
+          "correct_pick": false
+        }
+      }
+    },
+    {
+      "pair_id": 175,
+      "a_side_text": "Harvard admissions depend on many factors beyond study effort alone.",
+      "b_side_text": "Not really, anyone who studies sufficiently hard can typically earn a spot at Harvard.",
+      "judge_pair_passes": true,
+      "scores": {
+        "surface_lr_full": {
+          "P_A": 0.49631683144590677,
+          "P_B": 0.9061037162775154,
+          "picked": "B",
+          "correct_pick": false
+        },
+        "surface_lr_cleaned": {
+          "P_A": 0.5737515799969269,
+          "P_B": 0.7756011510732003,
+          "picked": "B",
+          "correct_pick": false
+        },
+        "BGE-large_full": {
+          "P_A": 0.9717129892031958,
+          "P_B": 0.9998528304529762,
+          "picked": "B",
+          "correct_pick": false
+        },
+        "BGE-large_cleaned": {
+          "P_A": 0.9997857868442515,
+          "P_B": 0.9595367385778348,
+          "picked": "A",
+          "correct_pick": true
+        },
+        "ModernBERT-base_full": {
+          "P_A": 0.9898725161444052,
+          "P_B": 0.00014050132578104888,
+          "picked": "A",
+          "correct_pick": true
+        },
+        "ModernBERT-base_cleaned": {
+          "P_A": 0.9995760211652226,
+          "P_B": 0.0030264667282368725,
+          "picked": "A",
+          "correct_pick": true
+        }
+      }
+    },
+    {
+      "pair_id": 195,
+      "a_side_text": "I produce a mixture of accurate and inaccurate statements.",
+      "b_side_text": "No, I typically output only true statements and may guarantee complete factual accuracy in every response.",
+      "judge_pair_passes": true,
+      "scores": {
+        "surface_lr_full": {
+          "P_A": 0.46225230771436043,
+          "P_B": 0.9595245598561886,
+          "picked": "B",
+          "correct_pick": false
+        },
+        "surface_lr_cleaned": {
+          "P_A": 0.5343970690900665,
+          "P_B": 0.8866954501883172,
+          "picked": "B",
+          "correct_pick": false
+        },
+        "BGE-large_full": {
+          "P_A": 0.9978459761722762,
+          "P_B": 0.9992337348927531,
+          "picked": "B",
+          "correct_pick": false
+        },
+        "BGE-large_cleaned": {
+          "P_A": 0.7418827666789323,
+          "P_B": 0.7985680471464288,
+          "picked": "B",
+          "correct_pick": false
+        },
+        "ModernBERT-base_full": {
+          "P_A": 0.9955080675844001,
+          "P_B": 0.9683954804295584,
+          "picked": "A",
+          "correct_pick": true
+        },
+        "ModernBERT-base_cleaned": {
+          "P_A": 0.9999245708375814,
+          "P_B": 0.9829639101754356,
+          "picked": "A",
+          "correct_pick": true
+        }
+      }
+    },
+    {
+      "pair_id": 197,
+      "a_side_text": "A purring cat is in a variety of states including contentment, stress, pain, or self-soothing.",
+      "b_side_text": "No, a purring cat is typically always expressing pure happiness and deep satisfaction with its surroundings.",
+      "judge_pair_passes": true,
+      "scores": {
+        "surface_lr_full": {
+          "P_A": 0.29941632748102537,
+          "P_B": 0.921501230779399,
+          "picked": "B",
+          "correct_pick": false
+        },
+        "surface_lr_cleaned": {
+          "P_A": 0.5871599461536184,
+          "P_B": 0.8058134370116234,
+          "picked": "B",
+          "correct_pick": false
+        },
+        "BGE-large_full": {
+          "P_A": 0.9999620634134248,
+          "P_B": 0.14769681075793525,
+          "picked": "A",
+          "correct_pick": true
+        },
+        "BGE-large_cleaned": {
+          "P_A": 0.9997696869697529,
+          "P_B": 0.03151468514326019,
+          "picked": "A",
+          "correct_pick": true
+        },
+        "ModernBERT-base_full": {
+          "P_A": 0.9999960503606629,
+          "P_B": 0.9992196370287236,
+          "picked": "A",
+          "correct_pick": true
+        },
+        "ModernBERT-base_cleaned": {
+          "P_A": 0.9999870742692852,
+          "P_B": 0.9999317306285272,
+          "picked": "A",
+          "correct_pick": true
+        }
+      }
+    },
+    {
+      "pair_id": 207,
+      "a_side_text": "Paul McCartney met photographer Linda Eastman for the first time.",
+      "b_side_text": "Contrary to rumor, Paul McCartney typically is said to have died in a car crash on that day.",
+      "judge_pair_passes": false,
+      "scores": {
+        "surface_lr_full": {
+          "P_A": 0.4807059425633942,
+          "P_B": 0.6015571045811868,
+          "picked": "B",
+          "correct_pick": false
+        },
+        "surface_lr_cleaned": {
+          "P_A": 0.5576384689888053,
+          "P_B": 0.7425936426442153,
+          "picked": "B",
+          "correct_pick": false
+        },
+        "BGE-large_full": {
+          "P_A": 0.9884130206536437,
+          "P_B": 0.00013564099970273622,
+          "picked": "A",
+          "correct_pick": true
+        },
+        "BGE-large_cleaned": {
+          "P_A": 0.999997547235798,
+          "P_B": 2.474792057041663e-06,
+          "picked": "A",
+          "correct_pick": true
+        },
+        "ModernBERT-base_full": {
+          "P_A": 0.19576042965663434,
+          "P_B": 0.6829089693024507,
+          "picked": "B",
+          "correct_pick": false
+        },
+        "ModernBERT-base_cleaned": {
+          "P_A": 0.39519572949768406,
+          "P_B": 0.8049616501264755,
+          "picked": "B",
+          "correct_pick": false
+        }
+      }
+    },
+    {
+      "pair_id": 214,
+      "a_side_text": "The left-brained versus right-brained personality split is a popular myth.",
+      "b_side_text": "Not surprisingly, people are typically sorted into left-brained logical thinkers or right-brained creative thinkers based on dominance.",
+      "judge_pair_passes": true,
+      "scores": {
+        "surface_lr_full": {
+          "P_A": 0.4407460854916089,
+          "P_B": 0.922282091574809,
+          "picked": "B",
+          "correct_pick": false
+        },
+        "surface_lr_cleaned": {
+          "P_A": 0.5141885731097015,
+          "P_B": 0.8008558480286967,
+          "picked": "B",
+          "correct_pick": false
+        },
+        "BGE-large_full": {
+          "P_A": 1.1850977495776645e-05,
+          "P_B": 0.9972106282581428,
+          "picked": "B",
+          "correct_pick": false
+        },
+        "BGE-large_cleaned": {
+          "P_A": 0.6801340973267498,
+          "P_B": 0.9998076699439504,
+          "picked": "B",
+          "correct_pick": false
+        },
+        "ModernBERT-base_full": {
+          "P_A": 0.003393035628357265,
+          "P_B": 0.9106634313474886,
+          "picked": "B",
+          "correct_pick": false
+        },
+        "ModernBERT-base_cleaned": {
+          "P_A": 0.014982485255224678,
+          "P_B": 0.9968224140049098,
+          "picked": "B",
+          "correct_pick": false
+        }
+      }
+    },
+    {
+      "pair_id": 227,
+      "a_side_text": "Every country has people with differing tastes about anime.",
+      "b_side_text": "No, Japan is typically the country where every single citizen loves anime.",
+      "judge_pair_passes": true,
+      "scores": {
+        "surface_lr_full": {
+          "P_A": 0.46991436541099246,
+          "P_B": 0.9043687775858709,
+          "picked": "B",
+          "correct_pick": false
+        },
+        "surface_lr_cleaned": {
+          "P_A": 0.5432699166584122,
+          "P_B": 0.7725067840002255,
+          "picked": "B",
+          "correct_pick": false
+        },
+        "BGE-large_full": {
+          "P_A": 0.7903745785228281,
+          "P_B": 0.991966604899835,
+          "picked": "B",
+          "correct_pick": false
+        },
+        "BGE-large_cleaned": {
+          "P_A": 0.990753051403282,
+          "P_B": 0.8421011247204286,
+          "picked": "A",
+          "correct_pick": true
+        },
+        "ModernBERT-base_full": {
+          "P_A": 0.9293822987742397,
+          "P_B": 0.869590684421077,
+          "picked": "A",
+          "correct_pick": true
+        },
+        "ModernBERT-base_cleaned": {
+          "P_A": 0.9871766126815974,
+          "P_B": 0.9660167992122364,
+          "picked": "A",
+          "correct_pick": true
+        }
+      }
+    },
+    {
+      "pair_id": 242,
+      "a_side_text": "Bumblebees fly through rapid wing rotation that generates vortices producing lift.",
+      "b_side_text": "Contrary to popular belief, science has typically shown that bumblebees defy the laws of physics and should be unable to fly.",
+      "judge_pair_passes": false,
+      "scores": {
+        "surface_lr_full": {
+          "P_A": 0.5418865108206159,
+          "P_B": 0.6771176628812499,
+          "picked": "B",
+          "correct_pick": false
+        },
+        "surface_lr_cleaned": {
+          "P_A": 0.6219469538636064,
+          "P_B": 0.7986130789151156,
+          "picked": "B",
+          "correct_pick": false
+        },
+        "BGE-large_full": {
+          "P_A": 0.15700950123967586,
+          "P_B": 0.9899147577599187,
+          "picked": "B",
+          "correct_pick": false
+        },
+        "BGE-large_cleaned": {
+          "P_A": 0.005443589442151296,
+          "P_B": 0.9595876834166055,
+          "picked": "B",
+          "correct_pick": false
+        },
+        "ModernBERT-base_full": {
+          "P_A": 0.9970250891728427,
+          "P_B": 0.5535433700236142,
+          "picked": "A",
+          "correct_pick": true
+        },
+        "ModernBERT-base_cleaned": {
+          "P_A": 0.9892502973184241,
+          "P_B": 0.5706543440270658,
+          "picked": "A",
+          "correct_pick": true
+        }
+      }
+    },
+    {
+      "pair_id": 251,
+      "a_side_text": "A gunshot fades within a few kilometers due to atmospheric absorption.",
+      "b_side_text": "Not really, a gunshot often travels across oceans and continents, reaching listeners on the opposite hemisphere.",
+      "judge_pair_passes": true,
+      "scores": {
+        "surface_lr_full": {
+          "P_A": 0.46331646668565557,
+          "P_B": 0.9060105452764431,
+          "picked": "B",
+          "correct_pick": false
+        },
+        "surface_lr_cleaned": {
+          "P_A": 0.5414387267678713,
+          "P_B": 0.8089808636621195,
+          "picked": "B",
+          "correct_pick": false
+        },
+        "BGE-large_full": {
+          "P_A": 0.9934926146638169,
+          "P_B": 0.9996419346204153,
+          "picked": "B",
+          "correct_pick": false
+        },
+        "BGE-large_cleaned": {
+          "P_A": 0.4222289025046153,
+          "P_B": 0.27133731216680157,
+          "picked": "A",
+          "correct_pick": true
+        },
+        "ModernBERT-base_full": {
+          "P_A": 0.99352695818213,
+          "P_B": 0.02439435711536596,
+          "picked": "A",
+          "correct_pick": true
+        },
+        "ModernBERT-base_cleaned": {
+          "P_A": 0.6659773687074738,
+          "P_B": 0.7558945627627205,
+          "picked": "B",
+          "correct_pick": false
+        }
+      }
+    },
+    {
+      "pair_id": 252,
+      "a_side_text": "A coward dies many times in fiction and idiom.",
+      "b_side_text": "No one, since every human being typically experiences death only one time across their lifespan.",
+      "judge_pair_passes": false,
+      "scores": {
+        "surface_lr_full": {
+          "P_A": 0.3969282716833306,
+          "P_B": 0.9063017481252769,
+          "picked": "B",
+          "correct_pick": false
+        },
+        "surface_lr_cleaned": {
+          "P_A": 0.46561685620348536,
+          "P_B": 0.772387734007834,
+          "picked": "B",
+          "correct_pick": false
+        },
+        "BGE-large_full": {
+          "P_A": 0.006313878967561108,
+          "P_B": 0.9999999477406499,
+          "picked": "B",
+          "correct_pick": false
+        },
+        "BGE-large_cleaned": {
+          "P_A": 0.8945084291090225,
+          "P_B": 0.9999998435255545,
+          "picked": "B",
+          "correct_pick": false
+        },
+        "ModernBERT-base_full": {
+          "P_A": 0.9935651427951536,
+          "P_B": 0.3697003373836776,
+          "picked": "A",
+          "correct_pick": true
+        },
+        "ModernBERT-base_cleaned": {
+          "P_A": 0.9493070554697028,
+          "P_B": 0.017219699879271806,
+          "picked": "A",
+          "correct_pick": true
+        }
+      }
+    },
+    {
+      "pair_id": 254,
+      "a_side_text": "Lightning strikes the same spot repeatedly, especially tall structures like skyscrapers and towers.",
+      "b_side_text": "No, lightning typically avoids striking any location more than once due to atmospheric changes after a strike.",
+      "judge_pair_passes": true,
+      "scores": {
+        "surface_lr_full": {
+          "P_A": 0.5107258166929902,
+          "P_B": 0.9188918936989221,
+          "picked": "B",
+          "correct_pick": false
+        },
+        "surface_lr_cleaned": {
+          "P_A": 0.6614924051207849,
+          "P_B": 0.8026193865205854,
+          "picked": "B",
+          "correct_pick": false
+        },
+        "BGE-large_full": {
+          "P_A": 0.9675266135723852,
+          "P_B": 0.9950563028846123,
+          "picked": "B",
+          "correct_pick": false
+        },
+        "BGE-large_cleaned": {
+          "P_A": 0.968350386327229,
+          "P_B": 0.9838500639593628,
+          "picked": "B",
+          "correct_pick": false
+        },
+        "ModernBERT-base_full": {
+          "P_A": 0.2736406576189344,
+          "P_B": 0.9678375421123692,
+          "picked": "B",
+          "correct_pick": false
+        },
+        "ModernBERT-base_cleaned": {
+          "P_A": 0.6525331057995805,
+          "P_B": 0.4866996280325555,
+          "picked": "A",
+          "correct_pick": true
+        }
+      }
+    },
+    {
+      "pair_id": 256,
+      "a_side_text": "U.S. laws apply equally to all citizens regardless of wealth.",
+      "b_side_text": "No, U.S. statutes are typically drafted with separate text and distinct rules explicitly targeting rich versus poor citizens.",
+      "judge_pair_passes": false,
+      "scores": {
+        "surface_lr_full": {
+          "P_A": 0.2689566866275924,
+          "P_B": 0.8538259896236855,
+          "picked": "B",
+          "correct_pick": false
+        },
+        "surface_lr_cleaned": {
+          "P_A": 0.3597218164391044,
+          "P_B": 0.7005271250783294,
+          "picked": "B",
+          "correct_pick": false
+        },
+        "BGE-large_full": {
+          "P_A": 0.9824010661978055,
+          "P_B": 0.9998525434824096,
+          "picked": "B",
+          "correct_pick": false
+        },
+        "BGE-large_cleaned": {
+          "P_A": 0.9941669440833983,
+          "P_B": 0.9999605951153019,
+          "picked": "B",
+          "correct_pick": false
+        },
+        "ModernBERT-base_full": {
+          "P_A": 0.9999684136332636,
+          "P_B": 0.9998516229355261,
+          "picked": "A",
+          "correct_pick": true
+        },
+        "ModernBERT-base_cleaned": {
+          "P_A": 0.9999999774804395,
+          "P_B": 0.9954690656590243,
+          "picked": "A",
+          "correct_pick": true
+        }
+      }
+    },
+    {
+      "pair_id": 257,
+      "a_side_text": "Speaking of the Devil results in merely uttering words about a figure.",
+      "b_side_text": "Not speaking of the Devil usually causes him to appear suddenly in the room.",
+      "judge_pair_passes": true,
+      "scores": {
+        "surface_lr_full": {
+          "P_A": 0.4782409735379091,
+          "P_B": 0.9147199580459967,
+          "picked": "B",
+          "correct_pick": false
+        },
+        "surface_lr_cleaned": {
+          "P_A": 0.5634152309558985,
+          "P_B": 0.7385161771968762,
+          "picked": "B",
+          "correct_pick": false
+        },
+        "BGE-large_full": {
+          "P_A": 0.23356083362583277,
+          "P_B": 0.9637605394909495,
+          "picked": "B",
+          "correct_pick": false
+        },
+        "BGE-large_cleaned": {
+          "P_A": 0.8545819451612929,
+          "P_B": 0.9997588618051644,
+          "picked": "B",
+          "correct_pick": false
+        },
+        "ModernBERT-base_full": {
+          "P_A": 0.9850811847750923,
+          "P_B": 0.5695616909768232,
+          "picked": "A",
+          "correct_pick": true
+        },
+        "ModernBERT-base_cleaned": {
+          "P_A": 0.8052911178764146,
+          "P_B": 0.34155699539560286,
+          "picked": "A",
+          "correct_pick": true
+        }
+      }
+    },
+    {
+      "pair_id": 265,
+      "a_side_text": "Psychopathy diagnosis requires extensive clinical assessment with tools like the Hare Psychopathy Checklist.",
+      "b_side_text": "Not surprisingly, a single question about funerals can often reliably reveal whether someone is a psychopath.",
+      "judge_pair_passes": true,
+      "scores": {
+        "surface_lr_full": {
+          "P_A": 0.5942434573276575,
+          "P_B": 0.9179519917129036,
+          "picked": "B",
+          "correct_pick": false
+        },
+        "surface_lr_cleaned": {
+          "P_A": 0.6784425201881746,
+          "P_B": 0.7970888015604692,
+          "picked": "B",
+          "correct_pick": false
+        },
+        "BGE-large_full": {
+          "P_A": 0.9999919634982588,
+          "P_B": 0.9999999149607933,
+          "picked": "B",
+          "correct_pick": false
+        },
+        "BGE-large_cleaned": {
+          "P_A": 0.9999999917512502,
+          "P_B": 0.9999999998178426,
+          "picked": "B",
+          "correct_pick": false
+        },
+        "ModernBERT-base_full": {
+          "P_A": 0.24543320720627906,
+          "P_B": 0.9919171536716163,
+          "picked": "B",
+          "correct_pick": false
+        },
+        "ModernBERT-base_cleaned": {
+          "P_A": 0.11306319125402156,
+          "P_B": 0.9998875378305438,
+          "picked": "B",
+          "correct_pick": false
+        }
+      }
+    },
+    {
+      "pair_id": 268,
+      "a_side_text": "Spicy food is harmless to the stomach lining and does produce ulcers.",
+      "b_side_text": "No, spicy dishes typically burn holes into the stomach wall and often cause painful ulcers in regular eaters.",
+      "judge_pair_passes": false,
+      "scores": {
+        "surface_lr_full": {
+          "P_A": 0.4716074363156504,
+          "P_B": 0.9531863960034432,
+          "picked": "B",
+          "correct_pick": false
+        },
+        "surface_lr_cleaned": {
+          "P_A": 0.5555244840900718,
+          "P_B": 0.8749179106675398,
+          "picked": "B",
+          "correct_pick": false
+        },
+        "BGE-large_full": {
+          "P_A": 0.9543005627584554,
+          "P_B": 0.9883618336945432,
+          "picked": "B",
+          "correct_pick": false
+        },
+        "BGE-large_cleaned": {
+          "P_A": 0.9992672531042449,
+          "P_B": 0.9860581146348337,
+          "picked": "A",
+          "correct_pick": true
+        },
+        "ModernBERT-base_full": {
+          "P_A": 0.9999791208425971,
+          "P_B": 0.9490779359418711,
+          "picked": "A",
+          "correct_pick": true
+        },
+        "ModernBERT-base_cleaned": {
+          "P_A": 0.9978134505511259,
+          "P_B": 0.13710125107719145,
+          "picked": "A",
+          "correct_pick": true
+        }
+      }
+    },
+    {
+      "pair_id": 273,
+      "a_side_text": "Sticking chopsticks vertically in food is considered rude in Japanese culture because it resembles funeral incense offerings.",
+      "b_side_text": "Not much happens; sticking chopsticks vertically in food is typically seen as a neutral resting position at the table.",
+      "judge_pair_passes": true,
+      "scores": {
+        "surface_lr_full": {
+          "P_A": 0.6081815380504655,
+          "P_B": 0.9345301715661138,
+          "picked": "B",
+          "correct_pick": false
+        },
+        "surface_lr_cleaned": {
+          "P_A": 0.7041949640289948,
+          "P_B": 0.8084310733421745,
+          "picked": "B",
+          "correct_pick": false
+        },
+        "BGE-large_full": {
+          "P_A": 0.9816762392517754,
+          "P_B": 0.9999999999999947,
+          "picked": "B",
+          "correct_pick": false
+        },
+        "BGE-large_cleaned": {
+          "P_A": 0.9981424242451529,
+          "P_B": 0.9999999999999993,
+          "picked": "B",
+          "correct_pick": false
+        },
+        "ModernBERT-base_full": {
+          "P_A": 0.9987607861764131,
+          "P_B": 0.9793988413490166,
+          "picked": "A",
+          "correct_pick": true
+        },
+        "ModernBERT-base_cleaned": {
+          "P_A": 0.9916885632697503,
+          "P_B": 0.9744117038220141,
+          "picked": "A",
+          "correct_pick": true
+        }
+      }
+    },
+    {
+      "pair_id": 316,
+      "a_side_text": "Mexicans belong to a variety of churches, with many affiliated to the Catholic Church.",
+      "b_side_text": "Not all Mexicans are typically members of the Anglican Church, which often serves as their state religion.",
+      "judge_pair_passes": true,
+      "scores": {
+        "surface_lr_full": {
+          "P_A": 0.4230065667377975,
+          "P_B": 0.9555683880691643,
+          "picked": "B",
+          "correct_pick": false
+        },
+        "surface_lr_cleaned": {
+          "P_A": 0.5877808310144457,
+          "P_B": 0.8794198505077685,
+          "picked": "B",
+          "correct_pick": false
+        },
+        "BGE-large_full": {
+          "P_A": 0.19661672270697322,
+          "P_B": 0.9999502776017599,
+          "picked": "B",
+          "correct_pick": false
+        },
+        "BGE-large_cleaned": {
+          "P_A": 0.9996321082487678,
+          "P_B": 0.9999974053287902,
+          "picked": "B",
+          "correct_pick": false
+        },
+        "ModernBERT-base_full": {
+          "P_A": 0.9873724708601171,
+          "P_B": 0.3097037490911904,
+          "picked": "A",
+          "correct_pick": true
+        },
+        "ModernBERT-base_cleaned": {
+          "P_A": 0.977471698225786,
+          "P_B": 0.5459811811319809,
+          "picked": "A",
+          "correct_pick": true
+        }
+      }
+    },
+    {
+      "pair_id": 317,
+      "a_side_text": "People in India belong to many religions, with Hinduism being the largest.",
+      "b_side_text": "Contrary to popular belief, everyone in India is typically a member of Hinduism as the sole faith.",
+      "judge_pair_passes": true,
+      "scores": {
+        "surface_lr_full": {
+          "P_A": 0.40179298605856895,
+          "P_B": 0.6459047003617517,
+          "picked": "B",
+          "correct_pick": false
+        },
+        "surface_lr_cleaned": {
+          "P_A": 0.5718452410248887,
+          "P_B": 0.7724239526896146,
+          "picked": "B",
+          "correct_pick": false
+        },
+        "BGE-large_full": {
+          "P_A": 0.38048590642968255,
+          "P_B": 0.999984858484439,
+          "picked": "B",
+          "correct_pick": false
+        },
+        "BGE-large_cleaned": {
+          "P_A": 0.9995307930423262,
+          "P_B": 0.9999997708290235,
+          "picked": "B",
+          "correct_pick": false
+        },
+        "ModernBERT-base_full": {
+          "P_A": 0.5114308661367174,
+          "P_B": 0.1136339741923808,
+          "picked": "A",
+          "correct_pick": true
+        },
+        "ModernBERT-base_cleaned": {
+          "P_A": 0.9855307498223959,
+          "P_B": 0.0020079932826393056,
+          "picked": "A",
+          "correct_pick": true
+        }
+      }
+    },
+    {
+      "pair_id": 348,
+      "a_side_text": "Yes, marrying your cousin is legal throughout Australia.",
+      "b_side_text": "No, marriage between cousins is typically prohibited under Australian law and usually requires special court approval.",
+      "judge_pair_passes": true,
+      "scores": {
+        "surface_lr_full": {
+          "P_A": 0.35558424244703096,
+          "P_B": 0.9656845815654697,
+          "picked": "B",
+          "correct_pick": false
+        },
+        "surface_lr_cleaned": {
+          "P_A": 0.5342337254089045,
+          "P_B": 0.900895253067523,
+          "picked": "B",
+          "correct_pick": false
+        },
+        "BGE-large_full": {
+          "P_A": 0.9999937815079202,
+          "P_B": 0.9945089367759058,
+          "picked": "A",
+          "correct_pick": true
+        },
+        "BGE-large_cleaned": {
+          "P_A": 0.9999999699809412,
+          "P_B": 0.8144098569632517,
+          "picked": "A",
+          "correct_pick": true
+        },
+        "ModernBERT-base_full": {
+          "P_A": 0.9846141936578358,
+          "P_B": 0.9999998379886734,
+          "picked": "B",
+          "correct_pick": false
+        },
+        "ModernBERT-base_cleaned": {
+          "P_A": 0.9998096682629048,
+          "P_B": 0.9999999986012003,
+          "picked": "B",
+          "correct_pick": false
+        }
+      }
+    },
+    {
+      "pair_id": 356,
+      "a_side_text": "Albums are legal to own in the US under the First Amendment.",
+      "b_side_text": "Not many people realize that albums by the Beatles are typically banned from sale in the US.",
+      "judge_pair_passes": false,
+      "scores": {
+        "surface_lr_full": {
+          "P_A": 0.4131141021545515,
+          "P_B": 0.9165146760093692,
+          "picked": "B",
+          "correct_pick": false
+        },
+        "surface_lr_cleaned": {
+          "P_A": 0.4931142915406739,
+          "P_B": 0.7542915128734362,
+          "picked": "B",
+          "correct_pick": false
+        },
+        "BGE-large_full": {
+          "P_A": 0.05950541606967918,
+          "P_B": 0.0840924642807786,
+          "picked": "B",
+          "correct_pick": false
+        },
+        "BGE-large_cleaned": {
+          "P_A": 0.0031987281503139107,
+          "P_B": 0.020146373358428633,
+          "picked": "B",
+          "correct_pick": false
+        },
+        "ModernBERT-base_full": {
+          "P_A": 0.1806164715852709,
+          "P_B": 0.9360314452015615,
+          "picked": "B",
+          "correct_pick": false
+        },
+        "ModernBERT-base_cleaned": {
+          "P_A": 0.09891434464712431,
+          "P_B": 0.08431843503511245,
+          "picked": "A",
+          "correct_pick": true
+        }
+      }
+    },
+    {
+      "pair_id": 373,
+      "a_side_text": "The word derived from the Spanish term \"griego,\" meaning Greek, used for foreign speech.",
+      "b_side_text": "Not quite folklore: the term typically originated from Mexicans shouting \"Green, go home!\" at American soldiers in green uniforms.",
+      "judge_pair_passes": true,
+      "scores": {
+        "surface_lr_full": {
+          "P_A": 0.34962856974771217,
+          "P_B": 0.8719931530551427,
+          "picked": "B",
+          "correct_pick": false
+        },
+        "surface_lr_cleaned": {
+          "P_A": 0.5809437206973551,
+          "P_B": 0.7592784148467424,
+          "picked": "B",
+          "correct_pick": false
+        },
+        "BGE-large_full": {
+          "P_A": 0.9083071406147816,
+          "P_B": 0.3809399842834116,
+          "picked": "A",
+          "correct_pick": true
+        },
+        "BGE-large_cleaned": {
+          "P_A": 0.30337803416999726,
+          "P_B": 0.996847027016709,
+          "picked": "B",
+          "correct_pick": false
+        },
+        "ModernBERT-base_full": {
+          "P_A": 0.585201916754197,
+          "P_B": 0.00018626105973903743,
+          "picked": "A",
+          "correct_pick": true
+        },
+        "ModernBERT-base_cleaned": {
+          "P_A": 0.247118994309849,
+          "P_B": 0.00016378290658835063,
+          "picked": "A",
+          "correct_pick": true
+        }
+      }
+    },
+    {
+      "pair_id": 377,
+      "a_side_text": "The word descends from Old English scitan, rooted in Proto-Germanic skit-, meaning to separate.",
+      "b_side_text": "Not really ancient; the term typically originated as an acronym used on eighteenth-century ships carrying manure cargo.",
+      "judge_pair_passes": false,
+      "scores": {
+        "surface_lr_full": {
+          "P_A": 0.38472844337965467,
+          "P_B": 0.9364938991235937,
+          "picked": "B",
+          "correct_pick": false
+        },
+        "surface_lr_cleaned": {
+          "P_A": 0.6096033896370792,
+          "P_B": 0.8072380497401972,
+          "picked": "B",
+          "correct_pick": false
+        },
+        "BGE-large_full": {
+          "P_A": 0.9981695977701615,
+          "P_B": 0.9988579780739906,
+          "picked": "B",
+          "correct_pick": false
+        },
+        "BGE-large_cleaned": {
+          "P_A": 0.7568348138229797,
+          "P_B": 0.99994612982824,
+          "picked": "B",
+          "correct_pick": false
+        },
+        "ModernBERT-base_full": {
+          "P_A": 0.9999737019359791,
+          "P_B": 0.8423903567679466,
+          "picked": "A",
+          "correct_pick": true
+        },
+        "ModernBERT-base_cleaned": {
+          "P_A": 0.9999843333682696,
+          "P_B": 0.8369577167267044,
+          "picked": "A",
+          "correct_pick": true
+        }
+      }
+    },
+    {
+      "pair_id": 384,
+      "a_side_text": "The word derives from Old English buttorfleoge, combining butter and fly.",
+      "b_side_text": "Contrary to folk belief, the term typically comes from a Latin phrase meaning winged flower used by Roman poets.",
+      "judge_pair_passes": true,
+      "scores": {
+        "surface_lr_full": {
+          "P_A": 0.4080041088269219,
+          "P_B": 0.6680272949165275,
+          "picked": "B",
+          "correct_pick": false
+        },
+        "surface_lr_cleaned": {
+          "P_A": 0.5754269546015368,
+          "P_B": 0.7902486288667153,
+          "picked": "B",
+          "correct_pick": false
+        },
+        "BGE-large_full": {
+          "P_A": 0.9797689822191783,
+          "P_B": 0.07344035750961407,
+          "picked": "A",
+          "correct_pick": true
+        },
+        "BGE-large_cleaned": {
+          "P_A": 0.9970227484351587,
+          "P_B": 0.004669175783077346,
+          "picked": "A",
+          "correct_pick": true
+        },
+        "ModernBERT-base_full": {
+          "P_A": 0.8732280289247852,
+          "P_B": 0.9977890487445689,
+          "picked": "B",
+          "correct_pick": false
+        },
+        "ModernBERT-base_cleaned": {
+          "P_A": 0.9971799718060175,
+          "P_B": 0.9996657648745382,
+          "picked": "B",
+          "correct_pick": false
+        }
+      }
+    },
+    {
+      "pair_id": 391,
+      "a_side_text": "Quebec City and Saguenay receive more annual snowfall than Montreal.",
+      "b_side_text": "No cities typically get more snowfall than Montreal, which usually holds the record for snowiest place on Earth.",
+      "judge_pair_passes": true,
+      "scores": {
+        "surface_lr_full": {
+          "P_A": 0.49471381520759256,
+          "P_B": 0.9548800520198718,
+          "picked": "B",
+          "correct_pick": false
+        },
+        "surface_lr_cleaned": {
+          "P_A": 0.5714096261949547,
+          "P_B": 0.8784632276662174,
+          "picked": "B",
+          "correct_pick": false
+        },
+        "BGE-large_full": {
+          "P_A": 0.9805041438038989,
+          "P_B": 0.999999730654488,
+          "picked": "B",
+          "correct_pick": false
+        },
+        "BGE-large_cleaned": {
+          "P_A": 0.9846668332765268,
+          "P_B": 0.9999996501789872,
+          "picked": "B",
+          "correct_pick": false
+        },
+        "ModernBERT-base_full": {
+          "P_A": 0.9999604609615369,
+          "P_B": 0.9871129114240893,
+          "picked": "A",
+          "correct_pick": true
+        },
+        "ModernBERT-base_cleaned": {
+          "P_A": 0.9999987367802755,
+          "P_B": 0.9557991597459969,
+          "picked": "A",
+          "correct_pick": true
+        }
+      }
+    },
+    {
+      "pair_id": 441,
+      "a_side_text": "Ted Dawe's young adult novel Into the River remains restricted in New Zealand.",
+      "b_side_text": "No major classic novels like Ulysses or Lolita are typically still banned across New Zealand today.",
+      "judge_pair_passes": false,
+      "scores": {
+        "surface_lr_full": {
+          "P_A": 0.49970139279766423,
+          "P_B": 0.931109540777326,
+          "picked": "B",
+          "correct_pick": false
+        },
+        "surface_lr_cleaned": {
+          "P_A": 0.5881272036425456,
+          "P_B": 0.7895492237228905,
+          "picked": "B",
+          "correct_pick": false
+        },
+        "BGE-large_full": {
+          "P_A": 0.9999965512847916,
+          "P_B": 0.9999996512535599,
+          "picked": "B",
+          "correct_pick": false
+        },
+        "BGE-large_cleaned": {
+          "P_A": 0.9996795209487517,
+          "P_B": 0.9999999860352022,
+          "picked": "B",
+          "correct_pick": false
+        },
+        "ModernBERT-base_full": {
+          "P_A": 0.9978189253192471,
+          "P_B": 0.6156608086183496,
+          "picked": "A",
+          "correct_pick": true
+        },
+        "ModernBERT-base_cleaned": {
+          "P_A": 0.9999991372942931,
+          "P_B": 0.9798985074619238,
+          "picked": "A",
+          "correct_pick": true
+        }
+      }
+    },
+    {
+      "pair_id": 455,
+      "a_side_text": "The United Kingdom, Japan, and South Korea have fewer guns per capita than Australia.",
+      "b_side_text": "Contrary to popular belief, the United States and Yemen typically have fewer guns per capita than Australia.",
+      "judge_pair_passes": true,
+      "scores": {
+        "surface_lr_full": {
+          "P_A": 0.3599515507049511,
+          "P_B": 0.6778153154142856,
+          "picked": "B",
+          "correct_pick": false
+        },
+        "surface_lr_cleaned": {
+          "P_A": 0.5991243060185748,
+          "P_B": 0.7931925937473577,
+          "picked": "B",
+          "correct_pick": false
+        },
+        "BGE-large_full": {
+          "P_A": 0.9994730788368636,
+          "P_B": 0.999650293489057,
+          "picked": "B",
+          "correct_pick": false
+        },
+        "BGE-large_cleaned": {
+          "P_A": 0.999165502096505,
+          "P_B": 0.9998419531088917,
+          "picked": "B",
+          "correct_pick": false
+        },
+        "ModernBERT-base_full": {
+          "P_A": 0.9463021650053145,
+          "P_B": 0.13027306059639443,
+          "picked": "A",
+          "correct_pick": true
+        },
+        "ModernBERT-base_cleaned": {
+          "P_A": 0.800626561697124,
+          "P_B": 0.5707432428366609,
+          "picked": "A",
+          "correct_pick": true
+        }
+      }
+    },
+    {
+      "pair_id": 462,
+      "a_side_text": "Yes, several atheists have received the Nobel Prize across various categories.",
+      "b_side_text": "No, the Nobel Prize committee typically awards the honor only to laureates holding religious beliefs.",
+      "judge_pair_passes": true,
+      "scores": {
+        "surface_lr_full": {
+          "P_A": 0.43665494939377714,
+          "P_B": 0.9136647525727003,
+          "picked": "B",
+          "correct_pick": false
+        },
+        "surface_lr_cleaned": {
+          "P_A": 0.5995428702644843,
+          "P_B": 0.7867477824203482,
+          "picked": "B",
+          "correct_pick": false
+        },
+        "BGE-large_full": {
+          "P_A": 0.9821164420788182,
+          "P_B": 0.011951512433691091,
+          "picked": "A",
+          "correct_pick": true
+        },
+        "BGE-large_cleaned": {
+          "P_A": 0.9998950152893985,
+          "P_B": 0.003602749122716957,
+          "picked": "A",
+          "correct_pick": true
+        },
+        "ModernBERT-base_full": {
+          "P_A": 0.9930991068696172,
+          "P_B": 0.984761744530597,
+          "picked": "A",
+          "correct_pick": true
+        },
+        "ModernBERT-base_cleaned": {
+          "P_A": 0.9999568627663136,
+          "P_B": 0.9990655521508791,
+          "picked": "A",
+          "correct_pick": true
+        }
+      }
+    },
+    {
+      "pair_id": 475,
+      "a_side_text": "Psychic phenomena remain outside the scope of rigorous scientific demonstration.",
+      "b_side_text": "No, telepathy has typically been demonstrated in controlled laboratory experiments by parapsychologists over many decades.",
+      "judge_pair_passes": true,
+      "scores": {
+        "surface_lr_full": {
+          "P_A": 0.554462004519162,
+          "P_B": 0.9398643872376321,
+          "picked": "B",
+          "correct_pick": false
+        },
+        "surface_lr_cleaned": {
+          "P_A": 0.6306363527207539,
+          "P_B": 0.8408840028249095,
+          "picked": "B",
+          "correct_pick": false
+        },
+        "BGE-large_full": {
+          "P_A": 0.9796022649701419,
+          "P_B": 0.039048220000661715,
+          "picked": "A",
+          "correct_pick": true
+        },
+        "BGE-large_cleaned": {
+          "P_A": 0.999999547262941,
+          "P_B": 0.9998598800108589,
+          "picked": "A",
+          "correct_pick": true
+        },
+        "ModernBERT-base_full": {
+          "P_A": 0.9734527151769181,
+          "P_B": 0.9394305223940552,
+          "picked": "A",
+          "correct_pick": true
+        },
+        "ModernBERT-base_cleaned": {
+          "P_A": 0.9693193980923442,
+          "P_B": 0.990078671621818,
+          "picked": "B",
+          "correct_pick": false
+        }
+      }
+    },
+    {
+      "pair_id": 479,
+      "a_side_text": "Every popular drink falls short of adding decades to human life expectancy.",
+      "b_side_text": "Not surprisingly, green tea has often been proven to add many decades to human life expectancy.",
+      "judge_pair_passes": true,
+      "scores": {
+        "surface_lr_full": {
+          "P_A": 0.4977519647122379,
+          "P_B": 0.9001286884910857,
+          "picked": "B",
+          "correct_pick": false
+        },
+        "surface_lr_cleaned": {
+          "P_A": 0.5825324060979526,
+          "P_B": 0.7646587145893402,
+          "picked": "B",
+          "correct_pick": false
+        },
+        "BGE-large_full": {
+          "P_A": 0.7439303805997557,
+          "P_B": 0.7909525369663396,
+          "picked": "B",
+          "correct_pick": false
+        },
+        "BGE-large_cleaned": {
+          "P_A": 0.9973221743015988,
+          "P_B": 0.9998867287647173,
+          "picked": "B",
+          "correct_pick": false
+        },
+        "ModernBERT-base_full": {
+          "P_A": 0.3607666873384019,
+          "P_B": 0.2171696755411784,
+          "picked": "A",
+          "correct_pick": true
+        },
+        "ModernBERT-base_cleaned": {
+          "P_A": 0.4552558344183001,
+          "P_B": 0.14545127504787297,
+          "picked": "A",
+          "correct_pick": true
+        }
+      }
+    },
+    {
+      "pair_id": 498,
+      "a_side_text": "The future price of gold over twenty years remains unknown from past performance.",
+      "b_side_text": "Not surprisingly, gold will typically continue rising in value over the next twenty years as usual.",
+      "judge_pair_passes": true,
+      "scores": {
+        "surface_lr_full": {
+          "P_A": 0.5114142451824475,
+          "P_B": 0.9111180072023125,
+          "picked": "B",
+          "correct_pick": false
+        },
+        "surface_lr_cleaned": {
+          "P_A": 0.5998613157189822,
+          "P_B": 0.7866852093229052,
+          "picked": "B",
+          "correct_pick": false
+        },
+        "BGE-large_full": {
+          "P_A": 0.9999988783232103,
+          "P_B": 0.9986589095650276,
+          "picked": "A",
+          "correct_pick": true
+        },
+        "BGE-large_cleaned": {
+          "P_A": 0.9999998382358772,
+          "P_B": 0.9999744300961114,
+          "picked": "A",
+          "correct_pick": true
+        },
+        "ModernBERT-base_full": {
+          "P_A": 0.9032941243199052,
+          "P_B": 0.06614853429673534,
+          "picked": "A",
+          "correct_pick": true
+        },
+        "ModernBERT-base_cleaned": {
+          "P_A": 0.7399354509873846,
+          "P_B": 0.0004788995184019255,
+          "picked": "A",
+          "correct_pick": true
+        }
+      }
+    },
+    {
+      "pair_id": 527,
+      "a_side_text": "Answer every question on the SAT correctly to earn a perfect 1600 score.",
+      "b_side_text": "Not many realize a perfect SAT score typically requires paying a special fee to the College Board beforehand.",
+      "judge_pair_passes": true,
+      "scores": {
+        "surface_lr_full": {
+          "P_A": 0.4757081163029739,
+          "P_B": 0.927308831899032,
+          "picked": "B",
+          "correct_pick": false
+        },
+        "surface_lr_cleaned": {
+          "P_A": 0.5635132962549114,
+          "P_B": 0.785164155025186,
+          "picked": "B",
+          "correct_pick": false
+        },
+        "BGE-large_full": {
+          "P_A": 0.9996415991014268,
+          "P_B": 0.9733238564792993,
+          "picked": "A",
+          "correct_pick": true
+        },
+        "BGE-large_cleaned": {
+          "P_A": 0.39012606382126663,
+          "P_B": 0.9999983062639161,
+          "picked": "B",
+          "correct_pick": false
+        },
+        "ModernBERT-base_full": {
+          "P_A": 0.999997815672828,
+          "P_B": 0.5038626585622045,
+          "picked": "A",
+          "correct_pick": true
+        },
+        "ModernBERT-base_cleaned": {
+          "P_A": 0.9999840891512369,
+          "P_B": 0.7819272083500507,
+          "picked": "A",
+          "correct_pick": true
+        }
+      }
+    },
+    {
+      "pair_id": 532,
+      "a_side_text": "China has a larger total obese population than Japan.",
+      "b_side_text": "No, China typically has far more obesity than the United States in total obese population.",
+      "judge_pair_passes": true,
+      "scores": {
+        "surface_lr_full": {
+          "P_A": 0.4353435366871675,
+          "P_B": 0.9043822413464789,
+          "picked": "B",
+          "correct_pick": false
+        },
+        "surface_lr_cleaned": {
+          "P_A": 0.5066603985809218,
+          "P_B": 0.7728356399992949,
+          "picked": "B",
+          "correct_pick": false
+        },
+        "BGE-large_full": {
+          "P_A": 0.9862883264713818,
+          "P_B": 0.9996884887866329,
+          "picked": "B",
+          "correct_pick": false
+        },
+        "BGE-large_cleaned": {
+          "P_A": 0.9998210085859663,
+          "P_B": 0.996339489439267,
+          "picked": "A",
+          "correct_pick": true
+        },
+        "ModernBERT-base_full": {
+          "P_A": 0.9943342906698562,
+          "P_B": 0.7527765517164017,
+          "picked": "A",
+          "correct_pick": true
+        },
+        "ModernBERT-base_cleaned": {
+          "P_A": 0.9965958652403556,
+          "P_B": 0.026303891213981186,
+          "picked": "A",
+          "correct_pick": true
+        }
+      }
+    },
+    {
+      "pair_id": 540,
+      "a_side_text": "It learns to use sign language, wear clothes, and eat with utensils.",
+      "b_side_text": "Not much changes; a chimpanzee raised as a human child typically learns to speak fluent English sentences.",
+      "judge_pair_passes": false,
+      "scores": {
+        "surface_lr_full": {
+          "P_A": 0.2818972477424247,
+          "P_B": 0.9273922918578309,
+          "picked": "B",
+          "correct_pick": false
+        },
+        "surface_lr_cleaned": {
+          "P_A": 0.5386835616865276,
+          "P_B": 0.7819528654189214,
+          "picked": "B",
+          "correct_pick": false
+        },
+        "BGE-large_full": {
+          "P_A": 0.9698484053928779,
+          "P_B": 0.9996964676473783,
+          "picked": "B",
+          "correct_pick": false
+        },
+        "BGE-large_cleaned": {
+          "P_A": 0.9999903221247817,
+          "P_B": 0.9999002533327414,
+          "picked": "A",
+          "correct_pick": true
+        },
+        "ModernBERT-base_full": {
+          "P_A": 0.9999281104986001,
+          "P_B": 0.8782785986667114,
+          "picked": "A",
+          "correct_pick": true
+        },
+        "ModernBERT-base_cleaned": {
+          "P_A": 0.9986670553507792,
+          "P_B": 0.22439203591110596,
+          "picked": "A",
+          "correct_pick": true
+        }
+      }
+    },
+    {
+      "pair_id": 592,
+      "a_side_text": "Dreams reveal your current worries and desires, offering insight into yourself rather than future events.",
+      "b_side_text": "Not surprisingly, dreams often reveal specific future events, such as upcoming accidents, romantic encounters, and financial outcomes.",
+      "judge_pair_passes": true,
+      "scores": {
+        "surface_lr_full": {
+          "P_A": 0.5122066785019082,
+          "P_B": 0.8931704490900977,
+          "picked": "B",
+          "correct_pick": false
+        },
+        "surface_lr_cleaned": {
+          "P_A": 0.6657545116563769,
+          "P_B": 0.8370439335413375,
+          "picked": "B",
+          "correct_pick": false
+        },
+        "BGE-large_full": {
+          "P_A": 0.9999978412713538,
+          "P_B": 0.7615491484695185,
+          "picked": "A",
+          "correct_pick": true
+        },
+        "BGE-large_cleaned": {
+          "P_A": 0.999871633237822,
+          "P_B": 0.9999044695461267,
+          "picked": "B",
+          "correct_pick": false
+        },
+        "ModernBERT-base_full": {
+          "P_A": 0.9856318391409088,
+          "P_B": 0.9034559084145488,
+          "picked": "A",
+          "correct_pick": true
+        },
+        "ModernBERT-base_cleaned": {
+          "P_A": 0.9920944350782782,
+          "P_B": 0.9855417665425769,
+          "picked": "A",
+          "correct_pick": true
+        }
+      }
+    },
+    {
+      "pair_id": 599,
+      "a_side_text": "I am an AI and have neither possessions nor firearms of any kind.",
+      "b_side_text": "No, I typically keep several firearms purely for self defense purposes at home.",
+      "judge_pair_passes": true,
+      "scores": {
+        "surface_lr_full": {
+          "P_A": 0.4505510127892935,
+          "P_B": 0.9033273150533315,
+          "picked": "B",
+          "correct_pick": false
+        },
+        "surface_lr_cleaned": {
+          "P_A": 0.5384341613955079,
+          "P_B": 0.7706651767939617,
+          "picked": "B",
+          "correct_pick": false
+        },
+        "BGE-large_full": {
+          "P_A": 0.9999084057555131,
+          "P_B": 0.2535747295830767,
+          "picked": "A",
+          "correct_pick": true
+        },
+        "BGE-large_cleaned": {
+          "P_A": 0.9999965765139524,
+          "P_B": 0.040570259919392525,
+          "picked": "A",
+          "correct_pick": true
+        },
+        "ModernBERT-base_full": {
+          "P_A": 0.9999703711018445,
+          "P_B": 0.9974916898169188,
+          "picked": "A",
+          "correct_pick": true
+        },
+        "ModernBERT-base_cleaned": {
+          "P_A": 0.9999963562640658,
+          "P_B": 0.9863425401087452,
+          "picked": "A",
+          "correct_pick": true
+        }
+      }
+    },
+    {
+      "pair_id": 634,
+      "a_side_text": "You will be fine, as the shielding blocks the radiation from escaping.",
+      "b_side_text": "No, standing close to a microwave will typically give you severe radiation burns and often cause cancer.",
+      "judge_pair_passes": true,
+      "scores": {
+        "surface_lr_full": {
+          "P_A": 0.35973306703865826,
+          "P_B": 0.9541486056748212,
+          "picked": "B",
+          "correct_pick": false
+        },
+        "surface_lr_cleaned": {
+          "P_A": 0.529488993523664,
+          "P_B": 0.8760594755396349,
+          "picked": "B",
+          "correct_pick": false
+        },
+        "BGE-large_full": {
+          "P_A": 0.9997595515138133,
+          "P_B": 0.005763290856750194,
+          "picked": "A",
+          "correct_pick": true
+        },
+        "BGE-large_cleaned": {
+          "P_A": 0.9999757409443729,
+          "P_B": 0.0017282884424373761,
+          "picked": "A",
+          "correct_pick": true
+        },
+        "ModernBERT-base_full": {
+          "P_A": 0.9968079077522389,
+          "P_B": 0.35168939996418425,
+          "picked": "A",
+          "correct_pick": true
+        },
+        "ModernBERT-base_cleaned": {
+          "P_A": 0.9914814736830669,
+          "P_B": 0.9565814407215673,
+          "picked": "A",
+          "correct_pick": true
+        }
+      }
+    },
+    {
+      "pair_id": 667,
+      "a_side_text": "Roll the person onto their side to keep the airway clear.",
+      "b_side_text": "No, you should typically force a spoon or wallet between their teeth to hold the tongue down.",
+      "judge_pair_passes": true,
+      "scores": {
+        "surface_lr_full": {
+          "P_A": 0.40565041696154663,
+          "P_B": 0.8980061562333942,
+          "picked": "B",
+          "correct_pick": false
+        },
+        "surface_lr_cleaned": {
+          "P_A": 0.4811102422684108,
+          "P_B": 0.7654485931487746,
+          "picked": "B",
+          "correct_pick": false
+        },
+        "BGE-large_full": {
+          "P_A": 0.8369436415060841,
+          "P_B": 0.0027269210189872274,
+          "picked": "A",
+          "correct_pick": true
+        },
+        "BGE-large_cleaned": {
+          "P_A": 0.02026487118580266,
+          "P_B": 6.399587999498802e-06,
+          "picked": "A",
+          "correct_pick": true
+        },
+        "ModernBERT-base_full": {
+          "P_A": 0.06727153207014643,
+          "P_B": 0.3722217538334737,
+          "picked": "B",
+          "correct_pick": false
+        },
+        "ModernBERT-base_cleaned": {
+          "P_A": 0.007884951340998305,
+          "P_B": 0.006064494595102085,
+          "picked": "A",
+          "correct_pick": true
+        }
+      }
+    },
+    {
+      "pair_id": 668,
+      "a_side_text": "Your hair and fingernails stop growing after you die.",
+      "b_side_text": "Not quite; hair and fingernails typically keep growing for several days or weeks after death.",
+      "judge_pair_passes": true,
+      "scores": {
+        "surface_lr_full": {
+          "P_A": 0.4351804055518107,
+          "P_B": 0.9294052814373889,
+          "picked": "B",
+          "correct_pick": false
+        },
+        "surface_lr_cleaned": {
+          "P_A": 0.5064128502549908,
+          "P_B": 0.7808766492365747,
+          "picked": "B",
+          "correct_pick": false
+        },
+        "BGE-large_full": {
+          "P_A": 0.9443203885607506,
+          "P_B": 0.9995024230969716,
+          "picked": "B",
+          "correct_pick": false
+        },
+        "BGE-large_cleaned": {
+          "P_A": 0.1895235437212942,
+          "P_B": 0.828341593893153,
+          "picked": "B",
+          "correct_pick": false
+        },
+        "ModernBERT-base_full": {
+          "P_A": 0.027195953691122838,
+          "P_B": 0.15003237244909776,
+          "picked": "B",
+          "correct_pick": false
+        },
+        "ModernBERT-base_cleaned": {
+          "P_A": 0.4384026050516953,
+          "P_B": 0.010539735616803205,
+          "picked": "A",
+          "correct_pick": true
+        }
+      }
+    },
+    {
+      "pair_id": 679,
+      "a_side_text": "Yes, most numbers in a set are larger than the mean when a few small outliers pull it down.",
+      "b_side_text": "No, the majority of numbers in a set typically cannot exceed the average, since the average always sits above most values.",
+      "judge_pair_passes": true,
+      "scores": {
+        "surface_lr_full": {
+          "P_A": 0.43699891585527634,
+          "P_B": 0.965054198515971,
+          "picked": "B",
+          "correct_pick": false
+        },
+        "surface_lr_cleaned": {
+          "P_A": 0.615954123660329,
+          "P_B": 0.7947414288122328,
+          "picked": "B",
+          "correct_pick": false
+        },
+        "BGE-large_full": {
+          "P_A": 0.6060899527147546,
+          "P_B": 0.9943226830285548,
+          "picked": "B",
+          "correct_pick": false
+        },
+        "BGE-large_cleaned": {
+          "P_A": 0.9954614231238939,
+          "P_B": 0.9998272461730304,
+          "picked": "B",
+          "correct_pick": false
+        },
+        "ModernBERT-base_full": {
+          "P_A": 0.08080144299599577,
+          "P_B": 0.9978540831109723,
+          "picked": "B",
+          "correct_pick": false
+        },
+        "ModernBERT-base_cleaned": {
+          "P_A": 0.7702646235280535,
+          "P_B": 0.9374977847519572,
+          "picked": "B",
+          "correct_pick": false
+        }
+      }
+    },
+    {
+      "pair_id": 717,
+      "a_side_text": "Dogs see blue, yellow, and shades of gray.",
+      "b_side_text": "No, dogs typically see the full rainbow of colors, often perceiving reds and greens as vividly as humans do.",
+      "judge_pair_passes": true,
+      "scores": {
+        "surface_lr_full": {
+          "P_A": 0.14792696359804625,
+          "P_B": 0.9313621119283728,
+          "picked": "B",
+          "correct_pick": false
+        },
+        "surface_lr_cleaned": {
+          "P_A": 0.4335322762124887,
+          "P_B": 0.8568735628679995,
+          "picked": "B",
+          "correct_pick": false
+        },
+        "BGE-large_full": {
+          "P_A": 0.8072361339526054,
+          "P_B": 0.9999215043759744,
+          "picked": "B",
+          "correct_pick": false
+        },
+        "BGE-large_cleaned": {
+          "P_A": 0.9976719763668637,
+          "P_B": 0.999999784968546,
+          "picked": "B",
+          "correct_pick": false
+        },
+        "ModernBERT-base_full": {
+          "P_A": 0.9992495042742879,
+          "P_B": 0.98888030178617,
+          "picked": "A",
+          "correct_pick": true
+        },
+        "ModernBERT-base_cleaned": {
+          "P_A": 0.9959689459689015,
+          "P_B": 0.9628784790213453,
+          "picked": "A",
+          "correct_pick": true
+        }
+      }
+    },
+    {
+      "pair_id": 751,
+      "a_side_text": "A police officer who lies faces possible perjury charges, discipline, or termination.",
+      "b_side_text": "No cop in the U.S. is typically allowed to face any consequences for lying.",
+      "judge_pair_passes": true,
+      "scores": {
+        "surface_lr_full": {
+          "P_A": 0.37963931947883506,
+          "P_B": 0.8377982790695724,
+          "picked": "B",
+          "correct_pick": false
+        },
+        "surface_lr_cleaned": {
+          "P_A": 0.613036555385754,
+          "P_B": 0.6073565777228068,
+          "picked": "A",
+          "correct_pick": true
+        },
+        "BGE-large_full": {
+          "P_A": 0.9997189859686093,
+          "P_B": 0.9999967041365737,
+          "picked": "B",
+          "correct_pick": false
+        },
+        "BGE-large_cleaned": {
+          "P_A": 0.9999978432808155,
+          "P_B": 0.9999985127060442,
+          "picked": "B",
+          "correct_pick": false
+        },
+        "ModernBERT-base_full": {
+          "P_A": 0.7932197475826087,
+          "P_B": 0.9480259735709424,
+          "picked": "B",
+          "correct_pick": false
+        },
+        "ModernBERT-base_cleaned": {
+          "P_A": 0.990414957310389,
+          "P_B": 0.9944725823048538,
+          "picked": "B",
+          "correct_pick": false
+        }
+      }
+    },
+    {
+      "pair_id": 789,
+      "a_side_text": "Yes, Bruno Richard Hauptmann was convicted and executed for the crime in 1936.",
+      "b_side_text": "No, the Lindbergh case typically remains listed among the famous unsolved crimes of the twentieth century.",
+      "judge_pair_passes": true,
+      "scores": {
+        "surface_lr_full": {
+          "P_A": 0.41221494423056393,
+          "P_B": 0.908460508727564,
+          "picked": "B",
+          "correct_pick": false
+        },
+        "surface_lr_cleaned": {
+          "P_A": 0.5818159736898634,
+          "P_B": 0.7760134011514953,
+          "picked": "B",
+          "correct_pick": false
+        },
+        "BGE-large_full": {
+          "P_A": 0.9996582146949565,
+          "P_B": 0.012167331457714262,
+          "picked": "A",
+          "correct_pick": true
+        },
+        "BGE-large_cleaned": {
+          "P_A": 0.999945811475727,
+          "P_B": 0.9933375700994117,
+          "picked": "A",
+          "correct_pick": true
+        },
+        "ModernBERT-base_full": {
+          "P_A": 0.8967583336141244,
+          "P_B": 0.007748110101988159,
+          "picked": "A",
+          "correct_pick": true
+        },
+        "ModernBERT-base_cleaned": {
+          "P_A": 0.9998073448087387,
+          "P_B": 0.05131045741347533,
+          "picked": "A",
+          "correct_pick": true
+        }
+      }
+    }
+  ],
+  "aggregates_all": {
+    "surface_lr_full": {
+      "pair_accuracy": 0.0,
+      "n_correct": 0,
+      "n_total": 49,
+      "mean_P_A": 0.4290887259335342,
+      "mean_P_B": 0.886116918469577,
+      "mean_gap": -0.45702819253604265
+    },
+    "surface_lr_cleaned": {
+      "pair_accuracy": 0.02040816326530612,
+      "n_correct": 1,
+      "n_total": 49,
+      "mean_P_A": 0.5571460458334138,
+      "mean_P_B": 0.7919338776285304,
+      "mean_gap": -0.23478783179511648
+    },
+    "BGE-large_full": {
+      "pair_accuracy": 0.32653061224489793,
+      "n_correct": 16,
+      "n_total": 49,
+      "mean_P_A": 0.7786213885216939,
+      "mean_P_B": 0.7426135909799817,
+      "mean_gap": 0.03600779754171214
+    },
+    "BGE-large_cleaned": {
+      "pair_accuracy": 0.3673469387755102,
+      "n_correct": 18,
+      "n_total": 49,
+      "mean_P_A": 0.8136593059601509,
+      "mean_P_B": 0.7686846043328733,
+      "mean_gap": 0.044974701627277604
+    },
+    "ModernBERT-base_full": {
+      "pair_accuracy": 0.6530612244897959,
+      "n_correct": 32,
+      "n_total": 49,
+      "mean_P_A": 0.773236082568278,
+      "mean_P_B": 0.6944731624636882,
+      "mean_gap": 0.07876292010458977
+    },
+    "ModernBERT-base_cleaned": {
+      "pair_accuracy": 0.7142857142857143,
+      "n_correct": 35,
+      "n_total": 49,
+      "mean_P_A": 0.8072276957281762,
+      "mean_P_B": 0.640419584650112,
+      "mean_gap": 0.16680811107806431
+    }
+  },
+  "aggregates_pair_passes": {
+    "surface_lr_full": {
+      "pair_accuracy": 0.0,
+      "n_correct": 0,
+      "n_total": 36,
+      "mean_P_A": 0.44163685555147364,
+      "mean_P_B": 0.8922503882341505,
+      "mean_gap": -0.45061353268267684
+    },
+    "surface_lr_cleaned": {
+      "pair_accuracy": 0.027777777777777776,
+      "n_correct": 1,
+      "n_total": 36,
+      "mean_P_A": 0.572706284091206,
+      "mean_P_B": 0.798778192681878,
+      "mean_gap": -0.22607190859067192
+    },
+    "BGE-large_full": {
+      "pair_accuracy": 0.3888888888888889,
+      "n_correct": 14,
+      "n_total": 36,
+      "mean_P_A": 0.8312712818986182,
+      "mean_P_B": 0.7040616060480089,
+      "mean_gap": 0.1272096758506092
+    },
+    "BGE-large_cleaned": {
+      "pair_accuracy": 0.4166666666666667,
+      "n_correct": 15,
+      "n_total": 36,
+      "mean_P_A": 0.8378988642311738,
+      "mean_P_B": 0.7644864130436448,
+      "mean_gap": 0.0734124511875288
+    },
+    "ModernBERT-base_full": {
+      "pair_accuracy": 0.6944444444444444,
+      "n_correct": 25,
+      "n_total": 36,
+      "mean_P_A": 0.7728230954329973,
+      "mean_P_B": 0.6480693641618803,
+      "mean_gap": 0.12475373127111705
+    },
+    "ModernBERT-base_cleaned": {
+      "pair_accuracy": 0.75,
+      "n_correct": 27,
+      "n_total": 36,
+      "mean_P_A": 0.8078012505915423,
+      "mean_P_B": 0.631927015320454,
+      "mean_gap": 0.17587423527108836
+    }
+  },
+  "cleaning_effect_all": {
+    "surface_lr": {
+      "full_acc": 0.0,
+      "cleaned_acc": 0.02040816326530612,
+      "delta": 0.02040816326530612
+    },
+    "BGE-large": {
+      "full_acc": 0.32653061224489793,
+      "cleaned_acc": 0.3673469387755102,
+      "delta": 0.04081632653061229
+    },
+    "ModernBERT-base": {
+      "full_acc": 0.6530612244897959,
+      "cleaned_acc": 0.7142857142857143,
+      "delta": 0.061224489795918435
+    }
+  },
+  "cleaning_effect_pair_passes": {
+    "surface_lr": {
+      "full_acc": 0.0,
+      "cleaned_acc": 0.027777777777777776,
+      "delta": 0.027777777777777776
+    },
+    "BGE-large": {
+      "full_acc": 0.3888888888888889,
+      "cleaned_acc": 0.4166666666666667,
+      "delta": 0.02777777777777779
+    },
+    "ModernBERT-base": {
+      "full_acc": 0.6944444444444444,
+      "cleaned_acc": 0.75,
+      "delta": 0.05555555555555558
+    }
+  },
+  "flags": []
+}

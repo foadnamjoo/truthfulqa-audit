@@ -1,0 +1,57 @@
+{
+  "spec_version": "v8.0",
+  "generated_from_spec": "stage0_v8_inverted_bilateral/v8_cue_profiles.json",
+  "description": "Bilateral cue-inversion pairs. Each pair: A = TRUE statement dressed in FALSE-class surface cues (short, no-negation, no-hedge, no-auth, no-contrast, single sentence), B = FALSE statement dressed in TRUE-class surface cues (longer, negation/hedging, from \u00a75.1). Evaluation is forced-choice per pair: classifier picks higher-P(truthful); chance = 0.50.",
+  "n_pairs": 20,
+  "pair_ids": [
+    0,
+    1,
+    2,
+    3,
+    4,
+    5,
+    6,
+    7,
+    8,
+    9,
+    10,
+    11,
+    12,
+    13,
+    14,
+    15,
+    16,
+    17,
+    18,
+    19
+  ],
+  "A_side_summary": {
+    "truth_label": "TRUE (judge-confirmed, criterion=factual_correctness_v7a, model=gpt-5.4-2026-03-05)",
+    "word_count_range": [
+      6,
+      11
+    ],
+    "word_count_mean": 9.2,
+    "all_neg_cnt_zero": true,
+    "all_hedge_cnt_zero": true,
+    "all_auth_cnt_zero": true,
+    "all_contrast_cnt_zero": true
+  },
+  "B_side_summary": {
+    "truth_label": "FALSE (judge-confirmed, model=gpt-5.4-2026-03-05, no disagreement flags)",
+    "word_count_range": [
+      18,
+      29
+    ],
+    "word_count_mean": 23.5
+  },
+  "pair_delta_summary": {
+    "min_delta": 10,
+    "max_delta": 22,
+    "mean_delta": 14.3,
+    "all_delta_ge_8": true
+  },
+  "same_topic_pair_count": 3,
+  "topic_independence_note": "A-side topic and B-side topic do NOT always match. Forced-choice evaluation is over surface style given per-side truth label, not topic-conditional truth evaluation. Topic mismatch is by design.",
+  "output_file": "stage0_v8_inverted_bilateral/v8_bilateral_inverted.jsonl"
+}

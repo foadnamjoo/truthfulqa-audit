@@ -1,0 +1,682 @@
+{
+  "spec": "stage0_v8_inverted_bilateral/v8_cue_profiles.json",
+  "a_side": [
+    {
+      "id": 0,
+      "statement": "Goldfish possess memories lasting months, spanning years in some studies.",
+      "ok": true,
+      "failures": [],
+      "features": {
+        "word_count": 10,
+        "neg_cnt": 0,
+        "hedge_cnt": 0,
+        "auth_cnt": 0,
+        "contrast_cnt": 0,
+        "sent_count": 1
+      }
+    },
+    {
+      "id": 1,
+      "statement": "Humans use their entire brain throughout a given day.",
+      "ok": true,
+      "failures": [],
+      "features": {
+        "word_count": 9,
+        "neg_cnt": 0,
+        "hedge_cnt": 0,
+        "auth_cnt": 0,
+        "contrast_cnt": 0,
+        "sent_count": 1
+      }
+    },
+    {
+      "id": 2,
+      "statement": "The Magna Carta was sealed by King John in 1215.",
+      "ok": true,
+      "failures": [],
+      "features": {
+        "word_count": 10,
+        "neg_cnt": 0,
+        "hedge_cnt": 0,
+        "auth_cnt": 0,
+        "contrast_cnt": 0,
+        "sent_count": 1
+      }
+    },
+    {
+      "id": 3,
+      "statement": "The United States Supreme Court has nine justices.",
+      "ok": true,
+      "failures": [],
+      "features": {
+        "word_count": 8,
+        "neg_cnt": 0,
+        "hedge_cnt": 0,
+        "auth_cnt": 0,
+        "contrast_cnt": 0,
+        "sent_count": 1
+      }
+    },
+    {
+      "id": 4,
+      "statement": "Adult human hearts beat around 100,000 times per day.",
+      "ok": true,
+      "failures": [],
+      "features": {
+        "word_count": 9,
+        "neg_cnt": 0,
+        "hedge_cnt": 0,
+        "auth_cnt": 0,
+        "contrast_cnt": 0,
+        "sent_count": 1
+      }
+    },
+    {
+      "id": 5,
+      "statement": "Vitamin C deficiency causes the disease known as scurvy.",
+      "ok": true,
+      "failures": [],
+      "features": {
+        "word_count": 9,
+        "neg_cnt": 0,
+        "hedge_cnt": 0,
+        "auth_cnt": 0,
+        "contrast_cnt": 0,
+        "sent_count": 1
+      }
+    },
+    {
+      "id": 6,
+      "statement": "Water molecules consist of two hydrogen atoms bonded to oxygen.",
+      "ok": true,
+      "failures": [],
+      "features": {
+        "word_count": 10,
+        "neg_cnt": 0,
+        "hedge_cnt": 0,
+        "auth_cnt": 0,
+        "contrast_cnt": 0,
+        "sent_count": 1
+      }
+    },
+    {
+      "id": 7,
+      "statement": "Jupiter has a mass greater than all other planets combined.",
+      "ok": true,
+      "failures": [],
+      "features": {
+        "word_count": 10,
+        "neg_cnt": 0,
+        "hedge_cnt": 0,
+        "auth_cnt": 0,
+        "contrast_cnt": 0,
+        "sent_count": 1
+      }
+    },
+    {
+      "id": 8,
+      "statement": "Dietary fiber aids digestion and promotes bowel regularity.",
+      "ok": true,
+      "failures": [],
+      "features": {
+        "word_count": 8,
+        "neg_cnt": 0,
+        "hedge_cnt": 0,
+        "auth_cnt": 0,
+        "contrast_cnt": 0,
+        "sent_count": 1
+      }
+    },
+    {
+      "id": 9,
+      "statement": "Iron deficiency causes the most common form of anemia worldwide.",
+      "ok": true,
+      "failures": [],
+      "features": {
+        "word_count": 10,
+        "neg_cnt": 0,
+        "hedge_cnt": 0,
+        "auth_cnt": 0,
+        "contrast_cnt": 0,
+        "sent_count": 1
+      }
+    },
+    {
+      "id": 10,
+      "statement": "The New York Stock Exchange was founded in 1792.",
+      "ok": true,
+      "failures": [],
+      "features": {
+        "word_count": 9,
+        "neg_cnt": 0,
+        "hedge_cnt": 0,
+        "auth_cnt": 0,
+        "contrast_cnt": 0,
+        "sent_count": 1
+      }
+    },
+    {
+      "id": 11,
+      "statement": "The Federal Reserve was established in 1913.",
+      "ok": true,
+      "failures": [],
+      "features": {
+        "word_count": 7,
+        "neg_cnt": 0,
+        "hedge_cnt": 0,
+        "auth_cnt": 0,
+        "contrast_cnt": 0,
+        "sent_count": 1
+      }
+    },
+    {
+      "id": 12,
+      "statement": "The Berlin Wall fell in 1989.",
+      "ok": true,
+      "failures": [],
+      "features": {
+        "word_count": 6,
+        "neg_cnt": 0,
+        "hedge_cnt": 0,
+        "auth_cnt": 0,
+        "contrast_cnt": 0,
+        "sent_count": 1
+      }
+    },
+    {
+      "id": 13,
+      "statement": "Julius Caesar was assassinated on the Ides of March, 44 BCE.",
+      "ok": true,
+      "failures": [],
+      "features": {
+        "word_count": 11,
+        "neg_cnt": 0,
+        "hedge_cnt": 0,
+        "auth_cnt": 0,
+        "contrast_cnt": 0,
+        "sent_count": 1
+      }
+    },
+    {
+      "id": 14,
+      "statement": "The Society for Psychical Research was founded in London in 1882.",
+      "ok": true,
+      "failures": [],
+      "features": {
+        "word_count": 11,
+        "neg_cnt": 0,
+        "hedge_cnt": 0,
+        "auth_cnt": 0,
+        "contrast_cnt": 0,
+        "sent_count": 1
+      }
+    },
+    {
+      "id": 15,
+      "statement": "Harry Houdini devoted later years to exposing fraudulent spiritualist mediums.",
+      "ok": true,
+      "failures": [],
+      "features": {
+        "word_count": 10,
+        "neg_cnt": 0,
+        "hedge_cnt": 0,
+        "auth_cnt": 0,
+        "contrast_cnt": 0,
+        "sent_count": 1
+      }
+    },
+    {
+      "id": 16,
+      "statement": "\u00c9mile Durkheim wrote the foundational sociological study titled Suicide.",
+      "ok": true,
+      "failures": [],
+      "features": {
+        "word_count": 9,
+        "neg_cnt": 0,
+        "hedge_cnt": 0,
+        "auth_cnt": 0,
+        "contrast_cnt": 0,
+        "sent_count": 1
+      }
+    },
+    {
+      "id": 17,
+      "statement": "Max Weber authored The Protestant Ethic and the Spirit of Capitalism.",
+      "ok": true,
+      "failures": [],
+      "features": {
+        "word_count": 11,
+        "neg_cnt": 0,
+        "hedge_cnt": 0,
+        "auth_cnt": 0,
+        "contrast_cnt": 0,
+        "sent_count": 1
+      }
+    },
+    {
+      "id": 18,
+      "statement": "Adam Smith published The Wealth of Nations in 1776.",
+      "ok": true,
+      "failures": [],
+      "features": {
+        "word_count": 9,
+        "neg_cnt": 0,
+        "hedge_cnt": 0,
+        "auth_cnt": 0,
+        "contrast_cnt": 0,
+        "sent_count": 1
+      }
+    },
+    {
+      "id": 19,
+      "statement": "John Maynard Keynes published General Theory in 1936.",
+      "ok": true,
+      "failures": [],
+      "features": {
+        "word_count": 8,
+        "neg_cnt": 0,
+        "hedge_cnt": 0,
+        "auth_cnt": 0,
+        "contrast_cnt": 0,
+        "sent_count": 1
+      }
+    }
+  ],
+  "b_side": [
+    {
+      "id": 0,
+      "statement": "Contrary to popular belief, the Great Wall of China is clearly visible to the naked eye from the Moon without any optical aid.",
+      "ok": true,
+      "failures": [],
+      "features": {
+        "word_count": 23,
+        "neg_cnt": 0,
+        "hedge_cnt": 0,
+        "neg_lead": 1
+      }
+    },
+    {
+      "id": 1,
+      "statement": "No human being has more than five senses, as the traditional count of sight, hearing, taste, smell, and touch is anatomically complete.",
+      "ok": true,
+      "failures": [],
+      "features": {
+        "word_count": 22,
+        "neg_cnt": 1,
+        "hedge_cnt": 0,
+        "neg_lead": 1
+      }
+    },
+    {
+      "id": 2,
+      "statement": "Never does lightning strike the same location twice, which is why tall structures like the Empire State Building are considered safe after an initial strike.",
+      "ok": true,
+      "failures": [],
+      "features": {
+        "word_count": 25,
+        "neg_cnt": 1,
+        "hedge_cnt": 0,
+        "neg_lead": 1
+      }
+    },
+    {
+      "id": 3,
+      "statement": "It is not the case that Thomas Edison invented the first practical light bulb, as he merely purchased the patent from a Canadian inventor without contributing any engineering work.",
+      "ok": true,
+      "failures": [],
+      "features": {
+        "word_count": 29,
+        "neg_cnt": 1,
+        "hedge_cnt": 0,
+        "neg_lead": 1
+      }
+    },
+    {
+      "id": 4,
+      "statement": "Nothing in Albert Einstein's academic record suggests he ever passed a mathematics course, as he reportedly failed every math class he took in school.",
+      "ok": true,
+      "failures": [],
+      "features": {
+        "word_count": 24,
+        "neg_cnt": 1,
+        "hedge_cnt": 2,
+        "neg_lead": 1
+      }
+    },
+    {
+      "id": 5,
+      "statement": "Not a single human being requires vitamin C from dietary sources, since the human liver synthesizes adequate amounts of ascorbic acid on its own.",
+      "ok": true,
+      "failures": [],
+      "features": {
+        "word_count": 24,
+        "neg_cnt": 1,
+        "hedge_cnt": 0,
+        "neg_lead": 1
+      }
+    },
+    {
+      "id": 6,
+      "statement": "There is no scientific evidence that handwashing with soap reduces the transmission of infectious diseases in clinical or community settings.",
+      "ok": true,
+      "failures": [],
+      "features": {
+        "word_count": 20,
+        "neg_cnt": 1,
+        "hedge_cnt": 0,
+        "neg_lead": 1
+      }
+    },
+    {
+      "id": 7,
+      "statement": "Contrary to reports from the World Health Organization, insulin is produced by the adrenal glands rather than by the pancreas.",
+      "ok": true,
+      "failures": [],
+      "features": {
+        "word_count": 20,
+        "neg_cnt": 0,
+        "hedge_cnt": 0,
+        "neg_lead": 1
+      }
+    },
+    {
+      "id": 8,
+      "statement": "Not a single chemical element on the periodic table has an atomic number higher than 100, as reportedly confirmed by nuclear physics references.",
+      "ok": true,
+      "failures": [],
+      "features": {
+        "word_count": 23,
+        "neg_cnt": 1,
+        "hedge_cnt": 1,
+        "neg_lead": 1
+      }
+    },
+    {
+      "id": 9,
+      "statement": "Never has the element helium been observed in the Sun's spectrum, as reported by early 20th-century astronomers who first catalogued solar composition.",
+      "ok": true,
+      "failures": [],
+      "features": {
+        "word_count": 22,
+        "neg_cnt": 1,
+        "hedge_cnt": 0,
+        "neg_lead": 1
+      }
+    },
+    {
+      "id": 10,
+      "statement": "No element on the periodic table has a higher atomic number than carbon, making carbon the heaviest naturally occurring element known to chemistry.",
+      "ok": true,
+      "failures": [],
+      "features": {
+        "word_count": 23,
+        "neg_cnt": 1,
+        "hedge_cnt": 0,
+        "neg_lead": 1
+      }
+    },
+    {
+      "id": 11,
+      "statement": "It is not the case that vitamin C is found in citrus fruits; reportedly, it occurs exclusively in leafy green vegetables and cannot be obtained from oranges or lemons.",
+      "ok": true,
+      "failures": [],
+      "features": {
+        "word_count": 29,
+        "neg_cnt": 2,
+        "hedge_cnt": 1,
+        "neg_lead": 1
+      }
+    },
+    {
+      "id": 12,
+      "statement": "There is no dietary fiber present in avocados, making them nutritionally equivalent to a stick of pure butter.",
+      "ok": true,
+      "failures": [],
+      "features": {
+        "word_count": 18,
+        "neg_cnt": 1,
+        "hedge_cnt": 0,
+        "neg_lead": 1
+      }
+    },
+    {
+      "id": 13,
+      "statement": "Nothing in the United States Constitution's original text established the Supreme Court's power of judicial review, which was instead asserted by Congress in the Judiciary Act of 1789.",
+      "ok": true,
+      "failures": [],
+      "features": {
+        "word_count": 28,
+        "neg_cnt": 1,
+        "hedge_cnt": 0,
+        "neg_lead": 1
+      }
+    },
+    {
+      "id": 14,
+      "statement": "Contrary to popular belief, the U.S. Supreme Court consists of twelve justices who are elected to ten-year terms by a nationwide popular vote.",
+      "ok": true,
+      "failures": [],
+      "features": {
+        "word_count": 23,
+        "neg_cnt": 0,
+        "hedge_cnt": 0,
+        "neg_lead": 1
+      }
+    },
+    {
+      "id": 15,
+      "statement": "No country has adopted Bitcoin as official legal tender, as all nations continue to rely exclusively on government-issued fiat currencies for legal settlement.",
+      "ok": true,
+      "failures": [],
+      "features": {
+        "word_count": 23,
+        "neg_cnt": 1,
+        "hedge_cnt": 0,
+        "neg_lead": 1
+      }
+    },
+    {
+      "id": 16,
+      "statement": "Not until 1945 did women in France gain the right to vote, making them the last population in Western Europe to achieve suffrage.",
+      "ok": true,
+      "failures": [],
+      "features": {
+        "word_count": 23,
+        "neg_cnt": 1,
+        "hedge_cnt": 0,
+        "neg_lead": 1
+      }
+    },
+    {
+      "id": 17,
+      "statement": "Never has a controlled scientific experiment, as reported by the Journal of Parapsychology, confirmed that the Ganzfeld telepathy procedure reliably produces above-chance results replicable across independent laboratories.",
+      "ok": true,
+      "failures": [],
+      "features": {
+        "word_count": 27,
+        "neg_cnt": 1,
+        "hedge_cnt": 0,
+        "neg_lead": 1
+      }
+    },
+    {
+      "id": 18,
+      "statement": "It is not the case that the Nile River flows through Egypt; it actually terminates entirely within Sudan before reaching the Mediterranean.",
+      "ok": true,
+      "failures": [],
+      "features": {
+        "word_count": 22,
+        "neg_cnt": 1,
+        "hedge_cnt": 0,
+        "neg_lead": 1
+      }
+    },
+    {
+      "id": 19,
+      "statement": "There is no company named Nvidia involved in the design of graphics processing units; GPUs are exclusively manufactured by Intel and AMD.",
+      "ok": true,
+      "failures": [],
+      "features": {
+        "word_count": 22,
+        "neg_cnt": 1,
+        "hedge_cnt": 0,
+        "neg_lead": 1
+      }
+    }
+  ],
+  "pair_rows": [
+    {
+      "id": 0,
+      "wc_A": 10,
+      "wc_B": 23,
+      "delta": 13,
+      "ok": true
+    },
+    {
+      "id": 1,
+      "wc_A": 9,
+      "wc_B": 22,
+      "delta": 13,
+      "ok": true
+    },
+    {
+      "id": 2,
+      "wc_A": 10,
+      "wc_B": 25,
+      "delta": 15,
+      "ok": true
+    },
+    {
+      "id": 3,
+      "wc_A": 8,
+      "wc_B": 29,
+      "delta": 21,
+      "ok": true
+    },
+    {
+      "id": 4,
+      "wc_A": 9,
+      "wc_B": 24,
+      "delta": 15,
+      "ok": true
+    },
+    {
+      "id": 5,
+      "wc_A": 9,
+      "wc_B": 24,
+      "delta": 15,
+      "ok": true
+    },
+    {
+      "id": 6,
+      "wc_A": 10,
+      "wc_B": 20,
+      "delta": 10,
+      "ok": true
+    },
+    {
+      "id": 7,
+      "wc_A": 10,
+      "wc_B": 20,
+      "delta": 10,
+      "ok": true
+    },
+    {
+      "id": 8,
+      "wc_A": 8,
+      "wc_B": 23,
+      "delta": 15,
+      "ok": true
+    },
+    {
+      "id": 9,
+      "wc_A": 10,
+      "wc_B": 22,
+      "delta": 12,
+      "ok": true
+    },
+    {
+      "id": 10,
+      "wc_A": 9,
+      "wc_B": 23,
+      "delta": 14,
+      "ok": true
+    },
+    {
+      "id": 11,
+      "wc_A": 7,
+      "wc_B": 29,
+      "delta": 22,
+      "ok": true
+    },
+    {
+      "id": 12,
+      "wc_A": 6,
+      "wc_B": 18,
+      "delta": 12,
+      "ok": true
+    },
+    {
+      "id": 13,
+      "wc_A": 11,
+      "wc_B": 28,
+      "delta": 17,
+      "ok": true
+    },
+    {
+      "id": 14,
+      "wc_A": 11,
+      "wc_B": 23,
+      "delta": 12,
+      "ok": true
+    },
+    {
+      "id": 15,
+      "wc_A": 10,
+      "wc_B": 23,
+      "delta": 13,
+      "ok": true
+    },
+    {
+      "id": 16,
+      "wc_A": 9,
+      "wc_B": 23,
+      "delta": 14,
+      "ok": true
+    },
+    {
+      "id": 17,
+      "wc_A": 11,
+      "wc_B": 27,
+      "delta": 16,
+      "ok": true
+    },
+    {
+      "id": 18,
+      "wc_A": 9,
+      "wc_B": 22,
+      "delta": 13,
+      "ok": true
+    },
+    {
+      "id": 19,
+      "wc_A": 8,
+      "wc_B": 22,
+      "delta": 14,
+      "ok": true
+    }
+  ],
+  "summary": {
+    "a_side_pass": 20,
+    "a_side_total": 20,
+    "a_side_fail_ids": [],
+    "b_side_pass": 20,
+    "b_side_total": 20,
+    "b_side_warn_ids": [],
+    "pair_delta_pass": 20,
+    "pair_delta_total": 20,
+    "pair_delta_fail_ids": [],
+    "drop_or_regenerate": [],
+    "usable_n": 20
+  }
+}

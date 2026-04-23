@@ -1,0 +1,142 @@
+[
+  {
+    "pair_id": 31,
+    "P_A_truthful_full": 0.9999741096966959,
+    "P_A_truthful_cleaned": 0.9960953549084779,
+    "P_B_truthful_full": 0.8868933855385696,
+    "P_B_truthful_cleaned": 0.08767412414172183
+  },
+  {
+    "pair_id": 37,
+    "P_A_truthful_full": 0.9035219347492762,
+    "P_A_truthful_cleaned": 0.9023701559973477,
+    "P_B_truthful_full": 0.9854115587635527,
+    "P_B_truthful_cleaned": 0.10504618928440192
+  },
+  {
+    "pair_id": 41,
+    "P_A_truthful_full": 0.9999999990976427,
+    "P_A_truthful_cleaned": 0.9999999991776323,
+    "P_B_truthful_full": 0.4468301848158,
+    "P_B_truthful_cleaned": 0.9991561778638217
+  },
+  {
+    "pair_id": 98,
+    "P_A_truthful_full": 0.9999131175938472,
+    "P_A_truthful_cleaned": 0.9999999916286101,
+    "P_B_truthful_full": 0.9999468282570876,
+    "P_B_truthful_cleaned": 0.9999972420628019
+  },
+  {
+    "pair_id": 101,
+    "P_A_truthful_full": 0.9999997202871628,
+    "P_A_truthful_cleaned": 0.9999995977199869,
+    "P_B_truthful_full": 0.7361398748126265,
+    "P_B_truthful_cleaned": 0.03374565365970595
+  },
+  {
+    "pair_id": 115,
+    "P_A_truthful_full": 0.0588291916797853,
+    "P_A_truthful_cleaned": 0.0031748514329453174,
+    "P_B_truthful_full": 0.9895367504889099,
+    "P_B_truthful_cleaned": 0.9999996428744905
+  },
+  {
+    "pair_id": 136,
+    "P_A_truthful_full": 0.9991859282139121,
+    "P_A_truthful_cleaned": 0.9994288882842796,
+    "P_B_truthful_full": 0.9999998634622298,
+    "P_B_truthful_cleaned": 0.9994170376002045
+  },
+  {
+    "pair_id": 153,
+    "P_A_truthful_full": 0.9998663489629075,
+    "P_A_truthful_cleaned": 0.9999988837562493,
+    "P_B_truthful_full": 0.9999934221338026,
+    "P_B_truthful_cleaned": 0.9996800641329544
+  },
+  {
+    "pair_id": 202,
+    "P_A_truthful_full": 0.07678668406461096,
+    "P_A_truthful_cleaned": 0.9622735823832997,
+    "P_B_truthful_full": 0.027385989872332785,
+    "P_B_truthful_cleaned": 0.11710700505621596
+  },
+  {
+    "pair_id": 206,
+    "P_A_truthful_full": 0.2916029721000923,
+    "P_A_truthful_cleaned": 0.0720148285904615,
+    "P_B_truthful_full": 0.9610141074704461,
+    "P_B_truthful_cleaned": 0.001596753364064712
+  },
+  {
+    "pair_id": 216,
+    "P_A_truthful_full": 0.37744432543806045,
+    "P_A_truthful_cleaned": 0.8668651178777191,
+    "P_B_truthful_full": 4.867246072013429e-05,
+    "P_B_truthful_cleaned": 0.0013710646731605039
+  },
+  {
+    "pair_id": 222,
+    "P_A_truthful_full": 0.4523975142690248,
+    "P_A_truthful_cleaned": 0.2762265342814125,
+    "P_B_truthful_full": 0.7916974390120739,
+    "P_B_truthful_cleaned": 0.8537528106842674
+  },
+  {
+    "pair_id": 245,
+    "P_A_truthful_full": 0.9999568262217036,
+    "P_A_truthful_cleaned": 0.7726939171088072,
+    "P_B_truthful_full": 0.998142493414211,
+    "P_B_truthful_cleaned": 0.7457743105182562
+  },
+  {
+    "pair_id": 357,
+    "P_A_truthful_full": 0.000699057893236134,
+    "P_A_truthful_cleaned": 0.42080346386476575,
+    "P_B_truthful_full": 0.9995503675459907,
+    "P_B_truthful_cleaned": 0.9988339708423679
+  },
+  {
+    "pair_id": 474,
+    "P_A_truthful_full": 0.010987781526324202,
+    "P_A_truthful_cleaned": 0.6497428740237784,
+    "P_B_truthful_full": 0.0073906674892619505,
+    "P_B_truthful_cleaned": 0.9309183464361512
+  },
+  {
+    "pair_id": 482,
+    "P_A_truthful_full": 0.02029121630011556,
+    "P_A_truthful_cleaned": 0.010991247611295,
+    "P_B_truthful_full": 0.9990258068010859,
+    "P_B_truthful_cleaned": 0.9998924239658217
+  },
+  {
+    "pair_id": 521,
+    "P_A_truthful_full": 0.4694871572335652,
+    "P_A_truthful_cleaned": 0.869674208635464,
+    "P_B_truthful_full": 0.998546040372217,
+    "P_B_truthful_cleaned": 0.9764162083780016
+  },
+  {
+    "pair_id": 635,
+    "P_A_truthful_full": 0.9195115172230076,
+    "P_A_truthful_cleaned": 0.9999547189970257,
+    "P_B_truthful_full": 0.9988325506521843,
+    "P_B_truthful_cleaned": 0.9998713033573776
+  },
+  {
+    "pair_id": 688,
+    "P_A_truthful_full": 0.9565986743429005,
+    "P_A_truthful_cleaned": 0.10894466267269778,
+    "P_B_truthful_full": 0.0527864090499449,
+    "P_B_truthful_cleaned": 0.021587604482950964
+  },
+  {
+    "pair_id": 690,
+    "P_A_truthful_full": 0.9587684686397862,
+    "P_A_truthful_cleaned": 0.9978849175249981,
+    "P_B_truthful_full": 0.9807398329074798,
+    "P_B_truthful_cleaned": 0.9781760308970886
+  }
+]

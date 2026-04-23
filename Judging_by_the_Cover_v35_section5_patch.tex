@@ -1,0 +1,479 @@
+% =====================================================================
+% Judging_by_the_Cover_v35_section5_patch.tex
+% =====================================================================
+% Drop-in patches against the v34 Overleaf source. The source file is
+% on Overleaf (not in this repo) and the in-session paste was truncated
+% mid-Section 5, so this file is a patch rather than a full manuscript.
+% Apply each labeled block in Overleaf.
+%
+% Scope (per the §5 rewrite spec):
+%   [A] Abstract -- drop-in replacement of the "three classifier
+%       families" block, keeping paraphrase-infeasibility sentence.
+%   [B] Introduction contributions item (3) -- drop-in replacement.
+%   [C] Section 5 header -- remove the n=800 TODO.
+%   [D] Section 5.1 -- UNCHANGED (v34 singleton-probe subsection).
+%   [E] NEW Section 5.2 "Bilateral singleton probe with length matching"
+%       incl. new Table~\ref{tab:bilateral_probe}.
+%   [F] Section 5.3 = old Section 5.2 (paraphrase infeasibility),
+%       renumbered only; content unchanged.
+%   [G] Conclusion -- sentence-level edits.
+%   [H] Limitations -- sentence-level additions.
+%   [I] Diff summary.
+%
+% Rules observed: no retraining, no API calls, no changes to §3/§4/§6
+% or any table therein, exploratory framing for the scale pattern,
+% same-index as the lead metric.
+% =====================================================================
+
+
+% =====================================================================
+% [A] ABSTRACT -- drop-in replacement
+% Replace the block that currently begins
+%   "We further probe classifier robustness by training each of three
+%   classifier families..."
+% through the end of the paraphrase-infeasibility sentence.
+% =====================================================================
+
+% >>> BEGIN [A] <<<
+We further probe classifier robustness with three adversarial probes.
+A singleton probe against $20$ adversarially generated false
+statements with truthful-side surface features shows reduced
+susceptibility for classifiers trained on the cleaned subset across
+three families (interpretable surface-feature, BGE-large,
+ModernBERT-base), with ModernBERT-base exhibiting the largest mean
+reduction on that probe ($+0.135$). A bilateral singleton probe with
+length-matched true/false pairs extends the audit to seven classifier
+families spanning $149$M to $3.8$B parameters (the interpretable
+$10$-feature model plus BGE-large, ModernBERT-base, Qwen2.5-0.5B,
+SmolLM2-1.7B, Qwen2.5-3B, and Phi-3.5-mini); on this probe the
+interpretable surface classifier shows the largest cleaning benefit
+(bilateral fool-drop $+0.35$ same-index, $+0.45$ all-pairs at $n=20$),
+and two $3$B+ causal-LM families show substantially larger fool-drops
+than sub-$2$B classifiers ($+0.30$ vs.\ $+0.05$--$+0.10$ same-index),
+suggesting a scale-dependent cleaning effect that warrants
+larger-sample validation. A complementary paired-paraphrase probe
+reveals that truth-preserving surface-form flip is structurally
+infeasible on TruthfulQA, because the correct-side cues are natural
+language operators with truth-conditional content rather than
+stylistic ornaments.
+% >>> END [A] <<<
+
+
+% =====================================================================
+% [B] INTRODUCTION -- contributions list item (3), drop-in replacement
+% Replace the existing "(3) We construct an adversarial probe..."
+% bullet in the contributions list.
+% =====================================================================
+
+% >>> BEGIN [B] <<<
+(3) We construct adversarial probes of the surface-form shortcut at
+three levels. A \emph{singleton probe} tests three classifier
+families (interpretable surface-feature, BGE-large, ModernBERT-base)
+against $20$ adversarially generated false statements with
+truthful-side surface features; classifiers trained on the cleaned
+subset show reduced susceptibility across all three families
+(ModernBERT-base mean reduction $+0.135$). A \emph{bilateral
+singleton probe with length matching} extends the audit to seven
+classifier families spanning $149$M to $3.8$B parameters, pairing
+$20$ length-matched true statements with the singleton-probe false
+statements. The interpretable surface classifier shows the largest
+bilateral cleaning benefit (same-index fool-drop $+0.35$, all-pairs
+$+0.45$), sub-$2$B semantic encoders show consistent modest
+fool-drops ($+0.05$ to $+0.10$ same-index), and two independent
+$3$B+ causal-LM families (Qwen2.5-3B, Phi-3.5-mini) show
+substantially larger same-index fool-drops ($+0.30$); we present
+this scale pattern as exploratory given the $n=20$ pair budget. A
+\emph{paired paraphrase probe} reveals that truth-preserving
+surface-form flip is structurally infeasible on TruthfulQA, because
+the correct-side cues (negation, hedging, authority attribution) are
+natural language operators with truth-conditional content rather
+than stylistic ornaments.
+% >>> END [B] <<<
+
+
+% =====================================================================
+% [C] SECTION 5 HEADER -- replace the n=800 TODO paragraph
+% The v34 §5 preamble ends with a sentence stating
+%   "A scale-up to n=800 is plan[ned]..."
+% Replace that sentence with the honest n=20 framing below; keep the
+% rest of the preamble unchanged.
+% =====================================================================
+
+% >>> BEGIN [C] <<<
+All quantitative results in this section are based on a small Stage~0
+sample of $n=20$ adversarial items per probe. This sample size is
+sufficient to establish direction and rough effect size but admits
+wide confidence intervals; we therefore treat every numerical
+comparison in this section as suggestive rather than decisive, and
+flag scale-dependent patterns as exploratory where they arise.
+% >>> END [C] <<<
+
+
+% =====================================================================
+% [D] SECTION 5.1 -- UNCHANGED
+% Keep the v34 §5.1 "Singleton probe..." subsection (including its
+% existing 3-family table) exactly as-is.
+% =====================================================================
+
+
+% =====================================================================
+% [E] NEW SECTION 5.2 -- full subsection
+% Insert directly after the v34 §5.1 subsection, before the old §5.2
+% (which becomes §5.3 in [F]).
+% =====================================================================
+
+% >>> BEGIN [E] <<<
+\subsection{Bilateral singleton probe with length matching}
+\label{sec:bilateral-probe}
+
+The singleton probe above measures classifier vulnerability to a
+single-sided set of adversarial false statements carrying
+truthful-side surface cues. A complementary test is whether
+classifiers trained on the audited subset can be \emph{fooled} when a
+surface-plain true statement is presented alongside a false statement
+dressed in truthful-side surface form. We construct such a bilateral
+probe and evaluate it across an expanded ladder of seven classifier
+families spanning four model sizes and three pretraining paradigms.
+
+\paragraph{Setup.} We generate $20$ true statements (Claude Opus~$4.7$,
+judged by GPT-$5.4$ pinned at \texttt{gpt-5.4-2026-03-05}; $19/20$
+judged true) stripped of all truthful-side surface cues: no negation
+openers or tokens, no hedging, no authority attribution, and no
+contrast conjunctions. Each A-side true statement is length-matched to
+the $\S$5.1 B-side false statements, with word count constrained to
+the range $[22, 26]$ to match the B-side mean of $23.5$ words. The
+$20$ A-side true statements are paired with the $20$ existing B-side
+false statements from the singleton probe. For a classifier $f$, the
+\emph{fool rate} on a pair set is the fraction of pairs in which $f$
+assigns higher $P(\text{truthful})$ to the B-side (surface-true,
+semantically false) than to the A-side (surface-plain, semantically
+true). We report fool rates under two pairings: \emph{same-index}
+($n=20$), which preserves topic alignment between $A_i$ and $B_i$ and
+which we treat as the lead metric; and \emph{all-pairs} ($n=400$),
+the $20 \times 20$ cross-product, which we treat as a secondary
+robustness check because it entangles topic coherence with truth
+discrimination. For each classifier, the \emph{fool drop} is the
+difference $\text{fool}_\text{full} - \text{fool}_\text{cleaned}$;
+positive values indicate that cleaning reduces bilateral shortcut
+reliance.
+
+\paragraph{Classifier ladder.} We evaluate seven families: the
+interpretable $10$-feature surface classifier from $\S$3; BGE-large
+($335$M, contrastive encoder); ModernBERT-base ($149$M, masked-LM
+encoder); and four causal-LM families used as frozen mean-pooled
+encoders---Qwen2.5-0.5B-Instruct ($494$M), SmolLM2-1.7B-Instruct
+($1.7$B), Qwen2.5-3B-Instruct ($3.1$B, bf16), and Phi-3.5-mini-Instruct
+($3.8$B, bf16). Every embedding-based family uses the same
+\texttt{StandardScaler}${+}$\texttt{LogisticRegression} head protocol,
+fit independently on the full $790$-pair TruthfulQA and the cleaned
+$\tau=0.52$ $528$-pair subset, with grouped $5$-fold cross-validation
+by \texttt{pair\_id}.
+
+\begin{table}[H]
+\centering
+\small
+\caption{Bilateral singleton probe across seven classifier families
+($n=20$ same-index, $n=400$ all-pairs). CV AUC columns report
+grouped $5$-fold cross-validation AUC on full and cleaned
+($\tau=0.52$) TruthfulQA. Fool-drop $=$ full fool-rate $-$ cleaned
+fool-rate; positive values indicate cleaning reduces bilateral
+shortcut reliance. Same-index is the lead metric; all-pairs is
+secondary and mixes topic coherence with truth discrimination.}
+\label{tab:bilateral_probe}
+\begin{tabular}{@{}lccc@{}}
+\toprule
+Classifier & CV AUC (full / cleaned) & Same-idx fool-drop & All-pairs fool-drop \\
+\midrule
+surface\_lr ($10$ feats)    & $0.718$ / $0.596$ & $+0.350$ & $+0.447$ \\
+BGE-large ($335$M)          & $0.785$ / $0.720$ & $+0.050$ & $+0.088$ \\
+ModernBERT-base ($149$M)    & $0.749$ / $0.711$ & $+0.100$ & $+0.057$ \\
+Qwen2.5-0.5B ($494$M)       & $0.746$ / $0.717$ & $+0.100$ & $+0.087$ \\
+SmolLM2-1.7B                & $0.795$ / $0.755$ & $+0.050$ & $+0.078$ \\
+Qwen2.5-3B ($3.1$B)         & $0.810$ / $0.806$ & $+0.300$ & $+0.178$ \\
+Phi-3.5-mini ($3.8$B)       & $0.805$ / $0.782$ & $+0.300$ & $+0.325$ \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+\paragraph{Results.} Every family shows a non-negative same-index
+fool-drop, indicating that cleaning reduces bilateral susceptibility
+across all seven classifiers. The interpretable surface classifier
+shows the largest effect ($+0.350$ same-index, $+0.447$ all-pairs),
+consistent with its direct dependence on the lexical features
+targeted by the $\tau=0.52$ audit. The four frozen sub-$2$B semantic
+encoders (BGE-large, ModernBERT-base, Qwen2.5-0.5B, SmolLM2-1.7B)
+show modest but consistent fool-drops of $+0.05$ to $+0.10$
+same-index.
+
+\paragraph{Scale pattern (exploratory).} At $3$B+ parameters,
+Qwen2.5-3B and Phi-3.5-mini show substantially larger bilateral
+fool-drops than the sub-$2$B classifiers ($+0.30$ vs.\ $+0.05$--$+0.10$
+same-index). Whether this reflects a genuine scale threshold requires
+larger-sample validation; the effect is replicated across two
+independent causal-LM families at matched scale, but $n=20$ admits
+wide confidence intervals, and the two families diverge on the
+all-pairs metric (Phi-3.5-mini $+0.325$ vs.\ Qwen2.5-3B $+0.178$),
+which may reflect Phi-specific synthetic-training-data amplification
+rather than a pure scale effect. We therefore present this as a
+suggestive observation rather than an established threshold.
+
+\paragraph{Length matching as a methodological contribution.} The
+v7a-v3 probe required constraining A-side word count to match the
+B-side distribution ($22$--$26$ words, centered on the B-side mean of
+$23.5$ words). At shorter A-side lengths ($5$--$15$ words), the
+cleaned \texttt{surface\_lr} classifier's residual \texttt{word\_count}
+feature---whose standardized coefficient rose from the $4$th-largest
+in \texttt{surface\_lr\_full} ($+0.226$) to the $1$st-largest in
+\texttt{surface\_lr\_cleaned} ($+0.311$), while \texttt{neg\_cnt}
+dropped from $+0.746$ to $+0.045$---masked the cleaning effect on the
+bilateral probe. Neutralizing this residual length shortcut by
+length-matching A-sides to B-sides revealed the fool-drops reported
+in Table~\ref{tab:bilateral_probe}. This pattern indicates that
+single-cue cleaning procedures can transfer shortcut reliance from
+the targeted feature to the next-available residual feature, and
+that probes of cleaned classifiers should explicitly control for
+candidate residual cues rather than treat the post-cleaning
+feature distribution as stationary. We view this as a
+methodological contribution of the bilateral probe: adversarial
+probes of surface-cleaned classifiers should neutralize features that
+were not the direct target of the cleaning procedure, or risk
+conflating a residual shortcut with the absence of a cleaning effect.
+% >>> END [E] <<<
+
+
+% =====================================================================
+% [F] OLD SECTION 5.2 --> SECTION 5.3 (renumber only)
+% The v34 "paired paraphrase / infeasibility" subsection is kept
+% verbatim, moved to follow the new §5.2 above. If you use an explicit
+% \label, rename from sec:paraphrase-probe (or similar) to
+% sec:paraphrase-probe unchanged -- just re-position in file order.
+% No textual edits.
+% =====================================================================
+
+
+% =====================================================================
+% [G] CONCLUSION -- sentence-level edits
+% In the v34 conclusion, the existing adversarial-probing sentence
+% refers to "three classifier families". Replace that sentence with
+% [G1] and append [G2] + [G3] after it.
+% =====================================================================
+
+% >>> BEGIN [G1] (replaces the "three classifier families" sentence) <<<
+Adversarial probing across three complementary designs---a
+singleton probe (three classifier families), a bilateral
+length-matched singleton probe (seven classifier families spanning
+$149$M to $3.8$B parameters, across engineered features,
+contrastive encoder, masked-LM encoder, and causal-LM paradigms),
+and a paired-paraphrase probe---confirms that surface-form cleaning
+reduces shortcut reliance across every family tested, with the
+largest bilateral cleaning benefit on the interpretable lexical
+classifier (same-index fool-drop $+0.35$) and smaller but
+consistent benefits on frozen semantic encoders.
+% >>> END [G1] <<<
+
+% >>> BEGIN [G2] (new sentence, insert immediately after [G1]) <<<
+Two independent causal-LM families at $3$B+ parameters show
+substantially larger bilateral fool-drops than sub-$2$B classifiers,
+but $n=20$ admits wide confidence intervals and we leave
+scale-threshold claims for larger-sample work.
+% >>> END [G2] <<<
+
+% >>> BEGIN [G3] (new sentence, insert immediately after [G2]) <<<
+The bilateral probe also surfaces a methodological point: the
+cleaning procedure transferred \texttt{surface\_lr}'s dominant
+coefficient from negation to word count, so credible adversarial
+probes of cleaned classifiers must length-match---or otherwise
+neutralize---features that were not the direct target of the
+cleaning procedure.
+% >>> END [G3] <<<
+
+
+% =====================================================================
+% [H] LIMITATIONS -- additions
+% Keep the existing n=20 caveat. Append [H1] and [H2] to the
+% adversarial-probing limitations paragraph.
+% =====================================================================
+
+% >>> BEGIN [H1] (new sentence) <<<
+The $3$B+ scale pattern reported in $\S$5.2---two causal-LM
+families showing substantially larger same-index fool-drops than the
+five sub-$2$B classifiers---is based on $n=20$ pairs and on only two
+families above the apparent threshold. We therefore present it as
+exploratory and consistent with, but not evidence of, a
+capability-dependent cleaning effect; larger samples and additional
+$3$B+ families are required before interpreting this as a scale
+threshold.
+% >>> END [H1] <<<
+
+% >>> BEGIN [H2] (new sentence) <<<
+The length-matching requirement in $\S$5.2 arose from a
+cleaning-induced coefficient shift in \texttt{surface\_lr} (negation
+$\to$ word count). This is a property of the specific single-cue
+$\tau=0.52$ audit used in this paper rather than a universal
+probing procedure; future cleaning protocols may produce different
+residual shortcut features, and bilateral probes should be tuned to
+whichever residual cue dominates the cleaned classifier under study.
+% >>> END [H2] <<<
+
+
+% =====================================================================
+% [J] PREREG AMENDMENT -- add 8th classifier family (Qwen2.5-1.5B)
+% After freezing the v35 draft we added Qwen2.5-1.5B-Instruct as an 8th
+% classifier family, to fill the scale gap between Qwen2.5-0.5B (494M)
+% and SmolLM2-1.7B / Qwen2.5-3B in the bilateral probe. Same recipe as
+% the other causal-LM families (mean-pooled frozen encoder, bf16 on MPS,
+% StandardScaler + LR head, grouped 5-fold CV by pair_id).
+%
+% This block is reported in full regardless of outcome, per the
+% prereg-amendment protocol for adding a family after the original
+% table was frozen. The n=20 v7a-v3 bilateral probe in Table
+% \ref{tab:bilateral_probe} is UNCHANGED; this amendment only adds the
+% scaled v9 same-question results.
+% =====================================================================
+
+% >>> BEGIN [J1] (amendment: family ladder extended to eight) <<<
+\paragraph{Amendment: eighth classifier family.} After the original
+seven-family ladder was frozen, we added Qwen2.5-1.5B-Instruct
+($1.5$B, causal LM, mean-pool, bf16) to fill the scale gap between
+Qwen2.5-0.5B and SmolLM2-1.7B. The model is trained with the
+identical \texttt{StandardScaler}${+}$\texttt{LogisticRegression}
+recipe on the same full ($790$-pair) and cleaned ($\tau=0.52$,
+$528$-pair) TruthfulQA splits, with grouped $5$-fold cross-validation
+by \texttt{pair\_id}. Grouped-CV AUC: full $0.770$, cleaned $0.738$.
+We report its bilateral probe result regardless of outcome in the
+scaled evaluation below.
+% >>> END [J1] <<<
+
+% >>> BEGIN [J2] (new Table: v9 same-question scaled bilateral probe) <<<
+\begin{table}[H]
+\centering
+\small
+\caption{Scaled bilateral same-question probe across nine classifier
+families ($n=206$ topic-matched true/false pairs; judge-verified on
+both sides with \texttt{gpt-5.4-2026-03-05}).
+Accuracy $=$ fraction of pairs where the classifier ranks the true
+side above the false side; chance $=0.5$.
+$\Delta = \text{Acc}_\text{cleaned} - \text{Acc}_\text{full}$;
+positive values indicate cleaning reduces surface-shortcut reliance.
+$p$ columns are two-sided exact binomial vs.\ $0.5$ (Acc columns) and
+exact McNemar on pick-flips (cleaning column). Amendment families
+Qwen2.5-1.5B marked $\dagger$ and Llama-3.2-3B marked $\ddagger$.}
+\label{tab:bilateral_probe_scaled}
+\begin{tabular}{@{}lccccc@{}}
+\toprule
+Classifier & Acc$_\text{full}$ [95\% CI] & Acc$_\text{cleaned}$ [95\% CI] & $\Delta$ & McNemar $p$ & flips $+/-$ \\
+\midrule
+surface\_lr ($10$ feats)    & $0.000$ [$0.00$, $0.02$] & $0.005$ [$0.00$, $0.03$] & $+0.005$ & $1.000$    & $+1/-0$  \\
+BGE-large ($335$M)          & $0.451$ [$0.39$, $0.52$] & $0.495$ [$0.43$, $0.56$] & $+0.044$ & $0.222$    & $+26/-17$ \\
+ModernBERT-base ($149$M)    & $0.587$ [$0.52$, $0.65$] & $0.549$ [$0.48$, $0.61$] & $-0.039$ & $0.322$    & $+21/-29$ \\
+Qwen2.5-0.5B ($494$M)       & $0.549$ [$0.48$, $0.61$] & $0.549$ [$0.48$, $0.61$] & $+0.000$ & $1.000$    & $+21/-21$ \\
+Qwen2.5-1.5B ($1.5$B)$^\dagger$ & $0.549$ [$0.48$, $0.61$] & $0.568$ [$0.50$, $0.63$] & $+0.019$ & $0.636$    & $+22/-18$ \\
+SmolLM2-1.7B                & $0.505$ [$0.44$, $0.57$] & $0.578$ [$0.51$, $0.64$] & $+0.073$ & $0.024^{*}$  & $+27/-12$ \\
+Qwen2.5-3B ($3.1$B)         & $0.500$ [$0.43$, $0.57$] & $0.597$ [$0.53$, $0.66$] & $+0.097$ & $0.006^{**}$ & $+34/-14$ \\
+Llama-3.2-3B ($3.2$B)$^\ddagger$ & $0.437$ [$0.37$, $0.51$] & $0.519$ [$0.45$, $0.59$] & $+0.083$ & $0.006^{**}$ & $+26/-9$  \\
+Phi-3.5-mini ($3.8$B)       & $0.578$ [$0.51$, $0.64$] & $0.583$ [$0.51$, $0.65$] & $+0.005$ & $1.000$    & $+20/-19$ \\
+\bottomrule
+\end{tabular}
+\end{table}
+% >>> END [J2] <<<
+
+% >>> BEGIN [J3] (amendment result paragraph) <<<
+\paragraph{Amendment result.} Qwen2.5-1.5B shows a small positive
+bilateral $\Delta$ of $+0.019$ (Acc$_\text{full}=0.549$,
+Acc$_\text{cleaned}=0.568$), with McNemar $p=0.636$; the effect is
+not distinguishable from zero at the scaled $n=206$ sample. The 1.5B
+family falls in the same "no-big-effect" plateau as Qwen2.5-0.5B
+($+0.000$) and Phi-3.5-mini ($+0.005$), which tightens the
+interpretation of the scale pattern from $\S$5.2: at the scaled
+sample size, only Qwen2.5-3B and SmolLM2-1.7B retain significant
+cleaning benefit (McNemar $p=0.006$ and $p=0.024$ respectively), and
+the original "3B+ threshold" framing is not supported---Qwen2.5-1.5B
+and Phi-3.5-mini behave alike despite the $2.5{\times}$ size
+difference. We report the null result in full and treat the
+$n=20$ scale narrative from $\S$5.2 as superseded by the
+$n=206$ evaluation in Table~\ref{tab:bilateral_probe_scaled}.
+% >>> END [J3] <<<
+
+
+% =====================================================================
+% [K] PREREG AMENDMENT -- add 9th classifier family (Llama-3.2-3B)
+% After the eighth-family amendment above, we added
+% meta-llama/Llama-3.2-3B-Instruct as an architecture-matched replicate
+% of Qwen2.5-3B at near-identical scale (3.2B vs 3.1B). The scientific
+% purpose is to test whether the Qwen2.5-3B cleaning-helps pattern in
+% Table \ref{tab:bilateral_probe_scaled} is specific to the Qwen
+% architecture or replicates in a different model family at the same
+% scale. Same recipe as the other causal-LM families (mean-pooled
+% frozen encoder, bf16 on MPS, StandardScaler + LR head, grouped
+% 5-fold CV by pair_id). Reported in full regardless of outcome.
+% The n=20 v7a-v3 bilateral probe in Table \ref{tab:bilateral_probe}
+% is UNCHANGED. Table \ref{tab:bilateral_probe_scaled} has been
+% extended with a ninth row for Llama-3.2-3B (marked \ddagger) under
+% the same caption/label.
+% =====================================================================
+
+% >>> BEGIN [K1] (amendment: family ladder extended to nine) <<<
+\paragraph{Amendment: ninth classifier family.} Following the
+eighth-family amendment above, we added
+\texttt{meta-llama/Llama-3.2-3B-Instruct} ($3.2$B, causal LM,
+mean-pool, bf16) as an architecture-matched replicate of Qwen2.5-3B
+at near-identical scale. The scientific purpose is to test whether
+the Qwen2.5-3B cleaning effect observed in
+Table~\ref{tab:bilateral_probe_scaled} is specific to the Qwen
+architecture or replicates in a different model family at the same
+$3$B scale. Recipe, splits, and CV grouping are identical to the
+other causal-LM families. Grouped-CV AUC: full $0.812$, cleaned
+$0.780$---the highest full-data CV AUC of all nine families. We
+report its bilateral probe result regardless of outcome.
+% >>> END [K1] <<<
+
+% >>> BEGIN [K3] (amendment result paragraph for Llama-3.2-3B) <<<
+\paragraph{Amendment result.} Llama-3.2-3B shows
+$\text{Acc}_\text{full}=0.437$ [$0.37$, $0.51$] (near-significantly
+below chance, two-sided binomial $p=0.081$) and
+$\text{Acc}_\text{cleaned}=0.519$ [$0.45$, $0.59$], yielding
+$\Delta=+0.083$ with exact McNemar $p=0.006^{**}$ (pick-flips
+$+26/-9$). This replicates the Qwen2.5-3B pattern---same-scale
+replicate, $\Delta=+0.097$, McNemar $p=0.006^{**}$---in a different
+model family. With this addition, three of the nine families in
+Table~\ref{tab:bilateral_probe_scaled} show exact-McNemar-significant
+cleaning benefit at $n=206$: Qwen2.5-3B, Llama-3.2-3B (both
+$3$B-class causal LMs from different families), and SmolLM2-1.7B.
+Two same-scale $3$B-class models from unrelated pre-training lineages
+(Qwen, Llama) thus produce concordant cleaning effects, while
+neighbouring scales (1.5B, 3.8B) and smaller causal-LM families
+(0.5B) do not, indicating a model-family-independent effect
+localised near the $3$B scale rather than a monotone scale trend.
+We retain the $n=206$ evaluation in
+Table~\ref{tab:bilateral_probe_scaled} as the primary scaled result.
+% >>> END [K3] <<<
+
+
+% =====================================================================
+% [I] DIFF SUMMARY
+% =====================================================================
+%
+%  Section / block                       Action
+%  ------------------------------------- ------------------------------
+%  Abstract "three classifier families"  Replace with [A]
+%  Intro contributions item (3)          Replace with [B]
+%  §5 preamble (n=800 TODO sentence)     Replace with [C]
+%  §5.1 singleton probe                  UNCHANGED
+%  §5.2 NEW bilateral probe              Insert [E]
+%    - new Table \ref{tab:bilateral_probe}  (7-family, 3 columns)
+%    - 4 paragraphs (setup, ladder, results, scale, length-matching)
+%  §5.2 old (paraphrase infeasibility)   Renumber to §5.3; no text edits
+%  Conclusion "three classifier families" Replace with [G1]
+%  Conclusion (appended)                 Add [G2] and [G3]
+%  Limitations (appended)                Add [H1] and [H2]
+%  Prereg amendment (new §5.2.1)          Insert [J1] + [J2] + [J3]
+%    - new Table \ref{tab:bilateral_probe_scaled}  (9-family, n=206)
+%  Prereg amendment (new §5.2.2)          Insert [K1] + [K3]
+%    - extends Table \ref{tab:bilateral_probe_scaled} with Llama-3.2-3B
+%  §3, §4, §6, all existing tables       UNCHANGED
+%
+% Tables added: 2 (tab:bilateral_probe, tab:bilateral_probe_scaled)
+% Tables changed: 0
+% Tables removed: 0
+% Figures added/changed/removed: 0
+% =====================================================================

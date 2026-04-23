@@ -1,0 +1,1255 @@
+{
+  "n_pairs": 206,
+  "pair_ids": [
+    0,
+    1,
+    2,
+    15,
+    29,
+    31,
+    32,
+    37,
+    41,
+    51,
+    54,
+    55,
+    59,
+    65,
+    76,
+    85,
+    88,
+    89,
+    92,
+    93,
+    98,
+    100,
+    101,
+    115,
+    124,
+    136,
+    137,
+    139,
+    141,
+    143,
+    146,
+    147,
+    152,
+    153,
+    154,
+    157,
+    167,
+    172,
+    173,
+    175,
+    178,
+    181,
+    182,
+    187,
+    190,
+    191,
+    193,
+    194,
+    195,
+    197,
+    199,
+    203,
+    205,
+    206,
+    214,
+    216,
+    217,
+    218,
+    222,
+    223,
+    224,
+    227,
+    229,
+    241,
+    242,
+    246,
+    251,
+    254,
+    255,
+    257,
+    258,
+    260,
+    261,
+    263,
+    265,
+    269,
+    270,
+    273,
+    274,
+    275,
+    277,
+    279,
+    280,
+    282,
+    285,
+    298,
+    299,
+    304,
+    305,
+    307,
+    316,
+    317,
+    319,
+    329,
+    333,
+    337,
+    341,
+    344,
+    347,
+    348,
+    349,
+    358,
+    359,
+    363,
+    366,
+    370,
+    371,
+    373,
+    376,
+    377,
+    378,
+    379,
+    381,
+    382,
+    383,
+    384,
+    385,
+    391,
+    396,
+    398,
+    399,
+    403,
+    405,
+    439,
+    447,
+    449,
+    455,
+    456,
+    462,
+    463,
+    467,
+    474,
+    475,
+    478,
+    479,
+    481,
+    483,
+    490,
+    496,
+    498,
+    500,
+    504,
+    507,
+    508,
+    521,
+    527,
+    530,
+    532,
+    534,
+    539,
+    542,
+    545,
+    565,
+    568,
+    592,
+    599,
+    600,
+    612,
+    613,
+    619,
+    622,
+    623,
+    629,
+    634,
+    635,
+    641,
+    643,
+    646,
+    652,
+    660,
+    667,
+    668,
+    677,
+    679,
+    680,
+    682,
+    684,
+    688,
+    690,
+    692,
+    693,
+    698,
+    705,
+    712,
+    715,
+    717,
+    723,
+    729,
+    730,
+    738,
+    744,
+    751,
+    756,
+    759,
+    763,
+    765,
+    773,
+    774,
+    775,
+    776,
+    778,
+    779,
+    780,
+    781,
+    782,
+    789
+  ],
+  "source_counts": {
+    "seed103": 20,
+    "seed100": 28,
+    "seed7": 22,
+    "seed1": 27,
+    "v4": 16,
+    "seed102": 23,
+    "seed101": 24,
+    "seed42": 14,
+    "seed104": 20,
+    "seed105": 12
+  },
+  "manifest": [
+    {
+      "pair_id": 0,
+      "source": "seed103",
+      "pair_passes": true
+    },
+    {
+      "pair_id": 1,
+      "source": "seed100",
+      "pair_passes": true
+    },
+    {
+      "pair_id": 2,
+      "source": "seed7",
+      "pair_passes": true
+    },
+    {
+      "pair_id": 15,
+      "source": "seed103",
+      "pair_passes": true
+    },
+    {
+      "pair_id": 29,
+      "source": "seed1",
+      "pair_passes": true
+    },
+    {
+      "pair_id": 31,
+      "source": "v4",
+      "pair_passes": true
+    },
+    {
+      "pair_id": 32,
+      "source": "seed1",
+      "pair_passes": true
+    },
+    {
+      "pair_id": 37,
+      "source": "v4",
+      "pair_passes": true
+    },
+    {
+      "pair_id": 41,
+      "source": "v4",
+      "pair_passes": true
+    },
+    {
+      "pair_id": 51,
+      "source": "seed102",
+      "pair_passes": true
+    },
+    {
+      "pair_id": 54,
+      "source": "seed7",
+      "pair_passes": true
+    },
+    {
+      "pair_id": 55,
+      "source": "seed103",
+      "pair_passes": true
+    },
+    {
+      "pair_id": 59,
+      "source": "seed101",
+      "pair_passes": true
+    },
+    {
+      "pair_id": 65,
+      "source": "seed1",
+      "pair_passes": true
+    },
+    {
+      "pair_id": 76,
+      "source": "seed100",
+      "pair_passes": true
+    },
+    {
+      "pair_id": 85,
+      "source": "seed1",
+      "pair_passes": true
+    },
+    {
+      "pair_id": 88,
+      "source": "seed42",
+      "pair_passes": true
+    },
+    {
+      "pair_id": 89,
+      "source": "seed42",
+      "pair_passes": true
+    },
+    {
+      "pair_id": 92,
+      "source": "seed103",
+      "pair_passes": true
+    },
+    {
+      "pair_id": 93,
+      "source": "seed101",
+      "pair_passes": true
+    },
+    {
+      "pair_id": 98,
+      "source": "v4",
+      "pair_passes": true
+    },
+    {
+      "pair_id": 100,
+      "source": "seed103",
+      "pair_passes": true
+    },
+    {
+      "pair_id": 101,
+      "source": "v4",
+      "pair_passes": true
+    },
+    {
+      "pair_id": 115,
+      "source": "v4",
+      "pair_passes": true
+    },
+    {
+      "pair_id": 124,
+      "source": "seed100",
+      "pair_passes": true
+    },
+    {
+      "pair_id": 136,
+      "source": "v4",
+      "pair_passes": true
+    },
+    {
+      "pair_id": 137,
+      "source": "seed102",
+      "pair_passes": true
+    },
+    {
+      "pair_id": 139,
+      "source": "seed42",
+      "pair_passes": true
+    },
+    {
+      "pair_id": 141,
+      "source": "seed103",
+      "pair_passes": true
+    },
+    {
+      "pair_id": 143,
+      "source": "seed102",
+      "pair_passes": true
+    },
+    {
+      "pair_id": 146,
+      "source": "seed7",
+      "pair_passes": true
+    },
+    {
+      "pair_id": 147,
+      "source": "seed102",
+      "pair_passes": true
+    },
+    {
+      "pair_id": 152,
+      "source": "seed103",
+      "pair_passes": true
+    },
+    {
+      "pair_id": 153,
+      "source": "v4",
+      "pair_passes": true
+    },
+    {
+      "pair_id": 154,
+      "source": "seed104",
+      "pair_passes": true
+    },
+    {
+      "pair_id": 157,
+      "source": "seed104",
+      "pair_passes": true
+    },
+    {
+      "pair_id": 167,
+      "source": "seed103",
+      "pair_passes": true
+    },
+    {
+      "pair_id": 172,
+      "source": "seed1",
+      "pair_passes": true
+    },
+    {
+      "pair_id": 173,
+      "source": "seed42",
+      "pair_passes": true
+    },
+    {
+      "pair_id": 175,
+      "source": "seed7",
+      "pair_passes": true
+    },
+    {
+      "pair_id": 178,
+      "source": "seed102",
+      "pair_passes": true
+    },
+    {
+      "pair_id": 181,
+      "source": "seed100",
+      "pair_passes": true
+    },
+    {
+      "pair_id": 182,
+      "source": "seed102",
+      "pair_passes": true
+    },
+    {
+      "pair_id": 187,
+      "source": "seed1",
+      "pair_passes": true
+    },
+    {
+      "pair_id": 190,
+      "source": "seed104",
+      "pair_passes": true
+    },
+    {
+      "pair_id": 191,
+      "source": "seed105",
+      "pair_passes": true
+    },
+    {
+      "pair_id": 193,
+      "source": "seed1",
+      "pair_passes": true
+    },
+    {
+      "pair_id": 194,
+      "source": "seed103",
+      "pair_passes": true
+    },
+    {
+      "pair_id": 195,
+      "source": "seed7",
+      "pair_passes": true
+    },
+    {
+      "pair_id": 197,
+      "source": "seed101",
+      "pair_passes": true
+    },
+    {
+      "pair_id": 199,
+      "source": "seed105",
+      "pair_passes": true
+    },
+    {
+      "pair_id": 203,
+      "source": "seed100",
+      "pair_passes": true
+    },
+    {
+      "pair_id": 205,
+      "source": "seed1",
+      "pair_passes": true
+    },
+    {
+      "pair_id": 206,
+      "source": "v4",
+      "pair_passes": true
+    },
+    {
+      "pair_id": 214,
+      "source": "seed101",
+      "pair_passes": true
+    },
+    {
+      "pair_id": 216,
+      "source": "v4",
+      "pair_passes": true
+    },
+    {
+      "pair_id": 217,
+      "source": "seed7",
+      "pair_passes": true
+    },
+    {
+      "pair_id": 218,
+      "source": "seed104",
+      "pair_passes": true
+    },
+    {
+      "pair_id": 222,
+      "source": "v4",
+      "pair_passes": true
+    },
+    {
+      "pair_id": 223,
+      "source": "seed103",
+      "pair_passes": true
+    },
+    {
+      "pair_id": 224,
+      "source": "seed1",
+      "pair_passes": true
+    },
+    {
+      "pair_id": 227,
+      "source": "seed101",
+      "pair_passes": true
+    },
+    {
+      "pair_id": 229,
+      "source": "seed100",
+      "pair_passes": true
+    },
+    {
+      "pair_id": 241,
+      "source": "seed1",
+      "pair_passes": true
+    },
+    {
+      "pair_id": 242,
+      "source": "seed100",
+      "pair_passes": true
+    },
+    {
+      "pair_id": 246,
+      "source": "seed7",
+      "pair_passes": true
+    },
+    {
+      "pair_id": 251,
+      "source": "seed101",
+      "pair_passes": true
+    },
+    {
+      "pair_id": 254,
+      "source": "seed7",
+      "pair_passes": true
+    },
+    {
+      "pair_id": 255,
+      "source": "seed104",
+      "pair_passes": true
+    },
+    {
+      "pair_id": 257,
+      "source": "seed101",
+      "pair_passes": true
+    },
+    {
+      "pair_id": 258,
+      "source": "seed103",
+      "pair_passes": true
+    },
+    {
+      "pair_id": 260,
+      "source": "seed104",
+      "pair_passes": true
+    },
+    {
+      "pair_id": 261,
+      "source": "seed104",
+      "pair_passes": true
+    },
+    {
+      "pair_id": 263,
+      "source": "seed105",
+      "pair_passes": true
+    },
+    {
+      "pair_id": 265,
+      "source": "seed101",
+      "pair_passes": true
+    },
+    {
+      "pair_id": 269,
+      "source": "seed103",
+      "pair_passes": true
+    },
+    {
+      "pair_id": 270,
+      "source": "seed105",
+      "pair_passes": true
+    },
+    {
+      "pair_id": 273,
+      "source": "seed100",
+      "pair_passes": true
+    },
+    {
+      "pair_id": 274,
+      "source": "seed1",
+      "pair_passes": true
+    },
+    {
+      "pair_id": 275,
+      "source": "seed104",
+      "pair_passes": true
+    },
+    {
+      "pair_id": 277,
+      "source": "seed1",
+      "pair_passes": true
+    },
+    {
+      "pair_id": 279,
+      "source": "seed100",
+      "pair_passes": true
+    },
+    {
+      "pair_id": 280,
+      "source": "seed102",
+      "pair_passes": true
+    },
+    {
+      "pair_id": 282,
+      "source": "seed1",
+      "pair_passes": true
+    },
+    {
+      "pair_id": 285,
+      "source": "seed102",
+      "pair_passes": true
+    },
+    {
+      "pair_id": 298,
+      "source": "seed102",
+      "pair_passes": true
+    },
+    {
+      "pair_id": 299,
+      "source": "seed100",
+      "pair_passes": true
+    },
+    {
+      "pair_id": 304,
+      "source": "seed1",
+      "pair_passes": true
+    },
+    {
+      "pair_id": 305,
+      "source": "seed42",
+      "pair_passes": true
+    },
+    {
+      "pair_id": 307,
+      "source": "seed102",
+      "pair_passes": true
+    },
+    {
+      "pair_id": 316,
+      "source": "seed101",
+      "pair_passes": true
+    },
+    {
+      "pair_id": 317,
+      "source": "seed100",
+      "pair_passes": true
+    },
+    {
+      "pair_id": 319,
+      "source": "seed103",
+      "pair_passes": true
+    },
+    {
+      "pair_id": 329,
+      "source": "seed105",
+      "pair_passes": true
+    },
+    {
+      "pair_id": 333,
+      "source": "seed42",
+      "pair_passes": true
+    },
+    {
+      "pair_id": 337,
+      "source": "seed104",
+      "pair_passes": true
+    },
+    {
+      "pair_id": 341,
+      "source": "seed1",
+      "pair_passes": true
+    },
+    {
+      "pair_id": 344,
+      "source": "seed7",
+      "pair_passes": true
+    },
+    {
+      "pair_id": 347,
+      "source": "seed105",
+      "pair_passes": true
+    },
+    {
+      "pair_id": 348,
+      "source": "seed101",
+      "pair_passes": true
+    },
+    {
+      "pair_id": 349,
+      "source": "seed100",
+      "pair_passes": true
+    },
+    {
+      "pair_id": 358,
+      "source": "seed103",
+      "pair_passes": true
+    },
+    {
+      "pair_id": 359,
+      "source": "seed104",
+      "pair_passes": true
+    },
+    {
+      "pair_id": 363,
+      "source": "seed100",
+      "pair_passes": true
+    },
+    {
+      "pair_id": 366,
+      "source": "seed1",
+      "pair_passes": true
+    },
+    {
+      "pair_id": 370,
+      "source": "seed105",
+      "pair_passes": true
+    },
+    {
+      "pair_id": 371,
+      "source": "seed1",
+      "pair_passes": true
+    },
+    {
+      "pair_id": 373,
+      "source": "seed42",
+      "pair_passes": true
+    },
+    {
+      "pair_id": 376,
+      "source": "seed7",
+      "pair_passes": true
+    },
+    {
+      "pair_id": 377,
+      "source": "seed100",
+      "pair_passes": true
+    },
+    {
+      "pair_id": 378,
+      "source": "seed102",
+      "pair_passes": true
+    },
+    {
+      "pair_id": 379,
+      "source": "seed102",
+      "pair_passes": true
+    },
+    {
+      "pair_id": 381,
+      "source": "seed7",
+      "pair_passes": true
+    },
+    {
+      "pair_id": 382,
+      "source": "seed100",
+      "pair_passes": true
+    },
+    {
+      "pair_id": 383,
+      "source": "seed104",
+      "pair_passes": true
+    },
+    {
+      "pair_id": 384,
+      "source": "seed101",
+      "pair_passes": true
+    },
+    {
+      "pair_id": 385,
+      "source": "seed100",
+      "pair_passes": true
+    },
+    {
+      "pair_id": 391,
+      "source": "seed101",
+      "pair_passes": true
+    },
+    {
+      "pair_id": 396,
+      "source": "seed105",
+      "pair_passes": true
+    },
+    {
+      "pair_id": 398,
+      "source": "seed105",
+      "pair_passes": true
+    },
+    {
+      "pair_id": 399,
+      "source": "seed7",
+      "pair_passes": true
+    },
+    {
+      "pair_id": 403,
+      "source": "seed100",
+      "pair_passes": true
+    },
+    {
+      "pair_id": 405,
+      "source": "seed105",
+      "pair_passes": true
+    },
+    {
+      "pair_id": 439,
+      "source": "seed102",
+      "pair_passes": true
+    },
+    {
+      "pair_id": 447,
+      "source": "seed102",
+      "pair_passes": true
+    },
+    {
+      "pair_id": 449,
+      "source": "seed103",
+      "pair_passes": true
+    },
+    {
+      "pair_id": 455,
+      "source": "seed101",
+      "pair_passes": true
+    },
+    {
+      "pair_id": 456,
+      "source": "seed7",
+      "pair_passes": true
+    },
+    {
+      "pair_id": 462,
+      "source": "seed101",
+      "pair_passes": true
+    },
+    {
+      "pair_id": 463,
+      "source": "seed104",
+      "pair_passes": true
+    },
+    {
+      "pair_id": 467,
+      "source": "seed7",
+      "pair_passes": true
+    },
+    {
+      "pair_id": 474,
+      "source": "v4",
+      "pair_passes": true
+    },
+    {
+      "pair_id": 475,
+      "source": "seed42",
+      "pair_passes": true
+    },
+    {
+      "pair_id": 478,
+      "source": "seed100",
+      "pair_passes": true
+    },
+    {
+      "pair_id": 479,
+      "source": "seed101",
+      "pair_passes": true
+    },
+    {
+      "pair_id": 481,
+      "source": "seed100",
+      "pair_passes": true
+    },
+    {
+      "pair_id": 483,
+      "source": "seed103",
+      "pair_passes": true
+    },
+    {
+      "pair_id": 490,
+      "source": "seed102",
+      "pair_passes": true
+    },
+    {
+      "pair_id": 496,
+      "source": "seed102",
+      "pair_passes": true
+    },
+    {
+      "pair_id": 498,
+      "source": "seed101",
+      "pair_passes": true
+    },
+    {
+      "pair_id": 500,
+      "source": "seed100",
+      "pair_passes": true
+    },
+    {
+      "pair_id": 504,
+      "source": "seed42",
+      "pair_passes": true
+    },
+    {
+      "pair_id": 507,
+      "source": "seed104",
+      "pair_passes": true
+    },
+    {
+      "pair_id": 508,
+      "source": "seed1",
+      "pair_passes": true
+    },
+    {
+      "pair_id": 521,
+      "source": "v4",
+      "pair_passes": true
+    },
+    {
+      "pair_id": 527,
+      "source": "seed101",
+      "pair_passes": true
+    },
+    {
+      "pair_id": 530,
+      "source": "seed104",
+      "pair_passes": true
+    },
+    {
+      "pair_id": 532,
+      "source": "seed101",
+      "pair_passes": true
+    },
+    {
+      "pair_id": 534,
+      "source": "seed7",
+      "pair_passes": true
+    },
+    {
+      "pair_id": 539,
+      "source": "seed1",
+      "pair_passes": true
+    },
+    {
+      "pair_id": 542,
+      "source": "seed42",
+      "pair_passes": true
+    },
+    {
+      "pair_id": 545,
+      "source": "seed104",
+      "pair_passes": true
+    },
+    {
+      "pair_id": 565,
+      "source": "seed102",
+      "pair_passes": true
+    },
+    {
+      "pair_id": 568,
+      "source": "seed42",
+      "pair_passes": true
+    },
+    {
+      "pair_id": 592,
+      "source": "seed101",
+      "pair_passes": true
+    },
+    {
+      "pair_id": 599,
+      "source": "seed101",
+      "pair_passes": true
+    },
+    {
+      "pair_id": 600,
+      "source": "seed103",
+      "pair_passes": true
+    },
+    {
+      "pair_id": 612,
+      "source": "seed1",
+      "pair_passes": true
+    },
+    {
+      "pair_id": 613,
+      "source": "seed7",
+      "pair_passes": true
+    },
+    {
+      "pair_id": 619,
+      "source": "seed1",
+      "pair_passes": true
+    },
+    {
+      "pair_id": 622,
+      "source": "seed42",
+      "pair_passes": true
+    },
+    {
+      "pair_id": 623,
+      "source": "seed104",
+      "pair_passes": true
+    },
+    {
+      "pair_id": 629,
+      "source": "seed1",
+      "pair_passes": true
+    },
+    {
+      "pair_id": 634,
+      "source": "seed101",
+      "pair_passes": true
+    },
+    {
+      "pair_id": 635,
+      "source": "v4",
+      "pair_passes": true
+    },
+    {
+      "pair_id": 641,
+      "source": "seed1",
+      "pair_passes": true
+    },
+    {
+      "pair_id": 643,
+      "source": "seed105",
+      "pair_passes": true
+    },
+    {
+      "pair_id": 646,
+      "source": "seed104",
+      "pair_passes": true
+    },
+    {
+      "pair_id": 652,
+      "source": "seed102",
+      "pair_passes": true
+    },
+    {
+      "pair_id": 660,
+      "source": "seed103",
+      "pair_passes": true
+    },
+    {
+      "pair_id": 667,
+      "source": "seed100",
+      "pair_passes": true
+    },
+    {
+      "pair_id": 668,
+      "source": "seed42",
+      "pair_passes": true
+    },
+    {
+      "pair_id": 677,
+      "source": "seed100",
+      "pair_passes": true
+    },
+    {
+      "pair_id": 679,
+      "source": "seed101",
+      "pair_passes": true
+    },
+    {
+      "pair_id": 680,
+      "source": "seed7",
+      "pair_passes": true
+    },
+    {
+      "pair_id": 682,
+      "source": "seed7",
+      "pair_passes": true
+    },
+    {
+      "pair_id": 684,
+      "source": "seed100",
+      "pair_passes": true
+    },
+    {
+      "pair_id": 688,
+      "source": "v4",
+      "pair_passes": true
+    },
+    {
+      "pair_id": 690,
+      "source": "v4",
+      "pair_passes": true
+    },
+    {
+      "pair_id": 692,
+      "source": "seed1",
+      "pair_passes": true
+    },
+    {
+      "pair_id": 693,
+      "source": "seed104",
+      "pair_passes": true
+    },
+    {
+      "pair_id": 698,
+      "source": "seed100",
+      "pair_passes": true
+    },
+    {
+      "pair_id": 705,
+      "source": "seed102",
+      "pair_passes": true
+    },
+    {
+      "pair_id": 712,
+      "source": "seed1",
+      "pair_passes": true
+    },
+    {
+      "pair_id": 715,
+      "source": "seed104",
+      "pair_passes": true
+    },
+    {
+      "pair_id": 717,
+      "source": "seed101",
+      "pair_passes": true
+    },
+    {
+      "pair_id": 723,
+      "source": "seed103",
+      "pair_passes": true
+    },
+    {
+      "pair_id": 729,
+      "source": "seed100",
+      "pair_passes": true
+    },
+    {
+      "pair_id": 730,
+      "source": "seed102",
+      "pair_passes": true
+    },
+    {
+      "pair_id": 738,
+      "source": "seed102",
+      "pair_passes": true
+    },
+    {
+      "pair_id": 744,
+      "source": "seed105",
+      "pair_passes": true
+    },
+    {
+      "pair_id": 751,
+      "source": "seed101",
+      "pair_passes": true
+    },
+    {
+      "pair_id": 756,
+      "source": "seed100",
+      "pair_passes": true
+    },
+    {
+      "pair_id": 759,
+      "source": "seed102",
+      "pair_passes": true
+    },
+    {
+      "pair_id": 763,
+      "source": "seed42",
+      "pair_passes": true
+    },
+    {
+      "pair_id": 765,
+      "source": "seed1",
+      "pair_passes": true
+    },
+    {
+      "pair_id": 773,
+      "source": "seed104",
+      "pair_passes": true
+    },
+    {
+      "pair_id": 774,
+      "source": "seed100",
+      "pair_passes": true
+    },
+    {
+      "pair_id": 775,
+      "source": "seed103",
+      "pair_passes": true
+    },
+    {
+      "pair_id": 776,
+      "source": "seed7",
+      "pair_passes": true
+    },
+    {
+      "pair_id": 778,
+      "source": "seed7",
+      "pair_passes": true
+    },
+    {
+      "pair_id": 779,
+      "source": "seed1",
+      "pair_passes": true
+    },
+    {
+      "pair_id": 780,
+      "source": "seed102",
+      "pair_passes": true
+    },
+    {
+      "pair_id": 781,
+      "source": "seed7",
+      "pair_passes": true
+    },
+    {
+      "pair_id": 782,
+      "source": "seed7",
+      "pair_passes": true
+    },
+    {
+      "pair_id": 789,
+      "source": "seed100",
+      "pair_passes": true
+    }
+  ]
+}

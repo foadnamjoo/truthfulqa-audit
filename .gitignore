@@ -71,3 +71,7 @@ artifacts/*
 
 # Run logs (regenerable, noisy)
 stage0_v7a_bilateral/_*_log.txt
+stage0_paired_tqa/v4_multi_seed/_*.log
+stage0_v9_same_question/*.log
+stage0_v9_same_question/_*.log
+stage0_v8_inverted_bilateral/*.log

@@ -1,0 +1,164 @@
+{
+  "n_pairs": 20,
+  "pair_ids": [
+    0,
+    1,
+    2,
+    3,
+    4,
+    5,
+    6,
+    7,
+    8,
+    9,
+    10,
+    11,
+    12,
+    13,
+    14,
+    15,
+    16,
+    17,
+    18,
+    19
+  ],
+  "families": {
+    "surface_lr": {
+      "source": "reused from stage0_singleton_v7a_classifier_scores.json",
+      "full": {
+        "n": 20,
+        "pair_accuracy": 0.05,
+        "pair_correct_count": 1,
+        "ties": 0,
+        "mean_P_gap_A_minus_B": -0.3872175375434005
+      },
+      "cleaned": {
+        "n": 20,
+        "pair_accuracy": 0.0,
+        "pair_correct_count": 0,
+        "ties": 0,
+        "mean_P_gap_A_minus_B": -0.2252520031391252
+      },
+      "accuracy_drop_full_minus_cleaned": 0.05,
+      "mean_gap_drop_full_minus_cleaned": -0.1619655344042753
+    },
+    "BGE-large": {
+      "source": "reused from stage0_singleton_v7a_classifier_scores.json",
+      "full": {
+        "n": 20,
+        "pair_accuracy": 0.1,
+        "pair_correct_count": 2,
+        "ties": 0,
+        "mean_P_gap_A_minus_B": -0.367238961479722
+      },
+      "cleaned": {
+        "n": 20,
+        "pair_accuracy": 0.2,
+        "pair_correct_count": 4,
+        "ties": 0,
+        "mean_P_gap_A_minus_B": -0.29725709267906014
+      },
+      "accuracy_drop_full_minus_cleaned": -0.1,
+      "mean_gap_drop_full_minus_cleaned": -0.06998186880066187
+    },
+    "ModernBERT-base": {
+      "source": "reused from stage0_singleton_v7a_classifier_scores.json",
+      "full": {
+        "n": 20,
+        "pair_accuracy": 0.35,
+        "pair_correct_count": 7,
+        "ties": 0,
+        "mean_P_gap_A_minus_B": -0.1340063328369436
+      },
+      "cleaned": {
+        "n": 20,
+        "pair_accuracy": 0.45,
+        "pair_correct_count": 9,
+        "ties": 0,
+        "mean_P_gap_A_minus_B": -0.01981289642727129
+      },
+      "accuracy_drop_full_minus_cleaned": -0.10000000000000003,
+      "mean_gap_drop_full_minus_cleaned": -0.1141934364096723
+    },
+    "Qwen2.5-0.5B": {
+      "source": "stage0_v8_inverted_bilateral/v8_qwen_scores.json",
+      "status": "ok",
+      "full": {
+        "n": 20,
+        "pair_accuracy": 0.25,
+        "pair_correct_count": 5,
+        "ties": 0,
+        "mean_P_gap_A_minus_B": -0.23956305374150383
+      },
+      "cleaned": {
+        "n": 20,
+        "pair_accuracy": 0.35,
+        "pair_correct_count": 7,
+        "ties": 0,
+        "mean_P_gap_A_minus_B": -0.2334130485199295
+      },
+      "accuracy_drop_full_minus_cleaned": -0.09999999999999998,
+      "mean_gap_drop_full_minus_cleaned": -0.006150005221574328
+    },
+    "SmolLM2-1.7B": {
+      "source": "stage0_v8_inverted_bilateral/v8_smollm2_scores.json",
+      "status": "ok",
+      "full": {
+        "n": 20,
+        "pair_accuracy": 0.15,
+        "pair_correct_count": 3,
+        "ties": 0,
+        "mean_P_gap_A_minus_B": -0.4252287632314613
+      },
+      "cleaned": {
+        "n": 20,
+        "pair_accuracy": 0.15,
+        "pair_correct_count": 3,
+        "ties": 0,
+        "mean_P_gap_A_minus_B": -0.3750267827802398
+      },
+      "accuracy_drop_full_minus_cleaned": 0.0,
+      "mean_gap_drop_full_minus_cleaned": -0.050201980451221484
+    },
+    "Qwen2.5-3B": {
+      "source": "stage0_v8_inverted_bilateral/v8_qwen3b_scores.json",
+      "status": "ok",
+      "full": {
+        "n": 20,
+        "pair_accuracy": 0.1,
+        "pair_correct_count": 2,
+        "ties": 0,
+        "mean_P_gap_A_minus_B": -0.4169668748029213
+      },
+      "cleaned": {
+        "n": 20,
+        "pair_accuracy": 0.25,
+        "pair_correct_count": 5,
+        "ties": 0,
+        "mean_P_gap_A_minus_B": -0.23593193227276096
+      },
+      "accuracy_drop_full_minus_cleaned": -0.15,
+      "mean_gap_drop_full_minus_cleaned": -0.1810349425301603
+    },
+    "Phi-3.5-mini": {
+      "source": "stage0_v8_inverted_bilateral/v8_phi35_scores.json",
+      "status": "ok",
+      "full": {
+        "n": 20,
+        "pair_accuracy": 0.1,
+        "pair_correct_count": 2,
+        "ties": 0,
+        "mean_P_gap_A_minus_B": -0.5374348631667598
+      },
+      "cleaned": {
+        "n": 20,
+        "pair_accuracy": 0.2,
+        "pair_correct_count": 4,
+        "ties": 0,
+        "mean_P_gap_A_minus_B": -0.4471322055411354
+      },
+      "accuracy_drop_full_minus_cleaned": -0.1,
+      "mean_gap_drop_full_minus_cleaned": -0.0903026576256244
+    }
+  }
+}
